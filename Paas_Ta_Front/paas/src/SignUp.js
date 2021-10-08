@@ -38,10 +38,10 @@ function SignUp() {
       <AppAppBar />
       <AppForm>
         <React.Fragment>
-        <Typography
-          color="inherit"
-              variant="h3"
-              align="center">
+          <Typography
+            color="inherit"
+            variant="h3"
+            align="center">
             GATHER SKON
           </Typography>
         </React.Fragment>
@@ -52,37 +52,23 @@ function SignUp() {
         >
           {({ handleSubmit: handleSubmit2, submitting }) => (
             <Box component="form" onSubmit={handleSubmit2} noValidate sx={{ mt: 6 }}>
-              <Grid container spacing={2}>
-                <Grid item xs={12} sm={6}>
-                  <Field
-                    autoFocus
-                    component={RFTextField}
-                    disabled={submitting || sent}
-                    autoComplete="fname"
-                    fullWidth
-                    label="이름"
-                    name="firstName"
-                    required
-                  />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                  <Field
-                    component={RFTextField}
-                    disabled={submitting || sent}
-                    autoComplete="lname"
-                    fullWidth
-                    label="Last name"
-                    name="lastName"
-                    required
-                  />
-                </Grid>
-              </Grid>
+              <Field
+                fullWidth
+                component={RFTextField}
+                disabled={submitting || sent}
+                required
+                name="password"
+                autoComplete="new-password"
+                label="이름"
+                type="password"
+                margin="normal"
+              />
               <Field
                 autoComplete="email"
                 component={RFTextField}
                 disabled={submitting || sent}
                 fullWidth
-                label="Email"
+                label="이메일"
                 margin="normal"
                 name="email"
                 required
@@ -94,7 +80,18 @@ function SignUp() {
                 required
                 name="password"
                 autoComplete="new-password"
-                label="Password"
+                label="비밀번호"
+                type="password"
+                margin="normal"
+              />
+                            <Field
+                fullWidth
+                component={RFTextField}
+                disabled={submitting || sent}
+                required
+                name="password"
+                autoComplete="new-password"
+                label="주소"
                 type="password"
                 margin="normal"
               />
@@ -110,10 +107,10 @@ function SignUp() {
               <FormButton
                 sx={{ mt: 3, mb: 2 }}
                 disabled={submitting || sent}
-                color="secondary"
+                color="primary"
                 fullWidth
               >
-                {submitting || sent ? 'In progress…' : 'Sign Up'}
+                {'회원 가입'}
               </FormButton>
             </Box>
           )}
