@@ -23,7 +23,7 @@ function AppAppBar() {
             underline="none"
             color="inherit"
             href="/"
-            sx={{ fontSize: 24 }}
+            sx={{ fontSize: 25 }}
           >
             {/* Home title */}
             {'Gather skon(임시 제목)'}

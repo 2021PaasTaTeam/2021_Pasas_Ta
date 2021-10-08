@@ -1,13 +1,13 @@
 import * as React from 'react';
 import Button from '../components/Button';
 import Typography from '../components/Typography';
-import ProductHeroLayout from './ProductHeroLayout';
+import Home_main_Layout from './Home_main_Layout';
 
 const backgroundImage =
   'https://mediahub.seoul.go.kr/wp-content/uploads/2020/09/e890e1058ac0da01e91bc915d5114142.jpg';
-export default function ProductHero() {
+export default function Home_Main() {
   return (
-    <ProductHeroLayout
+    <Home_main_Layout
       sxBackground={{
         backgroundImage: `url(${backgroundImage})`,
         backgroundColor: '#7fc7d9', // Average color of the background image.
@@ -44,6 +44,6 @@ export default function ProductHero() {
       <Typography variant="body2" color="inherit" sx={{ mt: 2 }}>
         한국형 메타버스를 경험해보세요.
       </Typography>
-    </ProductHeroLayout>
+    </Home_main_Layout>
   );
 }

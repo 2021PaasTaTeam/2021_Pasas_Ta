@@ -46,7 +46,7 @@ export default function AppFooter() {
               direction="column"
               justifyContent="flex-end"
               spacing={2}
-              sx={{ height: 120 }}
+              sx={{ height: 140 }}
             >
               <Grid item sx={{ display: 'flex' }}>
                 <Box component="a" href="https://github.com/2021PaasTaTeam/2021_Pasas_Ta" sx={iconStyle}>

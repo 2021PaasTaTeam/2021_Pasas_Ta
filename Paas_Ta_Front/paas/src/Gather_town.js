@@ -1,5 +1,5 @@
 import React, {createRef, useEffect} from "react";
-import AppAppBar from './modules/views/AppAppBar';
+import AppAppBar from './modules/views/AppBar';
 import AppFooter from './modules/views/AppFooter';
 import withRoot from './modules/withRoot';
 //dimport Loader from './Spinner';
@@ -94,10 +94,11 @@ function Town(props) {
         var coords = "X coords: " + x + ", Y coords: " + y;
         console.log(coords);
         // 클릭 이벤트
-        if (x >= 100 && x <= 200 && y >= 300 && y <= 400) {
-        if (e.keyCode === 88) {
-            openWin()
-            console.log('키보드 이벤트 발생!');
+        if (x >= 200 && x <= 300 && y >= 100 && y <= 200) {
+          Enter()
+          if (e.keyCode === 88) {
+            //Enter()
+            //console.log('키보드 이벤트 발생!');
         }
         }
     }); 
@@ -123,22 +124,22 @@ function Town(props) {
             false
           );
 
-    // 키보드 입력
-    window.addEventListener('keydown',e=>{
-      // 마우스 좌표 찾기
-      var x = hero.x;
-      var y = hero.y;
-      var coords = "X coords: " + x + ", Y coords: " + y;
-      console.log(coords);
-      // 클릭 이벤트
-      if (x >= 200 && x <= 300 && y >= 100 && y <= 200) {
-        Enter()
-        if (e.keyCode === 88) {
-          //Enter()
-          console.log('키보드 이벤트 발생!');
-      }
-      }
-  });   
+  //   // 키보드 입력
+  //   window.addEventListener('keydown',e=>{
+  //     // 마우스 좌표 찾기
+  //     var x = hero.x;
+  //     var y = hero.y;
+  //     var coords = "X coords: " + x + ", Y coords: " + y;
+  //     console.log(coords);
+  //     // 클릭 이벤트
+  //     if (x >= 200 && x <= 300 && y >= 100 && y <= 200) {
+  //       Enter()
+  //       if (e.keyCode === 88) {
+  //         //Enter()
+  //         //console.log('키보드 이벤트 발생!');
+  //     }
+  //     }
+  // });   
         // 마우스 클릭
         canvas.addEventListener('mousedown',e=>{
             // 마우스 좌표 찾기
@@ -161,13 +162,8 @@ function Town(props) {
       }
 
     function Enter() {
-      window.location = "./Draw"
+      window.location = "./Gather"
     }
-
-    function openWin(){
-        // 파스타 웹 페이지 링크 예정  
-        window.open("/Draw", "","width=800, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=yes" );  
-      }
       
       function moveChar(deltaX, deltaY, direction) {       
         var width = 1400;
@@ -261,7 +257,7 @@ function Town(props) {
         <AppAppBar />
         {/* <Loader /> */}
             <canvas ref={canvasRef} 
-            style={{ width: "101vw", height: "81.5vh" }}
+            style={{ width: "101vw", height: "79.5vh" }}
             width="1400"
             height="790"
             />
