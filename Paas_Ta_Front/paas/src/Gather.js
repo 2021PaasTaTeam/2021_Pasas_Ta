@@ -3,6 +3,7 @@ import AppAppBar from './modules/views/AppAppBar';
 import AppFooter from './modules/views/AppFooter';
 import withRoot from './modules/withRoot';
 import Loader from './Spinner';
+import {RemoveScrollBar} from 'react-remove-scroll-bar';
 
 function Draw(props) {
 
@@ -253,9 +254,14 @@ function Draw(props) {
     return (
             <React.Fragment>
         <AppAppBar />
+        <RemoveScrollBar />
         {/* <Loader /> */}
-            <canvas ref={canvasRef} width="1000" height={"790"}/>
-        <AppFooter />
+        <canvas ref={canvasRef} 
+            style={{ width: "123vw", height: "81.5vh" }}
+            width="1500"
+            height="790"
+            />
+                    <AppFooter />
           </React.Fragment>
     );
 }

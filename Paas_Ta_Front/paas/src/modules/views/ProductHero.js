@@ -3,9 +3,7 @@ import Button from '../components/Button';
 import Typography from '../components/Typography';
 import ProductHeroLayout from './ProductHeroLayout';
 
-
 const backgroundImage =
-  // 'https://images.unsplash.com/photo-1534854638093-bada1813ca19?auto=format&fit=crop&w=1400&q=80';
   'https://mediahub.seoul.go.kr/wp-content/uploads/2020/09/e890e1058ac0da01e91bc915d5114142.jpg';
 export default function ProductHero() {
   return (
@@ -23,7 +21,7 @@ export default function ProductHero() {
         alt="increase priority"
       />
       <Typography color="inherit" align="center" variant="h2" >
-         반갑습니다. 게더 스콘 입니다.
+        반갑습니다. 게더 스콘 입니다.
       </Typography>
       <Typography
         color="inherit"

@@ -49,7 +49,7 @@ export default function AppFooter() {
               sx={{ height: 120 }}
             >
               <Grid item sx={{ display: 'flex' }}>
-                <Box component="a" href="https://badasea.github.io/Paas_test.github.io/" sx={iconStyle}>
+                <Box component="a" href="https://github.com/2021PaasTaTeam/2021_Pasas_Ta" sx={iconStyle}>
                   <img
                     src="/assets/github.png"
                     alt="Github"

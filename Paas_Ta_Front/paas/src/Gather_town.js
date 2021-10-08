@@ -2,7 +2,9 @@ import React, {createRef, useEffect} from "react";
 import AppAppBar from './modules/views/AppAppBar';
 import AppFooter from './modules/views/AppFooter';
 import withRoot from './modules/withRoot';
-import Loader from './Spinner';
+//dimport Loader from './Spinner';
+import {RemoveScrollBar} from 'react-remove-scroll-bar';
+
 
 function Town(props) {
 
@@ -168,9 +170,9 @@ function Town(props) {
       }
       
       function moveChar(deltaX, deltaY, direction) {       
-        var width = 1500;
+        var width = 1400;
         var height = 790;
-        
+
         if (hero.x + deltaX > 0 && hero.x + SCALED_WIDTH + deltaX < width) {
           hero.x += deltaX * hero.speed;
         }
@@ -255,9 +257,14 @@ function Town(props) {
 
     return (
             <React.Fragment>
+                      <RemoveScrollBar />
         <AppAppBar />
-        <Loader />
-            <canvas ref={canvasRef} width="1500" height={"790"}/>
+        {/* <Loader /> */}
+            <canvas ref={canvasRef} 
+            style={{ width: "101vw", height: "81.5vh" }}
+            width="1400"
+            height="790"
+            />
         <AppFooter />
           </React.Fragment>
     );
