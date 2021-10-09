@@ -61,7 +61,7 @@ const onClickLogin = () => {
       console.log(res)
       console.log('res.data.userId :: ', res.data.user_email)
       console.log('res.data.msg :: ', res.data.msg)
-      if(res.data.uemail === undefined){
+      if(res.data.email === undefined){
           // id 일치하지 않는 경우 userId = undefined, msg = '입력하신 id 가 일치하지 않습니다.'
           console.log('======================',res.data.msg)
           alert('입력하신 id 가 일치하지 않습니다.')
@@ -72,7 +72,7 @@ const onClickLogin = () => {
       } else if(res.data.email === email) {
           // id, pw 모두 일치 userId = userId1, msg = undefined
           console.log('======================','로그인 성공')
-          alert(res.data.name,'님 환영합니다.')
+          alert(res.data.name+'님 환영합니다.')
           //sessionStorage.setItem('email', email)
           document.location.href = '/Town'
       }
