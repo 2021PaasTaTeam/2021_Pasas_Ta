@@ -65,7 +65,7 @@ const onClickLogin = () => {
           // id 일치하지 않는 경우 userId = undefined, msg = '입력하신 id 가 일치하지 않습니다.'
           console.log('======================',res.data.msg)
           //alert('입력하신 id 가 일치하지 않습니다.')
-          alert('name : ',res.data.name);
+          alert('name : ', name);
           
       } else if(res.data.user_email === null){
           // id는 있지만, pw 는 다른 경우 userId = null , msg = undefined
@@ -77,7 +77,7 @@ const onClickLogin = () => {
           sessionStorage.setItem('email', email)
       }
       // 작업 완료 되면 페이지 이동(새로고침)
-      document.location.href = '/Town'
+      //document.location.href = '/Town'
   })
   .catch()
 }
