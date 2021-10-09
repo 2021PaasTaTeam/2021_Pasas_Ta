@@ -41,7 +41,7 @@ const onClickLogin = () => {
   //let url = 'http://localhost:8080/login';
   let data = JSON.stringify({
     password: this.state.password,
-    username: this.state.email
+    email: this.state.email
 })
   axios.post('http://localhost:8080/login',data, {
     headers: {
