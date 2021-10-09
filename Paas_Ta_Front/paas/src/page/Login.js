@@ -34,7 +34,7 @@ const onClickLogin = () => {
   console.log('click login')
   console.log('ID : ', email)
   console.log('PW : ', password)
-  axios.post('/Login', null, {
+  axios.post('http://localhost:8080/join', null, {
       params: {
       'user_id': email,
       'user_pw': password
@@ -64,7 +64,7 @@ const onClickLogin = () => {
 }
 
 useEffect(() => {
-   axios.get('/login')
+   axios.get('http://localhost:8080/join')
    .then(res => console.log(res))
    .catch()
 },[])
