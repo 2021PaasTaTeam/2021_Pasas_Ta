@@ -51,7 +51,7 @@ function Gather(props) {
   };
 
   let hero = {
-    speed: 3,
+    speed: 4,
     x: 500,
     y: 300
   };
@@ -181,7 +181,7 @@ function Gather(props) {
 
   function moveChar(deltaX, deltaY, direction) {
     var width = 1000;
-    var height = 790;
+    var height = 925;
 
     if (hero.x + deltaX > 0 && hero.x + SCALED_WIDTH + deltaX < width) {
       hero.x += deltaX * hero.speed;

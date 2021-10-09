@@ -51,7 +51,7 @@ function Town(props) {
     };
 
     let hero = {
-        speed: 3,
+        speed: 5,
         x: 500,
         y: 300
       };

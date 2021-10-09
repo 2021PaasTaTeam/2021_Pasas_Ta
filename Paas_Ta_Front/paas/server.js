@@ -1,8 +1,16 @@
 const express = require('express');
-const path = require('path');
 const app = express();
+const mysql = require("mysql");
 
-const http = require('http').createServer(app);
-http.listen(8080, function () {
-  console.log('listening on 8080')
+app.use(express.json());
+
+const db = mysql.createConnection({
+  user: "root",
+  host: "localhost",
+  password: "1234",
+  database:"",
+});
+
+app.listen(3001, () => {
+  console.log("running servers");
 });
