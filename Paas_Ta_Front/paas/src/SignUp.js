@@ -57,11 +57,12 @@ function SignUp() {
                 component={RFTextField}
                 disabled={submitting || sent}
                 required
-                name="password"
-                autoComplete="new-password"
+                name="name"
+                autoComplete="name"
                 label="이름"
                 type="password"
                 margin="normal"
+                required
               />
               <Field
                 autoComplete="email"
@@ -84,16 +85,15 @@ function SignUp() {
                 type="password"
                 margin="normal"
               />
-                            <Field
-                fullWidth
+              <Field
+                autoComplete="address"
                 component={RFTextField}
                 disabled={submitting || sent}
-                required
-                name="password"
-                autoComplete="new-password"
+                fullWidth
                 label="주소"
-                type="password"
                 margin="normal"
+                name="address"
+                required
               />
               <FormSpy subscription={{ submitError: true }}>
                 {({ submitError }) =>

@@ -36,7 +36,7 @@ export default function Home_Main() {
         variant="contained"
         size="large"
         component="a"
-        href="Town"
+        href="Login"
         sx={{ minWidth: 200 }}
       >
         입장하기

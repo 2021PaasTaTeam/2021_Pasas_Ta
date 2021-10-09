@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Index from "./Home";
-import Gather from "./Gather";
-import Login from "./Login";
+import Index from "./page/Home";
+import Gather from "./page/Gather";
+import Login from "./page/Login";
 import SignUp from "./SignUp";
 import zoom from "./zoom";
-import Town from "./Gather_town";
+import Town from "./page/Gather_town";
 
 class App extends Component {
     render() {

@@ -1,8 +1,8 @@
 import * as React from 'react';
-import AppFooter from './modules/views/AppFooter';
-import Home_Main from './modules/views/Home_main';
-import AppAppBar from './modules/views/AppBar';
-import withRoot from './modules/withRoot';
+import AppFooter from '../modules/views/AppFooter';
+import Home_Main from '../modules/views/Home_main';
+import AppAppBar from '../modules/views/AppBar';
+import withRoot from '../modules/withRoot';
 
 function Index() {
   return (
