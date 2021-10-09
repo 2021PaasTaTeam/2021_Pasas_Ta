@@ -39,24 +39,24 @@ const onClickLogin = () => {
   console.log('ID : ', email)
   console.log('PW : ', password)
   //let url = 'http://localhost:8080/login';
-//   let data = JSON.stringify({
-//     password: this.state.password,
-//     email: this.state.email
-// })
-//   axios.post('http://localhost:8080/login',data, {
-//     headers: {
-//       'Content-type': 'application/json; charset=utf-8',
-//     }
-//   })
-  axios.post('http://localhost:8080/login', null, {
+  let data = JSON.stringify({
+    'password': password,
+    'email': email
+})
+  axios.post('http://localhost:8080/login',data, {
     headers: {
       'Content-type': 'application/json; charset=utf-8',
-    },
-      params: {
-      'email': email,
-      'password': password
-      }
+    }
   })
+  // axios.post('http://localhost:8080/login', null, {
+  //   headers: {
+  //     'Content-type': 'application/json; charset=utf-8',
+  //   },
+  //     params: {
+  //     'email': email,
+  //     'password': password
+  //     }
+  // })
   .then(res => {
       console.log(res)
       console.log('res.data.userId :: ', res.data.user_email)
