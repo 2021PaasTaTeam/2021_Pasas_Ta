@@ -31,10 +31,9 @@ public class UserController {
 //    public String userLogin() {
 //        return "login/login";
 //    }
-
+    @CrossOrigin
     @PostMapping("/login")
     public ResponseEntity<?> loginOk(@RequestBody LoginDto loginDto,
-                                     HttpSession httpSession,
                                      HttpServletRequest request) {
         User loginUser = userService.login(loginDto);
         if (loginUser != null) {
@@ -45,13 +44,14 @@ public class UserController {
             HttpSession session = request.getSession();
             session.setAttribute(SessionConst.LOGIN_USER, userInfoSession);
             session.setMaxInactiveInterval(120);
+            log.info("request",request.getServletContext());
             return new ResponseEntity(userInfoSession, HttpStatus.OK);
         } else {
             return new ResponseEntity(null, HttpStatus.OK);
         }
     }
 
-
+    @CrossOrigin
     @PostMapping("/join")
     public ResponseEntity<?> joinOk(@RequestBody JoinDto joinDto) {
         User joinUser = userService.join(joinDto);
