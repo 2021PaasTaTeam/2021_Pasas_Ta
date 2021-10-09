@@ -65,8 +65,8 @@ const onClickLogin = () => {
           // id 일치하지 않는 경우 userId = undefined, msg = '입력하신 id 가 일치하지 않습니다.'
           console.log('======================',res.data.msg)
           //alert('입력하신 id 가 일치하지 않습니다.')
-          alert('name : ', name);
-          
+          //alert('name : ', email);
+          console.log(res.data.name)
       } else if(res.data.user_email === null){
           // id는 있지만, pw 는 다른 경우 userId = null , msg = undefined
           console.log('======================','입력하신 비밀번호 가 일치하지 않습니다.')
