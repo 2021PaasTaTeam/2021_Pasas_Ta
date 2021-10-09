@@ -29,17 +29,27 @@ function Login() {
 // const onSubmit = (event) => {
 //   event.preventDefault();
 // }
+// const headers = {
+//   'Content-type': 'application/json; charset=utf-8',
+//   'Accept': '*/*'
+// }
 
 const onClickLogin = () => {
   console.log('click login')
   console.log('ID : ', email)
   console.log('PW : ', password)
-  axios.post('http://localhost:8080/login', null, {
-      params: {
-      'user_id': email,
-      'user_pw': password
-      }
+  let url = 'http://localhost:8080/login';
+  axios.post('url',data, {
+    headers: {
+      'Content-type': 'application/json; charset=utf-8',
+    }
   })
+  // axios.post('http://localhost:8080/login', null, {
+  //     params: {
+  //     'user_id': email,
+  //     'user_pw': password
+  //     }
+  // })
   .then(res => {
       console.log(res)
       console.log('res.data.userId :: ', res.data.userId)
