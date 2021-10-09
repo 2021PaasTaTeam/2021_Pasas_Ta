@@ -72,6 +72,7 @@ const onClickLogin = () => {
           //sessionStorage.setItem('email', email)
           document.location.href = '/Town'
       }
+      //test
       // 작업 완료 되면 페이지 이동(새로고침)
   })
   .catch()
