@@ -53,8 +53,8 @@ const onClickLogin = () => {
       'Content-type': 'application/json; charset=utf-8',
     },
       params: {
-      'user_email': email,
-      'user_password': password
+      'email': email,
+      'password': password
       }
   })
   .then(res => {
@@ -72,7 +72,7 @@ const onClickLogin = () => {
       } else if(res.data.user_email === email) {
           // id, pw 모두 일치 userId = userId1, msg = undefined
           console.log('======================','로그인 성공')
-          sessionStorage.setItem('user_email', email)
+          sessionStorage.setItem('email', email)
       }
       // 작업 완료 되면 페이지 이동(새로고침)
       document.location.href = '/'
