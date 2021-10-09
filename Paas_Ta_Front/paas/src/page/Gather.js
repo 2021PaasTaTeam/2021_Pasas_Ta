@@ -2,7 +2,6 @@ import React, { createRef, useEffect } from "react";
 import AppAppBar2 from '../modules/views/AppBar2';
 import AppFooter from '../modules/views/AppFooter';
 import withRoot from '../modules/withRoot';
-import Loader from '../Spinner';
 import { RemoveScrollBar } from 'react-remove-scroll-bar';
 
 function Gather(props) {
