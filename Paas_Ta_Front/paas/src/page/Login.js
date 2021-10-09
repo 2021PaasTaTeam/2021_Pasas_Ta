@@ -58,12 +58,8 @@ const onClickLogin = () => {
   //     }
   // })
   .then(res => {
-      console.log(res)
-      console.log('res.data.userId :: ', res.data.user_email)
-      console.log('res.data.msg :: ', res.data.msg)
       if(res.data.email === undefined){
           // id 일치하지 않는 경우 userId = undefined, msg = '입력하신 id 가 일치하지 않습니다.'
-          console.log('======================',res.data.msg)
           alert('입력하신 id 가 일치하지 않습니다.')
       } else if(res.data.email === null){
           // id는 있지만, pw 는 다른 경우 userId = null , msg = undefined
