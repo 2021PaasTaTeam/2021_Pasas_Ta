@@ -1,4 +1,4 @@
-import * as React from 'react';
+//import * as React from 'react';
 import { Field, Form, FormSpy } from 'react-final-form';
 import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
@@ -11,26 +11,42 @@ import RFTextField from '../modules/form/RFTextField';
 import FormButton from '../modules/form/FormButton';
 import FormFeedback from '../modules/form/FormFeedback';
 import withRoot from '../modules/withRoot';
+import React, {useState} from 'react';
 
 function Login() {
-  const [sent, setSent] = React.useState(false);
+  const [email,setEmail] = useState("");
+  const [password,setPassword] = useState("");
 
-  const validate = (values) => {
-    const errors = required(['email', 'password'], values);
+  const onEmailHandler = (event) => {
+    setEmail(event.currentTarget.value);
+  }
 
-    if (!errors.email) {
-      const emailError = email(values.email);
-      if (emailError) {
-        errors.email = emailError;
-      }
-    }
+  const onPasswordHandler = (event) => {
+    setPassword(event.currentTarget.value)
+}
 
-    return errors;
-  };
+const onSubmit = (event) => {
+  event.preventDefault();
+}
 
-  const handleSubmit = () => {
-    setSent(true);
-  };
+  // const [sent, setSent] = React.useState(false);
+
+  // const validate = (values) => {
+  //   const errors = required(['email', 'password'], values);
+
+  //   if (!errors.email) {
+  //     const emailError = email(values.email);
+  //     if (emailError) {
+  //       errors.email = emailError;
+  //     }
+  //   }
+
+  //   return errors;
+  // };
+
+  // const handleSubmit = () => {
+  //   setSent(true);
+  // };
 
   return (
     <React.Fragment>
@@ -45,21 +61,24 @@ function Login() {
           </Typography>
         </React.Fragment>
         <Form
-          onSubmit={handleSubmit}
-          subscription={{ submitting: true }}
-          validate={validate}
+          onSubmit={onSubmit}
+          //subscription={{ submitting: true }}
+          //validate={validate}
         >
           {({ handleSubmit: handleSubmit2, submitting }) => (
             <Box component="form" onSubmit={handleSubmit2} noValidate sx={{ mt: 6 }}>
-              <Field
+              {/* <Field
                 autoComplete="email"
                 autoFocus
                 component={RFTextField}
-                disabled={submitting || sent}
+                //disabled={submitting || sent}
                 fullWidth
                 label="Email"
                 margin="normal"
+                type="email"
                 name="email"
+                valeu={email}
+                onChange={onEmailHandler}
                 required
                 size="large"
               />
@@ -67,15 +86,20 @@ function Login() {
                 fullWidth
                 size="large"
                 component={RFTextField}
-                disabled={submitting || sent}
+                //disabled={submitting || sent}
                 required
                 name="password"
                 autoComplete="current-password"
                 label="Password"
                 type="password"
                 margin="normal"
-              />
-              <FormSpy subscription={{ submitError: true }}>
+                value={password}
+                onChange={onPasswordHandler}
+              /> */}
+              <input name="email" type="email" placeholder="이메일" value={email} onChange={onEmailHandler} />
+            <input name="password" type="password" placeholder="비밀번호" value={password} onChange={onPasswordHandler} />
+            <button type="submit" onSubmit={onSubmit} class="loginregister__button">로그인</button>
+              {/* <FormSpy subscription={{ submitError: true }}>
                 {({ submitError }) =>
                   submitError ? (
                     <FormFeedback error sx={{ mt: 2 }}>
@@ -83,7 +107,7 @@ function Login() {
                     </FormFeedback>
                   ) : null
                 }
-              </FormSpy>
+              </FormSpy> */}
               <Typography variant="body2" align="center">
                 {'회원이 아니신가요? 회원 가입 버튼을 눌러주세요. '}
                 <Link
@@ -94,13 +118,12 @@ function Login() {
                   회원 가입
                 </Link>
               </Typography>
-              <FormButton
+              {/* <FormButton
                 sx={{ mt: 1, mb: 1 }}
-                disabled={submitting || sent}
+                //disabled={submitting || sent}
                 size="large"
                 color="primary"
                 fullWidth
-                href="Town"
                 style={{
                   padding: 8,
                   border: "4px solid black",
@@ -109,10 +132,10 @@ function Login() {
                 }}
               >
                 {'로그인'}
-              </FormButton>
+              </FormButton> */}
               <FormButton
                 sx={{ mt: 1, mb: 1 }}
-                disabled={submitting || sent}
+               //disabled={submitting || sent}
                 size="large"
                 fullWidth
                 style={{
@@ -131,7 +154,7 @@ function Login() {
               </FormButton>
               <FormButton
                 sx={{ mt: 1, mb: 1 }}
-                disabled={submitting || sent}
+                //disabled={submitting || sent}
                 size="large"
                 fullWidth
                 style={{
@@ -150,7 +173,7 @@ function Login() {
               </FormButton>
               <FormButton
                 sx={{ mt: 1, mb: 1 }}
-                disabled={submitting || sent}
+                //disabled={submitting || sent}
                 size="large"
                 fullWidth
                 style={{
