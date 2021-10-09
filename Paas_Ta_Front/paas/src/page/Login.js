@@ -39,13 +39,14 @@ const onClickLogin = () => {
   })
 
   .then(res => {
+    console.log('이름은 '+res.data.name)
       if(res.data.email === undefined){
           // id 일치하지 않는 경우 userId = undefined, msg = '입력하신 id 가 일치하지 않습니다.'
-          alert('입력하신 id 가 일치하지 않습니다.')
+          alert('입력하신 이메일과 비밀번호가 일치하지 않습니다.')
       } else if(res.data.email === null){
           // id는 있지만, pw 는 다른 경우 userId = null , msg = undefined
           console.log('======================','입력하신 비밀번호 가 일치하지 않습니다.')
-          alert('입력하신 비밀번호 가 일치하지 않습니다.')
+          alert('입력하신 이메일과 비밀번호가 일치하지 않습니다.')
       } else if(res.data.email === email) {
           // id, pw 모두 일치 userId = userId1, msg = undefined
           console.log('======================','로그인 성공')
@@ -97,8 +98,8 @@ const onClickLogin = () => {
                 size="large"
               />
               {/* <input name="email" type="email" placeholder="이메일" value={email} onChange={onEmailHandler} />
-            <input name="password" type="password" placeholder="비밀번호" value={password} onChange={onPasswordHandler} /> */}
-            {/* <button type="submit" onSubmit={onClickLogin} >로그인</button> */}
+            <input name="password" type="password" placeholder="비밀번호" value={password} onChange={onPasswordHandler} />
+            <button type="submit" onSubmit={onClickLogin}>로그인</button> */}
               <Typography variant="body2" align="center">
                 {'회원이 아니신가요? 회원 가입 버튼을 눌러주세요. '}
                 <Link
@@ -120,7 +121,8 @@ const onClickLogin = () => {
                   collapse: 'collapse',
                   borderRadius: '8px',
                 }}
-                //onSubmit={onClickLogin}
+                type="submit"
+                onSubmit={onClickLogin}
               >
                 {'로그인'}
               </FormButton>
