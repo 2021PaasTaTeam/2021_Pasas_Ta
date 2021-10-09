@@ -10,15 +10,11 @@ import passta.paas_ta_back.domain.User;
 import passta.paas_ta_back.repository.user.JoinDto;
 import passta.paas_ta_back.repository.user.LoginDto;
 import passta.paas_ta_back.repository.user.UserInfoDto;
-import passta.paas_ta_back.repository.user.UserRepository;
 import passta.paas_ta_back.service.user.UserService;
 import passta.paas_ta_back.web.session.SessionConst;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.List;
-import java.util.stream.Collectors;
-
 
 @Slf4j
 @RestController
@@ -27,10 +23,6 @@ public class UserController {
 
     private final UserService userService;
 
-//    @GetMapping("/login")
-//    public String userLogin() {
-//        return "login/login";
-//    }
     @CrossOrigin
     @PostMapping("/login")
     public ResponseEntity<?> loginOk(@RequestBody LoginDto loginDto,
@@ -61,13 +53,14 @@ public class UserController {
 
     }
 
-//    @PostMapping("/logout")
-//    public String logout(HttpServletRequest request){
-//        HttpSession session = request.getSession();
-//        if (session != null){
-//            session.invalidate(); // 세션 제거
-//        }
-//        return "redirect:/art";
-//    }
+    @CrossOrigin
+    @PostMapping("/logout")
+    public String logout(HttpServletRequest request){
+        HttpSession session = request.getSession();
+        if (session != null){
+            session.invalidate(); // 세션 제거
+        }
+        return "redirect:/art";
+    }
 
 }
