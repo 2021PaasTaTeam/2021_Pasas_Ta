@@ -38,8 +38,12 @@ const onClickLogin = () => {
   console.log('click login')
   console.log('ID : ', email)
   console.log('PW : ', password)
-  let url = 'http://localhost:8080/login';
-  axios.post('url',data, {
+  //let url = 'http://localhost:8080/login';
+  let data = JSON.stringify({
+    password: this.state.password,
+    username: this.state.email
+})
+  axios.post('http://localhost:8080/login',data, {
     headers: {
       'Content-type': 'application/json; charset=utf-8',
     }
