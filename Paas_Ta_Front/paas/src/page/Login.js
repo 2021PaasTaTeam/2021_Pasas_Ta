@@ -11,7 +11,8 @@ import RFTextField from '../modules/form/RFTextField';
 import FormButton from '../modules/form/FormButton';
 import FormFeedback from '../modules/form/FormFeedback';
 import withRoot from '../modules/withRoot';
-import React, {useState} from 'react';
+import React, {useState,useEffect} from 'react';
+import axios from 'axios'
 
 function Login() {
   const [email,setEmail] = useState("");
@@ -25,9 +26,48 @@ function Login() {
     setPassword(event.currentTarget.value)
 }
 
-const onSubmit = (event) => {
-  event.preventDefault();
+// const onSubmit = (event) => {
+//   event.preventDefault();
+// }
+
+const onClickLogin = () => {
+  console.log('click login')
+  console.log('ID : ', email)
+  console.log('PW : ', password)
+  axios.post('/Login', null, {
+      params: {
+      'user_id': email,
+      'user_pw': password
+      }
+  })
+  .then(res => {
+      console.log(res)
+      console.log('res.data.userId :: ', res.data.userId)
+      console.log('res.data.msg :: ', res.data.msg)
+      if(res.data.userId === undefined){
+          // id 일치하지 않는 경우 userId = undefined, msg = '입력하신 id 가 일치하지 않습니다.'
+          console.log('======================',res.data.msg)
+          alert('입력하신 id 가 일치하지 않습니다.')
+      } else if(res.data.userId === null){
+          // id는 있지만, pw 는 다른 경우 userId = null , msg = undefined
+          console.log('======================','입력하신 비밀번호 가 일치하지 않습니다.')
+          alert('입력하신 비밀번호 가 일치하지 않습니다.')
+      } else if(res.data.userId === email) {
+          // id, pw 모두 일치 userId = userId1, msg = undefined
+          console.log('======================','로그인 성공')
+          sessionStorage.setItem('user_id', email)
+      }
+      // 작업 완료 되면 페이지 이동(새로고침)
+      document.location.href = '/'
+  })
+  .catch()
 }
+
+useEffect(() => {
+   axios.get('/login')
+   .then(res => console.log(res))
+   .catch()
+},[])
 
   // const [sent, setSent] = React.useState(false);
 
@@ -61,7 +101,7 @@ const onSubmit = (event) => {
           </Typography>
         </React.Fragment>
         <Form
-          onSubmit={onSubmit}
+          onSubmit={onClickLogin}
           //subscription={{ submitting: true }}
           //validate={validate}
         >
@@ -98,7 +138,7 @@ const onSubmit = (event) => {
               /> */}
               <input name="email" type="email" placeholder="이메일" value={email} onChange={onEmailHandler} />
             <input name="password" type="password" placeholder="비밀번호" value={password} onChange={onPasswordHandler} />
-            <button type="submit" onSubmit={onSubmit} class="loginregister__button">로그인</button>
+            <button type="submit" onSubmit={onClickLogin} class="loginregister__button">로그인</button>
               {/* <FormSpy subscription={{ submitError: true }}>
                 {({ submitError }) =>
                   submitError ? (
