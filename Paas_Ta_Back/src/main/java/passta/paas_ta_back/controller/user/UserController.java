@@ -44,7 +44,6 @@ public class UserController {
             HttpSession session = request.getSession();
             session.setAttribute(SessionConst.LOGIN_USER, userInfoSession);
             session.setMaxInactiveInterval(120);
-            log.info("request",request.getServletContext());
             return new ResponseEntity(userInfoSession, HttpStatus.OK);
         } else {
             return new ResponseEntity(null, HttpStatus.OK);
