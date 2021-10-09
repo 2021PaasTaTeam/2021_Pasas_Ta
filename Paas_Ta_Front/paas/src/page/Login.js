@@ -80,11 +80,11 @@ const onClickLogin = () => {
   .catch()
 }
 
-useEffect(() => {
-   axios.get('http://localhost:8080/login')
-   .then(res => console.log(res))
-   .catch()
-},[])
+// useEffect(() => {
+//    axios.get('http://localhost:8080/login')
+//    .then(res => console.log(res))
+//    .catch()
+// },[])
 
   // const [sent, setSent] = React.useState(false);
 
