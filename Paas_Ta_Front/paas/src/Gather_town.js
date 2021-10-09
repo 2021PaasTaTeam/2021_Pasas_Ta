@@ -1,5 +1,5 @@
 import React, {createRef, useEffect} from "react";
-import AppAppBar from './modules/views/AppBar';
+import AppAppBar2 from './modules/views/AppBar2';
 import AppFooter from './modules/views/AppFooter';
 import withRoot from './modules/withRoot';
 //dimport Loader from './Spinner';
@@ -254,7 +254,7 @@ function Town(props) {
     return (
             <React.Fragment>
                       <RemoveScrollBar />
-        <AppAppBar />
+        <AppAppBar2 />
         {/* <Loader /> */}
             <canvas ref={canvasRef} 
             style={{ width: "101vw", height: "79.5vh" }}

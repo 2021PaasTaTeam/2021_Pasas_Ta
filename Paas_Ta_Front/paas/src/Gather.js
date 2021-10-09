@@ -1,5 +1,5 @@
 import React, { createRef, useEffect } from "react";
-import AppAppBar from './modules/views/AppBar';
+import AppAppBar2 from './modules/views/AppBar2';
 import AppFooter from './modules/views/AppFooter';
 import withRoot from './modules/withRoot';
 import Loader from './Spinner';
@@ -268,7 +268,7 @@ function Gather(props) {
   // if (error) return <div>에러가 발생했습니다</div>;
   return (
     <React.Fragment>
-      <AppAppBar />
+      <AppAppBar2 />
       <RemoveScrollBar />
       {/* <Loader /> */}
       <canvas ref={canvasRef}

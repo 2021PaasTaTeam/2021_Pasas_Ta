@@ -10,7 +10,7 @@ const rightLink = {
   ml: 5,
 };
 
-function AppAppBar() {
+function AppAppBar2() {
   return (
     <div>
       <AppBar position="fixed">
@@ -29,21 +29,12 @@ function AppAppBar() {
           </Link>
           <Box sx={{ flex: 1, display: 'flex', justifyContent: 'flex-end' }}>
             <Link
-              color="inherit"
-              variant="h6"
-              underline="none"
-              href="/Login"
-              sx={rightLink}
-            >
-              {'로그인'}
-            </Link>
-            <Link
               variant="h6"
               underline="none"
               href="/Signup"
               sx={{ ...rightLink, color: 'secondary.main' }}
             >
-              {'회원가입'}
+              {'우리 동네 가게 등록'}
             </Link>
           </Box>
         </Toolbar>
@@ -53,4 +44,4 @@ function AppAppBar() {
   );
 }
 
-export default AppAppBar;
+export default AppAppBar2;
