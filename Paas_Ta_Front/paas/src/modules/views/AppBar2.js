@@ -1,8 +1,10 @@
-import * as React from 'react';
 import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
 import AppBar from '../components/AppBar';
 import Toolbar from '../components/Toolbar';
+import React, { useState } from 'react';
+import axios from 'axios'
+
 
 const rightLink = {
   fontSize: 18,
@@ -11,6 +13,9 @@ const rightLink = {
 };
 
 function AppAppBar2() {
+
+  const session_name = JSON.parse(window.sessionStorage.getItem("email"));  
+
   return (
     <div>
       <AppBar position="fixed">
@@ -29,12 +34,12 @@ function AppAppBar2() {
           </Link>
           <Box sx={{ flex: 1, display: 'flex', justifyContent: 'flex-end' }}>
             <Link
-              variant="h6"
+              variant="h5"
               underline="none"
-              href="/Signup"
-              sx={{ ...rightLink, color: 'secondary.main' }}
+              //href="/Signup"
+              sx={{ ...rightLink, color: 'lightgreen' }}
             >
-              {'우리 동네 가게 등록'}
+              {session_name.email +' 님 환영합니다.'}
             </Link>
           </Box>
         </Toolbar>
