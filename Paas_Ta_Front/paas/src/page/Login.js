@@ -24,6 +24,7 @@ function Login() {
 }
 
 
+
 const onClickLogin = () => {
   console.log('click login')
   console.log('ID : ', email)
@@ -39,6 +40,12 @@ const onClickLogin = () => {
   })
 
   .then(res => {
+    
+    const session_name = res.data.name;
+    const userObj = { email: session_name };
+    window.sessionStorage.setItem("email", JSON.stringify(userObj));
+    // 로그아웃은
+    // window.sessionStorage.removeItem(key)로 데이터 제거한다.
     console.log('이름은 '+res.data.name)
       if(res.data.email === undefined){
           // id 일치하지 않는 경우 userId = undefined, msg = '입력하신 id 가 일치하지 않습니다.'
