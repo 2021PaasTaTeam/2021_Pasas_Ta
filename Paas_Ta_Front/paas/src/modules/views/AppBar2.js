@@ -4,7 +4,7 @@ import AppBar from '../components/AppBar';
 import Toolbar from '../components/Toolbar';
 import React, { useState } from 'react';
 import axios from 'axios'
-import Sidebar from '../../Sidebar';
+import Sidebar from '../../page/Sidebar';
 import { BrowserRouter as Router } from 'react-router-dom';
 
 const rightLink = {

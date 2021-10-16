@@ -3,7 +3,7 @@ import AppAppBar2 from '../modules/views/AppBar2';
 import AppFooter from '../modules/views/AppFooter';
 import withRoot from '../modules/withRoot';
 import { RemoveScrollBar } from 'react-remove-scroll-bar';
-import Sidebar from "../Sidebar";
+import Sidebar from "./Sidebar";
 import './Gather.css';
 
 function Gather(props) {

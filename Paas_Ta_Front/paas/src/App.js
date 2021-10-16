@@ -3,13 +3,13 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Index from "./page/Home";
 import Gather from "./page/Gather";
 import Login from "./page/Login";
-import SignUp from "./SignUp";
+import SignUp from "./page/SignUp";
 import zoom from "./zoom";
 import Town from "./page/Gather_town";
 import Product from "./Product";
 import AddStore from "./AddStore";
 import MyPage from "./MyPage";
-import Sidebar from "./Sidebar";
+import Sidebar from "./page/Sidebar";
 
 class App extends Component {
     render() {
