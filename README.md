@@ -24,8 +24,7 @@ __Infra : Paas-Ta__
 ![image](https://user-images.githubusercontent.com/57929751/136584941-4c4d257f-dc0a-43c4-9474-7d485fe87034.png)
 
 
-![image](https://user-images.githubusercontent.com/57929751/136585015-7293dd3d-96ea-4940-9703-c758a739da20.png)
-
+![image](https://user-images.githubusercontent.com/57929751/137597854-2f1d74fb-8e29-4d63-9179-f72b69b256e5.png)
 
 프로젝트 인원 총 3명
 
@@ -38,9 +37,10 @@ __Infra : Paas-Ta__
 
 개발 2명
 
-👨 badasea
+👨 badasea (__Front-End__)
 
-👨 joohyun333
+
+👨 joohyun333 (__Back-End__)
 
 
 
@@ -54,6 +54,8 @@ __Infra : Paas-Ta__
 로그인 기능
 
 회원가입 기능
+
+사용자 편의를 위한 사이드바 기능
 
 상품 구매 기능
 
@@ -81,6 +83,7 @@ __Infra : Paas-Ta__
 - [x]  메인 페이지
 - [x]  로그인 페이지
 - [x]  회원가입 페이지
+- [x]  사용자 개인 메뉴 사이드바
 - [ ]  상품 구매 페이지
 - [ ]  장바구니 및 구매 확인 페이지
 - [ ]  ZOOM 페이지 (20% 구현)
