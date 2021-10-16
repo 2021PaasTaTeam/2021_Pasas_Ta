@@ -3,10 +3,12 @@ import AppFooter from '../modules/views/AppFooter';
 import Home_Main from '../modules/views/Home_main';
 import AppAppBar from '../modules/views/AppBar';
 import withRoot from '../modules/withRoot';
+import Sidebar from '../Sidebar';
 
 function Index() {
   return (
     <React.Fragment>
+
       <AppAppBar />
       <Home_Main />
       <AppFooter />

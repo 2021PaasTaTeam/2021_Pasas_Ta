@@ -2,7 +2,7 @@ import Box from '@mui/material/Box';
 import { Field, Form } from 'react-final-form';
 import Typography from './modules/components/Typography';
 import AppFooter from './modules/views/AppFooter';
-import AppAppBar from './modules/views/AppBar';
+import AppAppBar2 from './modules/views/AppBar2';
 import AppForm from './modules/views/AppForm';
 import RFTextField from './modules/form/RFTextField';
 import FormButton from './modules/form/FormButton';
@@ -10,7 +10,7 @@ import withRoot from './modules/withRoot';
 import React, { useState } from 'react';
 import axios from 'axios';
 
-function SignUp() {
+function MyPage() {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
@@ -42,7 +42,7 @@ function SignUp() {
       'name' : name,
       'address':address
   })
-    axios.post('http://localhost:8080/join',data, {
+    axios.post('',data, {
       headers: {
         'Content-type': 'application/json; charset=utf-8',
       }
@@ -61,16 +61,18 @@ function SignUp() {
     .catch()
   }
 
+  const session_name = JSON.parse(window.sessionStorage.getItem("email"));  
+
   return (
     <React.Fragment>
-      <AppAppBar />
+      <AppAppBar2 />
       <AppForm>
         <React.Fragment>
           <Typography
             color="inherit"
             variant="h3"
             align="center">
-            GATHER SKON
+            마이 페이지
           </Typography>
         </React.Fragment>
         <Form
@@ -78,13 +80,9 @@ function SignUp() {
         >
           {({ handleSubmit: handleSubmit2, submitting }) => (
             <Box component="form" onSubmit={handleSubmit2} noValidate sx={{ mt: 6 }}>
-              {/* <input name="name" type="name" placeholder="이름" value={name} onChange={onNameHandler} />
-              <input name="email" type="email" placeholder="이메일" value={email} onChange={onEmailHandler} />
-              <input name="password" type="password" placeholder="비밀번호" value={password} onChange={onPasswordHandler} />
-              <input name="address" type="address" placeholder="주소" value={address} onChange={onAddressHandler} />
-              <button type="submit" onSubmit={onClickSignUp} class="loginregister__button">회원가입</button> */}
               <Field
-                input
+              input
+              placeholder={session_name.email}
                 component={RFTextField}
                 fullWidth
                 label="이름"
@@ -96,11 +94,11 @@ function SignUp() {
                 size="large"
               />
               <Field
-                input
+                placeholder={session_name}
                 component={RFTextField}
                 fullWidth
                 label="이메일"
-                type="email"
+                type="name"
                 name="email"
                 value={email}
                 onChange={onEmailHandler}
@@ -123,6 +121,7 @@ function SignUp() {
               />
               <Field
                 input
+                placeholder={session_name}
                 component={RFTextField}
                 fullWidth
                 label="주소"
@@ -148,7 +147,7 @@ function SignUp() {
                 type="submit"
                 onSubmit={onClickSignUp}
               >
-                {'회원가입'}
+                {'수정하기'}
               </FormButton>
             </Box>
           )}
@@ -159,4 +158,4 @@ function SignUp() {
   );
 }
 
-export default withRoot(SignUp);
+export default withRoot(MyPage);

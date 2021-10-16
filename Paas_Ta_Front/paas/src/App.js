@@ -6,6 +6,10 @@ import Login from "./page/Login";
 import SignUp from "./SignUp";
 import zoom from "./zoom";
 import Town from "./page/Gather_town";
+import Product from "./Product";
+import AddStore from "./AddStore";
+import MyPage from "./MyPage";
+import Sidebar from "./Sidebar";
 
 class App extends Component {
     render() {
@@ -13,12 +17,16 @@ class App extends Component {
             <Router>
                 <Switch>
                     <Route path="/" exact render={() => <Index />} />
-                    <Route path="/Gather" exact component={Gather} />
                     <Route path="/Login" exact component={Login} />
                     <Route path="/Signup" exact component={SignUp} />
                     <Route path="/zoom" exact component={zoom} />
-                    <Route path="/Town" exact component={Town} />
+                    <Route path="/Product" exact component={Product} />
+                    <Route path="/AddStore" exact component={AddStore} />
+                    <Route path="/MyPage" exact component={MyPage} />
 
+                    <Route path="/Gather" exact component={Gather} />
+                    <Route path="/Town" exact component={Town} />                    
+                    
                 </Switch>
             </Router>
         );

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import Sidebar from '../../Sidebar';
 import Button from '../components/Button';
 import Typography from '../components/Typography';
 import Home_main_Layout from './Home_main_Layout';
@@ -7,6 +8,7 @@ const backgroundImage =
   'https://mediahub.seoul.go.kr/wp-content/uploads/2020/09/e890e1058ac0da01e91bc915d5114142.jpg';
 export default function Home_Main() {
   return (
+    
     <Home_main_Layout
       sxBackground={{
         backgroundImage: `url(${backgroundImage})`,
@@ -20,6 +22,7 @@ export default function Home_Main() {
         src={backgroundImage}
         alt="increase priority"
       />
+
       <Typography color="inherit" align="center" variant="h2" >
         반갑습니다. 게더 스콘 입니다.
       </Typography>
