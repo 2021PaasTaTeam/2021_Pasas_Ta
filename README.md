@@ -116,4 +116,6 @@ IDE - 비주얼코드, 인텔리제이
 
 인프라 - Paas_Ta
 
+디자인 툴 - Gather-Town
+
 형상 관리 - Github, ZOOM, Google Meet, Kakaotalk, Notion
