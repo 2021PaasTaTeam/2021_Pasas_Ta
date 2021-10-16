@@ -4,7 +4,8 @@ import AppBar from '../components/AppBar';
 import Toolbar from '../components/Toolbar';
 import React, { useState } from 'react';
 import axios from 'axios'
-
+import Sidebar from '../../Sidebar';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 const rightLink = {
   fontSize: 18,
@@ -14,18 +15,21 @@ const rightLink = {
 
 function AppAppBar2() {
 
-  const session_name = JSON.parse(window.sessionStorage.getItem("email"));  
+  const session_name = JSON.parse(window.sessionStorage.getItem("email"));
 
   return (
     <div>
       <AppBar position="fixed">
+      {/* <Sidebar/> */}
+
         <Toolbar sx={{ justifyContent: 'space-between' }}>
           <Box sx={{ flex: 1 }} />
+
           <Link
             variant="h6"
             underline="none"
             color="inherit"
-            href="/"
+            href="/Town"
             sx={{ fontSize: 25 }}
           >
             {/* Home title */}
@@ -33,14 +37,15 @@ function AppAppBar2() {
 
           </Link>
           <Box sx={{ flex: 1, display: 'flex', justifyContent: 'flex-end' }}>
-            <Link
+            {/* <Link
               variant="h5"
               underline="none"
-              //href="/Signup"
+              //href="/MyPage"
               sx={{ ...rightLink, color: 'lightgreen' }}
             >
-              {session_name.email +' 님 환영합니다.'}
-            </Link>
+              {session_name.email + ' 님 환영합니다.'}
+            </Link> */}
+
           </Box>
         </Toolbar>
       </AppBar>

@@ -1,0 +1,8 @@
+.Mains {
+    display: grid;
+    grid-template-columns: 0% 62% 20%;
+}
+
+#Mains-left { border-right: solid 1px #aabbaa; }
+#Mains-right { border-left: solid 1px #aabbaa; }
+
