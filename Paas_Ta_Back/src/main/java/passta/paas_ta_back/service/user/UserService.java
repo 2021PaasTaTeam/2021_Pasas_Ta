@@ -36,7 +36,8 @@ public class UserService {
                     new User(joinDto.getName(),
                             joinDto.getEmail(),
                             joinDto.getPassword(),
-                            joinDto.getAddress()));
+                            joinDto.getAddress(),
+                            joinDto.getType()));
             return save_user;
         }
         return null;
