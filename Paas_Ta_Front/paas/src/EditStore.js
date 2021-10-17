@@ -10,7 +10,7 @@ import withRoot from './modules/withRoot';
 import React, { useState } from 'react';
 import axios from 'axios';
 
-function AddStore() {
+function EditStore() {
     const [email, setEmail] = useState("");
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");
@@ -66,7 +66,7 @@ function AddStore() {
             <AppForm>
                 <React.Fragment>
                     <Typography variant="h3" align="center">
-                        우리 가게 등록하기
+                        우리 가게 수정하기
                     </Typography>
                 </React.Fragment>
                 <Form
@@ -209,7 +209,7 @@ function AddStore() {
                                         type="submit"
                                         onSubmit={onClickSignUp}
                                     >
-                                        {'등록하기'}
+                                        {'수정하기'}
                                     </FormButton>
                                 </Grid>
                                 <Grid item xs={12} sm={6}>
@@ -239,4 +239,4 @@ function AddStore() {
     );
 }
 
-export default withRoot(AddStore);
+export default withRoot(EditStore);

@@ -10,7 +10,13 @@ import withRoot from './modules/withRoot';
 import React, { useState } from 'react';
 import axios from 'axios';
 
-function AddStore() {
+function EditItem(input) {
+    const [fileImage, setFileImage] = useState("");
+    const saveFileImage = (e) => {
+        setFileImage(URL.createObjectURL(e.target.files[0]));
+    };
+
+
     const [email, setEmail] = useState("");
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");
@@ -42,7 +48,7 @@ function AddStore() {
             'name': name,
             'address': address
         })
-        axios.post('http://localhost:8080/addstore', data, {
+        axios.post('http://localhost:8080/additem', data, {
             headers: {
                 'Content-type': 'application/json; charset=utf-8',
             }
@@ -60,137 +66,105 @@ function AddStore() {
             })
             .catch()
     }
+
+
     return (
         <React.Fragment>
             <AppAppBar2 />
             <AppForm>
                 <React.Fragment>
                     <Typography variant="h3" align="center">
-                        우리 가게 등록하기
+                        우리 상품 수정하기
                     </Typography>
                 </React.Fragment>
                 <Form
                     onSubmit={onClickSignUp}
+                    id="msform"
                 >
                     {({ handleSubmit: handleSubmit2, submitting }) => (
                         <Box component="form" onSubmit={handleSubmit2} noValidate sx={{ mt: 6 }}>
                             <Grid container spacing={2}>
                                 <Grid item xs={12} sm={3}>
                                     <Typography variant="h6" align="center">
-                                        가게 이름
+                                        상품명
+                                    </Typography>
+                                </Grid>
+                                <Grid item xs={12} sm={9}>
+                                <input type="text"
+                                name="name"
+                                    style={{
+                                        width: 380,
+                                        height: 50,
+                                        border: "2px solid black",
+                                        collapse: 'collapse',
+                                        borderRadius: '8px',
+                                    }}
+                                     />
+                                </Grid>
+                            </Grid>
+                            <br />
+                            <Grid container spacing={2}>
+                                <Grid item xs={12} sm={3}>
+                                    <Typography variant="h6" align="center">
+                                        상품 설명
                                     </Typography>
                                 </Grid>
                                 <Grid item xs={12} sm={9}>
                                     <input type="text"
-                                        name="name"
-                                        style={{
-                                            width: 380,
-                                            height: 50,
-                                            border: "2px solid black",
-                                            collapse: 'collapse',
-                                            borderRadius: '8px',
-                                        }}
-                                    />
+                                    style={{
+                                        padding: 100,
+                                        border: "2px solid black",
+                                        collapse: 'collapse',
+                                        borderRadius: '8px',
+                                    }}
+                                     />
                                 </Grid>
                             </Grid>
                             <br />
                             <Grid container spacing={2}>
                                 <Grid item xs={12} sm={3}>
                                     <Typography variant="h6" align="center">
-                                        지역구 선택
+                                        상품 가격
                                     </Typography>
                                 </Grid>
                                 <Grid item xs={12} sm={9}>
-                                <select
-                                        name="number"
-                                        style={{
-                                            width: 380,
-                                            height: 50,
-                                            border: "2px solid black",
-                                            collapse: 'collapse',
-                                            borderRadius: '8px',
-                                        }}
-                                    >
-                                        <option value="직접선택" selected="selected">직접선택</option>
-                                        <option value="종로구">종로구</option>
-                                        <option value="성북구">성북구</option>
-                                        <option value="서초구">서초구</option>
-                                        <option value="동작구">동작구</option>
-                                        <option value="영등포구">영등포구</option>
-                                        <option value="기타">기타</option>
-                                    </select>
-                                </Grid>
-                            </Grid>
-                            <br />
-                            <Grid container spacing={2}>
-                                <Grid item xs={12} sm={3}>
-                                    <Typography variant="h6" align="center">
-                                        가게 업종
-                                    </Typography>
-                                </Grid>
-                                <Grid item xs={12} sm={9}>
-                                    <select
-                                        name="number"
-                                        style={{
-                                            width: 380,
-                                            height: 50,
-                                            border: "2px solid black",
-                                            collapse: 'collapse',
-                                            borderRadius: '8px',
-                                        }}
-                                    >
-                                        <option value="직접선택" selected="selected">직접선택</option>
-                                        <option value="한복">한복</option>
-                                        <option value="공방">공방</option>
-                                        <option value="음식점">음식점</option>
-                                        <option value="기타">기타</option>
-                                    </select>
-                                </Grid>
-                            </Grid>
-                            <br />
-                            <Grid container spacing={2}>
-                                <Grid item xs={12} sm={3}>
-                                    <Typography variant="h6" align="center">
-                                        가게 전화번호
-                                    </Typography>
-                                </Grid>
-                                <Grid item xs={12} sm={9}>
-                                    <input type="text"
-                                        name="number"
-                                        placeholder="예) 01012345678"
-                                        style={{
-                                            width: 380,
-                                            height: 50,
-                                            border: "2px solid black",
-                                            collapse: 'collapse',
-                                            borderRadius: '8px',
-                                        }}
-                                    />
+                                <input type="text"
+                                name="number"
+                                    style={{
+                                        width: 380,
+                                        height: 50,
+                                        border: "2px solid black",
+                                        collapse: 'collapse',
+                                        borderRadius: '8px',
+                                    }}
+                                     />
                                 </Grid>
                             </Grid>
                             <br />
                             <Grid container spacing={2}>
                                 <Grid item xs={12} sm={4}>
                                     <Typography variant="h6" align="center">
-                                        가게 상표 이미지
+                                        상품 이미지
                                     </Typography>
                                 </Grid>
                                 <Grid item xs={12} sm={8}>
                                     <input type="file"
-                                        accept="image/png,image/jpg,impge/png,image/jpeg,image/gif"
-                                        name="name"
+                                        accept="image/*"
+                                        name="imgFile"
+                                        id="imgFile"
+                                        onChange={saveFileImage}
                                         value={name}
-                                        onChange={onNameHandler}
                                         required />
                                 </Grid>
                             </Grid>
                             <br />
                             <div className="Card1">
-                                <div className="c1image">
-                                    <img className="phoneImage"
+                                <div className="image-container">
+                                    <img
                                         height="390vh"
                                         width="530vw"
-                                        src="/assets/map.jpg" />
+                                        id="preview_image"
+                                        src={fileImage} />
                                 </div>
                             </div>
                             <Grid container spacing={2}>
@@ -209,7 +183,7 @@ function AddStore() {
                                         type="submit"
                                         onSubmit={onClickSignUp}
                                     >
-                                        {'등록하기'}
+                                        {'수정하기'}
                                     </FormButton>
                                 </Grid>
                                 <Grid item xs={12} sm={6}>
@@ -239,4 +213,4 @@ function AddStore() {
     );
 }
 
-export default withRoot(AddStore);
+export default withRoot(EditItem);

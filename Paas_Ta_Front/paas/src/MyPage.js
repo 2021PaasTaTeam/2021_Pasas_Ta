@@ -44,7 +44,7 @@ function MyPage() {
   })
     axios.post('',data, {
       headers: {
-        'Content-type': 'application/json; charset=utf-8',
+        'Content-type': 'application/update; charset=utf-8',
       }
     })
     .then(res => {
@@ -80,59 +80,87 @@ function MyPage() {
         >
           {({ handleSubmit: handleSubmit2, submitting }) => (
             <Box component="form" onSubmit={handleSubmit2} noValidate sx={{ mt: 6 }}>
-              <Field
-              input
-              placeholder={session_name.email}
-                component={RFTextField}
-                fullWidth
-                label="이름"
-                type="name"
+ <Typography variant="h8" >
+                이름
+              </Typography>
+              <br />
+              <br />
+              <input type="name"
                 name="name"
-                value={name}
+                style={{
+                  fontSize: 25,
+                  width: 530,
+                  height: 80,
+                  border: "2px solid black",
+                  collapse: 'collapse',
+                  borderRadius: '8px',
+                }}
+                value={session_name.name}
                 onChange={onNameHandler}
-                required
-                size="large"
               />
-              <Field
-                placeholder={session_name}
-                component={RFTextField}
-                fullWidth
-                label="이메일"
-                type="name"
+              <br />
+              <br />
+<Typography variant="h8" >
+                이메일
+              </Typography>
+              <br />
+              <br />
+              <input type="text"
                 name="email"
-                value={email}
+                style={{
+                  fontSize: 25,
+                  width: 530,
+                  height: 80,
+                  border: "2px solid black",
+                  collapse: 'collapse',
+                  borderRadius: '8px',
+                }}
+                value={session_name.email}
+                readonly
                 onChange={onEmailHandler}
-                required
-                size="large"
               />
-              <Field
-                input
-                fullWidth
-                component={RFTextField}
-                required
+              <br />
+              <br />
+              <Typography variant="h8" >
+                비밀번호
+              </Typography>
+              <br />
+              <br />
+              <input type="password"
                 name="password"
-                autoComplete="new-password"
-                label="비밀번호"
-                type="password"
-                margin="normal"
+                style={{
+                  fontSize: 25,
+                  width: 530,
+                  height: 80,
+                  border: "2px solid black",
+                  collapse: 'collapse',
+                  borderRadius: '8px',
+                }}
                 value={password}
                 onChange={onPasswordHandler}
-                size="large"
               />
-              <Field
-                input
-                placeholder={session_name}
-                component={RFTextField}
-                fullWidth
-                label="주소"
-                type="address"
+              <br />
+              <br />
+              <Typography variant="h8" >
+                주소
+              </Typography>
+              <br />
+              <br />
+              <input type="text"
                 name="address"
-                value={address}
+                style={{
+                  fontSize: 25,
+                  width: 530,
+                  height: 80,
+                  border: "2px solid black",
+                  collapse: 'collapse',
+                  borderRadius: '8px',
+                }}
+                value={session_name.address}
                 onChange={onAddressHandler}
-                required
-                size="large"
-                margin="normal"
               />
+              <br />
+              <br />
               <FormButton
                 sx={{ mt: 1, mb: 1 }}
                 size="large"
