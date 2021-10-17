@@ -1,30 +1,6 @@
 # 2021 파스타 클라우드 공모전
 
-파스타 클라우드 공모전 : 메타버스 중계 플랫폼
-
-어플리케이션 레포지토리 링크 : https://github.com/badasea/Paas_Ta_APP
-
-프론트엔드 레포지토리 링크 : https://github.com/badasea/Paas_Ta_Front
-
-백엔드 레포지토리 링크 : 
-
-프로젝트 인원 총 3명
-
-
-기획 및 디자인 1명
-
-
-👨 EungBum
-
-
-개발 2명
-
-👨 badasea
-
-👨 joohyun333
-
-
-
+## 파스타 클라우드 공모전 : 메타버스 중계 플랫폼 api 
 ---
 
 # 📌 요구 사항 분석
@@ -73,7 +49,7 @@
 
 ---
 
-# ⚙ 기술 스택 
+# ⚙ 
 
 개발언어 - CSS, HTML, JAVASCRIPT, JAVA, REACT, Nodejs, TypeScript
 
