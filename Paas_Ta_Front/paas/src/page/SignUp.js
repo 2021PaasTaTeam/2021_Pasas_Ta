@@ -1,10 +1,9 @@
 import Box from '@mui/material/Box';
-import { Field, Form } from 'react-final-form';
+import { Form } from 'react-final-form';
 import Typography from '../modules/components/Typography';
 import AppFooter from '../modules/views/AppFooter';
 import AppAppBar from '../modules/views/AppBar';
 import AppForm from '../modules/views/AppForm';
-import RFTextField from '../modules/form/RFTextField';
 import FormButton from '../modules/form/FormButton';
 import withRoot from '../modules/withRoot';
 import React, { useState } from 'react';
@@ -78,62 +77,86 @@ function SignUp() {
         >
           {({ handleSubmit: handleSubmit2, submitting }) => (
             <Box component="form" onSubmit={handleSubmit2} noValidate sx={{ mt: 6 }}>
-              {/* <input name="name" type="name" placeholder="이름" value={name} onChange={onNameHandler} />
-              <input name="email" type="email" placeholder="이메일" value={email} onChange={onEmailHandler} />
-              <input name="password" type="password" placeholder="비밀번호" value={password} onChange={onPasswordHandler} />
-              <input name="address" type="address" placeholder="주소" value={address} onChange={onAddressHandler} />
-              <button type="submit" onSubmit={onClickSignUp} class="loginregister__button">회원가입</button> */}
-              <Field
-                input
-                component={RFTextField}
-                fullWidth
-                label="이름"
-                type="name"
+              <Typography variant="h8" >
+                이름 *
+              </Typography>
+              <br />
+              <br />
+              <input type="name"
                 name="name"
+                style={{
+                  fontSize: 25,
+                  width: 530,
+                  height: 80,
+                  border: "2px solid black",
+                  collapse: 'collapse',
+                  borderRadius: '8px',
+                }}
                 value={name}
                 onChange={onNameHandler}
-                required
-                size="large"
               />
-              <Field
-                input
-                component={RFTextField}
-                fullWidth
-                label="이메일"
-                type="email"
+              <br />
+              <br />
+<Typography variant="h8" >
+                이메일 *
+              </Typography>
+              <br />
+              <br />
+              <input type="text"
                 name="email"
+                style={{
+                  fontSize: 25,
+                  width: 530,
+                  height: 80,
+                  border: "2px solid black",
+                  collapse: 'collapse',
+                  borderRadius: '8px',
+                }}
                 value={email}
                 onChange={onEmailHandler}
-                required
-                size="large"
               />
-              <Field
-                input
-                fullWidth
-                component={RFTextField}
-                required
+              <br />
+              <br />
+              <Typography variant="h8" >
+                비밀번호 *
+              </Typography>
+              <br />
+              <br />
+              <input type="password"
                 name="password"
-                autoComplete="new-password"
-                label="비밀번호"
-                type="password"
-                margin="normal"
+                style={{
+                  fontSize: 25,
+                  width: 530,
+                  height: 80,
+                  border: "2px solid black",
+                  collapse: 'collapse',
+                  borderRadius: '8px',
+                }}
                 value={password}
                 onChange={onPasswordHandler}
-                size="large"
               />
-              <Field
-                input
-                component={RFTextField}
-                fullWidth
-                label="주소"
-                type="address"
+              <br />
+              <br />
+              <Typography variant="h8" >
+                주소 *
+              </Typography>
+              <br />
+              <br />
+              <input type="text"
                 name="address"
+                style={{
+                  fontSize: 25,
+                  width: 530,
+                  height: 80,
+                  border: "2px solid black",
+                  collapse: 'collapse',
+                  borderRadius: '8px',
+                }}
                 value={address}
                 onChange={onAddressHandler}
-                required
-                size="large"
-                margin="normal"
               />
+              <br />
+              <br />
               <FormButton
                 sx={{ mt: 1, mb: 1 }}
                 size="large"
