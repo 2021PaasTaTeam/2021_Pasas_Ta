@@ -6,10 +6,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import passta.paas_ta_back.controller.user.dto.UserInfoDto;
 import passta.paas_ta_back.domain.User;
 import passta.paas_ta_back.repository.user.JoinDto;
 import passta.paas_ta_back.repository.user.LoginDto;
-import passta.paas_ta_back.repository.user.UserInfoDto;
 import passta.paas_ta_back.service.user.UserService;
 import passta.paas_ta_back.web.session.SessionConst;
 
@@ -17,13 +17,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 @Slf4j
+@CrossOrigin
 @RestController
 @RequiredArgsConstructor
 public class UserController {
 
     private final UserService userService;
 
-    @CrossOrigin
     @PostMapping("/login")
     public ResponseEntity<?> loginOk(@RequestBody LoginDto loginDto,
                                      HttpServletRequest request) {
@@ -42,7 +42,6 @@ public class UserController {
         }
     }
 
-    @CrossOrigin
     @PostMapping("/join")
     public ResponseEntity<?> joinOk(@RequestBody JoinDto joinDto) {
         User joinUser = userService.join(joinDto);
@@ -53,7 +52,6 @@ public class UserController {
 
     }
 
-    @CrossOrigin
     @PostMapping("/logout")
     public String logout(HttpServletRequest request){
         HttpSession session = request.getSession();

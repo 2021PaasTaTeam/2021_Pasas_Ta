@@ -1,17 +1,20 @@
-package passta.paas_ta_back.repository.user;
+package passta.paas_ta_back.controller.user.dto;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import passta.paas_ta_back.domain.User;
+import passta.paas_ta_back.domain.UserType;
 
 @Data
 public class UserInfoDto {
     private String name;
     private String email;
+    private String address;
+    private UserType type;
 
     public UserInfoDto(User user) {
         this.name = user.getName();
         this.email = user.getEmail();
+        this.address = user.getAddress();
+        this.type = user.getType();
     }
 }
