@@ -38,6 +38,7 @@ public class ShopService {
                     registerDto.getName(),
                     registerDto.getPhone(),
                     registerDto.getAddress(),
+                    registerDto.getBusinessType(),
                     registerDto.getImages());
             Shop saveShop = shopRepository.save(shop);
             return saveShop;

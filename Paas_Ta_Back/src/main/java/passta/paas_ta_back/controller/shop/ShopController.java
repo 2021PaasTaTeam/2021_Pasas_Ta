@@ -34,7 +34,7 @@ public class ShopController {
         if(shop == null){
             return ResponseEntity.noContent().build();
         }
-        List<ShopInfoDto> collect = shopRepository.findAllWithUser()
+        List<ShopInfoDto> collect = shopRepository.findAllWithUser(registerDto.getAddress())
                 .stream().map(s -> new ShopInfoDto(s))
                 .collect(Collectors.toList());
         return new ResponseEntity<>(collect, HttpStatus.CREATED);
