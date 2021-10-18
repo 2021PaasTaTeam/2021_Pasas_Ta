@@ -96,7 +96,12 @@ public class UserController {
         if (deleteCheck == false){
             return new ResponseEntity(null, HttpStatus.OK);
         }
-        return new ResponseEntity("제거 완료",HttpStatus.OK);
+        return new ResponseEntity(new deleteCheckDto(deleteCheck),HttpStatus.OK);
+    }
+
+    @AllArgsConstructor
+    class deleteCheckDto{
+        boolean deleteCheck;
     }
 
 }
