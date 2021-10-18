@@ -11,52 +11,63 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
 function AddStore() {
-    const [email, setEmail] = useState("");
-    const [name, setName] = useState("");
-    const [password, setPassword] = useState("");
-    const [address, setAddress] = useState("");
+    const [shop_name, setShop_name] = useState("");
+    const [shop_address, setShop_address] = useState("");
+    const [shop_phone, setShop_phone] = useState("");
+    const [shop_image, setShop_image] = useState("");
+    const [registeration_number, setRegisteration_number] = useState("");
+    
 
-    const onEmailHandler = (event) => {
-        setEmail(event.currentTarget.value);
-    }
-
-    const onNameHandler = (event) => {
-        setName(event.currentTarget.value);
+    const onShop_nameHandler = (event) => {
+        setShop_name(event.currentTarget.value);
     }
 
-    const onPasswordHandler = (event) => {
-        setPassword(event.currentTarget.value)
+    const onShop_sddressHandler = (event) => {
+        setShop_address(event.currentTarget.value)
     }
-    const onAddressHandler = (event) => {
-        setAddress(event.currentTarget.value)
+
+    const onShop_phoneHandler = (event) => {
+        setShop_phone(event.currentTarget.value);
     }
-    const onClickSignUp = () => {
-        console.log('click login')
-        console.log('ID : ', email)
-        console.log('PW : ', password)
-        console.log('NAME : ', name)
-        console.log('ADD : ', address)
+
+    const onShop_imageHandler = (event) => {
+        setShop_image(event.currentTarget.value);
+    }
+
+    // 사업자 번호
+    const onRegisteration_numberHandler = (event) => {
+        setRegisteration_number(event.currentTarget.value);
+    }
+
+
+    const session = JSON.parse(window.sessionStorage.getItem("data"));
+
+
+    const onClickRegister = () => {
+        console.log('click shop')
+        console.log('가게명 : ', shop_name)
+        console.log('가게주소 : ', shop_address)
+        console.log('가게전화번호 : ', shop_phone)
+        console.log('가게상표이미지 : ', shop_image)
+        console.log('사업자번호 : ', registeration_number)
+        console.log('이메일 : ', session.data.email)
         let data = JSON.stringify({
-            'password': password,
-            'email': email,
-            'name': name,
-            'address': address
+            'name': shop_name,
+            'address': shop_address,
+            'phone': shop_phone,
+            'image': shop_image,
+            'registrationNum': registeration_number,
+            'email': session.data.email
         })
-        axios.post('http://localhost:8080/addstore', data, {
+        axios.post('http://localhost:8080/shop', data, {
             headers: {
                 'Content-type': 'application/json; charset=utf-8',
             }
         })
             .then(res => {
-                console.log(res.data.name)
-                if (res.data.email === undefined) {
-                    // id 일치하지 않는 경우 userId = undefined, msg = '입력하신 id 가 일치하지 않습니다.'
-                    alert('이미 등록된 가게입니다.')
-                }
-                else {
-                    alert('가게가 등록되었습니다.')
-                    document.location.href = '/Town'
-                }
+                alert('가게가 등록되었습니다.')
+                //document.location.href = '/Town'
+                console.log(res.data)
             })
             .catch()
     }
@@ -70,7 +81,7 @@ function AddStore() {
                     </Typography>
                 </React.Fragment>
                 <Form
-                    onSubmit={onClickSignUp}
+                    onSubmit={onClickRegister}
                 >
                     {({ handleSubmit: handleSubmit2, submitting }) => (
                         <Box component="form" onSubmit={handleSubmit2} noValidate sx={{ mt: 6 }}>
@@ -90,6 +101,30 @@ function AddStore() {
                                             collapse: 'collapse',
                                             borderRadius: '8px',
                                         }}
+                                        value={shop_name}
+                                        onChange={onShop_nameHandler}
+                                    />
+                                </Grid>
+                            </Grid>
+                            <br />
+                            <Grid container spacing={2}>
+                                <Grid item xs={12} sm={3}>
+                                    <Typography variant="h6" align="center">
+                                        사업자 번호
+                                    </Typography>
+                                </Grid>
+                                <Grid item xs={12} sm={9}>
+                                    <input type="text"
+                                        name="number"
+                                        style={{
+                                            width: 380,
+                                            height: 50,
+                                            border: "2px solid black",
+                                            collapse: 'collapse',
+                                            borderRadius: '8px',
+                                        }}
+                                        value={registeration_number}
+                                        onChange={onRegisteration_numberHandler}
                                     />
                                 </Grid>
                             </Grid>
@@ -110,14 +145,15 @@ function AddStore() {
                                             collapse: 'collapse',
                                             borderRadius: '8px',
                                         }}
+                                        value={shop_address}
+                                        onChange={onShop_sddressHandler}
                                     >
-                                        <option value="직접선택" selected="selected">직접선택</option>
-                                        <option value="종로구">종로구</option>
-                                        <option value="성북구">성북구</option>
-                                        <option value="서초구">서초구</option>
-                                        <option value="동작구">동작구</option>
-                                        <option value="영등포구">영등포구</option>
-                                        <option value="기타">기타</option>
+                                        <option selected="selected">직접선택</option>
+                                        <option>종로구</option>
+                                        <option>성북구</option>
+                                        <option>서초구</option>
+                                        <option>동작구</option>
+                                        <option>영등포구</option>
                                     </select>
                                 </Grid>
                             </Grid>
@@ -157,6 +193,7 @@ function AddStore() {
                                 <Grid item xs={12} sm={9}>
                                     <input type="text"
                                         name="number"
+                                        value={shop_phone}
                                         placeholder="예) 01012345678"
                                         style={{
                                             width: 380,
@@ -165,6 +202,7 @@ function AddStore() {
                                             collapse: 'collapse',
                                             borderRadius: '8px',
                                         }}
+                                        onChange={onShop_phoneHandler}
                                     />
                                 </Grid>
                             </Grid>
@@ -179,8 +217,8 @@ function AddStore() {
                                     <input type="file"
                                         accept="image/png,image/jpg,impge/png,image/jpeg,image/gif"
                                         name="name"
-                                        value={name}
-                                        onChange={onNameHandler}
+                                        value={shop_image}
+                                        onChange={onShop_imageHandler}
                                         required />
                                 </Grid>
                             </Grid>
@@ -207,7 +245,7 @@ function AddStore() {
                                             borderRadius: '8px',
                                         }}
                                         type="submit"
-                                        onSubmit={onClickSignUp}
+                                        onSubmit={onClickRegister}
                                     >
                                         {'등록하기'}
                                     </FormButton>

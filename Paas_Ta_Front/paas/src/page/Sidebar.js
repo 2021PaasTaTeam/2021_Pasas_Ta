@@ -11,10 +11,11 @@ import { NavLink } from 'react-router-dom';
 
 const Sidebar = () => {
 
-  const session_name = JSON.parse(window.sessionStorage.getItem("email"));
+  const session = JSON.parse(window.sessionStorage.getItem("data"));
+  console.log(session)
 
   const onClick = () => {
-    window.sessionStorage.removeItem(session_name.email);
+    window.sessionStorage.removeItem(session.data);
     alert('로그아웃 되었습니다.');
   }
 
@@ -28,7 +29,7 @@ const Sidebar = () => {
             className="text-decoration-none"
             style={{ color: 'inherit' }}
           >
-            {session_name.email + '님 반갑습니다'}
+            {session.data.name + '님 반갑습니다'}
           </a>
         </CDBSidebarHeader>
         <CDBSidebarContent className="sidebar-content">
@@ -45,7 +46,7 @@ const Sidebar = () => {
             <div>
             {
               // 가게 등록으로 if문
-              session_name.email === 2
+              session.data.type === 'CONSUMER'
                 ? <NavLink exact to="/AddStore" activeClassName="activeClicked">
                   <CDBSidebarMenuItem icon="home">가게 등록 하기</CDBSidebarMenuItem>
                 </NavLink>
@@ -56,7 +57,7 @@ const Sidebar = () => {
             </div>
             {
               // 상품 등록으로 if문
-              session_name.email === '정바다'
+              session.data.type === 'seller'
                 ? <NavLink exact to="/AddItem" activeClassName="activeClicked">
                   <CDBSidebarMenuItem icon="home">상품 등록 하기</CDBSidebarMenuItem>
                 </NavLink>                
