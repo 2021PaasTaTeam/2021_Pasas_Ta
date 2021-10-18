@@ -7,7 +7,6 @@ import passta.paas_ta_back.domain.UserType;
 
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
 public class JoinDto {
     private String name;
     private String email;
