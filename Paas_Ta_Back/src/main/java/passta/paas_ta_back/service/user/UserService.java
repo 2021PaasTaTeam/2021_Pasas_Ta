@@ -72,7 +72,8 @@ public class UserService {
             return false;
         }
         User userById = findUserById(id);
-        log.info("user=", userById, password);
+        log.info("user=", userById);
+        log.info("pass=", password);
         if (userById == null || !userById.getPassword().equals(password)){
             return false;
         }
