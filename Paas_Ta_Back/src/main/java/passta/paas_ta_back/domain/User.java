@@ -3,6 +3,7 @@ package passta.paas_ta_back.domain;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import passta.paas_ta_back.repository.user.ModifyDto;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -36,7 +37,7 @@ public class User {
     @Enumerated(EnumType.STRING)
     private UserType type;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Shop> shops = new ArrayList<>();
 
     public User(String name, String email, String password, String address, UserType type) {
@@ -49,6 +50,13 @@ public class User {
 
     public void changeUserType(UserType userType){
         this.type = userType;
+    }
+
+    public User changeUserInfo(ModifyDto modifyDto){
+        if (modifyDto.getName() != null){this.name = modifyDto.getName();}
+        if (modifyDto.getPassword() != null){this.password = modifyDto.getPassword();}
+        if (modifyDto.getAddress() != null){this.address = modifyDto.getAddress();}
+        return this;
     }
 
 }

@@ -34,6 +34,9 @@ public class Shop {
     @Column(name = "shop_address", nullable = false)
     private String address;
 
+    @Column(name = "shop_business_type")
+    private String businessType;
+
     @Column(name = "shop_image")
     @Lob
     private Blob images;
@@ -44,10 +47,17 @@ public class Shop {
         user.changeUserType(UserType.SELLER); // 판매로 권한 변경
     }
 
-    public static Shop createShop(User user, String registrationNum, String name, String phone, String address, Blob images) {
+    public static Shop createShop(User user,
+                                  String registrationNum,
+                                  String name,
+                                  String phone,
+                                  String address,
+                                  String businessType,
+                                  Blob images) {
         Shop shop = new Shop();
         shop.setUserInShop(user);
         shop.registrationNum = registrationNum;
+        shop.businessType = businessType;
         shop.name = name;
         shop.phone = phone;
         shop.images = images;

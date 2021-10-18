@@ -1,6 +1,8 @@
 package passta.paas_ta_back.controller.user;
 
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -10,11 +12,14 @@ import passta.paas_ta_back.controller.user.dto.UserInfoDto;
 import passta.paas_ta_back.domain.User;
 import passta.paas_ta_back.repository.user.JoinDto;
 import passta.paas_ta_back.repository.user.LoginDto;
+import passta.paas_ta_back.repository.user.ModifyDto;
 import passta.paas_ta_back.service.user.UserService;
 import passta.paas_ta_back.web.session.SessionConst;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Slf4j
 @CrossOrigin
@@ -42,8 +47,23 @@ public class UserController {
         }
     }
 
-    @PostMapping("/join")
-    public ResponseEntity<?> joinOk(@RequestBody JoinDto joinDto) {
+    @PostMapping("/logout")
+    public String logout(HttpServletRequest request){
+        HttpSession session = request.getSession();
+        if (session != null){
+            session.invalidate(); // 세션 제거
+        }
+        return "redirect:/art";
+    }
+
+    @GetMapping("/user")
+    public ResponseEntity<?> totalUserView(){
+        List<UserInfoDto> userInfoDtoList = userService.users().stream().map(UserInfoDto::new).collect(Collectors.toList());
+        return new ResponseEntity(userInfoDtoList, HttpStatus.OK);
+    }
+
+    @PostMapping("/user")
+    public ResponseEntity<?> registerUser(@RequestBody JoinDto joinDto) {
         User joinUser = userService.join(joinDto);
         if (joinUser == null) {
             return new ResponseEntity(null, HttpStatus.OK);
@@ -52,13 +72,36 @@ public class UserController {
 
     }
 
-    @PostMapping("/logout")
-    public String logout(HttpServletRequest request){
-        HttpSession session = request.getSession();
-        if (session != null){
-            session.invalidate(); // 세션 제거
+    @GetMapping("/user/{id}")
+    public ResponseEntity<?> findUserOne(@PathVariable(name = "id") Long id){
+        User userById = userService.findUserById(id);
+        if (userById == null) {
+            return new ResponseEntity(null, HttpStatus.OK);
         }
-        return "redirect:/art";
+        return new ResponseEntity(new UserInfoDto(userById), HttpStatus.OK);
+    }
+
+    @PostMapping("/user/{id}")
+    public ResponseEntity<?> modifyUser(@PathVariable(name = "id") Long id, @RequestBody ModifyDto modifyDto){
+        User changeUser = userService.changeUserInfoById(id, modifyDto);
+        if (changeUser == null) {
+            return new ResponseEntity(null, HttpStatus.OK);
+        }
+        return new ResponseEntity(new UserInfoDto(changeUser), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/user/{id}")
+    public ResponseEntity<?> deleteUser(@PathVariable(name = "id") Long id, @RequestBody String password){
+        Boolean deleteCheck = userService.deleteUserById(id, password);
+        if (deleteCheck == false){
+            return new ResponseEntity(null, HttpStatus.OK);
+        }
+        return new ResponseEntity(new deleteCheckDto(deleteCheck),HttpStatus.OK);
+    }
+
+    @AllArgsConstructor
+    class deleteCheckDto{
+        boolean deleteCheck;
     }
 
 }
