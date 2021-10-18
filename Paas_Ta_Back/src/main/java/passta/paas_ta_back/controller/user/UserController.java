@@ -94,6 +94,7 @@ public class UserController {
     @DeleteMapping("/user/{id}")
     public ResponseEntity<?> deleteUser(@PathVariable(name = "id") Long id, @RequestBody DeleteDto deleteDto){
         Boolean deleteCheck = userService.deleteUserById(id, deleteDto);
+        System.out.println("delsds"+ deleteCheck);
         if (deleteCheck == false){
             return new ResponseEntity(null, HttpStatus.OK);
         }

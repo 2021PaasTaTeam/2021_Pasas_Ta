@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @AllArgsConstructor
+@NoArgsConstructor
 public class ModifyDto {
     private String name;
     private String password;

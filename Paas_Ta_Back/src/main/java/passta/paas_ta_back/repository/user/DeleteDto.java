@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class DeleteDto {
     private String password;
 }

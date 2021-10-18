@@ -10,6 +10,6 @@ public interface ShopRepository extends JpaRepository<Shop, Long> {
 
     List<Shop> findByRegistrationNum(String registrationNum);
 
-    @Query("select distinct s from Shop s join fetch s.user u where u.address = :address")
-    List<Shop> findAllWithUser(String address);
+    @Query("select distinct s from Shop s join fetch s.user u where u.email = :email")
+    List<Shop> findAllWithUser(String email);
 }
