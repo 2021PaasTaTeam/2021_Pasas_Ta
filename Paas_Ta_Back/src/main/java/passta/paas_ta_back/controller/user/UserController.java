@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import passta.paas_ta_back.controller.user.dto.UserInfoDto;
 import passta.paas_ta_back.domain.User;
+import passta.paas_ta_back.repository.user.DeleteDto;
 import passta.paas_ta_back.repository.user.JoinDto;
 import passta.paas_ta_back.repository.user.LoginDto;
 import passta.paas_ta_back.repository.user.ModifyDto;
@@ -91,17 +92,19 @@ public class UserController {
     }
 
     @DeleteMapping("/user/{id}")
-    public ResponseEntity<?> deleteUser(@PathVariable(name = "id") Long id, @RequestBody String password){
-        Boolean deleteCheck = userService.deleteUserById(id, password);
+    public ResponseEntity<?> deleteUser(@PathVariable(name = "id") Long id, @RequestBody DeleteDto deleteDto){
+        Boolean deleteCheck = userService.deleteUserById(id, deleteDto);
+        System.out.println("delsds"+ deleteCheck);
         if (deleteCheck == false){
             return new ResponseEntity(null, HttpStatus.OK);
         }
         return new ResponseEntity(new deleteCheckDto(deleteCheck),HttpStatus.OK);
     }
 
+    @Data
     @AllArgsConstructor
     class deleteCheckDto{
-        boolean deleteCheck;
+        private boolean deleteValid;
     }
 
 }

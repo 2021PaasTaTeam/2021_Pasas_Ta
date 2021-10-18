@@ -67,13 +67,12 @@ public class UserService {
     }
 
     @Transactional
-    public boolean deleteUserById(Long id, String password) {
-        if(password == null){
+    public boolean deleteUserById(Long id, DeleteDto deleteDto) {
+        if(deleteDto.getPassword() == null){
             return false;
         }
         User userById = findUserById(id);
-        log.info("user=", userById, password);
-        if (userById == null || !userById.getPassword().equals(password)){
+        if (userById == null || !userById.getPassword().equals(deleteDto.getPassword())){
             return false;
         }
         userRepository.deleteById(id);
