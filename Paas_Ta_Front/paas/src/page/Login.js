@@ -40,9 +40,9 @@ function Login() {
 
       .then(res => {
 
-        const session_name = res.data.name;
-        const userObj = { email: session_name };
-        window.sessionStorage.setItem("email", JSON.stringify(userObj));
+        const session = res.data;
+        const userObj = { data: session };
+        window.sessionStorage.setItem("data", JSON.stringify(userObj));
         // 로그아웃은
         // window.sessionStorage.removeItem(key)로 데이터 제거한다.
         console.log('이름은 ' + res.data.name)

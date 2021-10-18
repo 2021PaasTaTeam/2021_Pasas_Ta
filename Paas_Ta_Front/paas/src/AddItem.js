@@ -10,7 +10,7 @@ import withRoot from './modules/withRoot';
 import React, { useState } from 'react';
 import axios from 'axios';
 
-function AddItem(input) {
+function AddItem() {
     const [fileImage, setFileImage] = useState("");
     const saveFileImage = (e) => {
         setFileImage(URL.createObjectURL(e.target.files[0]));
