@@ -41,7 +41,7 @@ function SignUp() {
       'name' : name,
       'address':address
   })
-    axios.post('http://localhost:8080/join',data, {
+    axios.post('http://localhost:8080/user',data, {
       headers: {
         'Content-type': 'application/json; charset=utf-8',
       }
