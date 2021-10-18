@@ -12,7 +12,7 @@ import { NavLink } from 'react-router-dom';
 const Sidebar = () => {
 
   const session = JSON.parse(window.sessionStorage.getItem("data"));
-  console.log(session)
+  console.log(session.data.type)
 
   const onClick = () => {
     window.sessionStorage.removeItem(session.data);
@@ -37,34 +37,48 @@ const Sidebar = () => {
             <NavLink exact to="/Mypage" activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="user">마이 페이지</CDBSidebarMenuItem>
             </NavLink>
-            <NavLink exact to="/AddStore" activeClassName="activeClicked">
+            <NavLink exact to="/Basket" activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="check-square">장바구니</CDBSidebarMenuItem>
             </NavLink>
-            <NavLink exact to="/AddStore" activeClassName="activeClicked">
+            <NavLink exact to="/Shopping_info" activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="file">구매 정보</CDBSidebarMenuItem>
             </NavLink>
             <div>
             {
               // 가게 등록으로 if문
-              session.data.type === 'CONSUMER'
-                ? <NavLink exact to="/AddStore" activeClassName="activeClicked">
-                  <CDBSidebarMenuItem icon="home">가게 등록 하기</CDBSidebarMenuItem>
-                </NavLink>
-                : <NavLink exact to="/EditStore" activeClassName="activeClicked">
+              session.data.type === 'SELLER'
+                ? <NavLink exact to="/EditStore" activeClassName="activeClicked">
                   <CDBSidebarMenuItem icon="home">가게 수정 하기</CDBSidebarMenuItem>
+                </NavLink>
+                : <NavLink exact to="/AddStore" activeClassName="activeClicked">
+                  <CDBSidebarMenuItem icon="home">가게 등록 하기</CDBSidebarMenuItem>
                 </NavLink>
             }
             </div>
             {
+              session.data.type === 'SELLER' ? <NavLink exact to="/AddItem" activeClassName="activeClicked">
+              <CDBSidebarMenuItem icon="heart">상품 등록 하기</CDBSidebarMenuItem>
+            </NavLink> 
+              : <NavLink exact to="/AddItem" activeClassName="activeClicked">
+              <CDBSidebarMenuItem icon="heart">상품 등록 하기</CDBSidebarMenuItem>
+            </NavLink> 
+            }
+                        {
+              session.data.type === 'SELLER' ? <NavLink exact to="/EditItem" activeClassName="activeClicked">
+              <CDBSidebarMenuItem icon="heart">상품 수정 하기</CDBSidebarMenuItem>
+            </NavLink> 
+              : <></>
+            }
+            {/* {
               // 상품 등록으로 if문
-              session.data.type === 'seller'
+              session.data.type === 'SELLER'
                 ? <NavLink exact to="/AddItem" activeClassName="activeClicked">
                   <CDBSidebarMenuItem icon="home">상품 등록 하기</CDBSidebarMenuItem>
                 </NavLink>                
                 : <NavLink exact to="/EditItem" activeClassName="activeClicked">
                   <CDBSidebarMenuItem icon="home">상품 수정 하기</CDBSidebarMenuItem>
                 </NavLink>
-            }
+            } */}
             {/* <NavLink exact to="/AddStore" activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="home">가게 등록 하기</CDBSidebarMenuItem>
             </NavLink> */}
@@ -72,8 +86,8 @@ const Sidebar = () => {
 
           </CDBSidebarMenu>
         </CDBSidebarContent>
-        <NavLink exact to="/" activeClassName="activeClicked">
-              <CDBSidebarMenuItem style={{color:'white'}}icon="window-close" >로그아웃</CDBSidebarMenuItem>
+        <NavLink exact to="/" activeClassName="activeClicked" onSubmit={onClick} >
+              <CDBSidebarMenuItem style={{color:'white'}} icon="window-close" >로그아웃</CDBSidebarMenuItem>
             </NavLink>
         <CDBSidebarFooter style={{ textAlign: 'center' }} >
           <div

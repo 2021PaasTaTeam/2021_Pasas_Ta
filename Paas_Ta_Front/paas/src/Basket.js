@@ -10,7 +10,7 @@ import withRoot from './modules/withRoot';
 import React, { useState } from 'react';
 import axios from 'axios';
 
-function EditStore() {
+function Basket() {
     const [shop_name, setShop_name] = useState("");
     const [shop_address, setShop_address] = useState("");
     const [shop_phone, setShop_phone] = useState("");
@@ -59,15 +59,14 @@ function EditStore() {
             'registrationNum': registeration_number,
             'email': session.data.email
         })
-        axios.post('http://localhost:8080/shop', data, {
+        axios.post('http://localhost:8080/', data, {
             headers: {
                 'Content-type': 'application/json; charset=utf-8',
             }
         })
             .then(res => {
-                alert('가게가 수정되었습니다.')
-                document.location.href = '/Town'
-                console.log(res.data)
+                    alert('가게가 등록되었습니다.')
+                    document.location.href = '/Town'
             })
             .catch()
     }
@@ -77,7 +76,7 @@ function EditStore() {
             <AppForm>
                 <React.Fragment>
                     <Typography variant="h3" align="center">
-                        우리 가게 수정하기
+                        장바구니
                     </Typography>
                 </React.Fragment>
                 <Form
@@ -101,7 +100,7 @@ function EditStore() {
                                             collapse: 'collapse',
                                             borderRadius: '8px',
                                         }}
-                                        value={session.data}
+                                        value={shop_name}
                                         onChange={onShop_nameHandler}
                                     />
                                 </Grid>
@@ -223,14 +222,6 @@ function EditStore() {
                                 </Grid>
                             </Grid>
                             <br />
-                            <div className="Card1">
-                                <div className="c1image">
-                                    <img className="phoneImage"
-                                        height="390vh"
-                                        width="530vw"
-                                        src="/assets/map.jpg" />
-                                </div>
-                            </div>
                             <Grid container spacing={2}>
                                 <Grid item xs={12} sm={6}>
                                     <FormButton
@@ -247,7 +238,7 @@ function EditStore() {
                                         type="submit"
                                         onSubmit={onClickRegister}
                                     >
-                                        {'수정하기'}
+                                        {'구매하기'}
                                     </FormButton>
                                 </Grid>
                                 <Grid item xs={12} sm={6}>
@@ -277,4 +268,4 @@ function EditStore() {
     );
 }
 
-export default withRoot(EditStore);
+export default withRoot(Basket);

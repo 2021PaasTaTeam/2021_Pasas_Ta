@@ -8,10 +8,12 @@ import zoom from "./zoom";
 import Town from "./page/Gather_town";
 import Item from "./Item";
 import AddStore from "./AddStore";
-import MyPage from "./MyPage";
+import MyPage from "./page/MyPage";
 import AddItem from "./AddItem";
 import EditItem from "./EditItem";
 import EditStore from "./EditStore";
+import Basket from "./Basket";
+import Shopping_info from "./Shopping_info";
 
 class App extends Component {
     render() {
@@ -27,10 +29,12 @@ class App extends Component {
                     <Route path="/EditStore" exact component={EditStore} />
                     <Route path="/AddItem" exact component={AddItem} />
                     <Route path="/EditItem" exact component={EditItem} />
+                    <Route path="/Basket" exact component={Basket} />
+                    <Route path="/Shopping_info" exact component={Shopping_info} />
 
-
+                    
+                    
                     <Route path="/MyPage" exact component={MyPage} />
-
                     <Route path="/Gather" exact component={Gather} />
                     <Route path="/Town" exact component={Town} />                    
                     
