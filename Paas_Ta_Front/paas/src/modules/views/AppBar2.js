@@ -6,14 +6,13 @@ import React, { useState } from 'react';
 import axios from 'axios'
 import Sidebar from '../../page/Sidebar';
 import { BrowserRouter as Router } from 'react-router-dom';
+import Notifications from "./Notifications";
 
-const rightLink = {
-  fontSize: 18,
-  color: 'common.white',
-  ml: 5,
-};
+
+
 
 function AppAppBar2() {
+
 
   const session_name = JSON.parse(window.sessionStorage.getItem("email"));
 
@@ -45,7 +44,29 @@ function AppAppBar2() {
             >
               {session_name.email + ' 님 환영합니다.'}
             </Link> */}
-
+    <Notifications 
+        data={[
+          {
+            //image: logo,
+            message: ' - 한복 2벌',
+          },
+          {
+            //image: logo,
+            message: '- 잭 다니엘 허니 2병',
+          },
+        ]}
+        //classNamePrefix='okrjoy'
+        //cardOption={data => console.log(data)}
+        //viewAllbtn={{ text: 'see all', linkTo: '/seeAll' }}
+        //markAsRead={data => console.log(data)}
+        headerBackgroundColor = 'white'
+        header={
+          {
+            title: '장바구니',
+            option: { text: 'View All', onClick: () => {} }
+          }
+        }
+    />
           </Box>
         </Toolbar>
       </AppBar>

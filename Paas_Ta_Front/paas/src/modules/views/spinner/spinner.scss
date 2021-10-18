@@ -1,0 +1,53 @@
+.spinner {
+  height: 32px;
+  width: 32px;
+}
+
+.loaders {
+  font-size: 10px;
+  width: 176px;
+  height: 176px;
+  border-radius: 50%;
+  background: #000000;
+  background: linear-gradient(to right, #000000 10%, rgba(0, 0, 0, 0) 42%);
+  position: relative;
+  animation: load3 1.4s infinite linear;
+  transform: translateZ(0);
+
+  &:before {
+    content: '';
+    width: 50%;
+    height: 50%;
+    background: #000000;
+    border-radius: 100% 0 0 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+}
+
+.loader {
+  &:after {
+    background: #ffffff;
+    width: 75%;
+    height: 75%;
+    border-radius: 50%;
+    content: '';
+    margin: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+  }
+}
+
+@keyframes load3 {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
