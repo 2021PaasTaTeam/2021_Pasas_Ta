@@ -7,16 +7,35 @@ import AppAppBar2 from './modules/views/AppBar2';
 import AppForm from './modules/views/AppForm';
 import FormButton from './modules/form/FormButton';
 import withRoot from './modules/withRoot';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import './Cart.css';
+
+const labels = ['한복', '잭 다니엘', 'check 3']
+const labels2 = ['']
 
 function Cart() {
+
+    const [checkList, setCheckList] = useState([false, false, false]);
+    // index 번째 체크 상태를 반전시킨다
+    const handleCheckClick = (index) => {
+        setCheckList((checks) => checks.map((c, i) => (i === index ? !c : c)));
+    };
+    const isAllChecked = checkList.every((x) => x - 1);
+
+    function allselect(value) {
+        for ( let i = 0; i < labels.length; i++)
+        {
+            handleCheckClick(value+i)
+        }
+    }
+    
     const [shop_name, setShop_name] = useState("");
     const [shop_address, setShop_address] = useState("");
     const [shop_phone, setShop_phone] = useState("");
     const [shop_image, setShop_image] = useState("");
     const [registeration_number, setRegisteration_number] = useState("");
-    
+
 
     const onShop_nameHandler = (event) => {
         setShop_name(event.currentTarget.value);
@@ -65,8 +84,8 @@ function Cart() {
             }
         })
             .then(res => {
-                    alert('가게가 등록되었습니다.')
-                    document.location.href = '/Town'
+                alert('가게가 등록되었습니다.')
+                document.location.href = '/Town'
             })
             .catch()
     }
@@ -80,9 +99,92 @@ function Cart() {
                     </Typography>
                 </React.Fragment>
 
+                <br /><br />
+                <div>
+                    <ul>
+                        {labels2.map((label, idx) => (
+                            <li key={idx}>
+                                <label>
+                                    <Grid container spacing={45}>
+                                        <Grid item xs={45} sm={6}>
+                                            <div id="check">
+                                                <input
+                                                    type='checkbox'
+                                                    checked={checkList[idx]}
+                                                    onClick={() => allselect(idx)}
+                                                />
+                                                <Typography
+                                                    color="inherit"
+                                                    variant="h7"
+                                                    align="left">
+                                                    모두 선택
+                                                </Typography>
+                                            </div>
+                                        </Grid>
+                                        <Grid item xs={12} sm={6}>
+                                            <input
+                                                type='button'
+                                                align='right'
+                                                value='모두 삭제'
+
+                                            />
+                                        </Grid>
+                                    </Grid>
+                                </label>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+                <br />
+                <div>
+                    <ul>
+                        {labels.map((label, idx) => (
+                            <li key={idx}>
+                                <label>
+                                    <Grid container spacing={5}>
+                                        <Grid item xs={12} sm={0.5}>
+                                            <input
+                                                type='checkbox'
+                                                checked={checkList[idx]}
+                                                onClick={() => handleCheckClick(idx)}
+                                            />
+                                        </Grid>
+                                        <Grid item xs={12} sm={8}>
+                                            <input type="text"
+                                                name="name"
+                                                style={{
+                                                    width: 380,
+                                                    height: 50,
+                                                    border: "2px solid black",
+                                                    collapse: 'collapse',
+                                                    borderRadius: '8px',
+                                                }}
+                                                value={label}
+                                            />
+                                        </Grid>
+                                        <Grid item xs={12} sm={3}>
+                                            <input
+                                                type='button'
+                                                align='right'
+                                                value='삭제'
+                                                checked={checkList[idx]}
+                                                onClick={() => handleCheckClick(idx)}
+                                            />
+                                        </Grid>
+                                    </Grid>
+                                </label>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+                <br />
 
 
-                
+
+
+
+
+
                 <Form
                     onSubmit={onClickRegister}
                 >
@@ -105,6 +207,7 @@ function Cart() {
                                         }}
                                         type="submit"
                                         onSubmit={onClickRegister}
+                                        disabled={isAllChecked}
                                     >
                                         {'구매하기'}
                                     </FormButton>
