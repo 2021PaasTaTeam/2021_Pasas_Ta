@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import passta.paas_ta_back.domain.Shop;
 import passta.paas_ta_back.domain.User;
 import passta.paas_ta_back.repository.user.*;
 
@@ -80,5 +81,13 @@ public class UserService {
         }
         userRepository.deleteById(id);
         return true;
+    }
+
+    public List<Shop> findShopByUserId(Long id){
+        User user = userRepository.findById(id).orElse(null);
+        if (user == null){
+            return null;
+        }
+        return user.getShops();
     }
 }

@@ -65,11 +65,10 @@ public class Shop {
         return shop;
     }
 
-    public Shop changeShopInfo(String name, String phone, String address, Blob image){
+    public Shop changeShopInfo(String name, String phone, String address){
         if (name != null){this.name = name;}
         if (phone != null){this.phone = phone;}
         if (address != null){this.address = address;}
-        if (image != null){this.images = image;}
         return this;
     }
 

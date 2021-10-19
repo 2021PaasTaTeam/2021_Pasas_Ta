@@ -59,7 +59,7 @@ public class ShopController {
     }
 
     @PostMapping("/shop/{id}")
-    public ResponseEntity<?> modifyShop(@PathVariable(name = "id") Long id, ShopModifyDto shopModifyDto){
+    public ResponseEntity<?> modifyShop(@PathVariable(name = "id") Long id, @RequestBody ShopModifyDto shopModifyDto){
         Shop shop = shopService.changeShopInfoById(id, shopModifyDto);
         if (shop == null) {
             return null;
@@ -69,10 +69,10 @@ public class ShopController {
 
     @DeleteMapping("/shop/{id}")
     public ResponseEntity<?> deleteShop(@PathVariable(name = "id") Long id){
-        boolean shopdeleteCkeck = shopService.deleteShopById(id);
-        if (shopdeleteCkeck == false){
+        boolean shopDeleteCkeck = shopService.deleteShopById(id);
+        if (shopDeleteCkeck == false){
             return new ResponseEntity(null, HttpStatus.OK);
         }
-        return new ResponseEntity(new DeleteCheckDto(shopdeleteCkeck),HttpStatus.OK);
+        return new ResponseEntity(new DeleteCheckDto(shopDeleteCkeck),HttpStatus.OK);
     }
 }
