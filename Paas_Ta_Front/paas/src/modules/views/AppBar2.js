@@ -48,8 +48,10 @@ function AppAppBar2() {
             >
               {session_name.email + ' 님 환영합니다.'}
             </Link> */}
-    <Notifications 
-        data={[
+    <Notifications
+      //cardOption={data => console.log(data)}
+       //markAsRead={data => console.log(data)}
+      data={[
           {
             //image: logo,
             message: '한복: '+' x'+cart.count+',    가격: '+' 💰:'+cart.cost,

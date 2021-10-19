@@ -38,7 +38,7 @@ const Sidebar = () => {
               <CDBSidebarMenuItem icon="user">마이 페이지</CDBSidebarMenuItem>
             </NavLink>
             <NavLink exact to="/Cart" activeClassName="activeClicked">
-              <CDBSidebarMenuItem icon="check-square">장바구니</CDBSidebarMenuItem>
+              <CDBSidebarMenuItem icon="heart">장바구니</CDBSidebarMenuItem>
             </NavLink>
             <NavLink exact to="/Shopping_info" activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="file">구매 정보</CDBSidebarMenuItem>
@@ -57,15 +57,13 @@ const Sidebar = () => {
             </div>
             {
               session.data.type === 'SELLER' ? <NavLink exact to="/AddItem" activeClassName="activeClicked">
-              <CDBSidebarMenuItem icon="heart">상품 등록 하기</CDBSidebarMenuItem>
+              <CDBSidebarMenuItem icon="archive">상품 등록 하기</CDBSidebarMenuItem>
             </NavLink> 
-              : <NavLink exact to="/AddItem" activeClassName="activeClicked">
-              <CDBSidebarMenuItem icon="heart">상품 등록 하기</CDBSidebarMenuItem>
-            </NavLink> 
+              : <></>
             }
                         {
               session.data.type === 'SELLER' ? <NavLink exact to="/EditItem" activeClassName="activeClicked">
-              <CDBSidebarMenuItem icon="heart">상품 수정 하기</CDBSidebarMenuItem>
+              <CDBSidebarMenuItem icon="archive">상품 수정 하기</CDBSidebarMenuItem>
             </NavLink> 
               : <></>
             }

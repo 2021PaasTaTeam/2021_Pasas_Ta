@@ -16,20 +16,29 @@ function AddStore() {
     const [shop_phone, setShop_phone] = useState("");
     const [shop_image, setShop_image] = useState("");
     const [registeration_number, setRegisteration_number] = useState("");
-    
+    const [shop_business_type, setShop_business_type] = useState("");
 
+    // 가게 업종
+    const onShop_business_typeHandler = (event) => {
+        setShop_business_type(event.currentTarget.value);
+    }
+
+    // 가게 이름
     const onShop_nameHandler = (event) => {
         setShop_name(event.currentTarget.value);
     }
 
+    // 가게 지역구
     const onShop_sddressHandler = (event) => {
         setShop_address(event.currentTarget.value)
     }
 
+    // 가게 전화번호
     const onShop_phoneHandler = (event) => {
         setShop_phone(event.currentTarget.value);
     }
 
+    // 가게 상표 이미지
     const onShop_imageHandler = (event) => {
         setShop_image(event.currentTarget.value);
     }
@@ -38,7 +47,6 @@ function AddStore() {
     const onRegisteration_numberHandler = (event) => {
         setRegisteration_number(event.currentTarget.value);
     }
-
 
     const session = JSON.parse(window.sessionStorage.getItem("data"));
 
@@ -51,13 +59,15 @@ function AddStore() {
         console.log('가게상표이미지 : ', shop_image)
         console.log('사업자번호 : ', registeration_number)
         console.log('이메일 : ', session.data.email)
+        console.log('가게업종 : ',shop_business_type)
         let data = JSON.stringify({
             'name': shop_name,
             'address': shop_address,
             'phone': shop_phone,
             'image': shop_image,
             'registrationNum': registeration_number,
-            'email': session.data.email
+            'email': session.data.email,
+            'businessType': shop_business_type
         })
         axios.post('http://localhost:8080/shop', data, {
             headers: {
@@ -173,12 +183,14 @@ function AddStore() {
                                             collapse: 'collapse',
                                             borderRadius: '8px',
                                         }}
+                                        value={shop_business_type}
+                                        onChange={onShop_business_typeHandler}
                                     >
-                                        <option value="직접선택" selected="selected">직접선택</option>
-                                        <option value="한복">한복</option>
-                                        <option value="공방">공방</option>
-                                        <option value="음식점">음식점</option>
-                                        <option value="기타">기타</option>
+                                        <option selected="selected">직접선택</option>
+                                        <option >한복</option>
+                                        <option >공방</option>
+                                        <option >음식점</option>
+                                        <option >기타</option>
                                     </select>
                                 </Grid>
                             </Grid>
