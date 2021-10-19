@@ -9,12 +9,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import passta.paas_ta_back.controller.dto.DeleteCheckDto;
+import passta.paas_ta_back.controller.shop.dto.ShopInfoDto;
 import passta.paas_ta_back.controller.user.dto.UserInfoDto;
+import passta.paas_ta_back.domain.Shop;
 import passta.paas_ta_back.domain.User;
-import passta.paas_ta_back.repository.user.DeleteDto;
-import passta.paas_ta_back.repository.user.JoinDto;
-import passta.paas_ta_back.repository.user.LoginDto;
-import passta.paas_ta_back.repository.user.UserModifyDto;
+import passta.paas_ta_back.repository.user.*;
 import passta.paas_ta_back.service.user.UserService;
 import passta.paas_ta_back.web.session.SessionConst;
 
@@ -101,5 +100,15 @@ public class UserController {
             return new ResponseEntity(null, HttpStatus.OK);
         }
         return new ResponseEntity(new DeleteCheckDto(deleteCheck),HttpStatus.OK);
+    }
+
+    @GetMapping("/myShops")
+    public ResponseEntity<?> myShopsList(@RequestBody UserIdDto userIdDto){
+        List<Shop> shopByUserId = userService.findShopByUserId(userIdDto.getId());
+        if (shopByUserId == null){
+            return ResponseEntity.ok(null);
+        }
+        List<ShopInfoDto> collect = shopByUserId.stream().map(ShopInfoDto::new).collect(Collectors.toList());
+        return ResponseEntity.ok(collect);
     }
 }

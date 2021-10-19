@@ -66,8 +66,7 @@ public class ShopService {
         return shop.changeShopInfo(
                 shopModifyDto.getName(),
                 shopModifyDto.getPhone(),
-                shopModifyDto.getAddress(),
-                shopModifyDto.getImage());
+                shopModifyDto.getAddress());
     }
 
     @Transactional
@@ -76,7 +75,7 @@ public class ShopService {
         if (shopById == null){
             return false;
         }
-        userRepository.deleteById(id);
+        shopRepository.deleteById(id);
         return true;
     }
 }

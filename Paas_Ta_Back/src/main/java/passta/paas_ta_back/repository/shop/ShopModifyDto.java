@@ -13,5 +13,5 @@ public class ShopModifyDto {
     private String name;
     private String phone;
     private String address;
-    private Blob image;
+//    private Blob image;
 }
