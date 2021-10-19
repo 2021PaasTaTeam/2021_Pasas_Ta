@@ -79,148 +79,16 @@ function Cart() {
                         장바구니
                     </Typography>
                 </React.Fragment>
+
+
+
+                
                 <Form
                     onSubmit={onClickRegister}
                 >
                     {({ handleSubmit: handleSubmit2, submitting }) => (
                         <Box component="form" onSubmit={handleSubmit2} noValidate sx={{ mt: 6 }}>
-                            <Grid container spacing={2}>
-                                <Grid item xs={12} sm={3}>
-                                    <Typography variant="h6" align="center">
-                                        가게 이름
-                                    </Typography>
-                                </Grid>
-                                <Grid item xs={12} sm={9}>
-                                    <input type="text"
-                                        name="name"
-                                        style={{
-                                            width: 380,
-                                            height: 50,
-                                            border: "2px solid black",
-                                            collapse: 'collapse',
-                                            borderRadius: '8px',
-                                        }}
-                                        value={shop_name}
-                                        onChange={onShop_nameHandler}
-                                    />
-                                </Grid>
-                            </Grid>
-                            <br />
-                            <Grid container spacing={2}>
-                                <Grid item xs={12} sm={3}>
-                                    <Typography variant="h6" align="center">
-                                        사업자 번호
-                                    </Typography>
-                                </Grid>
-                                <Grid item xs={12} sm={9}>
-                                    <input type="text"
-                                        name="number"
-                                        style={{
-                                            width: 380,
-                                            height: 50,
-                                            border: "2px solid black",
-                                            collapse: 'collapse',
-                                            borderRadius: '8px',
-                                        }}
-                                        value={registeration_number}
-                                        onChange={onRegisteration_numberHandler}
-                                    />
-                                </Grid>
-                            </Grid>
-                            <br />
-                            <Grid container spacing={2}>
-                                <Grid item xs={12} sm={3}>
-                                    <Typography variant="h6" align="center">
-                                        지역구 선택
-                                    </Typography>
-                                </Grid>
-                                <Grid item xs={12} sm={9}>
-                                <select
-                                        name="number"
-                                        style={{
-                                            width: 380,
-                                            height: 50,
-                                            border: "2px solid black",
-                                            collapse: 'collapse',
-                                            borderRadius: '8px',
-                                        }}
-                                        value={shop_address}
-                                        onChange={onShop_sddressHandler}
-                                    >
-                                        <option selected="selected">직접선택</option>
-                                        <option>종로구</option>
-                                        <option>성북구</option>
-                                        <option>서초구</option>
-                                        <option>동작구</option>
-                                        <option>영등포구</option>
-                                    </select>
-                                </Grid>
-                            </Grid>
-                            <br />
-                            <Grid container spacing={2}>
-                                <Grid item xs={12} sm={3}>
-                                    <Typography variant="h6" align="center">
-                                        가게 업종
-                                    </Typography>
-                                </Grid>
-                                <Grid item xs={12} sm={9}>
-                                    <select
-                                        name="number"
-                                        style={{
-                                            width: 380,
-                                            height: 50,
-                                            border: "2px solid black",
-                                            collapse: 'collapse',
-                                            borderRadius: '8px',
-                                        }}
-                                    >
-                                        <option value="직접선택" selected="selected">직접선택</option>
-                                        <option value="한복">한복</option>
-                                        <option value="공방">공방</option>
-                                        <option value="음식점">음식점</option>
-                                        <option value="기타">기타</option>
-                                    </select>
-                                </Grid>
-                            </Grid>
-                            <br />
-                            <Grid container spacing={2}>
-                                <Grid item xs={12} sm={3}>
-                                    <Typography variant="h6" align="center">
-                                        가게 전화번호
-                                    </Typography>
-                                </Grid>
-                                <Grid item xs={12} sm={9}>
-                                    <input type="text"
-                                        name="number"
-                                        value={shop_phone}
-                                        placeholder="예) 01012345678"
-                                        style={{
-                                            width: 380,
-                                            height: 50,
-                                            border: "2px solid black",
-                                            collapse: 'collapse',
-                                            borderRadius: '8px',
-                                        }}
-                                        onChange={onShop_phoneHandler}
-                                    />
-                                </Grid>
-                            </Grid>
-                            <br />
-                            <Grid container spacing={2}>
-                                <Grid item xs={12} sm={4}>
-                                    <Typography variant="h6" align="center">
-                                        가게 상표 이미지
-                                    </Typography>
-                                </Grid>
-                                <Grid item xs={12} sm={8}>
-                                    <input type="file"
-                                        accept="image/png,image/jpg,impge/png,image/jpeg,image/gif"
-                                        name="name"
-                                        value={shop_image}
-                                        onChange={onShop_imageHandler}
-                                        required />
-                                </Grid>
-                            </Grid>
+
                             <br />
                             <Grid container spacing={2}>
                                 <Grid item xs={12} sm={6}>
