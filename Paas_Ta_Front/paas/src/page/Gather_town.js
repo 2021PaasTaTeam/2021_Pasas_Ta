@@ -214,7 +214,6 @@ function Town(props) {
 
   const session_name = JSON.parse(window.sessionStorage.getItem("email"));
 
-
   return (
     <React.Fragment>
       <RemoveScrollBar />

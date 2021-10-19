@@ -15,7 +15,11 @@ function AppAppBar2() {
 
 
   const session_name = JSON.parse(window.sessionStorage.getItem("email"));
-
+  let cart = {
+    count: 5,
+    cost: 500,
+  };
+  let count =2;
   return (
     <div>
       <AppBar position="fixed">
@@ -48,7 +52,7 @@ function AppAppBar2() {
         data={[
           {
             //image: logo,
-            message: '한복 2벌',
+            message: '한복: '+' x'+cart.count+',    가격: '+' 💰:'+cart.cost,
           },
           {
             //image: logo,
@@ -58,7 +62,7 @@ function AppAppBar2() {
         headerBackgroundColor = 'white'
         header={
           {
-            title: '장바구니',
+            title: '👜 장바구니',
             option: { text: '구매하기', onClick: () => {window.location = "./Cart"} }
           }
         }
