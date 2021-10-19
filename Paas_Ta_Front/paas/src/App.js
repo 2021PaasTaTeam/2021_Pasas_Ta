@@ -12,7 +12,7 @@ import MyPage from "./page/MyPage";
 import AddItem from "./AddItem";
 import EditItem from "./EditItem";
 import EditStore from "./EditStore";
-import Basket from "./Basket";
+import Cart from "./Cart";
 import Shopping_info from "./Shopping_info";
 
 class App extends Component {
@@ -29,7 +29,7 @@ class App extends Component {
                     <Route path="/EditStore" exact component={EditStore} />
                     <Route path="/AddItem" exact component={AddItem} />
                     <Route path="/EditItem" exact component={EditItem} />
-                    <Route path="/Basket" exact component={Basket} />
+                    <Route path="/Cart" exact component={Cart} />
                     <Route path="/Shopping_info" exact component={Shopping_info} />
 
                     

@@ -2,8 +2,9 @@ import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import Card from './card';
-//import Spinner from './spinner';
-import defaultIcon from './assets/default_bell.svg';
+//import defaultIcon from './assets/default_bell.svg';
+import defaultIcon from './assets/bag.png';
+
 import './styles.scss';
 
 class Notifications extends Component {

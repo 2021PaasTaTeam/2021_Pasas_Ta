@@ -42,7 +42,7 @@ const Card = ({
         >
           {renderImage && (
             <div className={classes.image}>
-              <img src={image} alt="Person " />
+              <img src={image} />
             </div>
           )}
           <div className={classes.message}>

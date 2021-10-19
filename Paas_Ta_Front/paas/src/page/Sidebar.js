@@ -37,7 +37,7 @@ const Sidebar = () => {
             <NavLink exact to="/Mypage" activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="user">마이 페이지</CDBSidebarMenuItem>
             </NavLink>
-            <NavLink exact to="/Basket" activeClassName="activeClicked">
+            <NavLink exact to="/Cart" activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="check-square">장바구니</CDBSidebarMenuItem>
             </NavLink>
             <NavLink exact to="/Shopping_info" activeClassName="activeClicked">
