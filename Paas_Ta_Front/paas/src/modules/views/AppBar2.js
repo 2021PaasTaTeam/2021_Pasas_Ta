@@ -48,22 +48,18 @@ function AppAppBar2() {
         data={[
           {
             //image: logo,
-            message: ' - 한복 2벌',
+            message: '한복 2벌',
           },
           {
             //image: logo,
-            message: '- 잭 다니엘 허니 2병',
+            message: '잭 다니엘 허니 2병',
           },
         ]}
-        //classNamePrefix='okrjoy'
-        //cardOption={data => console.log(data)}
-        //viewAllbtn={{ text: 'see all', linkTo: '/seeAll' }}
-        //markAsRead={data => console.log(data)}
         headerBackgroundColor = 'white'
         header={
           {
             title: '장바구니',
-            option: { text: 'View All', onClick: () => {} }
+            option: { text: '구매하기', onClick: () => {window.location = "./Cart"} }
           }
         }
     />

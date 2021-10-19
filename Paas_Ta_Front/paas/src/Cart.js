@@ -10,7 +10,7 @@ import withRoot from './modules/withRoot';
 import React, { useState } from 'react';
 import axios from 'axios';
 
-function Basket() {
+function Cart() {
     const [shop_name, setShop_name] = useState("");
     const [shop_address, setShop_address] = useState("");
     const [shop_phone, setShop_phone] = useState("");
@@ -268,4 +268,4 @@ function Basket() {
     );
 }
 
-export default withRoot(Basket);
+export default withRoot(Cart);
