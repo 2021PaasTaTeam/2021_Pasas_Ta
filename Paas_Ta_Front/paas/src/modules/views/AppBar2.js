@@ -60,6 +60,11 @@ function AppAppBar2() {
             //image: logo,
             message: '잭 다니엘 허니 2병',
           },
+          {
+            //image: logo,
+            message: ' 💰 총 결재 금액 : '+cart.cost,
+            detailPage : '/Cart',
+          }
         ]}
         headerBackgroundColor = 'white'
         header={

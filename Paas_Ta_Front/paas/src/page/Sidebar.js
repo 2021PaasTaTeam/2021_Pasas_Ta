@@ -61,7 +61,7 @@ const Sidebar = () => {
             </NavLink> 
               : <></>
             }
-                        {
+              {
               session.data.type === 'SELLER' ? <NavLink exact to="/EditItem" activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="archive">상품 수정 하기</CDBSidebarMenuItem>
             </NavLink> 
