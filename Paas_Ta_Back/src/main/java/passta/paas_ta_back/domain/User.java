@@ -3,7 +3,6 @@ package passta.paas_ta_back.domain;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import passta.paas_ta_back.repository.user.ModifyDto;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -52,10 +51,10 @@ public class User {
         this.type = userType;
     }
 
-    public User changeUserInfo(ModifyDto modifyDto){
-        if (modifyDto.getName() != null){this.name = modifyDto.getName();}
-        if (modifyDto.getPassword() != null){this.password = modifyDto.getPassword();}
-        if (modifyDto.getAddress() != null){this.address = modifyDto.getAddress();}
+    public User changeUserInfo(String name, String password, String address){
+        if (name != null){this.name = name;}
+        if (password != null){this.password = password;}
+        if (address != null){this.address = address;}
         return this;
     }
 

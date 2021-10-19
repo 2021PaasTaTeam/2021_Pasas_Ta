@@ -50,12 +50,15 @@ public class UserService {
 
     // 유저 정보 수정 메소드
     @Transactional
-    public User changeUserInfoById(Long id, ModifyDto modifyDto){
+    public User changeUserInfoById(Long id, UserModifyDto userModifyDto){
         User user = userRepository.findById(id).get();
         if (user == null){
             return null;
         }
-        return user.changeUserInfo(modifyDto);
+        return user.changeUserInfo(
+                userModifyDto.getName(),
+                userModifyDto.getPassword(),
+                userModifyDto.getAddress());
     }
 
     public List<User> users(){

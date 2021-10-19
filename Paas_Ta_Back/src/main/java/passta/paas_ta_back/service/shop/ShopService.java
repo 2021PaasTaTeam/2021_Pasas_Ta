@@ -7,7 +7,10 @@ import org.springframework.transaction.annotation.Transactional;
 import passta.paas_ta_back.domain.Shop;
 import passta.paas_ta_back.domain.User;
 import passta.paas_ta_back.repository.shop.RegisterDto;
+import passta.paas_ta_back.repository.shop.ShopModifyDto;
 import passta.paas_ta_back.repository.shop.ShopRepository;
+import passta.paas_ta_back.repository.user.DeleteDto;
+import passta.paas_ta_back.repository.user.UserModifyDto;
 import passta.paas_ta_back.repository.user.UserRepository;
 import passta.paas_ta_back.service.user.UserService;
 
@@ -44,5 +47,36 @@ public class ShopService {
             return saveShop;
         }
         return null;
+    }
+
+    public List<Shop> shops(){
+        return shopRepository.findAll();
+    }
+
+    public Shop findShopById(Long id){
+        return shopRepository.findById(id).orElse(null);
+    }
+
+    @Transactional
+    public Shop changeShopInfoById(Long id, ShopModifyDto shopModifyDto){
+        Shop shop = shopRepository.findById(id).get();
+        if (shop == null){
+            return null;
+        }
+        return shop.changeShopInfo(
+                shopModifyDto.getName(),
+                shopModifyDto.getPhone(),
+                shopModifyDto.getAddress(),
+                shopModifyDto.getImage());
+    }
+
+    @Transactional
+    public boolean deleteShopById(Long id) {
+        Shop shopById = findShopById(id);
+        if (shopById == null){
+            return false;
+        }
+        userRepository.deleteById(id);
+        return true;
     }
 }

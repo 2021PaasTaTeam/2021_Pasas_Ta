@@ -8,12 +8,13 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import passta.paas_ta_back.controller.dto.DeleteCheckDto;
 import passta.paas_ta_back.controller.user.dto.UserInfoDto;
 import passta.paas_ta_back.domain.User;
 import passta.paas_ta_back.repository.user.DeleteDto;
 import passta.paas_ta_back.repository.user.JoinDto;
 import passta.paas_ta_back.repository.user.LoginDto;
-import passta.paas_ta_back.repository.user.ModifyDto;
+import passta.paas_ta_back.repository.user.UserModifyDto;
 import passta.paas_ta_back.service.user.UserService;
 import passta.paas_ta_back.web.session.SessionConst;
 
@@ -42,6 +43,7 @@ public class UserController {
             HttpSession session = request.getSession();
             session.setAttribute(SessionConst.LOGIN_USER, userInfoSession);
             session.setMaxInactiveInterval(120);
+            log.info("session login info = ",userInfoSession);
             return new ResponseEntity(userInfoSession, HttpStatus.OK);
         } else {
             return new ResponseEntity(null, HttpStatus.OK);
@@ -54,7 +56,7 @@ public class UserController {
         if (session != null){
             session.invalidate(); // 세션 제거
         }
-        return "redirect:/art";
+        return "red";
     }
 
     @GetMapping("/user")
@@ -83,8 +85,8 @@ public class UserController {
     }
 
     @PostMapping("/user/{id}")
-    public ResponseEntity<?> modifyUser(@PathVariable(name = "id") Long id, @RequestBody ModifyDto modifyDto){
-        User changeUser = userService.changeUserInfoById(id, modifyDto);
+    public ResponseEntity<?> modifyUser(@PathVariable(name = "id") Long id, @RequestBody UserModifyDto userModifyDto){
+        User changeUser = userService.changeUserInfoById(id, userModifyDto);
         if (changeUser == null) {
             return new ResponseEntity(null, HttpStatus.OK);
         }
@@ -98,13 +100,6 @@ public class UserController {
         if (deleteCheck == false){
             return new ResponseEntity(null, HttpStatus.OK);
         }
-        return new ResponseEntity(new deleteCheckDto(deleteCheck),HttpStatus.OK);
+        return new ResponseEntity(new DeleteCheckDto(deleteCheck),HttpStatus.OK);
     }
-
-    @Data
-    @AllArgsConstructor
-    class deleteCheckDto{
-        private boolean deleteValid;
-    }
-
 }
