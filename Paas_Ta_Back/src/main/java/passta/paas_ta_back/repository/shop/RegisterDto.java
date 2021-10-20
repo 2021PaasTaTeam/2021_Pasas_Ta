@@ -1,8 +1,10 @@
 package passta.paas_ta_back.repository.shop;
 
 import lombok.Data;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.sql.Blob;
+import java.util.List;
 
 @Data
 public class RegisterDto {
@@ -12,9 +14,15 @@ public class RegisterDto {
     private String phone;
     private String address;
     private String businessType;
-    private Blob images;
+    private MultipartFile images;
 
-    public RegisterDto(String registrationNum, String email, String businessType, String name, String phone, String address, Blob images) {
+    public RegisterDto(String registrationNum,
+                       String email,
+                       String businessType,
+                       String name,
+                       String phone,
+                       String address,
+                       MultipartFile images) {
         this.registrationNum = registrationNum;
         this.email = email;
         this.name = name;
