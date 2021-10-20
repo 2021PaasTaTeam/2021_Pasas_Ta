@@ -17,6 +17,7 @@ import passta.paas_ta_back.repository.shop.ShopRepository;
 import passta.paas_ta_back.repository.user.DeleteDto;
 import passta.paas_ta_back.service.shop.ShopService;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -35,7 +36,7 @@ public class ShopController {
     }
 
     @PostMapping("/shop")
-    public ResponseEntity<?> registerShop(@RequestBody RegisterDto registerDto){
+    public ResponseEntity<?> registerShop(@RequestBody RegisterDto registerDto) throws IOException {
         if(registerDto == null){
             return ResponseEntity.noContent().build();
         }

@@ -39,8 +39,7 @@ public class Shop {
     private String businessType;
 
     @Column(name = "shop_image")
-    @Lob
-    private Blob images;
+    private UploadFile images;
 
     @OneToMany(mappedBy = "shop", cascade = CascadeType.ALL)
     private List<Item> items;
@@ -57,7 +56,7 @@ public class Shop {
                                   String phone,
                                   String address,
                                   String businessType,
-                                  Blob images) {
+                                  UploadFile images) {
         Shop shop = new Shop();
         shop.setUserInShop(user);
         shop.registrationNum = registrationNum;

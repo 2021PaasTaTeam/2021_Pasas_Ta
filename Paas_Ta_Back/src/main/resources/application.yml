@@ -34,3 +34,7 @@ server:
     session:
       tracking-modes: cookie
       timeout: 10
+
+
+file:
+  dir: C:/Temp/study/

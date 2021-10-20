@@ -3,6 +3,7 @@ package passta.paas_ta_back.domain;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import passta.paas_ta_back.exception.NotEnoughStockException;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -71,6 +72,23 @@ public class Item {
         item.price = price;
         item.stockQuantity = stockQuantity;
         return item;
+    }
+
+    /**
+     *비즈니스 로직
+     * stock 증가
+     * @param quantity
+     */
+    public void addStock(int quantity) {
+        this.stockQuantity += quantity;
+    }
+
+    public void removeStock(int quantity) {
+        int resultStock = this.stockQuantity - quantity;
+        if (resultStock < 0) {
+            throw new NotEnoughStockException("need more stock");
+        }
+        this.stockQuantity = resultStock;
     }
 
 }
