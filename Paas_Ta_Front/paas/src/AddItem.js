@@ -111,6 +111,7 @@ function AddItem() {
                                 </Grid>
                                 <Grid item xs={12} sm={9}>
                                     <input type="text"
+                                    placeholder="예) 한복 저고리"
                                     style={{
                                         padding: 100,
                                         border: "2px solid black",
