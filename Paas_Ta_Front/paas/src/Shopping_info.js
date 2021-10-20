@@ -1,5 +1,4 @@
 import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
 import { Form } from 'react-final-form';
 import Typography from './modules/components/Typography';
 import AppFooter from './modules/views/AppFooter';
@@ -11,6 +10,28 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
 function Shopping_info() {
+    const labels = ['한복', '잭 다니엘']
+    const labels2 = ['']
+
+
+    const [checkList, setCheckList] = useState([false, false, false]);
+    // index 번째 체크 상태를 반전시킨다
+    const handleCheckClick = (index) => {
+        setCheckList((checks) => checks.map((c, i) => (i === index ? !c : c)));
+
+    };
+    const isAllChecked = checkList.every((x) => x - 1);
+
+    function allselect(value) {
+        for (let i = 0; i < labels.length; i++) {
+            handleCheckClick(value + i)
+        }
+    }
+
+
+
+
+
     const [shop_name, setShop_name] = useState("");
     const [shop_address, setShop_address] = useState("");
     const [shop_phone, setShop_phone] = useState("");
@@ -84,146 +105,48 @@ function Shopping_info() {
                 >
                     {({ handleSubmit: handleSubmit2, submitting }) => (
                         <Box component="form" onSubmit={handleSubmit2} noValidate sx={{ mt: 6 }}>
-                            <Grid container spacing={2}>
-                                <Grid item xs={12} sm={3}>
-                                    <Typography variant="h6" align="center">
-                                        가게 이름
-                                    </Typography>
-                                </Grid>
-                                <Grid item xs={12} sm={9}>
-                                    <input type="text"
-                                        name="name"
-                                        style={{
-                                            width: 380,
-                                            height: 50,
-                                            border: "2px solid black",
-                                            collapse: 'collapse',
-                                            borderRadius: '8px',
-                                        }}
-                                        value={shop_name}
-                                        onChange={onShop_nameHandler}
-                                    />
-                                </Grid>
-                            </Grid>
+                <br />
+                <br />                <br />
+<div>
+                    <ul>
+                        {labels.map((label, idx) => (
+                            <li key={idx}>
+                                <label>
+                                    
+                                    <div>
+                                        <input type="text"
+                                            name="name"
+                                            style={{
+                                                width: 520,
+                                                height: 50,
+                                                collapse: 'collapse',
+                                                borderRadius: '8px',
+                                            }}
+                                            value={label}
+                                        />
+                                        &nbsp;&nbsp;
+                                                                                <br />
+                                        <br />
+                                        <br />
+                <br />                <br />
+
+
+                                    </div>
+                                </label>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+                <br />
+                <br />
+                <br />                <br />
+                <br />                <br />
+                <br />                <br />
+                <br />                <br />
+                <br />                <br />
+                
+                                        <br /><br /><br /><br /><br /><br />
                             <br />
-                            <Grid container spacing={2}>
-                                <Grid item xs={12} sm={3}>
-                                    <Typography variant="h6" align="center">
-                                        사업자 번호
-                                    </Typography>
-                                </Grid>
-                                <Grid item xs={12} sm={9}>
-                                    <input type="text"
-                                        name="number"
-                                        style={{
-                                            width: 380,
-                                            height: 50,
-                                            border: "2px solid black",
-                                            collapse: 'collapse',
-                                            borderRadius: '8px',
-                                        }}
-                                        value={registeration_number}
-                                        onChange={onRegisteration_numberHandler}
-                                    />
-                                </Grid>
-                            </Grid>
-                            <br />
-                            <Grid container spacing={2}>
-                                <Grid item xs={12} sm={3}>
-                                    <Typography variant="h6" align="center">
-                                        지역구 선택
-                                    </Typography>
-                                </Grid>
-                                <Grid item xs={12} sm={9}>
-                                <select
-                                        name="number"
-                                        style={{
-                                            width: 380,
-                                            height: 50,
-                                            border: "2px solid black",
-                                            collapse: 'collapse',
-                                            borderRadius: '8px',
-                                        }}
-                                        value={shop_address}
-                                        onChange={onShop_sddressHandler}
-                                    >
-                                        <option selected="selected">직접선택</option>
-                                        <option>종로구</option>
-                                        <option>성북구</option>
-                                        <option>서초구</option>
-                                        <option>동작구</option>
-                                        <option>영등포구</option>
-                                    </select>
-                                </Grid>
-                            </Grid>
-                            <br />
-                            <Grid container spacing={2}>
-                                <Grid item xs={12} sm={3}>
-                                    <Typography variant="h6" align="center">
-                                        가게 업종
-                                    </Typography>
-                                </Grid>
-                                <Grid item xs={12} sm={9}>
-                                    <select
-                                        name="number"
-                                        style={{
-                                            width: 380,
-                                            height: 50,
-                                            border: "2px solid black",
-                                            collapse: 'collapse',
-                                            borderRadius: '8px',
-                                        }}
-                                    >
-                                        <option value="직접선택" selected="selected">직접선택</option>
-                                        <option value="한복">한복</option>
-                                        <option value="공방">공방</option>
-                                        <option value="음식점">음식점</option>
-                                        <option value="기타">기타</option>
-                                    </select>
-                                </Grid>
-                            </Grid>
-                            <br />
-                            <Grid container spacing={2}>
-                                <Grid item xs={12} sm={3}>
-                                    <Typography variant="h6" align="center">
-                                        가게 전화번호
-                                    </Typography>
-                                </Grid>
-                                <Grid item xs={12} sm={9}>
-                                    <input type="text"
-                                        name="number"
-                                        value={shop_phone}
-                                        placeholder="예) 01012345678"
-                                        style={{
-                                            width: 380,
-                                            height: 50,
-                                            border: "2px solid black",
-                                            collapse: 'collapse',
-                                            borderRadius: '8px',
-                                        }}
-                                        onChange={onShop_phoneHandler}
-                                    />
-                                </Grid>
-                            </Grid>
-                            <br />
-                            <Grid container spacing={2}>
-                                <Grid item xs={12} sm={4}>
-                                    <Typography variant="h6" align="center">
-                                        가게 상표 이미지
-                                    </Typography>
-                                </Grid>
-                                <Grid item xs={12} sm={8}>
-                                    <input type="file"
-                                        accept="image/png,image/jpg,impge/png,image/jpeg,image/gif"
-                                        name="name"
-                                        value={shop_image}
-                                        onChange={onShop_imageHandler}
-                                        required />
-                                </Grid>
-                            </Grid>
-                            <br />
-                            <Grid container spacing={2}>
-                                <Grid item xs={12} sm={12}>
                                     <FormButton
                                         sx={{ mt: 1, mb: 1 }}
                                         size="large"
@@ -239,8 +162,6 @@ function Shopping_info() {
                                     >
                                         {'돌아 가기'}
                                     </FormButton>
-                                </Grid>
-                            </Grid>
                         </Box>
                     )}
                 </Form>
