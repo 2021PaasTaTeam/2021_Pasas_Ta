@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.sql.Blob;
+import java.util.List;
 
 @Entity
 @Getter
@@ -40,6 +41,9 @@ public class Shop {
     @Column(name = "shop_image")
     @Lob
     private Blob images;
+
+    @OneToMany(mappedBy = "shop", cascade = CascadeType.ALL)
+    private List<Item> items;
 
     public void setUserInShop(User user) {
         this.user = user;
