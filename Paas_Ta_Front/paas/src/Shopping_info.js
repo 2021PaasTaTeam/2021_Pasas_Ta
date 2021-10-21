@@ -1,5 +1,3 @@
-import Box from '@mui/material/Box';
-import { Form } from 'react-final-form';
 import Typography from './modules/components/Typography';
 import AppFooter from './modules/views/AppFooter';
 import AppAppBar2 from './modules/views/AppBar2';
@@ -10,24 +8,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
 function Shopping_info() {
-    const labels = ['한복', '잭 다니엘']
-    const labels2 = ['']
-
-
-    const [checkList, setCheckList] = useState([false, false, false]);
-    // index 번째 체크 상태를 반전시킨다
-    const handleCheckClick = (index) => {
-        setCheckList((checks) => checks.map((c, i) => (i === index ? !c : c)));
-
-    };
-    const isAllChecked = checkList.every((x) => x - 1);
-
-    function allselect(value) {
-        for (let i = 0; i < labels.length; i++) {
-            handleCheckClick(value + i)
-        }
-    }
-
+    const labels = ['대한민국 전통 한복', '잭 다니엘']
 
 
 
@@ -97,56 +78,91 @@ function Shopping_info() {
             <AppForm>
                 <React.Fragment>
                     <Typography variant="h3" align="center">
-                        구매 목록
+                        주문 목록
                     </Typography>
                 </React.Fragment>
-                <Form
-                    onSubmit={onClickRegister}
-                >
-                    {({ handleSubmit: handleSubmit2, submitting }) => (
-                        <Box component="form" onSubmit={handleSubmit2} noValidate sx={{ mt: 6 }}>
+                <br />
                 <br />
                 <br />                <br />
-<div>
+                <div
+                        style={{
+                            width: "100%",
+                            borderBottom: "1px solid #aaa",
+                            lineHeight: "0.1em",
+                            margin: "10px 0 10px",
+                        }}
+                    >
+                        <span style={{ background: "#fff", }}></span>
+                    </div>
+                <br /><br />
+                <br/>
+                <div>
                     <ul>
                         {labels.map((label, idx) => (
                             <li key={idx}>
                                 <label>
-                                    
-                                    <div>
-                                        <input type="text"
-                                            name="name"
-                                            style={{
-                                                width: 520,
-                                                height: 50,
-                                                collapse: 'collapse',
-                                                borderRadius: '8px',
-                                            }}
-                                            value={label}
-                                        />
-                                        &nbsp;&nbsp;
-                                                                                <br />
-                                        <br />
-                                        <br />
-                <br />                <br />
-
-
+                                    <div className="c1image" style={{
+                                        float: 'left'
+                                    }} >
+                                        <img className="phoneImage"
+                                            height="110vh"
+                                            width="110vw"
+                                            src="/assets/github.png" />
                                     </div>
+                                    <div style={{
+                                        float: 'left'
+                                    }}>
+                                        <Typography
+                                            variant="h3"
+                                            style={{
+                                                fontSize: 17,
+                                                float: 'left'
+                                            }}
+                                        >
+                                            &nbsp;&nbsp;상품명 : {label}
+                                        </Typography>
+                                    </div>
+                                    <br />
+                                    <br />
+                                    <div style={{
+                                        float: 'left'
+                                    }}>
+                                        <Typography
+                                            variant="h3"
+                                            style={{
+                                                fontSize: 20,
+                                                float: 'left'
+                                            }}
+                                        >
+                                            &nbsp;&nbsp;0 개
+                                        </Typography>
+                                    </div>
+                                    <br />
+                                    <br />
+                                    <div style={{
+                                        float: 'left'
+                                    }}>
+                                        <Typography
+                                            variant="h3"
+                                            style={{
+                                                fontSize: 17,
+                                                float: 'left'
+                                            }}
+                                        >
+                                            &nbsp;&nbsp;가격 : 1000000원
+                                        </Typography>
+                                    </div>
+
+                                    <br />
+                                    <br/>
+                                    <br />
+                                    <br />
                                 </label>
                             </li>
                         ))}
                     </ul>
-                </div>
-                <br />
-                <br />
-                <br />                <br />
-                <br />                <br />
-                <br />                <br />
-                <br />                <br />
-                <br />                <br />
-                
-                                        <br /><br /><br /><br /><br /><br />
-                            <br />
+                    </div>
+                    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
                                     <FormButton
                                         sx={{ mt: 1, mb: 1 }}
                                         size="large"
@@ -162,9 +178,6 @@ function Shopping_info() {
                                     >
                                         {'돌아 가기'}
                                     </FormButton>
-                        </Box>
-                    )}
-                </Form>
             </AppForm>
             <AppFooter />
         </React.Fragment>

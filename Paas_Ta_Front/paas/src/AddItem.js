@@ -93,8 +93,10 @@ function AddItem() {
                                 <input type="text"
                                 name="name"
                                     style={{
+                                        padding: 20,
                                         width: 380,
                                         height: 50,
+                                        padding: 20,
                                         border: "2px solid black",
                                         collapse: 'collapse',
                                         borderRadius: '8px',
@@ -128,12 +130,14 @@ function AddItem() {
                                         상품 가격
                                     </Typography>
                                 </Grid>
-                                <Grid item xs={12} sm={9}>
+                                <Grid item xs={12} sm={9} >
                                 <input type="text"
                                 name="number"
+                                align="center"
                                     style={{
                                         width: 380,
                                         height: 50,
+                                        padding: 20,
                                         border: "2px solid black",
                                         collapse: 'collapse',
                                         borderRadius: '8px',
@@ -160,14 +164,16 @@ function AddItem() {
                             </Grid>
                             <br />
                             <div className="Card1">
-                                <div className="image-container">
+                                <div className="image-container" align="center">
                                     <img
-                                        height="390vh"
-                                        width="530vw"
+                                        height="200vh"
+                                        width="200vw"
                                         id="preview_image"
                                         src={fileImage} />
                                 </div>
                             </div>
+                            <br />
+                            <br />
                             <Grid container spacing={2}>
                                 <Grid item xs={12} sm={6}>
                                     <FormButton

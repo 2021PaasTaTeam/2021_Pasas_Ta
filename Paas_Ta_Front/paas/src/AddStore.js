@@ -105,6 +105,7 @@ function AddStore() {
                                     <input type="text"
                                         name="name"
                                         style={{
+                                            padding: 20,
                                             width: 380,
                                             height: 50,
                                             border: "2px solid black",
@@ -127,6 +128,7 @@ function AddStore() {
                                     <input type="text"
                                         name="number"
                                         style={{
+                                            padding: 20,
                                             width: 380,
                                             height: 50,
                                             border: "2px solid black",
@@ -199,6 +201,29 @@ function AddStore() {
                             <Grid container spacing={2}>
                                 <Grid item xs={12} sm={3}>
                                     <Typography variant="h6" align="center">
+                                        가게 실제주소
+                                    </Typography>
+                                </Grid>
+                                <Grid item xs={12} sm={9}>
+                                    <input type="text"
+                                        name="name"
+                                        //value={shop_phone}
+                                        style={{
+                                            padding: 20,
+                                            width: 380,
+                                            height: 50,
+                                            border: "2px solid black",
+                                            collapse: 'collapse',
+                                            borderRadius: '8px',
+                                        }}
+                                        //onChange={onShop_phoneHandler}
+                                    />
+                                </Grid>
+                            </Grid>
+                            <br />
+                            <Grid container spacing={2}>
+                                <Grid item xs={12} sm={3}>
+                                    <Typography variant="h6" align="center">
                                         가게 전화번호
                                     </Typography>
                                 </Grid>
@@ -208,6 +233,7 @@ function AddStore() {
                                         value={shop_phone}
                                         placeholder="예) 01012345678"
                                         style={{
+                                            padding: 20,
                                             width: 380,
                                             height: 50,
                                             border: "2px solid black",
@@ -236,10 +262,10 @@ function AddStore() {
                             </Grid>
                             <br />
                             <div className="Card1">
-                                <div className="c1image">
+                                <div className="c1image" align='center' >
                                     <img className="phoneImage"
-                                        height="390vh"
-                                        width="530vw"
+                                        height="500vh"
+                                        width="500vw"
                                         src="/assets/map.jpg" />
                                 </div>
                             </div>
