@@ -16,6 +16,8 @@ function AddItem() {
         setFileImage(URL.createObjectURL(e.target.files[0]));
     };
 
+    const labels = ['대한민국 전통 한복', '잭 다니엘']
+
 
     const [email, setEmail] = useState("");
     const [name, setName] = useState("");
@@ -174,6 +176,96 @@ function AddItem() {
                             </div>
                             <br />
                             <br />
+                            <FormButton
+                                        sx={{ mt: 1, mb: 1 }}
+                                        size="large"
+                                        color="primary"
+                                        fullWidth
+                                        style={{
+                                            padding: 8,
+                                            border: "4px solid black",
+                                            collapse: 'collapse',
+                                            borderRadius: '8px',
+                                        }}
+                                        href="/Town"
+                                    >
+                                        {'추가 하기'}
+                                    </FormButton>
+                                    <div
+                        style={{
+                            width: "100%",
+                            borderBottom: "1px solid #aaa",
+                            lineHeight: "0.1em",
+                            margin: "10px 0 10px",
+                        }}
+                    >
+                        <span style={{ background: "#fff", }}></span>
+                    </div>
+                <br />
+                <div>
+                    <ul>
+                        {labels.map((label, idx) => (
+                            <li key={idx}>
+                                <label>
+                                    <div className="c1image" style={{
+                                        float: 'left'
+                                    }} >
+                                        <img className="phoneImage"
+                                            height="110vh"
+                                            width="110vw"
+                                            src="/assets/github.png" />
+                                    </div>
+                                    <div style={{
+                                        float: 'left'
+                                    }}>
+                                        <Typography
+                                            variant="h3"
+                                            style={{
+                                                fontSize: 17,
+                                                float: 'left'
+                                            }}
+                                        >
+                                            &nbsp;&nbsp;상품명 : {label}
+                                        </Typography>
+                                    </div>
+                                    <br />
+                                    <br />
+                                    <div style={{
+                                        float: 'left'
+                                    }}>
+                                        <Typography
+                                            variant="h3"
+                                            style={{
+                                                fontSize: 15,
+                                                float: 'left'
+                                            }}
+                                        >
+                                            &nbsp;&nbsp;상품 설명
+                                        </Typography>
+                                    </div>
+                                    <br />
+                                    <br />
+                                    <div style={{
+                                        float: 'left'
+                                    }}>
+                                        <Typography
+                                            variant="h3"
+                                            style={{
+                                                fontSize: 17,
+                                                float: 'left'
+                                            }}
+                                        >
+                                            &nbsp;&nbsp;가격 : 1000000원
+                                        </Typography>
+                                    </div>
+
+                                    <br />
+                                    <br/>
+                                </label>
+                            </li>
+                        ))}
+                    </ul>
+                    </div>
                             <Grid container spacing={2}>
                                 <Grid item xs={12} sm={6}>
                                     <FormButton
