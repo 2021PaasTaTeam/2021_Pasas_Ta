@@ -10,21 +10,48 @@ import axios from 'axios';
 import './Cart.css';
 
 function Cart() {
-    const labels = ['한복', '잭 다니엘']
+    var labels = ['한복', '잭 다니엘']
     const labels2 = ['']
+    var check = 0;
 
-
-    const [checkList, setCheckList] = useState([false, false, false]);
+    const [checkList, setCheckList] = useState(labels);
     // index 번째 체크 상태를 반전시킨다
     const handleCheckClick = (index) => {
         setCheckList((checks) => checks.map((c, i) => (i === index ? !c : c)));
-
+        if(index === 0) {
+        }
     };
     const isAllChecked = checkList.every((x) => x - 1);
 
     function allselect(value) {
-        for (let i = 0; i < labels.length; i++) {
-            handleCheckClick(value + i)
+        for (let j = 0; j < labels.length; j++) {
+            setCheckList((checks) => checks.map((c, i) => (i === value+j ? !c : c)));
+        }
+    }
+
+    const item_remove = (index) => {
+        if (window.confirm("해당 상품을 삭제하시겠습니까??") == true){    //확인
+            alert('해당 상품이 삭제되었습니다.')    
+            delete labels[index]
+                console.log(labels)
+                window.location.replace("/Cart")
+        }else{   //취소
+            console.log(labels)
+            return false;
+        }
+    };
+
+    function all_remove() {
+        if (window.confirm("상품을 모두 삭제하시겠습니까??") == true){    //확인
+            alert('상품이 모두 삭제되었습니다.')
+            for (let i = 0; i < labels.length; i++) {
+                delete labels[i]
+                console.log(labels)
+                window.location.replace("/Cart")
+            }
+        }else{   //취소
+            console.log(labels)
+            return false;
         }
     }
 
@@ -126,6 +153,7 @@ function Cart() {
                                 float: 'right'
                             }}
                             type="submit"
+                            onClick={() => all_remove()}
                         >
                             {'전체 삭제'}
                         </FormButton>
@@ -223,7 +251,7 @@ function Cart() {
                                                     borderRadius: '8px',
                                                 }}
                                                 type="submit"
-                                                onClick={() => handleCheckClick(idx)}
+                                                onClick={() => item_remove(idx)}
 
                                             >
                                                 {'x'}
@@ -271,7 +299,7 @@ function Cart() {
                         float: 'right'
                     }}
                 >
-                    {2 + ' 개'}
+                    {check + ' 개'}
                 </Typography></div>
                 <br />
                 <br />
@@ -301,7 +329,7 @@ function Cart() {
                         float: 'right'
                     }}
                 >
-                    {1000 + ' 원'}
+                    {check + ' 원'}
                 </Typography></div>
                 <br />
                 <br />

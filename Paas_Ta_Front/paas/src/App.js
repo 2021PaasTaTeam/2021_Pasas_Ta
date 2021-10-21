@@ -38,6 +38,10 @@ class App extends Component {
                     <Route path="/Gather" exact component={Gather} />
                     <Route path="/Town" exact component={Town} />                    
                     
+
+
+                    {/* 관리자 페이지 */}
+                    
                 </Switch>
             </Router>
         );
