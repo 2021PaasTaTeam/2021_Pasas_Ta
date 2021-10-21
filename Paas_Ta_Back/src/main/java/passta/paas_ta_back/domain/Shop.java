@@ -39,7 +39,7 @@ public class Shop {
     private String businessType;
 
     @Column(name = "shop_image")
-    private UploadFile images;
+    private UploadFile image;
 
     @OneToMany(mappedBy = "shop", cascade = CascadeType.ALL)
     private List<Item> items;
@@ -56,14 +56,14 @@ public class Shop {
                                   String phone,
                                   String address,
                                   String businessType,
-                                  UploadFile images) {
+                                  UploadFile image) {
         Shop shop = new Shop();
         shop.setUserInShop(user);
         shop.registrationNum = registrationNum;
         shop.businessType = businessType;
         shop.name = name;
         shop.phone = phone;
-        shop.images = images;
+        shop.image = image;
         shop.address = address;
         return shop;
     }

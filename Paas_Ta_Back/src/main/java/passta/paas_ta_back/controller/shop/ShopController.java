@@ -3,18 +3,15 @@ package passta.paas_ta_back.controller.shop;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import passta.paas_ta_back.controller.dto.DeleteCheckDto;
-import passta.paas_ta_back.controller.user.UserController;
-import passta.paas_ta_back.controller.user.dto.UserInfoDto;
 import passta.paas_ta_back.domain.Shop;
-import passta.paas_ta_back.domain.User;
 import passta.paas_ta_back.repository.shop.RegisterDto;
 import passta.paas_ta_back.controller.shop.dto.ShopInfoDto;
 import passta.paas_ta_back.repository.shop.ShopModifyDto;
 import passta.paas_ta_back.repository.shop.ShopRepository;
-import passta.paas_ta_back.repository.user.DeleteDto;
 import passta.paas_ta_back.service.shop.ShopService;
 
 import java.io.IOException;
@@ -35,8 +32,8 @@ public class ShopController {
         return new ResponseEntity(shopInfoDtoList, HttpStatus.OK);
     }
 
-    @PostMapping("/shop")
-    public ResponseEntity<?> registerShop(@RequestBody RegisterDto registerDto) throws IOException {
+    @PostMapping(value = "/shop", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
+    public ResponseEntity<?> registerShop(@ModelAttribute RegisterDto registerDto) throws IOException {
         if(registerDto == null){
             return ResponseEntity.noContent().build();
         }

@@ -2,6 +2,7 @@ package passta.paas_ta_back.controller.shop.dto;
 
 import lombok.Data;
 import passta.paas_ta_back.domain.Shop;
+import passta.paas_ta_back.domain.UploadFile;
 
 import java.sql.Blob;
 
@@ -11,13 +12,13 @@ public class ShopInfoDto {
     private String email;
     private String name;
     private String phone;
-    private Blob images;
+    private UploadFile image;
 
     public ShopInfoDto(Shop shop) {
         this.id = shop.getId();
         this.email = shop.getUser().getEmail();
         this.name = shop.getName();
         this.phone = shop.getPhone();
-        this.images = shop.getImages();
+        this.image = shop.getImage();
     }
 }
