@@ -135,11 +135,11 @@ function Gather(props) {
   }
 
   function returntown() {
-    window.location = "./Town"
+    window.location.replace("./Town")
   }
 
   function openWin() {
-    // 파스타 웹 페이지 링크 예정  
+    // 상품 구매 페이지  
     window.open("/item", "", "width=650, height=900, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
   }
 

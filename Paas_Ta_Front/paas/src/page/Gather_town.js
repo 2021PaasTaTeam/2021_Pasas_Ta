@@ -132,7 +132,7 @@ function Town(props) {
   }
 
   function Enter() {
-    window.location = "./Gather"
+    window.location.replace("./Gather")
   }
 
   function moveChar(deltaX, deltaY, direction) {

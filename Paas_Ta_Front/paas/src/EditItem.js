@@ -74,7 +74,7 @@ function EditItem() {
             <AppForm>
                 <React.Fragment>
                     <Typography variant="h3" align="center">
-                        우리 상품 수정하기
+                        우리 가게 상품 수정하기
                     </Typography>
                 </React.Fragment>
                 <Form

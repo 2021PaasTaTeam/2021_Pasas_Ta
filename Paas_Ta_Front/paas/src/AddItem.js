@@ -74,7 +74,7 @@ function AddItem() {
             <AppForm>
                 <React.Fragment>
                     <Typography variant="h3" align="center">
-                        우리 상품 등록하기
+                        우리 가게 상품 등록하기
                     </Typography>
                 </React.Fragment>
                 <Form
@@ -149,7 +149,7 @@ function AddItem() {
                             <Grid container spacing={2}>
                                 <Grid item xs={12} sm={4}>
                                     <Typography variant="h6" align="center">
-                                        상품 이미지
+                                    상품 이미지
                                     </Typography>
                                 </Grid>
                                 <Grid item xs={12} sm={8}>

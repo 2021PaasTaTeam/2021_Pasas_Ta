@@ -20,6 +20,22 @@ function Product() {
     const onDecrease = () => {
         setNumber(prevNumber => prevNumber - 1);
     }
+    const Review_write = () => {
+        window.open("/Review", "", "width=650, height=500, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
+    }
+    const close = () => {
+        window.close();
+    }
+
+    const btnStyle = {
+        color: "white",
+        background: "black",
+        padding: ".120rem .720rem",
+        border: "1px solid black",
+        borderRadius: ".25rem",
+        fontSize: "1.4rem",
+        lineHeight: 1.5,
+    };
 
     return (
         <React.Fragment>
@@ -178,7 +194,7 @@ function Product() {
                         &nbsp;&nbsp;가격 : 1000000원
                     </Typography>
                 </div>
-                <br/>
+                <br />
                 <br />
                 <div style={{
                     float: 'right'
@@ -190,18 +206,21 @@ function Product() {
                             float: 'left'
                         }}
                     >
-                <button onClick={onDecrease}>-</button>&nbsp;&nbsp;{number}&nbsp;&nbsp;
+                        <button onClick={onDecrease} style={btnStyle}>-</button>
+                        &nbsp;&nbsp;{number}&nbsp;&nbsp;
                     </Typography>
-            <button onClick={onIncrease}>+</button>
-            &nbsp;
-            
+                    <button onClick={onIncrease} style={btnStyle}>+</button>
+                    &nbsp;
+
                 </div>
 
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <div>
+                <br />
+                <br />
+                <br />
+                <br />
+                <div style={{
+                    float: 'left'
+                }}>
                     <Typography variant="h3"
                         style={{
                             fontSize: 20
@@ -210,6 +229,20 @@ function Product() {
                         가게 리뷰
                     </Typography>
                 </div>
+                <div style={{
+                    float: 'right'
+                }}>
+                    <button onClick={Review_write} style={{
+                        color: "white",
+                        background: "blue",
+                        padding: ".120rem .720rem",
+                        border: "1px solid blue",
+                        borderRadius: ".25rem",
+                        fontSize: "1rem",
+                        lineHeight: 1.5,
+                    }}>리뷰 쓰기</button>
+                </div>
+                <br />
                 <div
                     style={{
                         width: "100%",
@@ -230,7 +263,7 @@ function Product() {
                             float: 'left'
                         }}
                     >
-                        &nbsp;&nbsp;{session.data.name} : 
+                        &nbsp;&nbsp;{session.data.name} :
                     </Typography>
                 </div>
                 <div style={{
@@ -243,11 +276,11 @@ function Product() {
                             float: 'left'
                         }}
                     >
-                        &nbsp;또 오고 싶어요 😀😀 
+                        &nbsp;또 오고 싶어요 😀😀
                     </Typography>
                 </div>
-                <br/>
-                <br/>
+                <br />
+                <br />
                 <div style={{
                     float: 'left'
                 }}>
@@ -258,7 +291,7 @@ function Product() {
                             float: 'left'
                         }}
                     >
-                        &nbsp;&nbsp;이주현 : 
+                        &nbsp;&nbsp;이주현 :
                     </Typography>
                 </div>
                 <div style={{
@@ -271,7 +304,7 @@ function Product() {
                             float: 'left'
                         }}
                     >
-                        &nbsp;저는 싫어요 😤😤 
+                        &nbsp;저는 싫어요 😤😤
                     </Typography>
                 </div>
 
@@ -393,7 +426,7 @@ function Product() {
                                 collapse: 'collapse',
                                 borderRadius: '8px',
                             }}
-                            href="/Town"
+                            onClick={close}
                         >
                             {'취소하기'}
                         </FormButton>
