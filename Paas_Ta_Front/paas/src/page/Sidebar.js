@@ -7,16 +7,49 @@ import {
   CDBSidebarMenu,
   CDBSidebarMenuItem,
 } from 'cdbreact';
-import { NavLink } from 'react-router-dom';
 
 const Sidebar = () => {
 
   const session = JSON.parse(window.sessionStorage.getItem("data"));
   console.log(session.data.type)
 
-  const onClick = () => {
-    window.sessionStorage.removeItem(session.data);
-    alert('로그아웃 되었습니다.');
+  const MyPage = () => {
+    window.location.replace("/Mypage")
+  }
+  const Cart = () => {
+    window.location.replace("/Cart")
+  }
+  const Shopping_info = () => {
+    window.location.replace("/Shopping_info")
+  }
+  const AddStore = () => {
+    window.location.replace("/AddStore")
+  }
+  const EditStore = () => {
+    window.location.replace("/EditStore")
+  }
+  const AddItem = () => {
+    window.location.replace("/AddItem")
+  }
+  const EditItem = () => {
+    window.location.replace("/EditItem")
+  }
+  
+
+  const logout = () => {
+    if (window.confirm("로그아웃 하시겠습니까??") == true) {    //확인
+      window.sessionStorage.removeItem("data");
+      window.location.replace("/")
+      alert('로그아웃 되었습니다.');
+    } else {   //취소
+      if (window.location.replace("/Town") === true
+      ) {
+        window.location.replace("/Gather")
+      }
+      else {
+        window.location.replace("/Town")
+      }
+    }
   }
 
   return (
@@ -34,59 +67,31 @@ const Sidebar = () => {
         </CDBSidebarHeader>
         <CDBSidebarContent className="sidebar-content">
           <CDBSidebarMenu>
-            <NavLink exact to="/Mypage" activeClassName="activeClicked">
-              <CDBSidebarMenuItem icon="address-card">마이 페이지</CDBSidebarMenuItem>
-            </NavLink>
-            <NavLink exact to="/Cart" activeClassName="activeClicked">
-              <CDBSidebarMenuItem icon="heart">장바구니</CDBSidebarMenuItem>
-            </NavLink>
-            <NavLink exact to="/Shopping_info" activeClassName="activeClicked">
-              <CDBSidebarMenuItem icon="money-check-alt">주문 정보</CDBSidebarMenuItem>
-            </NavLink>
+            <CDBSidebarMenuItem onClick={MyPage} icon="address-card">마이 페이지</CDBSidebarMenuItem>
+            <CDBSidebarMenuItem onClick={Cart} icon="heart">장바구니</CDBSidebarMenuItem>
+            <CDBSidebarMenuItem onClick={Shopping_info} icon="money-check-alt">주문 정보</CDBSidebarMenuItem>
             <div>
-            {
-              // 가게 등록으로 if문
-              session.data.type === 'SELLER'
-                ? <NavLink exact to="/EditStore" activeClassName="activeClicked">
-                  <CDBSidebarMenuItem icon="home">가게 수정 하기</CDBSidebarMenuItem>
-                </NavLink>
-                : <NavLink exact to="/AddStore" activeClassName="activeClicked">
-                  <CDBSidebarMenuItem icon="home">가게 등록 하기</CDBSidebarMenuItem>
-                </NavLink>
-            }
+              {
+                // 가게 등록으로 if문
+                session.data.type === 'SELLER'
+                  ? <CDBSidebarMenuItem onClick={EditStore} icon="home">가게 수정 하기</CDBSidebarMenuItem>
+                  : <CDBSidebarMenuItem onClick={AddStore} icon="home">가게 등록 하기</CDBSidebarMenuItem>
+              }
             </div>
             {
-              session.data.type === 'SELLER' ? <NavLink exact to="/AddItem" activeClassName="activeClicked">
-              <CDBSidebarMenuItem icon="archive">상품 등록 하기</CDBSidebarMenuItem>
-            </NavLink> 
-              : <></>
+              session.data.type === 'SELLER' ? 
+                <CDBSidebarMenuItem onClick={AddItem} icon="archive">상품 등록 하기</CDBSidebarMenuItem>
+                : <></>
             }
-              {
-              session.data.type === 'SELLER' ? <NavLink exact to="/EditItem" activeClassName="activeClicked">
-              <CDBSidebarMenuItem icon="archive">상품 수정 하기</CDBSidebarMenuItem>
-            </NavLink> 
-              : <></>
+            {
+              session.data.type === 'SELLER' ? 
+                <CDBSidebarMenuItem onClick={EditItem} icon="archive">상품 수정 하기</CDBSidebarMenuItem>
+                : <></>
             }
-            {/* {
-              // 상품 등록으로 if문
-              session.data.type === 'SELLER'
-                ? <NavLink exact to="/AddItem" activeClassName="activeClicked">
-                  <CDBSidebarMenuItem icon="home">상품 등록 하기</CDBSidebarMenuItem>
-                </NavLink>                
-                : <NavLink exact to="/EditItem" activeClassName="activeClicked">
-                  <CDBSidebarMenuItem icon="home">상품 수정 하기</CDBSidebarMenuItem>
-                </NavLink>
-            } */}
-            {/* <NavLink exact to="/AddStore" activeClassName="activeClicked">
-              <CDBSidebarMenuItem icon="home">가게 등록 하기</CDBSidebarMenuItem>
-            </NavLink> */}
-
 
           </CDBSidebarMenu>
         </CDBSidebarContent>
-        <NavLink exact to="/" activeClassName="activeClicked" onSubmit={onClick} >
-              <CDBSidebarMenuItem style={{color:'white'}} icon="window-close" >로그아웃</CDBSidebarMenuItem>
-            </NavLink>
+        <CDBSidebarMenuItem onClick={logout} style={{ color: 'white' }} icon="window-close" >로그아웃</CDBSidebarMenuItem>
         <CDBSidebarFooter style={{ textAlign: 'center' }} >
           <div
             style={{

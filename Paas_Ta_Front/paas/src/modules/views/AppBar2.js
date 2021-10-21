@@ -7,12 +7,18 @@ import axios from 'axios'
 import Sidebar from '../../page/Sidebar';
 import { BrowserRouter as Router } from 'react-router-dom';
 import Notifications from "./Notifications";
-
+import './AppBar2.css';
 
 
 
 function AppAppBar2() {
+  var labels = ['한복', '잭 다니엘']
+//   var labels = [{
+//     a:'한복'
+//   },
+// {a:'잭 다니엘 허니'}]
 
+  var labels_name = labels.map(name =><li>{name}</li>)
 
   const session_name = JSON.parse(window.sessionStorage.getItem("email"));
   let cart = {
@@ -48,23 +54,30 @@ function AppAppBar2() {
             >
               {session_name.email + ' 님 환영합니다.'}
             </Link> */}
+            
+    <ul><li>      
     <Notifications
       //cardOption={data => console.log(data)}
        //markAsRead={data => console.log(data)}
-      data={[
+       data={[
+          // {
+          //   //image: logo,
+          //   message: '한복: '+' x'+cart.count+',    가격: '+' 💰:'+cart.cost,
+          // },
+          // {
+          //   //image: logo,
+          //   message: '잭 다니엘 허니 2병',
+          // },
+
           {
-            //image: logo,
-            message: '한복: '+' x'+cart.count+',    가격: '+' 💰:'+cart.cost,
+            message: labels_name,
+            detailPage : '/Cart'
           },
-          {
-            //image: logo,
-            message: '잭 다니엘 허니 2병',
-          },
-          {
-            //image: logo,
-            message: ' 💰 총 결재 금액 : '+cart.cost,
-            detailPage : '/Cart',
-          }
+          // {
+          //   //image: logo,
+          //   message: ' 💰 총 결재 금액 : '+cart.cost,
+          //   detailPage : '/Cart',
+          // }
         ]}
         headerBackgroundColor = 'white'
         header={
@@ -74,6 +87,8 @@ function AppAppBar2() {
           }
         }
     />
+    </li>
+    </ul>
           </Box>
         </Toolbar>
       </AppBar>

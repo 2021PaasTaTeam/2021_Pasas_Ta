@@ -76,7 +76,8 @@ function AddStore() {
         })
             .then(res => {
                     alert('가게가 등록되었습니다.')
-                    document.location.href = '/Town'
+                    window.location.replace("/Town")
+                    //document.location.href = '/Town'
             })
             .catch()
     }
