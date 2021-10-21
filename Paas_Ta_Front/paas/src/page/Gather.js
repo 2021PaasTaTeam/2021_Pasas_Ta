@@ -140,7 +140,7 @@ function Gather(props) {
 
   function openWin() {
     // 파스타 웹 페이지 링크 예정  
-    window.open("/item", "", "width=800, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
+    window.open("/item", "", "width=650, height=900, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
   }
 
   function moveChar(deltaX, deltaY, direction) {

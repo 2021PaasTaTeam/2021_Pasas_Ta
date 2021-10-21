@@ -93,6 +93,7 @@ function EditItem() {
                                 <input type="text"
                                 name="name"
                                     style={{
+                                        padding: 20,
                                         width: 380,
                                         height: 50,
                                         border: "2px solid black",
@@ -131,6 +132,7 @@ function EditItem() {
                                 <input type="text"
                                 name="number"
                                     style={{
+                                        padding: 20,
                                         width: 380,
                                         height: 50,
                                         border: "2px solid black",
@@ -159,10 +161,10 @@ function EditItem() {
                             </Grid>
                             <br />
                             <div className="Card1">
-                                <div className="image-container">
+                                <div className="image-container" align='center'>
                                     <img
-                                        height="390vh"
-                                        width="530vw"
+                                        height="200vh"
+                                        width="200vw"
                                         id="preview_image"
                                         src={fileImage} />
                                 </div>

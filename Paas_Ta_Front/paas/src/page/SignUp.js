@@ -87,6 +87,7 @@ function SignUp() {
                 style={{
                   fontSize: 25,
                   width: 530,
+                  padding: 20,
                   height: 80,
                   border: "2px solid black",
                   collapse: 'collapse',
@@ -106,6 +107,7 @@ function SignUp() {
                 name="email"
                 style={{
                   fontSize: 25,
+                  padding: 20,
                   width: 530,
                   height: 80,
                   border: "2px solid black",
@@ -126,6 +128,7 @@ function SignUp() {
                 name="password"
                 style={{
                   fontSize: 25,
+                  padding: 20,
                   width: 530,
                   height: 80,
                   border: "2px solid black",
@@ -146,6 +149,7 @@ function SignUp() {
                 name="address"
                 style={{
                   fontSize: 25,
+                  padding: 20,
                   width: 530,
                   height: 80,
                   border: "2px solid black",

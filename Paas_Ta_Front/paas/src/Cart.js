@@ -10,46 +10,48 @@ import axios from 'axios';
 import './Cart.css';
 
 function Cart() {
-    var labels = ['한복', '잭 다니엘']
+    var labels = ['대한민국 전통 한복', '잭 다니엘']
     const labels2 = ['']
     var check = 0;
 
     const [checkList, setCheckList] = useState(labels);
+    const [checkList2, setCheckList2] = useState(labels);
+
     // index 번째 체크 상태를 반전시킨다
     const handleCheckClick = (index) => {
         setCheckList((checks) => checks.map((c, i) => (i === index ? !c : c)));
-        if(index === 0) {
-        }
     };
     const isAllChecked = checkList.every((x) => x - 1);
 
     function allselect(value) {
+        setCheckList2((checks) => checks.map((c, i) => (i === value ? !c : c)));
         for (let j = 0; j < labels.length; j++) {
-            setCheckList((checks) => checks.map((c, i) => (i === value+j ? !c : c)));
+            setCheckList((checks) => checks.map((c, i) => (i === value + j ? !c : c)));
         }
     }
 
+
     const item_remove = (index) => {
-        if (window.confirm("해당 상품을 삭제하시겠습니까??") == true){    //확인
-            alert('해당 상품이 삭제되었습니다.')    
+        if (window.confirm("해당 상품을 삭제하시겠습니까??") == true) {    //확인
+            alert('해당 상품이 삭제되었습니다.')
             delete labels[index]
-                console.log(labels)
-                window.location.replace("/Cart")
-        }else{   //취소
+            console.log(labels)
+            window.location.replace("/Cart")
+        } else {   //취소
             console.log(labels)
             return false;
         }
     };
 
     function all_remove() {
-        if (window.confirm("상품을 모두 삭제하시겠습니까??") == true){    //확인
+        if (window.confirm("상품을 모두 삭제하시겠습니까??") == true) {    //확인
             alert('상품이 모두 삭제되었습니다.')
             for (let i = 0; i < labels.length; i++) {
                 delete labels[i]
                 console.log(labels)
                 window.location.replace("/Cart")
             }
-        }else{   //취소
+        } else {   //취소
             console.log(labels)
             return false;
         }
@@ -172,7 +174,7 @@ function Cart() {
                                                 width: 20,
                                             }}
                                             type='checkbox'
-                                            checked={checkList[idx]}
+                                            checked={checkList2[idx]}
                                             onClick={() => allselect(idx)}
                                         />
                                     </div>&nbsp;&nbsp;
@@ -204,7 +206,7 @@ function Cart() {
                         <span style={{ background: "#fff", }}></span>
                     </div>
                 </div>
-                <br />
+                <br /><br />
                 <div>
                     <ul>
                         {labels.map((label, idx) => (
@@ -224,49 +226,86 @@ function Cart() {
                                         />
                                         &nbsp;&nbsp;
                                     </div>
-                                    <div style={{
-                                        float: 'right'
-                                    }}>
-                                        <input type="text"
-                                            name="name"
-                                            style={{
-                                                width: 425,
-                                                height: 50,
-                                                collapse: 'collapse',
-                                                borderRadius: '8px',
-                                            }}
-                                            value={label}
-                                        />
-                                        &nbsp;&nbsp;
-                                        <div style={{
-                                            float: 'right'
-                                        }}>
-                                            <FormButton
-                                                sx={{ mt: 1, mb: 1 }}
-                                                color="secondary"
-                                                style={{
-                                                    padding: 1,
-                                                    border: "2px solid red",
-                                                    collapse: 'collapse',
-                                                    borderRadius: '8px',
-                                                }}
-                                                type="submit"
-                                                onClick={() => item_remove(idx)}
 
-                                            >
-                                                {'x'}
-                                            </FormButton>
-                                        </div>
-                                        <br />
-                                        <br />
-
+                                    <div className="c1image" style={{
+                                        float: 'left'
+                                    }} >
+                                        <img className="phoneImage"
+                                            height="110vh"
+                                            width="110vw"
+                                            src="/assets/github.png" />
                                     </div>
+                                    <div style={{
+                                        float: 'left'
+                                    }}>
+                                        <Typography
+                                            variant="h3"
+                                            style={{
+                                                fontSize: 17,
+                                                float: 'left'
+                                            }}
+                                        >
+                                            &nbsp;&nbsp;상품명 : {label}
+                                        </Typography>
+                                    </div>
+                                    <br />
+                                    <br />
+                                    <div style={{
+                                        float: 'left'
+                                    }}>
+                                        <Typography
+                                            variant="h3"
+                                            style={{
+                                                fontSize: 20,
+                                                float: 'left'
+                                            }}
+                                        >
+                                            &nbsp;&nbsp;0 개
+                                        </Typography>
+                                    </div>
+                                    <br />
+                                    <br />
+                                    <div style={{
+                                        float: 'left'
+                                    }}>
+                                        <Typography
+                                            variant="h3"
+                                            style={{
+                                                fontSize: 17,
+                                                float: 'left'
+                                            }}
+                                        >
+                                            &nbsp;&nbsp;가격 : 1000000원
+                                        </Typography>
+                                    </div>
+
+                                    <br />
+                                    <br />
+                                    <br />
                                 </label>
+                                <div style={{
+                                    float: 'right'
+                                }}>
+                                    <br />
+                                    <FormButton
+                                        sx={{ mt: 1, mb: 1 }}
+                                        color="secondary"
+                                        style={{
+                                            padding: 1,
+                                            border: "2px solid red",
+                                            collapse: 'collapse',
+                                            borderRadius: '8px',
+                                        }}
+                                        type="submit"
+                                        onClick={() => item_remove(idx)}
+                                    >
+                                        {'x'}
+                                    </FormButton>
+                                </div>
                             </li>
                         ))}
                     </ul>
                 </div>
-                <br />
                 <br /><br /><br /><br /><br /><br /><br />
                 <Typography variant="h3"
                     style={{

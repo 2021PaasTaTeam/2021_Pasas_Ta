@@ -90,6 +90,7 @@ function Login() {
                 name="email"
                 style={{
                   fontSize: 25,
+                  padding: 20,
                   width: 530,
                   height: 80,
                   border: "2px solid black",
@@ -110,6 +111,7 @@ function Login() {
                 style={{
                   fontSize: 25,
                   width: 530,
+                  padding: 20,
                   height: 80,
                   border: "2px solid black",
                   collapse: 'collapse',
