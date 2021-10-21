@@ -10,7 +10,7 @@ import axios from 'axios';
 function Shopping_info() {
     const labels = ['대한민국 전통 한복', '잭 다니엘']
 
-
+    //test
 
 
     const [shop_name, setShop_name] = useState("");
