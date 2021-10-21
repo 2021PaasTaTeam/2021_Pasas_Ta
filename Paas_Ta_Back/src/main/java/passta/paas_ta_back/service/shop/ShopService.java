@@ -40,7 +40,8 @@ public class ShopService {
         //Shop 테이블내에 사업자 등록 번호가 없는 경우 가게 등록이 허용
         List<Shop> shops = shopRepository.findByRegistrationNum(registerDto.getRegistrationNum());
         if (shops.size() == 0){
-            UploadFile storeImageFiles = fileStore.storeFile(registerDto.getImages());
+            UploadFile storeImageFiles = fileStore.storeFile(registerDto.getImage());
+            System.out.println(storeImageFiles.toString());
             Shop shop = Shop.createShop(
                     users.get(0),
                     registerDto.getRegistrationNum(),
