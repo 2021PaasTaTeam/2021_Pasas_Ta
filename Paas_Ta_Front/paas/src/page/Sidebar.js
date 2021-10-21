@@ -35,13 +35,13 @@ const Sidebar = () => {
         <CDBSidebarContent className="sidebar-content">
           <CDBSidebarMenu>
             <NavLink exact to="/Mypage" activeClassName="activeClicked">
-              <CDBSidebarMenuItem icon="user">마이 페이지</CDBSidebarMenuItem>
+              <CDBSidebarMenuItem icon="address-card">마이 페이지</CDBSidebarMenuItem>
             </NavLink>
             <NavLink exact to="/Cart" activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="heart">장바구니</CDBSidebarMenuItem>
             </NavLink>
             <NavLink exact to="/Shopping_info" activeClassName="activeClicked">
-              <CDBSidebarMenuItem icon="file">구매 정보</CDBSidebarMenuItem>
+              <CDBSidebarMenuItem icon="money-check-alt">주문 정보</CDBSidebarMenuItem>
             </NavLink>
             <div>
             {
