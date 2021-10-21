@@ -89,6 +89,7 @@ function MyPage() {
               <input type="name"
                 name="name"
                 style={{
+                  padding: 20,
                   fontSize: 25,
                   width: 530,
                   height: 80,
@@ -109,6 +110,7 @@ function MyPage() {
               <input type="text"
                 name="email"
                 style={{
+                  padding: 20,
                   fontSize: 25,
                   width: 530,
                   height: 80,
@@ -130,6 +132,7 @@ function MyPage() {
               <input type="password"
                 name="password"
                 style={{
+                  padding: 20,
                   fontSize: 25,
                   width: 530,
                   height: 80,
@@ -150,6 +153,7 @@ function MyPage() {
               <input type="text"
                 name="address"
                 style={{
+                  padding: 20,
                   fontSize: 25,
                   width: 530,
                   height: 80,
