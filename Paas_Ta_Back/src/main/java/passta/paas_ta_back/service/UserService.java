@@ -1,4 +1,4 @@
-package passta.paas_ta_back.service.user;
+package passta.paas_ta_back.service;
 
 
 import lombok.RequiredArgsConstructor;

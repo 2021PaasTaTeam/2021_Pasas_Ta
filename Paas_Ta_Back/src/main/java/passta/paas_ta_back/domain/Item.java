@@ -1,5 +1,6 @@
 package passta.paas_ta_back.domain;
 
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -7,12 +8,14 @@ import passta.paas_ta_back.exception.NotEnoughStockException;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Getter
 @AllArgsConstructor
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Item {
 
     @Id
@@ -20,20 +23,13 @@ public class Item {
     @Column(name = "item_id")
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "shop_id", nullable = false)
-    private Shop shop;
-
+    //상품 이름
     @Column(name = "item_name")
     private String name;
 
     // 상품 내용
     @Column(name = "item_content")
     private String content;
-
-    @Embedded
-    @Column(name = "item_image")
-    private UploadFile image;
 
     // 상품 등록 날짜
     @Column(name = "item_registration_date")
@@ -45,33 +41,56 @@ public class Item {
 
     // 상품 가격
     @Column(name = "item_price")
-    private Integer price;
+    private int price;
 
     // 상품 재고 수
     @Column(name = "item_stockQuantity")
-    private Integer stockQuantity;
+    private int stockQuantity;
 
+    // ITEM 의 SHOP
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "shop_id", nullable = false)
+    private Shop shop;
+
+    // ITEM 이미지들
+    @OneToMany(mappedBy = "item", cascade = CascadeType.ALL)
+    private List<ItemImages> itemImages = new ArrayList<>();
+
+    // ITEM SHOP 주입
     public void setShopInItem(Shop shop) {
         this.shop = shop;
         shop.getItems().add(this);
     }
 
+    // ITEM 생성 메서드
     public static Item createItem(Shop shop,
                                   String name,
                                   String content,
-                                  UploadFile uploadFile,
                                   int price,
-                                  int stockQuantity){
+                                  int stockQuantity,
+                                  List<ItemImages> itemImages){
         Item item = new Item();
         item.setShopInItem(shop);
         item.name = name;
         item.content = content;
-        item.image = uploadFile;
         item.registration_date = LocalDateTime.now();
         item.modification_date = LocalDateTime.now();
         item.price = price;
         item.stockQuantity = stockQuantity;
+        for (ItemImages itemImage : itemImages) {
+            itemImage.createItemImages(item, itemImage.getUploadFileName(), itemImage.getStoreFileName());
+        }
         return item;
+    }
+
+    // ITEM 수정 메서드
+    public Item changeItemInfo(String name, String content, int price, int stockQuantity){
+        if (name != null){this.name = name;}
+        if (content != null){this.content = content;}
+        if (price > 0){this.price = price;}
+        if (stockQuantity > 0){this.stockQuantity = stockQuantity;}
+        this.modification_date = LocalDateTime.now();
+        return this;
     }
 
     /**

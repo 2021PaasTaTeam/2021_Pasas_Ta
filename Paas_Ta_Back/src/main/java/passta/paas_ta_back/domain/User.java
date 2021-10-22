@@ -1,5 +1,6 @@
 package passta.paas_ta_back.domain;
 
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,7 +12,7 @@ import java.util.List;
 @Entity
 @Getter
 @AllArgsConstructor
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class User {
 
     @Id
@@ -36,9 +37,16 @@ public class User {
     @Enumerated(EnumType.STRING)
     private UserType type;
 
+    // USER들 가게들
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Shop> shops = new ArrayList<>();
 
+    // USER의 주문들(주문 LIST)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Order> orders = new ArrayList<>();
+
+
+    // USER 생성 메서드
     public User(String name, String email, String password, String address, UserType type) {
         this.name = name;
         this.email = email;
@@ -47,10 +55,12 @@ public class User {
         this.type = type;
     }
 
+    // USER 권한 설정(판매자, 소비자, 관리자)
     public void changeUserType(UserType userType){
         this.type = userType;
     }
 
+    // USER 정보 수정 메서드
     public User changeUserInfo(String name, String password, String address){
         if (name != null){this.name = name;}
         if (password != null){this.password = password;}
