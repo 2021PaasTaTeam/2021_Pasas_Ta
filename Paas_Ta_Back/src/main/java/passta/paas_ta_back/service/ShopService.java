@@ -1,4 +1,4 @@
-package passta.paas_ta_back.service.shop;
+package passta.paas_ta_back.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,15 +10,11 @@ import passta.paas_ta_back.domain.User;
 import passta.paas_ta_back.repository.shop.RegisterDto;
 import passta.paas_ta_back.repository.shop.ShopModifyDto;
 import passta.paas_ta_back.repository.shop.ShopRepository;
-import passta.paas_ta_back.repository.user.DeleteDto;
-import passta.paas_ta_back.repository.user.UserModifyDto;
 import passta.paas_ta_back.repository.user.UserRepository;
-import passta.paas_ta_back.service.user.UserService;
 import passta.paas_ta_back.web.file.FileStore;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @Transactional(readOnly = true)

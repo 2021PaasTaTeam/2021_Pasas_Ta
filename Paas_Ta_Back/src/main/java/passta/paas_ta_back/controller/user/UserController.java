@@ -1,8 +1,6 @@
 package passta.paas_ta_back.controller.user;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -14,7 +12,7 @@ import passta.paas_ta_back.controller.user.dto.UserInfoDto;
 import passta.paas_ta_back.domain.Shop;
 import passta.paas_ta_back.domain.User;
 import passta.paas_ta_back.repository.user.*;
-import passta.paas_ta_back.service.user.UserService;
+import passta.paas_ta_back.service.UserService;
 import passta.paas_ta_back.web.session.SessionConst;
 
 import javax.servlet.http.HttpServletRequest;

@@ -12,7 +12,7 @@ import passta.paas_ta_back.repository.shop.RegisterDto;
 import passta.paas_ta_back.controller.shop.dto.ShopInfoDto;
 import passta.paas_ta_back.repository.shop.ShopModifyDto;
 import passta.paas_ta_back.repository.shop.ShopRepository;
-import passta.paas_ta_back.service.shop.ShopService;
+import passta.paas_ta_back.service.ShopService;
 
 import java.io.IOException;
 import java.util.List;
