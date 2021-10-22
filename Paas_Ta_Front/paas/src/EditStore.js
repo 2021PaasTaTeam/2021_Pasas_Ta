@@ -9,6 +9,7 @@ import FormButton from './modules/form/FormButton';
 import withRoot from './modules/withRoot';
 import React, { useState } from 'react';
 import axios from 'axios';
+import Mini_map from './page/Mini_map';
 
 function EditStore() {
     const [shop_name, setShop_name] = useState("");
@@ -249,14 +250,17 @@ function EditStore() {
                                 </Grid>
                             </Grid>
                             <br />
-                            <div className="Card1">
+                            <div align='center'>
+                            <Mini_map />
+                            </div>
+                            {/* <div className="Card1">
                                 <div className="c1image" align='center'>
                                     <img className="phoneImage"
                                         height="500vh"
                                         width="500vw"
                                         src="/assets/map.jpg" />
                                 </div>
-                            </div>
+                            </div> */}
                             <Grid container spacing={2}>
                                 <Grid item xs={12} sm={6}>
                                     <FormButton
