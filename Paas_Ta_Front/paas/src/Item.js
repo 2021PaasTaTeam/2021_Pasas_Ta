@@ -9,6 +9,9 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
 function Product() {
+    const labels = ['대한민국 전통 한복', '잭 다니엘']
+
+
     const session = JSON.parse(window.sessionStorage.getItem("data"));
     console.log(session.data.type)
 
@@ -141,8 +144,99 @@ function Product() {
                 >
                     <span style={{ background: "#fff", }}></span>
                 </div>
+
+
                 <br />
-                <div className="c1image" style={{
+                <div>
+                    <ul>
+                        {labels.map((label, idx) => (
+                            <li key={idx}>
+                                <label>
+                                    <div className="c1image" style={{
+                                        float: 'left'
+                                    }} >
+                                        <img className="phoneImage"
+                                            height="150vh"
+                                            width="150vw"
+                                            src="/assets/github.png" />
+                                    </div>
+                                    <div style={{
+                                        float: 'left'
+                                    }}>
+                                        <br/>
+                                        <Typography
+                                            variant="h3"
+                                            style={{
+                                                fontSize: 17,
+                                                float: 'left'
+                                            }}
+                                        >
+                                            &nbsp;&nbsp;상품명 : {label}
+                                        </Typography>
+                                    </div>
+                                    <br />
+                                    <br />
+                                    <div style={{
+                                        float: 'left'
+                                    }}>
+                                        <br/>
+                                        <Typography
+                                            variant="h3"
+                                            style={{
+                                                fontSize: 17,
+                                                float: 'left'
+                                            }}
+                                        >
+                                            &nbsp;&nbsp;상품 설명 : 양주
+                                        </Typography>
+                                    </div>
+
+                                    <div style={{
+                                        float: 'left'
+                                    }}>
+                                        <br/>
+                                        <Typography
+                                            variant="h3"
+                                            style={{
+                                                fontSize: 17,
+                                                float: 'left'
+                                            }}
+                                        >
+                                            &nbsp;&nbsp;가격 : 1000000원
+                                        </Typography>
+                                    </div>
+                                    <br />
+                                    <br/>
+                                    <br />
+                                    <br />
+                                </label>
+                <div style={{
+                    float: 'right'
+                }}>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <Typography
+                        variant="h3"
+                        style={{
+                            fontSize: 20,
+                            float: 'left'
+                        }}
+                    >
+                        <button onClick={onDecrease} style={btnStyle}>-</button>
+                        &nbsp;&nbsp;{number}&nbsp;&nbsp;
+                    <button onClick={onIncrease} style={btnStyle}>+</button>
+                    </Typography>
+                    &nbsp;
+                    </div>
+                            </li>
+                            
+                        ))}
+                    </ul>
+                    </div>
+                {/* <div className="c1image" style={{
                     float: 'left'
                 }} >
                     <img className="phoneImage"
@@ -151,6 +245,7 @@ function Product() {
                         src="/assets/github.png" />
                 </div>
                 <br />
+                
                 <div style={{
                     float: 'left'
                 }}>
@@ -208,15 +303,12 @@ function Product() {
                     >
                         <button onClick={onDecrease} style={btnStyle}>-</button>
                         &nbsp;&nbsp;{number}&nbsp;&nbsp;
-                    </Typography>
                     <button onClick={onIncrease} style={btnStyle}>+</button>
+                    </Typography>
                     &nbsp;
 
-                </div>
+                </div> */}
 
-                <br />
-                <br />
-                <br />
                 <br />
                 <div style={{
                     float: 'left'
@@ -263,20 +355,7 @@ function Product() {
                             float: 'left'
                         }}
                     >
-                        &nbsp;&nbsp;{session.data.name} :
-                    </Typography>
-                </div>
-                <div style={{
-                    float: 'left'
-                }}>
-                    <Typography
-                        variant="h3"
-                        style={{
-                            fontSize: 17,
-                            float: 'left'
-                        }}
-                    >
-                        &nbsp;또 오고 싶어요 😀😀
+                        &nbsp;&nbsp;{session.data.name} :&nbsp;또 오고 싶어요 😀😀
                     </Typography>
                 </div>
                 <br />
@@ -291,22 +370,10 @@ function Product() {
                             float: 'left'
                         }}
                     >
-                        &nbsp;&nbsp;이주현 :
+                        &nbsp;&nbsp;이주현 :&nbsp;저는 싫어요 😤😤
                     </Typography>
                 </div>
-                <div style={{
-                    float: 'left'
-                }}>
-                    <Typography
-                        variant="h3"
-                        style={{
-                            fontSize: 17,
-                            float: 'left'
-                        }}
-                    >
-                        &nbsp;저는 싫어요 😤😤
-                    </Typography>
-                </div>
+
 
                 <br />
                 <br />
