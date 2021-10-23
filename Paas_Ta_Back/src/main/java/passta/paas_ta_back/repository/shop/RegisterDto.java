@@ -14,6 +14,7 @@ public class RegisterDto {
     private String name;
     private String phone;
     private String address;
+    private String region;
     private String businessType;
     private MultipartFile image;
 }

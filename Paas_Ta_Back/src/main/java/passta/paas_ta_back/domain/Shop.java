@@ -31,6 +31,10 @@ public class Shop {
     @Column(name = "shop_phone", nullable = false)
     private String phone;
 
+    @Column(name = "shop_region", nullable = false)
+    private String region;
+
+    // SHOP 상세 주소
     @Column(name = "shop_address", nullable = false)
     private String address;
 
@@ -63,6 +67,7 @@ public class Shop {
                                   String registrationNum,
                                   String name,
                                   String phone,
+                                  String region,
                                   String address,
                                   String businessType,
                                   UploadFile image) {
@@ -74,6 +79,7 @@ public class Shop {
         shop.phone = phone;
         shop.image = image;
         shop.address = address;
+        shop.region = region;
         return shop;
     }
 
