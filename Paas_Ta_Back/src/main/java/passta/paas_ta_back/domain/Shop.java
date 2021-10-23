@@ -31,11 +31,11 @@ public class Shop {
     @Column(name = "shop_phone", nullable = false)
     private String phone;
 
-    @Column(name = "shop_region", nullable = false)
+    @Column(name = "shop_region")
     private String region;
 
     // SHOP 상세 주소
-    @Column(name = "shop_address", nullable = false)
+    @Column(name = "shop_address")
     private String address;
 
     // SHOP 업종
