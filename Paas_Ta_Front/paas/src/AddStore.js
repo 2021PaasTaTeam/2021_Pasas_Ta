@@ -17,6 +17,7 @@ function AddStore() {
     const [shop_image, setShop_image] = useState("");
     const [registeration_number, setRegisteration_number] = useState("");
     const [shop_business_type, setShop_business_type] = useState("");
+    const [shop_region, setShop_region] = useState("");
 
     // 가게 업종
     const onShop_business_typeHandler = (event) => {
@@ -28,9 +29,14 @@ function AddStore() {
         setShop_name(event.currentTarget.value);
     }
 
-    // 가게 지역구
-    const onShop_sddressHandler = (event) => {
+    // 가게 실제 주소
+    const onShop_addressHandler = (event) => {
         setShop_address(event.currentTarget.value)
+    }
+
+    // 가게 지역구
+    const onShop_regionHandler = (event) => {
+        setShop_region(event.currentTarget.value)
     }
 
     // 가게 전화번호
@@ -61,17 +67,20 @@ function AddStore() {
         formData.append("registrationNum",registeration_number);
         formData.append("email",session.data.email);
         formData.append("busineesTyepe",shop_business_type);
+        formData.append("region", shop_region);
 
         console.log(formData)
 
         console.log('click shop')
         console.log('가게명 : ', shop_name)
-        console.log('가게주소 : ', shop_address)
+        console.log('가게실제주소 : ', shop_address)
         console.log('가게전화번호 : ', shop_phone)
         console.log('가게상표이미지 : ', shop_image)
         console.log('사업자번호 : ', registeration_number)
         console.log('이메일 : ', session.data.email)
         console.log('가게업종 : ',shop_business_type)
+        console.log('가게지역구 : ', shop_region)
+
  
         // let data = JSON.stringify({
         //     'name': shop_name,
@@ -174,8 +183,8 @@ function AddStore() {
                                             collapse: 'collapse',
                                             borderRadius: '8px',
                                         }}
-                                        value={shop_address}
-                                        onChange={onShop_sddressHandler}
+                                        value={shop_region}
+                                        onChange={onShop_regionHandler}
                                     >
                                         <option selected="selected">직접선택</option>
                                         <option>종로구</option>
@@ -226,7 +235,8 @@ function AddStore() {
                                 <Grid item xs={12} sm={9}>
                                     <input type="text"
                                         name="name"
-                                        //value={shop_phone}
+                                        value={shop_address}
+                                        onChange={onShop_addressHandler}
                                         style={{
                                             padding: 20,
                                             width: 380,
@@ -235,7 +245,6 @@ function AddStore() {
                                             collapse: 'collapse',
                                             borderRadius: '8px',
                                         }}
-                                        //onChange={onShop_phoneHandler}
                                     />
                                 </Grid>
                             </Grid>

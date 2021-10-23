@@ -149,6 +149,27 @@ function AddItem() {
                             </Grid>
                             <br />
                             <Grid container spacing={2}>
+                                <Grid item xs={12} sm={3}>
+                                    <Typography variant="h6" align="center">
+                                        상품 재고
+                                    </Typography>
+                                </Grid>
+                                <Grid item xs={12} sm={9} >
+                                <input type="text"
+                                name="number"
+                                    style={{
+                                        width: 380,
+                                        height: 50,
+                                        padding: 20,
+                                        border: "2px solid black",
+                                        collapse: 'collapse',
+                                        borderRadius: '8px',
+                                    }}
+                                     />
+                                </Grid>
+                            </Grid>
+                            <br />
+                            <Grid container spacing={2}>
                                 <Grid item xs={12} sm={4}>
                                     <Typography variant="h6" align="center">
                                     상품 이미지
@@ -187,7 +208,6 @@ function AddItem() {
                                             collapse: 'collapse',
                                             borderRadius: '8px',
                                         }}
-                                        href="/Town"
                                     >
                                         {'추가 하기'}
                                     </FormButton>
@@ -211,8 +231,8 @@ function AddItem() {
                                         float: 'left'
                                     }} >
                                         <img className="phoneImage"
-                                            height="110vh"
-                                            width="110vw"
+                                            height="160vh"
+                                            width="160vw"
                                             src="/assets/github.png" />
                                     </div>
                                     <div style={{
@@ -258,7 +278,21 @@ function AddItem() {
                                             &nbsp;&nbsp;가격 : 1000000원
                                         </Typography>
                                     </div>
-
+                                    <br/>
+                                    <br/>
+                                    <div style={{
+                                        float: 'left'
+                                    }}>
+                                        <Typography
+                                            variant="h3"
+                                            style={{
+                                                fontSize: 17,
+                                                float: 'left'
+                                            }}
+                                        >
+                                            &nbsp;&nbsp;재고 : 100
+                                        </Typography>
+                                    </div>
                                     <br />
                                     <br/>
                                 </label>
