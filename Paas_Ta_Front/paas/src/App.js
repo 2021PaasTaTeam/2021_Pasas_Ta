@@ -39,7 +39,6 @@ class App extends Component {
                     <Route path="/MyPage" exact component={MyPage} />
                     <Route path="/Gather" exact component={Gather} />
                     <Route path="/Town" exact component={Town} />                    
-                    {/* <Redirect path="*" to="/" /> */}
 
 
                     {/* 관리자 페이지 */}

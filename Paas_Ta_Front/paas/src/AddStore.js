@@ -66,7 +66,7 @@ function AddStore() {
         formData.append("phone",shop_phone);
         formData.append("registrationNum",registeration_number);
         formData.append("email",session.data.email);
-        formData.append("busineesTyepe",shop_business_type);
+        formData.append("businessType",shop_business_type);
         formData.append("region", shop_region);
 
         console.log(formData)
@@ -99,12 +99,16 @@ function AddStore() {
         })
             .then(res => {
                 console.log(res)
-                
+
+                session.data.type = 'SELLER'
+                window.sessionStorage.setItem("data", JSON.stringify(session));
+
                     alert('가게가 등록되었습니다.')
                     window.location.replace("/Town")
             })
             .catch()
     }
+
     return (
         <React.Fragment>
             <AppAppBar2 />

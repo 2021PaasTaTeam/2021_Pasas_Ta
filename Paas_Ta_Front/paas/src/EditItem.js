@@ -5,10 +5,34 @@ import AppAppBar2 from './modules/views/AppBar2';
 import AppForm from './modules/views/AppForm';
 import FormButton from './modules/form/FormButton';
 import withRoot from './modules/withRoot';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 function EditItem() {
+    let [store, setStore] = useState([]);
+
+    function searchApi() {
+        const url = "http://localhost:8080/shop/4";
+        axios.get(url)
+        .then(function(response) {
+            setStore(response.data);
+            console.log("성공");
+            console.log(response.data)
+            const store = response.data;
+        const userObj = { store: store };
+        window.sessionStorage.setItem("store", JSON.stringify(userObj));
+        
+        })
+        .catch(function(error) {
+            console.log("실패");
+        })
+    }
+    
+    useEffect(() => {
+        searchApi()
+      },[]);
+    console.log(store.name)
+
     const Town = () => {
         window.location.replace("/Town")
     }
@@ -102,7 +126,7 @@ function EditItem() {
                             float: 'left'
                         }}
                     >
-                        &nbsp;&nbsp;가게 지역구 : 성북구
+                        &nbsp;&nbsp;가게 지역구 : {store.region}
                     </Typography>
                 </div>
                 <br />
@@ -117,7 +141,7 @@ function EditItem() {
                             float: 'left'
                         }}
                     >
-                        &nbsp;&nbsp;가게 실주소 : 서울시 성북구 서경로
+                        &nbsp;&nbsp;가게 실주소 : {store.address}
                     </Typography>
                 </div>
                 <br />
@@ -132,7 +156,7 @@ function EditItem() {
                             float: 'left'
                         }}
                     >
-                        &nbsp;&nbsp;가게 전화번호 : 01012345678
+                        &nbsp;&nbsp;가게 전화번호 : {store.phone}
                     </Typography>
                 </div>
 

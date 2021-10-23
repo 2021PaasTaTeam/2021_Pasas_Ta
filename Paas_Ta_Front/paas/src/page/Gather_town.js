@@ -212,7 +212,7 @@ function Town(props) {
 
   gameLoop();
 
-  const session_name = JSON.parse(window.sessionStorage.getItem("email"));
+  const session = JSON.parse(window.sessionStorage.getItem("email"));
 
   return (
     <React.Fragment>
