@@ -13,6 +13,8 @@ public class ShopInfoDto {
     private String name;
     private String phone;
     private UploadFile image;
+    private String region;
+    private String address;
     private String userType = "SELLER";
 
     public ShopInfoDto(Shop shop) {
@@ -21,5 +23,7 @@ public class ShopInfoDto {
         this.name = shop.getName();
         this.phone = shop.getPhone();
         this.image = shop.getImage();
+        this.region = shop.getRegion();
+        this.address = shop.getAddress();
     }
 }
