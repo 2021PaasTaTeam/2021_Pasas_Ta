@@ -11,7 +11,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ItemRegisterDto {
-    String registrationNum;
+    Long shopId;
     String itemName;
     String itemContent;
     int itemPrice;

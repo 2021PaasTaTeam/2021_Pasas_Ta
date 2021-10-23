@@ -36,11 +36,10 @@ public class ItemService {
 
         List<Item> byNameAndShop = itemRepository.findByNameAndShop(
                 itemRegisterDto.getItemName(),
-                itemRegisterDto.getRegistrationNum());
+                itemRegisterDto.getShopId());
         if (byNameAndShop.size() == 0) {
             List<UploadFile> uploadFiles = fileStore.storeFiles(itemRegisterDto.getItemImages());
-            Shop shop = shopRepository.findByRegistrationNum(
-                    itemRegisterDto.getRegistrationNum()).get(0);
+            Shop shop = shopRepository.findById(itemRegisterDto.getShopId()).get();
             Item item = Item.createItem(
                     shop,
                     itemRegisterDto.getItemName(),
