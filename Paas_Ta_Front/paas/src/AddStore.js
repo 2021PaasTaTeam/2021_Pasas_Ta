@@ -40,7 +40,7 @@ function AddStore() {
 
     // 가게 상표 이미지
     const onShop_imageHandler = (event) => {
-        setShop_image(event.currentTarget.value);
+        setShop_image(event.currentTarget.files[0]);
     }
 
     // 사업자 번호
@@ -52,6 +52,18 @@ function AddStore() {
 
 
     const onClickRegister = () => {
+        const formData = new FormData();
+
+        formData.append("image", shop_image);
+        formData.append("name",shop_name);
+        formData.append("address",shop_address);
+        formData.append("phone",shop_phone);
+        formData.append("registrationNum",registeration_number);
+        formData.append("email",session.data.email);
+        formData.append("busineesTyepe",shop_business_type);
+
+        console.log(formData)
+
         console.log('click shop')
         console.log('가게명 : ', shop_name)
         console.log('가게주소 : ', shop_address)
@@ -60,22 +72,25 @@ function AddStore() {
         console.log('사업자번호 : ', registeration_number)
         console.log('이메일 : ', session.data.email)
         console.log('가게업종 : ',shop_business_type)
-        let data = JSON.stringify({
-            'name': shop_name,
-            'address': shop_address,
-            'phone': shop_phone,
-            'image': shop_image,
-            'registrationNum': registeration_number,
-            'email': session.data.email,
-            'businessType': shop_business_type
-        })
-        axios.post('http://localhost:8080/shop', data, {
+ 
+        // let data = JSON.stringify({
+        //     'name': shop_name,
+        //     'address': shop_address,
+        //     'phone': shop_phone,
+        //     'image': formData,
+        //     'registrationNum': registeration_number,
+        //     'email': session.data.email,
+        //     'businessType': shop_business_type
+        // })
+
+        axios.post('http://localhost:8080/shop', formData, {
             headers: {
                 'Content-type': 'multipart/form-data; charset=utf-8',
             }
         })
             .then(res => {
                 console.log(res)
+                
                     alert('가게가 등록되었습니다.')
                     window.location.replace("/Town")
             })
@@ -90,14 +105,12 @@ function AddStore() {
                         우리 가게 등록하기
                     </Typography>
                 </React.Fragment>
-                <Form
-                    onSubmit={onClickRegister}
-                >
-                    {({ handleSubmit: handleSubmit2, submitting }) => (
-                        <Box component="form" onSubmit={handleSubmit2} noValidate sx={{ mt: 6 }}>
+                <br/>
                             <Grid container spacing={2}>
                                 <Grid item xs={12} sm={3}>
-                                    <Typography variant="h6" align="center">
+                                    <Typography variant="h6" align="center" style={{
+                                            padding: 10
+                                        }}>
                                         가게 이름
                                     </Typography>
                                 </Grid>
@@ -120,7 +133,9 @@ function AddStore() {
                             <br />
                             <Grid container spacing={2}>
                                 <Grid item xs={12} sm={3}>
-                                    <Typography variant="h6" align="center">
+                                    <Typography variant="h6" align="center" style={{
+                                            padding: 10
+                                        }}>
                                         사업자 번호
                                     </Typography>
                                 </Grid>
@@ -143,7 +158,9 @@ function AddStore() {
                             <br />
                             <Grid container spacing={2}>
                                 <Grid item xs={12} sm={3}>
-                                    <Typography variant="h6" align="center">
+                                    <Typography variant="h6" align="center" style={{
+                                            padding: 10
+                                        }}>
                                         지역구 선택
                                     </Typography>
                                 </Grid>
@@ -172,7 +189,9 @@ function AddStore() {
                             <br />
                             <Grid container spacing={2}>
                                 <Grid item xs={12} sm={3}>
-                                    <Typography variant="h6" align="center">
+                                    <Typography variant="h6" align="center" style={{
+                                            padding: 10
+                                        }}>
                                         가게 업종
                                     </Typography>
                                 </Grid>
@@ -200,7 +219,7 @@ function AddStore() {
                             <br />
                             <Grid container spacing={2}>
                                 <Grid item xs={12} sm={3}>
-                                    <Typography variant="h6" align="center">
+                                    <Typography variant="h6" align="center" >
                                         가게 실제주소
                                     </Typography>
                                 </Grid>
@@ -245,6 +264,7 @@ function AddStore() {
                                 </Grid>
                             </Grid>
                             <br />
+                            <form enctype="multipart/form-data">
                             <Grid container spacing={2}>
                                 <Grid item xs={12} sm={4}>
                                     <Typography variant="h6" align="center">
@@ -255,11 +275,13 @@ function AddStore() {
                                     <input type="file"
                                         accept="image/png,image/jpg,impge/png,image/jpeg,image/gif"
                                         name="name"
-                                        value={shop_image}
+                                        required
+                                        files={shop_image}
                                         onChange={onShop_imageHandler}
-                                        required />
+                                        />
                                 </Grid>
                             </Grid>
+                            </form>
                             <br />
                             <div className="Card1">
                                 <div className="c1image" align='center' >
@@ -283,7 +305,7 @@ function AddStore() {
                                             borderRadius: '8px',
                                         }}
                                         type="submit"
-                                        onSubmit={onClickRegister}
+                                        onClick={onClickRegister}
                                     >
                                         {'등록하기'}
                                     </FormButton>
@@ -306,9 +328,6 @@ function AddStore() {
                                     </FormButton>
                                 </Grid>
                             </Grid>
-                        </Box>
-                    )}
-                </Form>
             </AppForm>
             <AppFooter />
         </React.Fragment>
