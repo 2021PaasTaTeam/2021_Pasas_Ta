@@ -5,10 +5,34 @@ import AppAppBar2 from './modules/views/AppBar2';
 import AppForm from './modules/views/AppForm';
 import FormButton from './modules/form/FormButton';
 import withRoot from './modules/withRoot';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 function Product() {
+    let [store, setStore] = useState([]);
+
+    function searchApi() {
+        const url = "http://localhost:8080/shop/4";
+        axios.get(url)
+        .then(function(response) {
+            setStore(response.data);
+            console.log("성공");
+            console.log(response.data)
+            const store = response.data;
+        const userObj = { store: store };
+        window.sessionStorage.setItem("store", JSON.stringify(userObj));
+        
+        })
+        .catch(function(error) {
+            console.log("실패");
+        })
+    }
+    useEffect(() => {
+        searchApi()
+      },[]);
+    console.log(store.name)
+    //var img_src = 'C:/Temp/gathermarket/'+ store.img.storeFileName;
+    
     const labels = ['대한민국 전통 한복', '잭 다니엘']
 
 
@@ -40,13 +64,14 @@ function Product() {
         lineHeight: 1.5,
     };
 
+
     return (
         <React.Fragment>
             <AppAppBar2 />
             <AppForm>
                 <React.Fragment>
                     <Typography variant="h3" align="center">
-                        🌊 바다네 생선가게 🌊
+                        {store.name}
                     </Typography>
                 </React.Fragment>
                 <br />
@@ -56,7 +81,8 @@ function Product() {
                     <img className="phoneImage"
                         height="200vh"
                         width="200vw"
-                        src="/assets/github.png" />
+                        id="img_obj"
+                        src="C:\Temp\gathermarket" />
                 </div>
                 <div style={{
                     float: 'left'
@@ -98,7 +124,7 @@ function Product() {
                             float: 'left'
                         }}
                     >
-                        &nbsp;&nbsp;가게 지역구 : 성북구
+                        &nbsp;&nbsp;가게 지역구 : {store.region}
                     </Typography>
                 </div>
                 <br />
@@ -113,7 +139,7 @@ function Product() {
                             float: 'left'
                         }}
                     >
-                        &nbsp;&nbsp;가게 실주소 : 서울시 성북구 서경로
+                        &nbsp;&nbsp;가게 실주소 : {store.address}
                     </Typography>
                 </div>
                 <br />
@@ -128,7 +154,7 @@ function Product() {
                             float: 'left'
                         }}
                     >
-                        &nbsp;&nbsp;가게 전화번호 : 01012345678
+                        &nbsp;&nbsp;가게 전화번호 : {store.phone}
                     </Typography>
                 </div>
 
@@ -236,79 +262,6 @@ function Product() {
                         ))}
                     </ul>
                     </div>
-                {/* <div className="c1image" style={{
-                    float: 'left'
-                }} >
-                    <img className="phoneImage"
-                        height="200vh"
-                        width="200vw"
-                        src="/assets/github.png" />
-                </div>
-                <br />
-                
-                <div style={{
-                    float: 'left'
-                }}>
-                    <Typography
-                        variant="h3"
-                        style={{
-                            fontSize: 17,
-                            float: 'left'
-                        }}
-                    >
-                        &nbsp;&nbsp;상품 이름 : 잭 다니엘 허니
-                    </Typography>
-                </div>
-                <br />
-                <br />
-                <div style={{
-                    float: 'left'
-                }}>
-                    <Typography
-                        variant="h3"
-                        style={{
-                            fontSize: 17,
-                            float: 'left'
-                        }}
-                    >
-                        &nbsp;&nbsp;상품 설명 : 양주
-                    </Typography>
-                </div>
-                <br />
-                <br />
-                <div style={{
-                    float: 'left'
-                }}>
-                    <Typography
-                        variant="h3"
-                        style={{
-                            fontSize: 17,
-                            float: 'left'
-                        }}
-                    >
-                        &nbsp;&nbsp;가격 : 1000000원
-                    </Typography>
-                </div>
-                <br />
-                <br />
-                <div style={{
-                    float: 'right'
-                }}>
-                    <Typography
-                        variant="h3"
-                        style={{
-                            fontSize: 20,
-                            float: 'left'
-                        }}
-                    >
-                        <button onClick={onDecrease} style={btnStyle}>-</button>
-                        &nbsp;&nbsp;{number}&nbsp;&nbsp;
-                    <button onClick={onIncrease} style={btnStyle}>+</button>
-                    </Typography>
-                    &nbsp;
-
-                </div> */}
-
                 <br />
                 <div style={{
                     float: 'left'
