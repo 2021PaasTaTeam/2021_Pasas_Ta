@@ -73,6 +73,10 @@ function AppAppBar2() {
             message: labels_name,
             detailPage : '/Cart'
           },
+          {
+            message: '총 결재 금액 : '+cart.cost,
+            detailPage : '/Cart'
+          },
           // {
           //   //image: logo,
           //   message: ' 💰 총 결재 금액 : '+cart.cost,

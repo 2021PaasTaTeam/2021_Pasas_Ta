@@ -33,7 +33,7 @@ function Mini_map() {
       var coords = "X coords: " + x + ", Y coords: " + y;
       console.log(coords);
       // 클릭 이벤트
-      if (x >= 500 && x <= 600 && y >= 200 && y <= 300) {
+      if (x >= 0 && x <= 1000 && y >= 0 && y <= 1000) {
         openWin()
         console.log('마우스 버튼 ON 이벤트 발생!');
       }
