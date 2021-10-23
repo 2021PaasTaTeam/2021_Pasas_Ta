@@ -8,14 +8,15 @@ import java.sql.Blob;
 
 @Data
 public class ShopInfoDto {
-    private Long id;
+    private Long shopId;
     private String email;
     private String name;
     private String phone;
     private UploadFile image;
+    private String userType = "SELLER";
 
     public ShopInfoDto(Shop shop) {
-        this.id = shop.getId();
+        this.shopId = shop.getId();
         this.email = shop.getUser().getEmail();
         this.name = shop.getName();
         this.phone = shop.getPhone();

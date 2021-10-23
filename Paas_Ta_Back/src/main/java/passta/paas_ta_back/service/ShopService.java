@@ -43,6 +43,7 @@ public class ShopService {
                     registerDto.getRegistrationNum(),
                     registerDto.getName(),
                     registerDto.getPhone(),
+                    registerDto.getRegion(),
                     registerDto.getAddress(),
                     registerDto.getBusinessType(),
                     storeImageFiles);
