@@ -33,7 +33,7 @@ public class UserService {
         boolean check = alreadyLoginInfo(joinDto);
         if (check) {
             User save_user = userRepository.save(
-                    new User(joinDto.getName(),
+                    User.createUser(joinDto.getName(),
                             joinDto.getEmail(),
                             joinDto.getPassword(),
                             joinDto.getAddress(),

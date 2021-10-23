@@ -47,12 +47,14 @@ public class User {
 
 
     // USER 생성 메서드
-    public User(String name, String email, String password, String address, UserType type) {
-        this.name = name;
-        this.email = email;
-        this.password = password;
-        this.address = address;
-        this.type = type;
+    public static User createUser(String name, String email, String password, String address, UserType type) {
+        User user = new User();
+        user.name = name;
+        user.email = email;
+        user.password = password;
+        user.address = address;
+        user.type = type;
+        return user;
     }
 
     // USER 권한 설정(판매자, 소비자, 관리자)
