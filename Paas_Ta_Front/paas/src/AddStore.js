@@ -71,7 +71,7 @@ function AddStore() {
         })
         axios.post('http://localhost:8080/shop', data, {
             headers: {
-                'Content-type': 'application/json; charset=utf-8',
+                'Content-type': 'multipart/form-data; charset=utf-8',
             }
         })
             .then(res => {
