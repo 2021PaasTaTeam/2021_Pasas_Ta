@@ -20,7 +20,7 @@ public class ItemImages {
 
     // ITEM 의 IMAGE
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "item_id", nullable = false)
+    @JoinColumn(name = "item_id")
     private Item item;
 
     // 유저가 저장한 IMAGE 파일명
@@ -39,7 +39,7 @@ public class ItemImages {
     }
 
 
-    public ItemImages createItemImages(Item item, String uploadFileName, String storeFileName) {
+    public static ItemImages createItemImages(Item item, String uploadFileName, String storeFileName) {
         ItemImages itemImages = new ItemImages();
         itemImages.setItemInItemImages(item);
         itemImages.uploadFileName = uploadFileName;

@@ -68,7 +68,7 @@ public class Item {
                                   String content,
                                   int price,
                                   int stockQuantity,
-                                  List<ItemImages> itemImages){
+                                  List<UploadFile> itemImages){
         Item item = new Item();
         item.setShopInItem(shop);
         item.name = name;
@@ -77,15 +77,16 @@ public class Item {
         item.modification_date = LocalDateTime.now();
         item.price = price;
         item.stockQuantity = stockQuantity;
-        for (ItemImages itemImage : itemImages) {
-            itemImage.createItemImages(item, itemImage.getUploadFileName(), itemImage.getStoreFileName());
+        for (UploadFile itemImage : itemImages) {
+            ItemImages.createItemImages(item,
+                    itemImage.getUploadFileName(),
+                    itemImage.getStoreFileName());
         }
         return item;
     }
 
     // ITEM 수정 메서드
-    public Item changeItemInfo(String name, String content, int price, int stockQuantity){
-        if (name != null){this.name = name;}
+    public Item changeItemInfo(String content, int price, int stockQuantity){
         if (content != null){this.content = content;}
         if (price > 0){this.price = price;}
         if (stockQuantity > 0){this.stockQuantity = stockQuantity;}
