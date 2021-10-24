@@ -33,13 +33,13 @@ public class ItemService {
 
     @Transactional
     public Item registerItem(ItemRegisterDto itemRegisterDto) throws IOException {
-
-        List<Item> byNameAndShop = itemRepository.findByNameAndShop(
-                itemRegisterDto.getItemName(),
-                itemRegisterDto.getShopId());
+        Shop shop = shopRepository.findById(itemRegisterDto.getShopId()).get();
+        if(shop == null){
+            return null;
+        }
+        List<Item> byNameAndShop = itemRepository.findByNameAndShop(itemRegisterDto.getItemName(), shop);
         if (byNameAndShop.size() == 0) {
             List<UploadFile> uploadFiles = fileStore.storeFiles(itemRegisterDto.getItemImages());
-            Shop shop = shopRepository.findById(itemRegisterDto.getShopId()).get();
             Item item = Item.createItem(
                     shop,
                     itemRegisterDto.getItemName(),
@@ -62,7 +62,8 @@ public class ItemService {
     }
 
     public List<Item> findItemByShopId(Long shopId) {
-       return shopRepository.findById(shopId).orElse(null).getItems();
+        Shop shop = shopRepository.findById(shopId).orElse(null);
+        return shop != null ? shop.getItems():null;
     }
 
     @Transactional

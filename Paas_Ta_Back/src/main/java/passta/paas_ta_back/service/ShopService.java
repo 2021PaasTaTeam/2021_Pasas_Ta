@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import passta.paas_ta_back.domain.Item;
 import passta.paas_ta_back.domain.Shop;
 import passta.paas_ta_back.domain.UploadFile;
 import passta.paas_ta_back.domain.User;
@@ -61,6 +62,7 @@ public class ShopService {
         return shopRepository.findById(id).orElse(null);
     }
 
+
     @Transactional
     public Shop changeShopInfoById(Long id, ShopModifyDto shopModifyDto){
         Shop shop = shopRepository.findById(id).get();
@@ -70,7 +72,9 @@ public class ShopService {
         return shop.changeShopInfo(
                 shopModifyDto.getName(),
                 shopModifyDto.getPhone(),
-                shopModifyDto.getAddress());
+                shopModifyDto.getRegion(),
+                shopModifyDto.getAddress(),
+                shopModifyDto.getBusinessType());
     }
 
     @Transactional
@@ -81,5 +85,13 @@ public class ShopService {
         }
         shopRepository.deleteById(id);
         return true;
+    }
+
+    public List<Item> findItemByShopId(Long shopid){
+        Shop shop = shopRepository.findById(shopid).orElse(null);
+        if (shop == null){
+            return null;
+        }
+        return shop.getItems();
     }
 }

@@ -6,7 +6,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import passta.paas_ta_back.controller.Item.ItemInfoDto;
 import passta.paas_ta_back.controller.dto.DeleteCheckDto;
+import passta.paas_ta_back.domain.Item;
 import passta.paas_ta_back.domain.Shop;
 import passta.paas_ta_back.repository.shop.RegisterDto;
 import passta.paas_ta_back.controller.shop.dto.ShopInfoDto;
@@ -73,4 +75,13 @@ public class ShopController {
         }
         return new ResponseEntity(new DeleteCheckDto(shopDeleteCkeck),HttpStatus.OK);
     }
+
+    @GetMapping("/shop/{shopId}/item")
+    public ResponseEntity<?> myItemList(@PathVariable(name = "shopId") Long shopId){
+        List<Item> itemByShopId = shopService.findItemByShopId(shopId);
+        return itemByShopId != null ?
+                ResponseEntity.ok(itemByShopId.stream().map(ItemInfoDto::new).collect(Collectors.toList())) :
+                ResponseEntity.ok(null);
+    }
+
 }
