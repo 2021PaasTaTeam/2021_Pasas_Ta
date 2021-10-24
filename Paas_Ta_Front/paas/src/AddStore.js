@@ -18,6 +18,7 @@ function AddStore() {
     const [registeration_number, setRegisteration_number] = useState("");
     const [shop_business_type, setShop_business_type] = useState("");
     const [shop_region, setShop_region] = useState("");
+    const [fileImage, setFileImage] = useState("");
 
     // 가게 업종
     const onShop_business_typeHandler = (event) => {
@@ -46,6 +47,7 @@ function AddStore() {
 
     // 가게 상표 이미지
     const onShop_imageHandler = (event) => {
+        setFileImage(URL.createObjectURL(event.target.files[0]));
         setShop_image(event.currentTarget.files[0]);
     }
 
@@ -294,6 +296,18 @@ function AddStore() {
                                         />
                                 </Grid>
                             </Grid>
+                            <br />
+                            <div className="Card1">
+                                <div className="image-container" align="center">
+                                    <img
+                                        height="200vh"
+                                        width="200vw"
+                                        id="preview_image"
+                                        src={fileImage} />
+                                </div>
+                            </div>
+                            <br />
+                            <br />
                             </form>
                             <br />
                             <div className="Card1">

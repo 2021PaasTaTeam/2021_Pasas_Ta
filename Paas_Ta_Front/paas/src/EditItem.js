@@ -16,7 +16,7 @@ function EditItem() {
     var id = [];
 
     function searchItem() {
-        const url = "http://localhost:8080/item/4";
+        const url = "http://localhost:8080/item";
         axios.get(url)
             .then(function (response) {
                 setItem(response.data);
@@ -74,32 +74,75 @@ function EditItem() {
         window.location.replace("/Town")
     }
 
-    //const labels = ['대한민국 전통 한복', '잭 다니엘']
-
-    const [number, setNumber] = useState(0);
-
-    const onIncrease = () => {
-        setNumber(prevNumber => prevNumber + 1);
-    }
-    const onDecrease = () => {
-        setNumber(prevNumber => prevNumber - 1);
-    }
-    const Review_write = () => {
-        window.open("/Review", "", "width=650, height=500, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
-    }
-    const close = () => {
-        window.close();
+    const item_remove = (index) => {
+        console.log(item[index].itemId)
+        axios.delete('http://localhost:8080/item/'+item[index].itemId, {
+        })
+            .then(res => {
+                alert('해당 상품이 삭제되었습니다.')
+                console.log(item)
+                window.location.replace("/EditItem")
+            })
+            .catch()
     }
 
-    const btnStyle = {
-        color: "white",
-        background: "black",
-        padding: ".120rem .720rem",
-        border: "1px solid black",
-        borderRadius: ".25rem",
-        fontSize: "1.4rem",
-        lineHeight: 1.5,
-    };
+    const [itemName, setItemName] = useState("");
+    const [itemContent, setItemContent] = useState("");
+    const [itemPrice, setItemPrice] = useState("");
+    const [itemStock, setItemStock] = useState("");
+    const [itemImages, setItemImages] = useState("");
+
+
+    const onItemNameHandler = (event) => {
+        setItemName(event.currentTarget.value);
+    }
+    const onItemContentHandler = (event) => {
+        setItemContent(event.currentTarget.value);
+    }
+    const onItemStockHandler = (event) => {
+        setItemStock(event.currentTarget.value);
+    }
+    const onItemPriceHandler = (event) => {
+        setItemPrice(event.currentTarget.value);
+    }
+    const onItemImagesHandler = (event) => {
+        setItemImages(event.currentTarget.files[0]);
+    }
+
+    const onClickModify = (index) => {
+        const formData = new FormData();
+
+        formData.append("shopId", id.shopId)
+        formData.append("itemName",itemName)
+        formData.append("itemContent",itemContent)
+        formData.append("itemPrice",itemPrice)
+        formData.append("itemStock",itemStock)
+        formData.append("itemImages",itemImages)
+
+        console.log(formData)
+
+        console.log('click item')
+        console.log('가게번호 : ', id.shopId)
+        console.log("itemName",itemName)
+        console.log("itemContent",itemContent)
+        console.log("itemPrice",itemPrice)
+        console.log("itemStock",itemStock)
+        console.log("itemImages",itemImages)
+
+
+        axios.post('http://localhost:8080/item/'+item[index].itemId, formData, {
+            headers: {
+                'Content-type': 'multipart/form-data; charset=utf-8',
+            }
+        })
+            .then(res => {
+                console.log(res)
+                alert('상품이 수정되었습니다.')
+                //window.location.replace("/Town")
+            })
+            .catch()
+    }
+
 
     return (
         <React.Fragment>
@@ -144,7 +187,7 @@ function EditItem() {
                             float: 'left'
                         }}
                     >
-                        &nbsp;&nbsp;가게 업종 : 한복
+                        &nbsp;&nbsp;가게 업종 : {id.bussinessType}
                     </Typography>
                 </div>
                 <br />
@@ -211,7 +254,7 @@ function EditItem() {
                         fontSize: 25,
                         float: 'left'
                     }}>
-                    판매 상품 목록
+                    📄 판매 상품 목록
                 </Typography>
                 <br />
                 <br />
@@ -346,7 +389,7 @@ function EditItem() {
                                                 borderRadius: '8px',
                                             }}
                                             type="submit"
-                                        //onClick={() => item_remove(idx)}
+                                            onClick={() => item_remove(idx)}
                                         >
                                             {'상품 삭제'}
                                         </FormButton>
@@ -379,7 +422,7 @@ function EditItem() {
                                 borderRadius: '8px',
                             }}
                             type="submit"
-                        //onSubmit={onClickRegister}
+                            onClick={onClickModify}
                         >
                             {'수정하기'}
                         </FormButton>
