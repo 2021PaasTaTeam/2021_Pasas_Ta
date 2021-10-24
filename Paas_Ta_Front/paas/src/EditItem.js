@@ -9,39 +9,72 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 function EditItem() {
-    let [store, setStore] = useState([]);
+    const session = JSON.parse(window.sessionStorage.getItem("data"));
 
-    function searchApi() {
-        const url = "http://localhost:8080/shop/4";
+    var [store, setStore] = useState([]);
+    var [item, setItem] = useState([]);
+    var id = [];
+
+    function searchItem() {
+        const url = "http://localhost:8080/item/4";
         axios.get(url)
-        .then(function(response) {
-            setStore(response.data);
-            console.log("성공");
-            console.log(response.data)
-            const store = response.data;
-        const userObj = { store: store };
-        window.sessionStorage.setItem("store", JSON.stringify(userObj));
-        
-        })
-        .catch(function(error) {
-            console.log("실패");
-        })
+            .then(function (response) {
+                setItem(response.data);
+                console.log("성공");
+            })
+            .catch(function (error) {
+                console.log("실패");
+            })
     }
-    
+    console.log(item)
+
+    function searchId() {
+        const url = "http://localhost:8080/shop";
+        axios.get(url)
+            .then(function (response) {
+                setStore(response.data);
+                console.log("성공");
+            })
+            .catch(function (error) {
+                console.log("실패");
+            })
+    }
+
+    for (let i = 0; i < store.length; i++) {
+        if (store[i].email === session.data.email) {
+            id = store[i];
+        }
+    }
+
     useEffect(() => {
-        searchApi()
-      },[]);
-    console.log(store.name)
+        searchId()
+        searchItem()
+    }, []);
+
+
+    const item_name = []
+    const item_content = []
+    const item_price = []
+    const item_stockQuantity = []    
+
+    for (var j = 0; j < item.length; j++) {
+        item_name[j] = item[j].name
+    }
+    for (var j = 0; j < item.length; j++) {
+        item_content[j] = item[j].content
+    }
+    for (var j = 0; j < item.length; j++) {
+        item_price[j] = item[j].price
+    }
+    for (var j = 0; j < item.length; j++) {
+        item_stockQuantity[j] = item[j].stockQuantity
+    }
 
     const Town = () => {
         window.location.replace("/Town")
     }
 
-    const labels = ['대한민국 전통 한복', '잭 다니엘']
-
-
-    const session = JSON.parse(window.sessionStorage.getItem("data"));
-    console.log(session.data.type)
+    //const labels = ['대한민국 전통 한복', '잭 다니엘']
 
     const [number, setNumber] = useState(0);
 
@@ -74,7 +107,7 @@ function EditItem() {
             <AppForm>
                 <React.Fragment>
                     <Typography variant="h3" align="center">
-                        🌊 바다네 생선가게 🌊
+                        {id.name}
                     </Typography>
                 </React.Fragment>
                 <br />
@@ -126,7 +159,7 @@ function EditItem() {
                             float: 'left'
                         }}
                     >
-                        &nbsp;&nbsp;가게 지역구 : {store.region}
+                        &nbsp;&nbsp;가게 지역구 : {id.region}
                     </Typography>
                 </div>
                 <br />
@@ -141,7 +174,7 @@ function EditItem() {
                             float: 'left'
                         }}
                     >
-                        &nbsp;&nbsp;가게 실주소 : {store.address}
+                        &nbsp;&nbsp;가게 실주소 : {id.address}
                     </Typography>
                 </div>
                 <br />
@@ -156,7 +189,7 @@ function EditItem() {
                             float: 'left'
                         }}
                     >
-                        &nbsp;&nbsp;가게 전화번호 : {store.phone}
+                        &nbsp;&nbsp;가게 전화번호 : {id.phone}
                     </Typography>
                 </div>
 
@@ -184,7 +217,7 @@ function EditItem() {
                 <br />
                 <div>
                     <ul>
-                        {labels.map((label, idx) => (
+                        {item_name.map((label, idx) => (
                             <li key={idx}>
                                 <label>
                                     <div className="c1image" style={{
@@ -212,7 +245,7 @@ function EditItem() {
                                         }}>
                                             <input type="text"
                                                 name="name"
-                                                value={label}
+                                                value={item_name[idx]}
                                             //onChange={onShop_nameHandler}
                                             />
                                         </div>
@@ -237,7 +270,7 @@ function EditItem() {
                                     }}>
                                         <input type="text"
                                             name="name"
-                                            value='설명'
+                                            value={item_content[idx]}
                                         //onChange={onShop_nameHandler}
                                         />
                                     </div>
@@ -261,7 +294,7 @@ function EditItem() {
                                     }}>
                                         <input type="text"
                                             name="name"
-                                            value='원'
+                                            value={item_price[idx]}
                                         //onChange={onShop_nameHandler}
                                         />
                                     </div>
@@ -285,7 +318,7 @@ function EditItem() {
                                     }}>
                                         <input type="text"
                                             name="name"
-                                            value='100'
+                                            value={item_stockQuantity[idx]}
                                         //onChange={onShop_nameHandler}
                                         />
                                     </div>
@@ -327,6 +360,11 @@ function EditItem() {
                 </div>
                 <br />
                 <br />
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
                 <Grid container spacing={2}>
                     <Grid item xs={12} sm={6}>
                         <FormButton

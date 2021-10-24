@@ -5,12 +5,41 @@ import AppAppBar2 from './modules/views/AppBar2';
 import AppForm from './modules/views/AppForm';
 import FormButton from './modules/form/FormButton';
 import withRoot from './modules/withRoot';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 function Review() {
     const session = JSON.parse(window.sessionStorage.getItem("data"));
-    console.log(session.data.type)
+
+    var [store, setStore] = useState([]);
+    var id = [];
+
+    function searchId() {
+        const url = "http://localhost:8080/shop";
+        axios.get(url)
+        .then(function(response) {
+            setStore(response.data);
+            console.log("성공");
+        })
+        .catch(function(error) {
+            console.log("실패");
+        })
+    }
+    console.log(store)
+
+    for (let i=0; i<store.length; i++)
+    {
+        if(store[i].email === session.data.email)
+        {
+            id = store[i];
+        }
+    }
+    console.log(id)
+
+    useEffect(() => {
+        searchId()
+    },[]);
+
 
     const [number, setNumber] = useState(0);
 
@@ -65,7 +94,7 @@ function Review() {
                             float: 'left'
                         }}
                     >
-                        &nbsp;&nbsp;&nbsp;&nbsp;가게 이름 : 🌊 바다네 생선가게 🌊
+                        &nbsp;&nbsp;&nbsp;&nbsp;가게 이름 : {id.name}
                     </Typography>
                 </div>
                 <br />

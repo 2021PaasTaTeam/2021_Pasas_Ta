@@ -10,30 +10,52 @@ import axios from 'axios';
 import Mini_map from './page/Mini_map';
 
 function EditStore() {
-    let [store, setStore] = useState([]);
+    const session = JSON.parse(window.sessionStorage.getItem("data"));
 
-    function searchApi() {
-        const url = "http://localhost:8080/shop/4";
+
+    var [store, setStore] = useState([]);
+    //var [member, setMember] = useState([]);
+    // var id = useState([]);
+    var id = [];
+    //let [item, setItem] = useState([]);
+
+    function searchId() {
+        const url = "http://localhost:8080/shop";
         axios.get(url)
-            .then(function (response) {
-                setStore(response.data);
-                console.log("성공");
-                console.log(response.data)
-                const store = response.data;
-                const userObj = { store: store };
-                window.sessionStorage.setItem("store", JSON.stringify(userObj));
-            })
-            .catch(function (error) {
-                console.log("실패");
-            })
+        .then(function(response) {
+            setStore(response.data);
+            console.log("성공");
+            //console.log(response.data)
+            //member = response.data;
+
+            //console.log(id.shopId)
+            //console.log(member)
+            //const userObj = { member: member };
+            //window.sessionStorage.setItem("member", JSON.stringify(userObj));
+            //console.log(member)
+        })
+        .catch(function(error) {
+            console.log("실패");
+        })
     }
+    console.log(store)
+
+    for (let i=0; i<store.length; i++)
+    {
+        if(store[i].email === session.data.email)
+        {
+            id = store[i];
+        }
+    }
+    console.log(id)
 
     useEffect(() => {
-        searchApi()
-    }, []);
-    console.log(store.name)
+        searchId()
+    },[]);
 
-    const session = JSON.parse(window.sessionStorage.getItem("data"));
+
+
+    //setInterval(searchStore(id.shopId), 100000000);
 
     const [shop_name, setShop_name] = useState("");
     const [shop_address, setShop_address] = useState("");
@@ -90,7 +112,7 @@ function EditStore() {
         formData.append("phone", shop_phone);
         formData.append("registrationNum", registeration_number);
         formData.append("email", session.data.email);
-        formData.append("busineesTyepe", shop_business_type);
+        formData.append("businessType", shop_business_type);
         formData.append("region", shop_region);
 
         console.log(formData)
@@ -152,8 +174,8 @@ function EditStore() {
                                 collapse: 'collapse',
                                 borderRadius: '8px',
                             }}
-                            value={store.name}
-                        //onChange={onShop_nameHandler}
+                            value={id.name}
+                            onChange={onShop_nameHandler}
                         />
                     </Grid>
                 </Grid>
@@ -179,7 +201,7 @@ function EditStore() {
                             value={shop_region}
                             onChange={onShop_regionHandler}
                         >
-                            <option selected="selected">{store.region}</option>
+                            <option selected="selected">{id.region}</option>
                             <option>종로구</option>
                             <option>성북구</option>
                             <option>서초구</option>
@@ -210,7 +232,7 @@ function EditStore() {
                             value={shop_business_type}
                             onChange={onShop_business_typeHandler}
                         >
-                            <option selected="selected">직접선택</option>
+                            <option selected="selected">{id.bussinessType}</option>
                             <option >한복</option>
                             <option >공방</option>
                             <option >음식점</option>
@@ -236,7 +258,7 @@ function EditStore() {
                                 collapse: 'collapse',
                                 borderRadius: '8px',
                             }}
-                            value={store.address}
+                            value={id.address}
                             onChange={onShop_addressHandler} />
                     </Grid>
                 </Grid>
@@ -250,7 +272,7 @@ function EditStore() {
                     <Grid item xs={12} sm={9}>
                         <input type="text"
                             name="number"
-                            value={store.phone}
+                            value={id.phone}
                             placeholder="예) 01012345678"
                             style={{
                                 padding: 20,
@@ -275,7 +297,7 @@ function EditStore() {
                         <input type="file"
                             accept="image/png,image/jpg,impge/png,image/jpeg,image/gif"
                             name="name"
-                            //value={store.image.uploadFileName}
+                            //value={id.image.uploadFileName}
                             onChange={onShop_imageHandler}
                             required />
                     </Grid>
