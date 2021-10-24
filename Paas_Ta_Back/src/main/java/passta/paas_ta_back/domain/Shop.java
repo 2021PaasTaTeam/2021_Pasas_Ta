@@ -84,7 +84,11 @@ public class Shop {
     }
 
     // SHOP 정보 수정 메서드
-    public Shop changeShopInfo(String name, String phone, String address) {
+    public Shop changeShopInfo(String name,
+                               String phone,
+                               String region,
+                               String address,
+                               String businessType) {
         if (name != null) {
             this.name = name;
         }
@@ -93,6 +97,12 @@ public class Shop {
         }
         if (address != null) {
             this.address = address;
+        }
+        if (region != null) {
+            this.region = region;
+        }
+        if (businessType != null) {
+            this.businessType = businessType;
         }
         return this;
     }

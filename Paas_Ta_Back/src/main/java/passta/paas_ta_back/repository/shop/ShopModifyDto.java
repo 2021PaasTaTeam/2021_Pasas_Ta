@@ -13,6 +13,8 @@ import java.sql.Blob;
 public class ShopModifyDto {
     private String name;
     private String phone;
+    private String region;
     private String address;
+    private String businessType;
     private MultipartFile image;
 }
