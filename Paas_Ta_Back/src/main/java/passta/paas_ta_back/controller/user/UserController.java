@@ -100,9 +100,9 @@ public class UserController {
         return new ResponseEntity(new DeleteCheckDto(deleteCheck),HttpStatus.OK);
     }
 
-    @GetMapping("/user/shop")
-    public ResponseEntity<?> myShopsList(@RequestBody UserIdDto userIdDto){
-        List<Shop> shopByUserId = userService.findShopByUserId(userIdDto.getId());
+    @GetMapping("/user/{id}/shop")
+    public ResponseEntity<?> myShopsList(@PathVariable(name = "id") Long id){
+        List<Shop> shopByUserId = userService.findShopByUserId(id);
         if (shopByUserId == null){
             return ResponseEntity.ok(null);
         }
