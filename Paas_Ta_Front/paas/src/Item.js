@@ -7,37 +7,70 @@ import FormButton from './modules/form/FormButton';
 import withRoot from './modules/withRoot';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { width } from '@mui/system';
 
 function Product() {
-    let [store, setStore] = useState([]);
-
-    function searchApi() {
-        const url = "http://localhost:8080/shop/4";
-        axios.get(url)
-        .then(function(response) {
-            setStore(response.data);
-            console.log("성공");
-            console.log(response.data)
-            const store = response.data;
-        const userObj = { store: store };
-        window.sessionStorage.setItem("store", JSON.stringify(userObj));
-        
-        })
-        .catch(function(error) {
-            console.log("실패");
-        })
-    }
-    useEffect(() => {
-        searchApi()
-      },[]);
-    console.log(store.name)
-    //var img_src = 'C:/Temp/gathermarket/'+ store.img.storeFileName;
-    
-    const labels = ['대한민국 전통 한복', '잭 다니엘']
-
-
     const session = JSON.parse(window.sessionStorage.getItem("data"));
-    console.log(session.data.type)
+
+    var [store, setStore] = useState([]);
+    var [item, setItem] = useState([]);
+    var id = [];
+
+    function searchItem() {
+        const url = "http://localhost:8080/item";
+        axios.get(url)
+            .then(function (response) {
+                setItem(response.data);
+                console.log("성공");
+            })
+            .catch(function (error) {
+                console.log("실패");
+            })
+    }
+    console.log(item)
+
+    function searchId() {
+        const url = "http://localhost:8080/shop";
+        axios.get(url)
+            .then(function (response) {
+                setStore(response.data);
+                console.log("성공");
+            })
+            .catch(function (error) {
+                console.log("실패");
+            })
+    }
+    //console.log(store)
+
+    for (let i = 0; i < store.length; i++) {
+        if (store[i].email === session.data.email) {
+            id = store[i];
+        }
+    }
+    //console.log(id)
+
+    useEffect(() => {
+        searchId()
+        searchItem()
+    }, []);
+
+    //var img_src = 'C:/Temp/gathermarket/'+ store.img.storeFileName;
+
+    const item_name = []
+    const item_content = []
+    const item_price = []
+
+    for (var j = 0; j < item.length; j++) {
+        item_name[j] = item[j].name
+    }
+    for (var j = 0; j < item.length; j++) {
+        item_content[j] = item[j].content
+    }
+    for (var j = 0; j < item.length; j++) {
+        item_price[j] = item[j].price
+    }
+
+    //console.log(session.data.type)
 
     const [number, setNumber] = useState(0);
 
@@ -71,7 +104,7 @@ function Product() {
             <AppForm>
                 <React.Fragment>
                     <Typography variant="h3" align="center">
-                        {store.name}
+                        {id.name}
                     </Typography>
                 </React.Fragment>
                 <br />
@@ -109,7 +142,7 @@ function Product() {
                             float: 'left'
                         }}
                     >
-                        &nbsp;&nbsp;가게 업종 : 한복
+                        &nbsp;&nbsp;가게 업종 : {id.bussinessType}
                     </Typography>
                 </div>
                 <br />
@@ -124,7 +157,7 @@ function Product() {
                             float: 'left'
                         }}
                     >
-                        &nbsp;&nbsp;가게 지역구 : {store.region}
+                        &nbsp;&nbsp;가게 지역구 : {id.region}
                     </Typography>
                 </div>
                 <br />
@@ -139,7 +172,7 @@ function Product() {
                             float: 'left'
                         }}
                     >
-                        &nbsp;&nbsp;가게 실주소 : {store.address}
+                        &nbsp;&nbsp;가게 실주소 : {id.address}
                     </Typography>
                 </div>
                 <br />
@@ -154,10 +187,9 @@ function Product() {
                             float: 'left'
                         }}
                     >
-                        &nbsp;&nbsp;가게 전화번호 : {store.phone}
+                        &nbsp;&nbsp;가게 전화번호 : {id.phone}
                     </Typography>
                 </div>
-
                 <br />
                 <br />
                 <div
@@ -170,12 +202,10 @@ function Product() {
                 >
                     <span style={{ background: "#fff", }}></span>
                 </div>
-
-
                 <br />
                 <div>
                     <ul>
-                        {labels.map((label, idx) => (
+                        {item_name.map((name, idx) => (
                             <li key={idx}>
                                 <label>
                                     <div className="c1image" style={{
@@ -197,71 +227,69 @@ function Product() {
                                                 float: 'left'
                                             }}
                                         >
-                                            &nbsp;&nbsp;상품명 : {label}
+                                            &nbsp;&nbsp;상품명 : {item_name[idx]}
                                         </Typography>
-                                    </div>
-                                    <br />
-                                    <br />
-                                    <div style={{
-                                        float: 'left'
-                                    }}>
-                                        <br/>
-                                        <Typography
-                                            variant="h3"
-                                            style={{
-                                                fontSize: 17,
-                                                float: 'left'
-                                            }}
-                                        >
-                                            &nbsp;&nbsp;상품 설명 : 양주
-                                        </Typography>
-                                    </div>
-
-                                    <div style={{
-                                        float: 'left'
-                                    }}>
-                                        <br/>
-                                        <Typography
-                                            variant="h3"
-                                            style={{
-                                                fontSize: 17,
-                                                float: 'left'
-                                            }}
-                                        >
-                                            &nbsp;&nbsp;가격 : 1000000원
-                                        </Typography>
-                                    </div>
-                                    <br />
+                                    {/* </div> */}
                                     <br/>
-                                    <br />
-                                    <br />
+                                    <br/>
+                                    {/* <div style={{
+                                        float: 'left'
+                                    }}> */}
+                                        <Typography
+                                            variant="h3"
+                                            style={{
+                                                fontSize: 17,
+                                                float: 'left'
+                                            }}
+                                        >
+                                            &nbsp;&nbsp;설명 : {item_content[idx]}
+                                        </Typography>
+                                    {/* </div> */}
+                                    {/* <div style={{
+                                        float: 'left'
+                                    }}> */}
+                                    <br/>
+                                    <br/>
+                                        <Typography
+                                            variant="h3"
+                                            style={{
+                                                fontSize: 17,
+                                                float: 'left'
+                                            }}
+                                        >
+                                            &nbsp;&nbsp;가격 : {item_price[idx]}
+                                        </Typography>
+                                    </div>
+                                    <div style={{
+                                        float: 'right',
+                                    }}>
+                                        <br/>
+                                        <br/>
+                                        <br/>
+                                        <br/>
+                                        <br/>
+                                        <Typography
+                                            variant="h3"
+                                            style={{
+                                                fontSize: 20,
+                                                float: 'left'
+                                            }}
+                                        >
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            &nbsp;&nbsp;
+                                            <button onClick={onDecrease} style={btnStyle}>-</button>
+                                            &nbsp;&nbsp;{number}&nbsp;&nbsp;
+                                            <button onClick={onIncrease} style={btnStyle}>+</button>
+                                        </Typography>
+                                        &nbsp;
+                                    </div>
                                 </label>
-                <div style={{
-                    float: 'right'
-                }}>
-                    <br/>
-                    <br/>
-                    <br/>
-                    <br/>
-                    <br/>
-                    <Typography
-                        variant="h3"
-                        style={{
-                            fontSize: 20,
-                            float: 'left'
-                        }}
-                    >
-                        <button onClick={onDecrease} style={btnStyle}>-</button>
-                        &nbsp;&nbsp;{number}&nbsp;&nbsp;
-                    <button onClick={onIncrease} style={btnStyle}>+</button>
-                    </Typography>
-                    &nbsp;
-                    </div>
                             </li>
-                            
                         ))}
                     </ul>
-                    </div>
+                </div>
+                <br />
+                <br />
                 <br />
                 <div style={{
                     float: 'left'

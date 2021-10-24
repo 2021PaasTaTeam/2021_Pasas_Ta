@@ -2,7 +2,7 @@ import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
 import AppBar from '../components/AppBar';
 import Toolbar from '../components/Toolbar';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios'
 import Sidebar from '../../page/Sidebar';
 import { BrowserRouter as Router } from 'react-router-dom';
@@ -12,15 +12,49 @@ import './AppBar2.css';
 
 
 function AppAppBar2() {
-  var labels = ['한복', '잭 다니엘']
-//   var labels = [{
-//     a:'한복'
-//   },
-// {a:'잭 다니엘 허니'}]
+  const session = JSON.parse(window.sessionStorage.getItem("data"));
 
-  var labels_name = labels.map(name =><li>{name}</li>)
+    var [item, setItem] = useState([]);
 
-  const session_name = JSON.parse(window.sessionStorage.getItem("email"));
+    function searchItem() {
+        const url = "http://localhost:8080/item";
+        axios.get(url)
+            .then(function (response) {
+                setItem(response.data);
+                console.log("성공");
+            })
+            .catch(function (error) {
+                console.log("실패");
+            })
+    }
+    console.log(item)
+
+    useEffect(() => {
+        searchItem()
+    }, []);
+
+    //var img_src = 'C:/Temp/gathermarket/'+ store.img.storeFileName;
+
+    const item_name = []
+    const item_content = []
+    const item_price = []
+
+    for (var j = 0; j < item.length; j++) {
+        item_name[j] = item[j].name
+    }
+
+    for (var j = 0; j < item.length; j++) {
+        item_content[j] = item[j].content
+    }
+    for (var j = 0; j < item.length; j++) {
+        item_price[j] = item[j].price
+    }
+
+  //var labels = ['한복', '잭 다니엘']
+
+  //var labels_name = labels.map(name =><li>{name}</li>)
+
+  //const session_name = JSON.parse(window.sessionStorage.getItem("email"));
   let cart = {
     count: 5,
     cost: 500,
@@ -55,33 +89,17 @@ function AppAppBar2() {
               {session_name.email + ' 님 환영합니다.'}
             </Link> */}
             
-    <ul><li>      
+    <ul><li>
     <Notifications
-      //cardOption={data => console.log(data)}
-       //markAsRead={data => console.log(data)}
        data={[
-          // {
-          //   //image: logo,
-          //   message: '한복: '+' x'+cart.count+',    가격: '+' 💰:'+cart.cost,
-          // },
-          // {
-          //   //image: logo,
-          //   message: '잭 다니엘 허니 2병',
-          // },
-
           {
-            message: labels_name,
+            message: item,
             detailPage : '/Cart'
           },
           {
-            message: '총 결재 금액 : '+cart.cost,
+            message: '💰 총 결재 금액 : '+cart.cost,
             detailPage : '/Cart'
           },
-          // {
-          //   //image: logo,
-          //   message: ' 💰 총 결재 금액 : '+cart.cost,
-          //   detailPage : '/Cart',
-          // }
         ]}
         headerBackgroundColor = 'white'
         header={
