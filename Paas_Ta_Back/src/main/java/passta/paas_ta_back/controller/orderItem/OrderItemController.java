@@ -25,7 +25,7 @@ public class OrderItemController {
         return new ResponseEntity(HttpStatus.CREATED);
     }
 
-    @GetMapping("/orderorderItem/{id}")
+    @GetMapping("/orderItem/{id}")
     public ResponseEntity<?> findOrderItemOne(@PathVariable(name = "id") Long id) {
         return new ResponseEntity(HttpStatus.OK);
     }
