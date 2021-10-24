@@ -31,7 +31,6 @@ public class initDb {
         private final EntityManager em;
 
         public void dbInit1() {
-            System.out.println("Init1" + this.getClass());
 
             // 초기 사용자 세팅
             User user = User.createUser("이름1", "이메일1", "비밀번호1", "주소1", UserType.SELLER);
