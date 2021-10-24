@@ -13,7 +13,20 @@ import axios from 'axios';
 function AddItem() {
     const session = JSON.parse(window.sessionStorage.getItem("data"));
     var [store, setStore] = useState([]);
+    var [item, setItem] = useState([]);
     var id = [];
+
+    function searchItem() {
+        const url = "http://localhost:8080/item";
+        axios.get(url)
+            .then(function (response) {
+                setItem(response.data);
+                console.log("성공");
+            })
+            .catch(function (error) {
+                console.log("실패");
+            })
+    }
 
     function searchId() {
         const url = "http://localhost:8080/shop";
@@ -39,15 +52,30 @@ function AddItem() {
 
     useEffect(() => {
         searchId()
-    },[]);
+        searchItem()
+    }, []);
+    const item_name = []
+    const item_content = []
+    const item_price = []
+    const item_stockQuantity = []    
 
-    
+    for (var j = 0; j < item.length; j++) {
+        item_name[j] = item[j].name
+    }
+    for (var j = 0; j < item.length; j++) {
+        item_content[j] = item[j].content
+    }
+    for (var j = 0; j < item.length; j++) {
+        item_price[j] = item[j].price
+    }
+    for (var j = 0; j < item.length; j++) {
+        item_stockQuantity[j] = item[j].stockQuantity
+    }
+
+    function MoveEdit() {
+        window.location.replace("/EditItem")
+    }
     const [fileImage, setFileImage] = useState("");
-    const saveFileImage = (e) => {
-        setFileImage(URL.createObjectURL(e.target.files[0]));
-    };
-
-
     const [itemName, setItemName] = useState("");
     const [itemContent, setItemContent] = useState("");
     const [itemPrice, setItemPrice] = useState("");
@@ -69,39 +97,7 @@ function AddItem() {
     }
     const onItemImagesHandler = (event) => {
         setItemImages(event.currentTarget.files[0]);
-    }
-
-    var item_list = [];
-    var item_list_id = [];
-    var item_list_name = [];
-    var item_list_content = [];
-    var item_list_price = [];
-    var item_list_stock = [];
-    var item_list_image = [];
-
-    const item_list_add = () => {
-        const item_add = new FormData();
-
-        item_add.append("shopId", id.shopId)
-        item_add.append("itemContent",itemContent)
-        item_add.append("itemPrice",itemPrice)
-        item_add.append("itemStock",itemStock)
-        item_add.append("itemImages",itemImages)
-
-
-        console.log(item_list)
-        console.log(item_list_id)
-        console.log(item_list_name)
-        console.log(item_list_content)
-        console.log(item_list_price)
-        console.log(item_list_stock)
-        console.log(item_list_image)
-        // //console.log(item_add.entries())
-        // for (var value of item_add.entries()) {
-        //     console.log(value);
-        //     item_list_id = value;
-        //   }
-        //   console.log(item_list_id)
+        setFileImage(URL.createObjectURL(event.target.files[0]));
     }
 
     const onClickRegister = () => {
@@ -133,7 +129,7 @@ function AddItem() {
             .then(res => {
                 console.log(res)
                 alert('상품이 등록되었습니다.')
-                //window.location.replace("/Town")
+                window.location.replace("/AddItem")
             })
             .catch()
     }
@@ -282,9 +278,9 @@ function AddItem() {
                                             borderRadius: '8px',
                                         }}
                                         type="submit"
-                                        onClick={item_list_add}
+                                        onClick={onClickRegister}
                                     >
-                                        {'추가 하기'}
+                                        {'상품 추가 하기'}
                                     </FormButton>
                                     <div
                         style={{
@@ -296,10 +292,19 @@ function AddItem() {
                     >
                         <span style={{ background: "#fff", }}></span>
                     </div>
+                    <Typography variant="h3" align="left"
+                    style={{
+                        fontSize: 25,
+                        float: 'left'
+                    }}>
+                    &nbsp;&nbsp;📄 판매 상품 목록
+                </Typography>
+                <br />
+                <br />
                 <br />
                 <div>
                     <ul>
-                        {item_list.map((label, idx) => (
+                        {item_name.map((label, idx) => (
                             <li key={idx}>
                                 <label>
                                     <div className="c1image" style={{
@@ -320,14 +325,10 @@ function AddItem() {
                                                 float: 'left'
                                             }}
                                         >
-                                            &nbsp;&nbsp;상품명 : {item_list.itemName}
+                                            &nbsp;&nbsp;상품명 : {item_name[idx]}
                                         </Typography>
-                                    </div>
                                     <br />
                                     <br />
-                                    <div style={{
-                                        float: 'left'
-                                    }}>
                                         <Typography
                                             variant="h3"
                                             style={{
@@ -335,14 +336,10 @@ function AddItem() {
                                                 float: 'left'
                                             }}
                                         >
-                                            &nbsp;&nbsp;상품 설명 : {item_list.itemContent}
+                                            &nbsp;&nbsp;상품 설명 : {item_content[idx]}
                                         </Typography>
-                                    </div>
                                     <br />
                                     <br />
-                                    <div style={{
-                                        float: 'left'
-                                    }}>
                                         <Typography
                                             variant="h3"
                                             style={{
@@ -350,14 +347,10 @@ function AddItem() {
                                                 float: 'left'
                                             }}
                                         >
-                                            &nbsp;&nbsp;가격 : {item_list.itemPrice}
+                                            &nbsp;&nbsp;가격 : {item_price[idx]}
                                         </Typography>
-                                    </div>
                                     <br/>
                                     <br/>
-                                    <div style={{
-                                        float: 'left'
-                                    }}>
                                         <Typography
                                             variant="h3"
                                             style={{
@@ -365,14 +358,14 @@ function AddItem() {
                                                 float: 'left'
                                             }}
                                         >
-                                            &nbsp;&nbsp;재고 : {item_list.itemStock}
+                                            &nbsp;&nbsp;재고 : {item_stockQuantity[idx]}
                                         </Typography>
                                     </div>
                                     <br />
                                     <br/>
                                 </label>
                             </li>
-                        ))}
+                         ))} 
                     </ul>
                     </div>
                             <Grid container spacing={2}>
@@ -389,9 +382,9 @@ function AddItem() {
                                             borderRadius: '8px',
                                         }}
                                         type="submit"
-                                        onClick={onClickRegister}
+                                        onClick={MoveEdit}
                                     >
-                                        {'등록하기'}
+                                        {'상품 수정하기'}
                                     </FormButton>
                                 </Grid>
                                 <Grid item xs={12} sm={6}>

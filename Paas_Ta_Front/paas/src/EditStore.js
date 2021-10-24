@@ -11,6 +11,7 @@ import Mini_map from './page/Mini_map';
 
 function EditStore() {
     const session = JSON.parse(window.sessionStorage.getItem("data"));
+    const [fileImage, setFileImage] = useState("");
 
 
     var [store, setStore] = useState([]);
@@ -93,6 +94,7 @@ function EditStore() {
     // 가게 상표 이미지
     const onShop_imageHandler = (event) => {
         setShop_image(event.currentTarget.files[0]);
+        setFileImage(URL.createObjectURL(event.target.files[0]));
     }
 
     // 사업자 번호
@@ -302,6 +304,16 @@ function EditStore() {
                             required />
                     </Grid>
                 </Grid>
+                <br />
+                            <div className="Card1">
+                                <div className="image-container" align="center">
+                                    <img
+                                        height="200vh"
+                                        width="200vw"
+                                        id="preview_image"
+                                        src={fileImage} />
+                                </div>
+                            </div>
                 <br />
 
                 <div align='center'>

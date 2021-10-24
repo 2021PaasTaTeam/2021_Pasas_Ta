@@ -80,14 +80,14 @@ const Sidebar = () => {
             </div>
             {
               session.data.type === 'SELLER' ? 
-                <CDBSidebarMenuItem onClick={AddItem} icon="archive">상품 등록 하기</CDBSidebarMenuItem>
+                <CDBSidebarMenuItem onClick={AddItem} icon="archive">상품 관리</CDBSidebarMenuItem>
                 : <></>
             }
-            {
+            {/* {
               session.data.type === 'SELLER' ? 
                 <CDBSidebarMenuItem onClick={EditItem} icon="archive">상품 수정 하기</CDBSidebarMenuItem>
                 : <></>
-            }
+            } */}
 
           </CDBSidebarMenu>
         </CDBSidebarContent>
