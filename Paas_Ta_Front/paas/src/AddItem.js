@@ -16,18 +16,6 @@ function AddItem() {
     var [item, setItem] = useState([]);
     var id = [];
 
-    function searchItem() {
-        const url = "http://localhost:8080/item";
-        axios.get(url)
-            .then(function (response) {
-                setItem(response.data);
-                console.log("성공");
-            })
-            .catch(function (error) {
-                console.log("실패");
-            })
-    }
-
     function searchId() {
         const url = "http://localhost:8080/shop";
         axios.get(url)
@@ -52,9 +40,24 @@ function AddItem() {
 
     useEffect(() => {
         searchId()
-        searchItem()
-    }, []);
+        searchItem(id.shopId)
+
+    }, [id.shopId]);
+
+    function searchItem(shopid) {
+        const url = "http://localhost:8080/shop/"+shopid+"/item";
+        axios.get(url)
+            .then(function (response) {
+                setItem(response.data);
+                console.log("성공");
+            })
+            .catch(function (error) {
+                console.log("실패");
+            })
+    }
+
     const item_name = []
+    const item_image = []
     const item_content = []
     const item_price = []
     const item_stockQuantity = []    
@@ -62,6 +65,10 @@ function AddItem() {
     for (var j = 0; j < item.length; j++) {
         item_name[j] = item[j].name
     }
+    for (var j = 0; j < item.length; j++) {
+        item_image[j] = item[j].image
+    }
+    console.log(item_image[0])
     for (var j = 0; j < item.length; j++) {
         item_content[j] = item[j].content
     }
@@ -313,7 +320,7 @@ function AddItem() {
                                         <img className="phoneImage"
                                             height="160vh"
                                             width="160vw"
-                                            src="/assets/github.png" />
+                                            src={item_image[idx]} />
                                     </div>
                                     <div style={{
                                         float: 'left'

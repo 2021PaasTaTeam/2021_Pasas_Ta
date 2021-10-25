@@ -7,7 +7,6 @@ import FormButton from './modules/form/FormButton';
 import withRoot from './modules/withRoot';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { width } from '@mui/system';
 
 function Product() {
     const session = JSON.parse(window.sessionStorage.getItem("data"));
@@ -16,8 +15,8 @@ function Product() {
     var [item, setItem] = useState([]);
     var id = [];
 
-    function searchItem() {
-        const url = "http://localhost:8080/item";
+    function searchItem(shopid) {
+        const url = "http://localhost:8080/shop/"+shopid+"/item";
         axios.get(url)
             .then(function (response) {
                 setItem(response.data);
@@ -40,25 +39,24 @@ function Product() {
                 console.log("실패");
             })
     }
-    //console.log(store)
 
     for (let i = 0; i < store.length; i++) {
         if (store[i].email === session.data.email) {
             id = store[i];
         }
     }
-    //console.log(id)
 
     useEffect(() => {
         searchId()
-        searchItem()
-    }, []);
+        searchItem(id.shopId)
 
-    //var img_src = 'C:/Temp/gathermarket/'+ store.img.storeFileName;
+    }, [id.shopId]);
 
     const item_name = []
+    const item_image = []
     const item_content = []
     const item_price = []
+    //const item_count = ['']
 
     for (var j = 0; j < item.length; j++) {
         item_name[j] = item[j].name
@@ -69,10 +67,12 @@ function Product() {
     for (var j = 0; j < item.length; j++) {
         item_price[j] = item[j].price
     }
+    for (var j = 0; j < item.length; j++) {
+        item_image[j] = item[j].image
+    }
 
-    //console.log(session.data.type)
 
-    const [number, setNumber] = useState(0);
+    const [number, setNumber] = useState([]);
 
     const onIncrease = () => {
         setNumber(prevNumber => prevNumber + 1);
@@ -80,6 +80,7 @@ function Product() {
     const onDecrease = () => {
         setNumber(prevNumber => prevNumber - 1);
     }
+
     const Review_write = () => {
         window.open("/Review", "", "width=650, height=500, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
     }
@@ -214,7 +215,7 @@ function Product() {
                                         <img className="phoneImage"
                                             height="150vh"
                                             width="150vw"
-                                            src="/assets/github.png" />
+                                            src={item_image[idx]} />
                                     </div>
                                     <div style={{
                                         float: 'left'
@@ -229,12 +230,8 @@ function Product() {
                                         >
                                             &nbsp;&nbsp;상품명 : {item_name[idx]}
                                         </Typography>
-                                    {/* </div> */}
                                     <br/>
                                     <br/>
-                                    {/* <div style={{
-                                        float: 'left'
-                                    }}> */}
                                         <Typography
                                             variant="h3"
                                             style={{
@@ -244,10 +241,6 @@ function Product() {
                                         >
                                             &nbsp;&nbsp;설명 : {item_content[idx]}
                                         </Typography>
-                                    {/* </div> */}
-                                    {/* <div style={{
-                                        float: 'left'
-                                    }}> */}
                                     <br/>
                                     <br/>
                                         <Typography
