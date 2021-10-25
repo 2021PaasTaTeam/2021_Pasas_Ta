@@ -15,8 +15,8 @@ function EditItem() {
     var [item, setItem] = useState([]);
     var id = [];
 
-    function searchItem() {
-        const url = "http://localhost:8080/item";
+    function searchItem(shopid) {
+        const url = "http://localhost:8080/shop/"+shopid+"/item";
         axios.get(url)
             .then(function (response) {
                 setItem(response.data);
@@ -48,11 +48,13 @@ function EditItem() {
 
     useEffect(() => {
         searchId()
-        searchItem()
-    }, []);
+        searchItem(id.shopId)
+
+    }, [id.shopId]);
 
 
     const item_name = []
+    const item_image = []
     const item_content = []
     const item_price = []
     const item_stockQuantity = []    
@@ -60,6 +62,10 @@ function EditItem() {
     for (var j = 0; j < item.length; j++) {
         item_name[j] = item[j].name
     }
+    for (var j = 0; j < item.length; j++) {
+        item_image[j] = item[j].image
+    }
+    console.log(item_image[0])
     for (var j = 0; j < item.length; j++) {
         item_content[j] = item[j].content
     }
@@ -72,6 +78,9 @@ function EditItem() {
 
     const Town = () => {
         window.location.replace("/Town")
+    }
+    const AddItem = () => {
+        window.location.replace("/AddItem")
     }
 
     const item_remove = (index) => {
@@ -235,7 +244,21 @@ function EditItem() {
                         &nbsp;&nbsp;가게 전화번호 : {id.phone}
                     </Typography>
                 </div>
-
+                <br />
+                <br />
+                <div style={{
+                    float: 'right'
+                }}>
+                    <button onClick={AddItem} style={{
+                        color: "white",
+                        background: "blue",
+                        padding: ".120rem .720rem",
+                        border: "1px solid blue",
+                        borderRadius: ".25rem",
+                        fontSize: "1rem",
+                        lineHeight: 1.5,
+                    }}>상품 등록하기</button>
+                </div>
                 <br />
                 <br />
                 <div
@@ -269,7 +292,7 @@ function EditItem() {
                                         <img className="phoneImage"
                                             height="165vh"
                                             width="165vw"
-                                            src="/assets/github.png" />
+                                            src={item_image[idx]} />
                                     </div>
                                     <div style={{
                                         float: 'left'

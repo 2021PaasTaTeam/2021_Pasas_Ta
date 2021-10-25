@@ -14,41 +14,41 @@ import './AppBar2.css';
 function AppAppBar2() {
   const session = JSON.parse(window.sessionStorage.getItem("data"));
 
-    var [item, setItem] = useState([]);
+    // var [item, setItem] = useState([]);
 
-    function searchItem() {
-        const url = "http://localhost:8080/item";
-        axios.get(url)
-            .then(function (response) {
-                setItem(response.data);
-                console.log("성공");
-            })
-            .catch(function (error) {
-                console.log("실패");
-            })
-    }
-    console.log(item)
+    // function searchItem() {
+    //     const url = "http://localhost:8080/item";
+    //     axios.get(url)
+    //         .then(function (response) {
+    //             setItem(response.data);
+    //             console.log("성공");
+    //         })
+    //         .catch(function (error) {
+    //             console.log("실패");
+    //         })
+    // }
+    // console.log(item)
 
-    useEffect(() => {
-        searchItem()
-    }, []);
+    // useEffect(() => {
+    //     searchItem()
+    // }, []);
 
-    //var img_src = 'C:/Temp/gathermarket/'+ store.img.storeFileName;
+    // //var img_src = 'C:/Temp/gathermarket/'+ store.img.storeFileName;
 
-    const item_name = []
-    const item_content = []
-    const item_price = []
+    // const item_name = []
+    // const item_content = []
+    // const item_price = []
 
-    for (var j = 0; j < item.length; j++) {
-        item_name[j] = item[j].name
-    }
+    // for (var j = 0; j < item.length; j++) {
+    //     item_name[j] = item[j].name
+    // }
 
-    for (var j = 0; j < item.length; j++) {
-        item_content[j] = item[j].content
-    }
-    for (var j = 0; j < item.length; j++) {
-        item_price[j] = item[j].price
-    }
+    // for (var j = 0; j < item.length; j++) {
+    //     item_content[j] = item[j].content
+    // }
+    // for (var j = 0; j < item.length; j++) {
+    //     item_price[j] = item[j].price
+    // }
 
   //var labels = ['한복', '잭 다니엘']
 
@@ -93,7 +93,7 @@ function AppAppBar2() {
     <Notifications
        data={[
           {
-            message: item,
+            message: '',
             detailPage : '/Cart'
           },
           {
