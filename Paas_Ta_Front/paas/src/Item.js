@@ -68,7 +68,7 @@ function Product() {
         item_price[j] = item[j].price
     }
     for (var j = 0; j < item.length; j++) {
-        item_image[j] = item[j].image
+        item_image[j] = item[j].storeFileName
     }
 
 
@@ -116,7 +116,7 @@ function Product() {
                         height="200vh"
                         width="200vw"
                         id="img_obj"
-                        src="C:\Temp\gathermarket" />
+                        src={"img/"+id.image?.storeFileName} />
                 </div>
                 <div style={{
                     float: 'left'
@@ -215,7 +215,7 @@ function Product() {
                                         <img className="phoneImage"
                                             height="150vh"
                                             width="150vw"
-                                            src={item_image[idx]} />
+                                            src={"img/"+item_image[idx]} />
                                     </div>
                                     <div style={{
                                         float: 'left'

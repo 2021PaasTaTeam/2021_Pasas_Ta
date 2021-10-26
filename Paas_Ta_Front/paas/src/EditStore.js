@@ -17,7 +17,7 @@ function EditStore() {
     var [store, setStore] = useState([]);
     //var [member, setMember] = useState([]);
     // var id = useState([]);
-    var id = [];
+    var id = useState([]);
     //let [item, setItem] = useState([]);
 
     function searchId() {
@@ -49,6 +49,7 @@ function EditStore() {
         }
     }
     console.log(id)
+    //console.log(id.image.storeFileName)
 
     useEffect(() => {
         searchId()
@@ -299,7 +300,7 @@ function EditStore() {
                         <input type="file"
                             accept="image/png,image/jpg,impge/png,image/jpeg,image/gif"
                             name="name"
-                            //value={id.image.uploadFileName}
+                            //value={id.image.storeFileName}
                             onChange={onShop_imageHandler}
                             required />
                     </Grid>
@@ -311,7 +312,8 @@ function EditStore() {
                                         height="200vh"
                                         width="200vw"
                                         id="preview_image"
-                                        src={fileImage} />
+                                        src={"img/"+id.image?.storeFileName}
+                                        />
                                 </div>
                             </div>
                 <br />

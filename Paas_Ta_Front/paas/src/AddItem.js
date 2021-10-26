@@ -66,7 +66,7 @@ function AddItem() {
         item_name[j] = item[j].name
     }
     for (var j = 0; j < item.length; j++) {
-        item_image[j] = item[j].image
+        item_image[j] = item[j].storeFileName
     }
     console.log(item_image[0])
     for (var j = 0; j < item.length; j++) {
@@ -320,7 +320,7 @@ function AddItem() {
                                         <img className="phoneImage"
                                             height="160vh"
                                             width="160vw"
-                                            src={item_image[idx]} />
+                                            src={"img/"+item_image[idx]} />
                                     </div>
                                     <div style={{
                                         float: 'left'

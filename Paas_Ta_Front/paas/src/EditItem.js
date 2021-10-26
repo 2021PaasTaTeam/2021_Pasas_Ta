@@ -45,13 +45,18 @@ function EditItem() {
             id = store[i];
         }
     }
+    console.log(store)
+
+    console.log(id)
+    console.log(id.image)
+    console.log(typeof(id.image))
+    console.log(id.image?.storeFileName)
 
     useEffect(() => {
         searchId()
         searchItem(id.shopId)
 
     }, [id.shopId]);
-
 
     const item_name = []
     const item_image = []
@@ -63,9 +68,9 @@ function EditItem() {
         item_name[j] = item[j].name
     }
     for (var j = 0; j < item.length; j++) {
-        item_image[j] = item[j].image
+        item_image[j] = item[j].storeFileName
     }
-    console.log(item_image[0])
+    //console.log(typeof(item_image[0]))
     for (var j = 0; j < item.length; j++) {
         item_content[j] = item[j].content
     }
@@ -169,7 +174,8 @@ function EditItem() {
                     <img className="phoneImage"
                         height="200vh"
                         width="200vw"
-                        src="/assets/github.png" />
+                        src={"img/"+id.image?.storeFileName} 
+                        />
                 </div>
                 <div style={{
                     float: 'left'
@@ -292,7 +298,7 @@ function EditItem() {
                                         <img className="phoneImage"
                                             height="165vh"
                                             width="165vw"
-                                            src={item_image[idx]} />
+                                            src={"img/"+item_image[idx]} />
                                     </div>
                                     <div style={{
                                         float: 'left'
