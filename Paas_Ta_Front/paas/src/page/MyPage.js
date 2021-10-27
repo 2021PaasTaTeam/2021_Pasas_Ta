@@ -42,20 +42,17 @@ function MyPage() {
         console.log("성공");
         var name;
         var address;
-        //var password;
         var email;
         for (let i = 0; i < user.length; i++) {
           if (user[i].email === session.data.email) {
             name = response.data[i].name;
             address = response.data[i].address;
             email = response.data[i].email;
-            //password = response.data[i].password;
           }
         }
         setName(name);
         setAddress(address);
         setEmail(email);
-        //setPassword(password);
         console.log(name)
       })
       .catch(function (error) {
@@ -79,6 +76,7 @@ function MyPage() {
       'password': password,
       'email': email,
       'name': name,
+      'address': address
     })
     axios.post('http://localhost:8080/user/' + session.data.id, data, {
       headers: {
@@ -161,6 +159,7 @@ function MyPage() {
           <br />
           <input type="password"
             name="password"
+            placeholder="새 비밀번호를 입력해주세요."
             style={{
               padding: 20,
               fontSize: 25,

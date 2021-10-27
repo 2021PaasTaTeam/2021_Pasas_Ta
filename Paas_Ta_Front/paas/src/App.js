@@ -15,6 +15,7 @@ import EditStore from "./EditStore";
 import Cart from "./Cart";
 import Shopping_info from "./Shopping_info";
 import Review from "./Review";
+import Item_Modify from "./Item_Modify";
 
 class App extends Component {
     render() {
@@ -33,6 +34,7 @@ class App extends Component {
                     <Route path="/Cart" exact component={Cart} />
                     <Route path="/Shopping_info" exact component={Shopping_info} />
                     <Route path="/Review" exact component={Review} />
+                    <Route path="/Item_Modify" exact component={Item_Modify} />
 
                     
                     

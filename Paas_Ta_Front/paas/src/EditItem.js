@@ -10,23 +10,26 @@ import axios from 'axios';
 
 function EditItem() {
     const session = JSON.parse(window.sessionStorage.getItem("data"));
+    const item_data_session = JSON.parse(window.sessionStorage.getItem("item_data"));
+
+    console.log(item_data_session)
 
     var [store, setStore] = useState([]);
     var [item, setItem] = useState([]);
     var id = [];
 
     function searchItem(shopid) {
-        const url = "http://localhost:8080/shop/"+shopid+"/item";
+        const url = "http://localhost:8080/shop/" + shopid + "/item";
         axios.get(url)
             .then(function (response) {
                 setItem(response.data);
                 console.log("성공");
+                console.log(item[0].name)
             })
             .catch(function (error) {
                 console.log("실패");
             })
     }
-    console.log(item)
 
     function searchId() {
         const url = "http://localhost:8080/shop";
@@ -45,27 +48,20 @@ function EditItem() {
             id = store[i];
         }
     }
-    console.log(store)
-
-    console.log(id)
-    console.log(id.image)
-    console.log(typeof(id.image))
-    console.log(id.image?.storeFileName)
 
     useEffect(() => {
         searchId()
         searchItem(id.shopId)
-
     }, [id.shopId]);
 
-    const item_name = []
+    const item_name = [];
     const item_image = []
     const item_content = []
     const item_price = []
-    const item_stockQuantity = []    
+    const item_stockQuantity = []
 
     for (var j = 0; j < item.length; j++) {
-        item_name[j] = item[j].name
+        item_name[j] = item[j].name;
     }
     for (var j = 0; j < item.length; j++) {
         item_image[j] = item[j].storeFileName
@@ -90,7 +86,7 @@ function EditItem() {
 
     const item_remove = (index) => {
         console.log(item[index].itemId)
-        axios.delete('http://localhost:8080/item/'+item[index].itemId, {
+        axios.delete('http://localhost:8080/item/' + item[index].itemId, {
         })
             .then(res => {
                 alert('해당 상품이 삭제되었습니다.')
@@ -100,63 +96,18 @@ function EditItem() {
             .catch()
     }
 
-    const [itemName, setItemName] = useState("");
-    const [itemContent, setItemContent] = useState("");
-    const [itemPrice, setItemPrice] = useState("");
-    const [itemStock, setItemStock] = useState("");
-    const [itemImages, setItemImages] = useState("");
-
-
-    const onItemNameHandler = (event) => {
-        setItemName(event.currentTarget.value);
-    }
-    const onItemContentHandler = (event) => {
-        setItemContent(event.currentTarget.value);
-    }
-    const onItemStockHandler = (event) => {
-        setItemStock(event.currentTarget.value);
-    }
-    const onItemPriceHandler = (event) => {
-        setItemPrice(event.currentTarget.value);
-    }
-    const onItemImagesHandler = (event) => {
-        setItemImages(event.currentTarget.files[0]);
-    }
-
-    const onClickModify = (index) => {
-        const formData = new FormData();
-
-        formData.append("shopId", id.shopId)
-        formData.append("itemName",itemName)
-        formData.append("itemContent",itemContent)
-        formData.append("itemPrice",itemPrice)
-        formData.append("itemStock",itemStock)
-        formData.append("itemImages",itemImages)
-
-        console.log(formData)
-
-        console.log('click item')
-        console.log('가게번호 : ', id.shopId)
-        console.log("itemName",itemName)
-        console.log("itemContent",itemContent)
-        console.log("itemPrice",itemPrice)
-        console.log("itemStock",itemStock)
-        console.log("itemImages",itemImages)
-
-
-        axios.post('http://localhost:8080/item/'+item[index].itemId, formData, {
-            headers: {
-                'Content-type': 'multipart/form-data; charset=utf-8',
-            }
+    const item_modify = (index) => {
+        console.log(item[index].itemId)
+        axios.post('http://localhost:8080/item/' + item[index].itemId, {
         })
             .then(res => {
-                console.log(res)
-                alert('상품이 수정되었습니다.')
-                //window.location.replace("/Town")
+                const item = res.data;
+                const itemObj = { item_data: item };
+                window.sessionStorage.setItem("item_data", JSON.stringify(itemObj));
+                window.open("/Item_Modify", "", "width=650, height=500, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
             })
             .catch()
     }
-
 
     return (
         <React.Fragment>
@@ -174,8 +125,8 @@ function EditItem() {
                     <img className="phoneImage"
                         height="200vh"
                         width="200vw"
-                        src={"img/"+id.image?.storeFileName} 
-                        />
+                        src={"img/" + id.image?.storeFileName}
+                    />
                 </div>
                 <div style={{
                     float: 'left'
@@ -252,25 +203,10 @@ function EditItem() {
                 </div>
                 <br />
                 <br />
-                <div style={{
-                    float: 'right'
-                }}>
-                    <button onClick={AddItem} style={{
-                        color: "white",
-                        background: "blue",
-                        padding: ".120rem .720rem",
-                        border: "1px solid blue",
-                        borderRadius: ".25rem",
-                        fontSize: "1rem",
-                        lineHeight: 1.5,
-                    }}>상품 등록하기</button>
-                </div>
-                <br />
-                <br />
                 <div
                     style={{
                         width: "100%",
-                        borderBottom: "1px solid #aaa",
+                        borderBottom: "3px solid black",
                         lineHeight: "0.1em",
                         margin: "10px 0 10px",
                     }}
@@ -286,21 +222,20 @@ function EditItem() {
                     📄 판매 상품 목록
                 </Typography>
                 <br />
-                <br />
                 <div>
                     <ul>
                         {item_name.map((label, idx) => (
                             <li key={idx}>
                                 <label>
-                                    <br/>
-                                    <br/>
+                                    <br />
+                                    <br />
                                     <div className="c1image" style={{
                                         float: 'left'
                                     }} >
                                         <img className="phoneImage"
-                                            height="160vh"
-                                            width="160vw"
-                                            src={"img/"+item_image[idx]} />
+                                            height="200vh"
+                                            width="200vw"
+                                            src={"img/" + item_image[idx]} />
                                     </div>
                                     <div style={{
                                         float: 'left'
@@ -312,13 +247,13 @@ function EditItem() {
                                                 float: 'left'
                                             }}
                                         >
-                                            &nbsp;&nbsp;상품명 : &nbsp;&nbsp;
+                                            &nbsp;&nbsp;상품명 : &nbsp;&nbsp;{item_name[idx]}
                                         </Typography>
-                                            <input type="text"
+                                        {/* <input type="text"
                                                 name="name"
                                                 value={item_name[idx]}
-                                            //onChange={onShop_nameHandler}
-                                            />
+                                            onChange={onItemNameHandler}
+                                            /> */}
                                     </div>
                                     <br />
                                     <br />
@@ -332,13 +267,13 @@ function EditItem() {
                                                 float: 'left'
                                             }}
                                         >
-                                            &nbsp;&nbsp;설명 : &nbsp;&nbsp;
+                                            &nbsp;&nbsp;설명 : &nbsp;&nbsp;{item_content[idx]}
                                         </Typography>
-                                        <input type="text"
+                                        {/* <input type="text"
                                             name="name"
                                             value={item_content[idx]}
                                         //onChange={onShop_nameHandler}
-                                        />
+                                        /> */}
                                     </div>
                                     <br />
                                     <br />
@@ -352,13 +287,13 @@ function EditItem() {
                                                 float: 'left'
                                             }}
                                         >
-                                            &nbsp;&nbsp;가격 : &nbsp;&nbsp;
+                                            &nbsp;&nbsp;가격 : &nbsp;&nbsp;{item_price[idx]}
                                         </Typography>
-                                        <input type="text"
+                                        {/* <input type="text"
                                             name="name"
                                             value={item_price[idx]}
                                         //onChange={onShop_nameHandler}
-                                        />
+                                        /> */}
                                     </div>
                                     <br />
                                     <br />
@@ -372,17 +307,17 @@ function EditItem() {
                                                 float: 'left'
                                             }}
                                         >
-                                            &nbsp;&nbsp;재고 : &nbsp;&nbsp;
+                                            &nbsp;&nbsp;재고 : &nbsp;&nbsp;{item_stockQuantity[idx]}
                                         </Typography>
-                                        <input type="text"
+                                        {/* <input type="text"
                                             name="name"
                                             value={item_stockQuantity[idx]}
                                         //onChange={onShop_nameHandler}
-                                        />
+                                        /> */}
                                     </div>
                                     <br />
-                                    <br />
-                                    <div style={{
+                                    {/* <br /> */}
+                                    {/* <div style={{
                                         float: 'left'
                                     }}>
                                         <Typography
@@ -392,23 +327,46 @@ function EditItem() {
                                                 float: 'left'
                                             }}
                                         >
-                                        &nbsp;&nbsp;사진변경 : &nbsp;&nbsp;
+                                            &nbsp;&nbsp;사진변경 : &nbsp;&nbsp;
                                         </Typography>
-                                    <input type="file"
-                                        accept="image/*"
-                                        name="name"
-                                        required
-                                        files={item_image[idx]}
-                                        onChange={onItemImagesHandler}
+                                        <input type="file"
+                                            accept="image/*"
+                                            name="name"
+                                            required
+                                            files={item_image[idx]}
+                                            //onChange={onItemImagesHandler}
                                         />
-                                    </div>
-                                    <br />
-                                    <br />
+                                    </div> */}
                                 </label>
                                 <div style={{
                                     float: 'right'
                                 }}>
-
+                                    <br/>
+                                    <br/>
+                                    <Typography
+                                        variant="h3"
+                                        style={{
+                                            fontSize: 20,
+                                            float: 'left'
+                                        }}
+                                    >
+                                        <FormButton
+                                            sx={{ mt: 1, mb: 1 }}
+                                            color="secondary"
+                                            style={{
+                                                padding: 1,
+                                                backgroundColor: "blue",
+                                                border: "2px solid blue",
+                                                collapse: 'collapse',
+                                                borderRadius: '8px',
+                                            }}
+                                            type="submit"
+                                            onClick={() => item_modify(idx)}
+                                        >
+                                            {'상품 수정'}
+                                        </FormButton>
+                                        &nbsp;&nbsp;
+                                    </Typography>
                                     <Typography
                                         variant="h3"
                                         style={{
@@ -433,18 +391,20 @@ function EditItem() {
                                     </Typography>
                                     &nbsp;
                                 </div>
+                                <br />
                             </li>
-
                         ))}
                     </ul>
+
                 </div>
+
                 <br />
                 <br />
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
                 <Grid container spacing={2}>
                     <Grid item xs={12} sm={6}>
                         <FormButton
@@ -459,9 +419,9 @@ function EditItem() {
                                 borderRadius: '8px',
                             }}
                             type="submit"
-                            onClick={onClickModify}
+                            onClick={AddItem}
                         >
-                            {'수정하기'}
+                            {'상품 등록하기'}
                         </FormButton>
                     </Grid>
                     <Grid item xs={12} sm={6}>
