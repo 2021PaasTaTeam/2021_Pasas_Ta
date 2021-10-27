@@ -138,7 +138,7 @@ class Notifications extends Component {
 
     const { title, option } = header;
     const CustomComponent = notificationCard;
-    const dataLength = data.length;
+    const dataLength = data.length-1;
 
     const cardList = Array.isArray(data)
       && (CustomComponent

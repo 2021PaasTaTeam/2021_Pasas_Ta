@@ -9,8 +9,6 @@ function Mini_map() {
   let canvasRef = createRef();
 
 
-
-
   let backgroundReady = false;
   let backgroundImg = new Image();
 

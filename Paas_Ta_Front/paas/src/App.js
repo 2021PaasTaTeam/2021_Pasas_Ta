@@ -10,12 +10,12 @@ import Item from "./Item";
 import AddStore from "./AddStore";
 import MyPage from "./page/MyPage";
 import AddItem from "./page/AddItem";
-import EditItem from "./EditItem";
+import EditItem from "./page/EditItem";
 import EditStore from "./EditStore";
 import Cart from "./Cart";
 import Shopping_info from "./Shopping_info";
 import Review from "./Review";
-import Item_Modify from "./Item_Modify";
+import Item_Modify from "./page/Item_Modify";
 
 class App extends Component {
     render() {
