@@ -9,7 +9,7 @@ import Town from "./page/Gather_town";
 import Item from "./Item";
 import AddStore from "./AddStore";
 import MyPage from "./page/MyPage";
-import AddItem from "./AddItem";
+import AddItem from "./page/AddItem";
 import EditItem from "./EditItem";
 import EditStore from "./EditStore";
 import Cart from "./Cart";

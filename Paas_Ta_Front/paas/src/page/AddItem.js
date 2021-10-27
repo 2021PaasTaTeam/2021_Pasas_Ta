@@ -1,12 +1,12 @@
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import { Form } from 'react-final-form';
-import Typography from './modules/components/Typography';
-import AppFooter from './modules/views/AppFooter';
-import AppAppBar2 from './modules/views/AppBar2';
-import AppForm from './modules/views/AppForm';
-import FormButton from './modules/form/FormButton';
-import withRoot from './modules/withRoot';
+import Typography from '../modules/components/Typography';
+import AppFooter from '../modules/views/AppFooter';
+import AppAppBar2 from '../modules/views/AppBar2';
+import AppForm from '../modules/views/AppForm';
+import FormButton from '../modules/form/FormButton';
+import withRoot from '../modules/withRoot';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
@@ -253,7 +253,7 @@ function AddItem() {
                                 </Grid>
                                 <Grid item xs={12} sm={8}>
                                 <input type="file"
-                                        accept="image/png,image/jpg,impge/png,image/jpeg,image/gif"
+                                        accept="image/*"
                                         name="name"
                                         required
                                         files={itemImages}
