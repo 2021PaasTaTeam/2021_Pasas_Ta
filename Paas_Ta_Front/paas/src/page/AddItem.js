@@ -1,6 +1,4 @@
-import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-import { Form } from 'react-final-form';
 import Typography from '../modules/components/Typography';
 import AppFooter from '../modules/views/AppFooter';
 import AppAppBar2 from '../modules/views/AppBar2';
@@ -19,20 +17,18 @@ function AddItem() {
     function searchId() {
         const url = "http://localhost:8080/shop";
         axios.get(url)
-        .then(function(response) {
-            setStore(response.data);
-            console.log("성공");
-        })
-        .catch(function(error) {
-            console.log("실패");
-        })
+            .then(function (response) {
+                setStore(response.data);
+                console.log("성공");
+            })
+            .catch(function (error) {
+                console.log("실패");
+            })
     }
     console.log(store)
 
-    for (let i=0; i<store.length; i++)
-    {
-        if(store[i].email === session.data.email)
-        {
+    for (let i = 0; i < store.length; i++) {
+        if (store[i].email === session.data.email) {
             id = store[i];
         }
     }
@@ -45,7 +41,7 @@ function AddItem() {
     }, [id.shopId]);
 
     function searchItem(shopid) {
-        const url = "http://localhost:8080/shop/"+shopid+"/item";
+        const url = "http://localhost:8080/shop/" + shopid + "/item";
         axios.get(url)
             .then(function (response) {
                 setItem(response.data);
@@ -60,7 +56,7 @@ function AddItem() {
     const item_image = []
     const item_content = []
     const item_price = []
-    const item_stockQuantity = []    
+    const item_stockQuantity = []
 
     for (var j = 0; j < item.length; j++) {
         item_name[j] = item[j].name
@@ -111,21 +107,21 @@ function AddItem() {
         const formData = new FormData();
 
         formData.append("shopId", id.shopId)
-        formData.append("itemName",itemName)
-        formData.append("itemContent",itemContent)
-        formData.append("itemPrice",itemPrice)
-        formData.append("itemStock",itemStock)
-        formData.append("itemImages",itemImages)
+        formData.append("itemName", itemName)
+        formData.append("itemContent", itemContent)
+        formData.append("itemPrice", itemPrice)
+        formData.append("itemStock", itemStock)
+        formData.append("itemImages", itemImages)
 
         console.log(formData)
 
         console.log('click item')
         console.log('가게번호 : ', id.shopId)
-        console.log("itemName",itemName)
-        console.log("itemContent",itemContent)
-        console.log("itemPrice",itemPrice)
-        console.log("itemStock",itemStock)
-        console.log("itemImages",itemImages)
+        console.log("itemName", itemName)
+        console.log("itemContent", itemContent)
+        console.log("itemPrice", itemPrice)
+        console.log("itemStock", itemStock)
+        console.log("itemImages", itemImages)
 
 
         axios.post('http://localhost:8080/item', formData, {
@@ -152,154 +148,154 @@ function AddItem() {
                         우리 가게 상품 등록하기
                     </Typography>
                 </React.Fragment>
-                <br/>
-                            <Grid container spacing={2}>
-                                <Grid item xs={12} sm={3}>
-                                    <Typography variant="h6" align="center">
-                                        상품명
-                                    </Typography>
-                                </Grid>
-                                <Grid item xs={12} sm={9}>
-                                <input type="text"
-                                name="name"
-                                    style={{
-                                        padding: 20,
-                                        width: 380,
-                                        height: 50,
-                                        padding: 20,
-                                        border: "2px solid black",
-                                        collapse: 'collapse',
-                                        borderRadius: '8px',
-                                    }}
-                                    value={itemName}
-                                    onChange={onItemNameHandler}
-                                     />
-                                </Grid>
-                            </Grid>
-                            <br />
-                            <Grid container spacing={2}>
-                                <Grid item xs={12} sm={3}>
-                                    <Typography variant="h6" align="center">
-                                        상품 설명
-                                    </Typography>
-                                </Grid>
-                                <Grid item xs={12} sm={9}>
-                                    <input type="text"
-                                    placeholder="예) 한복 저고리"
-                                    style={{
-                                        padding: 100,
-                                        border: "2px solid black",
-                                        collapse: 'collapse',
-                                        borderRadius: '8px',
-                                    }}
-                                    value={itemContent}
-                                    onChange={onItemContentHandler}
-                                     />
-                                </Grid>
-                            </Grid>
-                            <br />
-                            <Grid container spacing={2}>
-                                <Grid item xs={12} sm={3}>
-                                    <Typography variant="h6" align="center">
-                                        상품 가격
-                                    </Typography>
-                                </Grid>
-                                <Grid item xs={12} sm={9} >
-                                <input type="text"
-                                name="number"
-                                align="center"
-                                    style={{
-                                        width: 380,
-                                        height: 50,
-                                        padding: 20,
-                                        border: "2px solid black",
-                                        collapse: 'collapse',
-                                        borderRadius: '8px',
-                                    }}
-                                    value={itemPrice}
-                                    onChange={onItemPriceHandler}
-                                     />
-                                </Grid>
-                            </Grid>
-                            <br />
-                            <Grid container spacing={2}>
-                                <Grid item xs={12} sm={3}>
-                                    <Typography variant="h6" align="center">
-                                        상품 재고
-                                    </Typography>
-                                </Grid>
-                                <Grid item xs={12} sm={9} >
-                                <input type="text"
-                                name="number"
-                                    style={{
-                                        width: 380,
-                                        height: 50,
-                                        padding: 20,
-                                        border: "2px solid black",
-                                        collapse: 'collapse',
-                                        borderRadius: '8px',
-                                    }}
-                                    value={itemStock}
-                                    onChange={onItemStockHandler}
-                                     />
-                                </Grid>
-                            </Grid>
-                            <br />
-                            <Grid container spacing={2}>
-                                <Grid item xs={12} sm={4}>
-                                    <Typography variant="h6" align="center">
-                                    상품 이미지
-                                    </Typography>
-                                </Grid>
-                                <Grid item xs={12} sm={8}>
-                                <input type="file"
-                                        accept="image/*"
-                                        name="name"
-                                        required
-                                        files={itemImages}
-                                        onChange={onItemImagesHandler}
-                                        />
-                                </Grid>
-                            </Grid>
-                            <br />
-                            <div className="Card1">
-                                <div className="image-container" align="center">
-                                    <img
-                                        height="200vh"
-                                        width="200vw"
-                                        id="preview_image"
-                                        src={fileImage} />
-                                </div>
-                            </div>
-                            <br />
-                            <br />
-                            <FormButton
-                                        sx={{ mt: 1, mb: 1 }}
-                                        size="large"
-                                        color="primary"
-                                        fullWidth
-                                        style={{
-                                            padding: 8,
-                                            border: "4px solid black",
-                                            collapse: 'collapse',
-                                            borderRadius: '8px',
-                                        }}
-                                        type="submit"
-                                        onClick={onClickRegister}
-                                    >
-                                        {'상품 추가 하기'}
-                                    </FormButton>
-                                    <div
-                        style={{
-                            width: "100%",
-                            borderBottom: "1px solid #aaa",
-                            lineHeight: "0.1em",
-                            margin: "10px 0 10px",
-                        }}
-                    >
-                        <span style={{ background: "#fff", }}></span>
+                <br />
+                <Grid container spacing={2}>
+                    <Grid item xs={12} sm={3}>
+                        <Typography variant="h6" align="center">
+                            상품명
+                        </Typography>
+                    </Grid>
+                    <Grid item xs={12} sm={9}>
+                        <input type="text"
+                            name="name"
+                            style={{
+                                padding: 20,
+                                width: 380,
+                                height: 50,
+                                padding: 20,
+                                border: "2px solid black",
+                                collapse: 'collapse',
+                                borderRadius: '8px',
+                            }}
+                            value={itemName}
+                            onChange={onItemNameHandler}
+                        />
+                    </Grid>
+                </Grid>
+                <br />
+                <Grid container spacing={2}>
+                    <Grid item xs={12} sm={3}>
+                        <Typography variant="h6" align="center">
+                            상품 설명
+                        </Typography>
+                    </Grid>
+                    <Grid item xs={12} sm={9}>
+                        <input type="text"
+                            placeholder="예) 한복 저고리"
+                            style={{
+                                padding: 100,
+                                border: "2px solid black",
+                                collapse: 'collapse',
+                                borderRadius: '8px',
+                            }}
+                            value={itemContent}
+                            onChange={onItemContentHandler}
+                        />
+                    </Grid>
+                </Grid>
+                <br />
+                <Grid container spacing={2}>
+                    <Grid item xs={12} sm={3}>
+                        <Typography variant="h6" align="center">
+                            상품 가격
+                        </Typography>
+                    </Grid>
+                    <Grid item xs={12} sm={9} >
+                        <input type="text"
+                            name="number"
+                            align="center"
+                            style={{
+                                width: 380,
+                                height: 50,
+                                padding: 20,
+                                border: "2px solid black",
+                                collapse: 'collapse',
+                                borderRadius: '8px',
+                            }}
+                            value={itemPrice}
+                            onChange={onItemPriceHandler}
+                        />
+                    </Grid>
+                </Grid>
+                <br />
+                <Grid container spacing={2}>
+                    <Grid item xs={12} sm={3}>
+                        <Typography variant="h6" align="center">
+                            상품 재고
+                        </Typography>
+                    </Grid>
+                    <Grid item xs={12} sm={9} >
+                        <input type="text"
+                            name="number"
+                            style={{
+                                width: 380,
+                                height: 50,
+                                padding: 20,
+                                border: "2px solid black",
+                                collapse: 'collapse',
+                                borderRadius: '8px',
+                            }}
+                            value={itemStock}
+                            onChange={onItemStockHandler}
+                        />
+                    </Grid>
+                </Grid>
+                <br />
+                <Grid container spacing={2}>
+                    <Grid item xs={12} sm={4}>
+                        <Typography variant="h6" align="center">
+                            상품 이미지
+                        </Typography>
+                    </Grid>
+                    <Grid item xs={12} sm={8}>
+                        <input type="file"
+                            accept="image/*"
+                            name="name"
+                            required
+                            files={itemImages}
+                            onChange={onItemImagesHandler}
+                        />
+                    </Grid>
+                </Grid>
+                <br />
+                <div className="Card1">
+                    <div className="image-container" align="center">
+                        <img
+                            height="200vh"
+                            width="200vw"
+                            id="preview_image"
+                            src={fileImage} />
                     </div>
-                    <Typography variant="h3" align="left"
+                </div>
+                <br />
+                <br />
+                <FormButton
+                    sx={{ mt: 1, mb: 1 }}
+                    size="large"
+                    color="primary"
+                    fullWidth
+                    style={{
+                        padding: 8,
+                        border: "4px solid black",
+                        collapse: 'collapse',
+                        borderRadius: '8px',
+                    }}
+                    type="submit"
+                    onClick={onClickRegister}
+                >
+                    {'상품 추가 하기'}
+                </FormButton>
+                <div
+                    style={{
+                        width: "100%",
+                        borderBottom: "1px solid #aaa",
+                        lineHeight: "0.1em",
+                        margin: "10px 0 10px",
+                    }}
+                >
+                    <span style={{ background: "#fff", }}></span>
+                </div>
+                <Typography variant="h3" align="left"
                     style={{
                         fontSize: 25,
                         float: 'left'
@@ -320,7 +316,7 @@ function AddItem() {
                                         <img className="phoneImage"
                                             height="160vh"
                                             width="160vw"
-                                            src={"img/"+item_image[idx]} />
+                                            src={"img/" + item_image[idx]} />
                                     </div>
                                     <div style={{
                                         float: 'left'
@@ -334,19 +330,19 @@ function AddItem() {
                                         >
                                             &nbsp;&nbsp;상품명 : {item_name[idx]}
                                         </Typography>
-                                    <br />
-                                    <br />
+                                        <br />
+                                        <br />
                                         <Typography
                                             variant="h3"
                                             style={{
-                                                fontSize: 15,
+                                                fontSize: 17,
                                                 float: 'left'
                                             }}
                                         >
                                             &nbsp;&nbsp;상품 설명 : {item_content[idx]}
                                         </Typography>
-                                    <br />
-                                    <br />
+                                        <br />
+                                        <br />
                                         <Typography
                                             variant="h3"
                                             style={{
@@ -356,8 +352,8 @@ function AddItem() {
                                         >
                                             &nbsp;&nbsp;가격 : {item_price[idx]}
                                         </Typography>
-                                    <br/>
-                                    <br/>
+                                        <br />
+                                        <br />
                                         <Typography
                                             variant="h3"
                                             style={{
@@ -369,49 +365,49 @@ function AddItem() {
                                         </Typography>
                                     </div>
                                     <br />
-                                    <br/>
+                                    <br />
                                 </label>
                             </li>
-                         ))} 
+                        ))}
                     </ul>
-                    </div>
-                            <Grid container spacing={2}>
-                                <Grid item xs={12} sm={6}>
-                                    <FormButton
-                                        sx={{ mt: 1, mb: 1 }}
-                                        size="large"
-                                        color="primary"
-                                        fullWidth
-                                        style={{
-                                            padding: 8,
-                                            border: "4px solid black",
-                                            collapse: 'collapse',
-                                            borderRadius: '8px',
-                                        }}
-                                        type="submit"
-                                        onClick={MoveEdit}
-                                    >
-                                        {'상품 수정하기'}
-                                    </FormButton>
-                                </Grid>
-                                <Grid item xs={12} sm={6}>
-                                    <FormButton
-                                        sx={{ mt: 1, mb: 1 }}
-                                        size="large"
-                                        color="secondary"
-                                        fullWidth
-                                        style={{
-                                            padding: 8,
-                                            border: "4px solid red",
-                                            collapse: 'collapse',
-                                            borderRadius: '8px',
-                                        }}
-                                        href="/Town"
-                                    >
-                                        {'취소하기'}
-                                    </FormButton>
-                                </Grid>
-                            </Grid>
+                </div>
+                <Grid container spacing={2}>
+                    <Grid item xs={12} sm={6}>
+                        <FormButton
+                            sx={{ mt: 1, mb: 1 }}
+                            size="large"
+                            color="primary"
+                            fullWidth
+                            style={{
+                                padding: 8,
+                                border: "4px solid black",
+                                collapse: 'collapse',
+                                borderRadius: '8px',
+                            }}
+                            type="submit"
+                            onClick={MoveEdit}
+                        >
+                            {'상품 수정하기'}
+                        </FormButton>
+                    </Grid>
+                    <Grid item xs={12} sm={6}>
+                        <FormButton
+                            sx={{ mt: 1, mb: 1 }}
+                            size="large"
+                            color="secondary"
+                            fullWidth
+                            style={{
+                                padding: 8,
+                                border: "4px solid red",
+                                collapse: 'collapse',
+                                borderRadius: '8px',
+                            }}
+                            href="/Town"
+                        >
+                            {'취소하기'}
+                        </FormButton>
+                    </Grid>
+                </Grid>
             </AppForm>
             <AppFooter />
         </React.Fragment>

@@ -1,10 +1,10 @@
 import Grid from '@mui/material/Grid';
-import Typography from './modules/components/Typography';
-import AppFooter from './modules/views/AppFooter';
-import AppAppBar2 from './modules/views/AppBar2';
-import AppForm from './modules/views/AppForm';
-import FormButton from './modules/form/FormButton';
-import withRoot from './modules/withRoot';
+import Typography from '../modules/components/Typography';
+import AppFooter from '../modules/views/AppFooter';
+import AppAppBar2 from '../modules/views/AppBar2';
+import AppForm from '../modules/views/AppForm';
+import FormButton from '../modules/form/FormButton';
+import withRoot from '../modules/withRoot';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
@@ -342,6 +342,7 @@ function EditItem() {
                                     float: 'right'
                                 }}>
                                     <br/>
+                                    <br/><br/><br/><br/><br/><br/><br/>
                                     <br/>
                                     <Typography
                                         variant="h3"

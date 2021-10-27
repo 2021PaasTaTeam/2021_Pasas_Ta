@@ -239,7 +239,7 @@ function EditStore() {
                             value={shop_region}
                             onChange={onShop_regionHandler}
                         >
-                            <option selected="selected">{id.region}</option>
+                            <option selected="selected">&nbsp;&nbsp;{id.region}</option>
                             <option>종로구</option>
                             <option>성북구</option>
                             <option>서초구</option>
@@ -270,7 +270,7 @@ function EditStore() {
                             value={shop_business_type}
                             onChange={onShop_business_typeHandler}
                         >
-                            <option selected="selected">{id.bussinessType}</option>
+                            <option selected="selected">&nbsp;&nbsp;{id.bussinessType}</option>
                             <option >한복</option>
                             <option >공방</option>
                             <option >음식점</option>
