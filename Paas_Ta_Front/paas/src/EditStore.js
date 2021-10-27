@@ -111,32 +111,37 @@ function EditStore() {
 
 
     const onClickModify = () => {
-        const formData = new FormData();
+        let data = JSON.stringify({
+            'name': shop_name,
+            'address': shop_address,
+            'phone': shop_phone,
+            'region':shop_region,
+            'businessType':shop_business_type
+          })
 
-        formData.append("image", shop_image);
-        formData.append("name", shop_name);
-        formData.append("address", shop_address);
-        formData.append("phone", shop_phone);
-        formData.append("registrationNum", registeration_number);
-        formData.append("email", session.data.email);
-        formData.append("businessType", shop_business_type);
-        formData.append("region", shop_region);
+        // const formData = new FormData();
 
-        console.log(formData)
+        //formData.append("image", shop_image);
+        // formData.append("name", shop_name);
+        // formData.append("address", shop_address);
+        // formData.append("phone", shop_phone);
+        // formData.append("registrationNum", registeration_number);
+        // formData.append("email", session.data.email);
+        // formData.append("businessType", shop_business_type);
+        // formData.append("region", shop_region);
+
+        // console.log(formData)
 
         console.log('click shop')
         console.log('가게명 : ', shop_name)
         console.log('가게실제주소 : ', shop_address)
         console.log('가게전화번호 : ', shop_phone)
-        console.log('가게상표이미지 : ', shop_image)
-        console.log('사업자번호 : ', registeration_number)
-        console.log('이메일 : ', session.data.email)
         console.log('가게업종 : ', shop_business_type)
         console.log('가게지역구 : ', shop_region)
 
-        axios.post('http://localhost:8080/shop/'+id.shopId, formData, {
+        axios.post('http://localhost:8080/shop/'+id.shopId, data, {
             headers: {
-                'Content-type': 'multipart/form-data; charset=utf-8',
+                'Content-type': 'application/json; charset=utf-8',
             }
         })
             .then(res => {
@@ -320,7 +325,7 @@ function EditStore() {
                     </Grid>
                 </Grid>
                 <br />
-                <Grid container spacing={2}>
+                {/* <Grid container spacing={2}>
                     <Grid item xs={12} sm={4}>
                         <Typography variant="h6" align="center">
                             가게 상표 이미지
@@ -346,7 +351,7 @@ function EditStore() {
                         />
                     </div>
                 </div>
-                <br />
+                <br /> */}
 
                 <div align='center'>
                     <Mini_map />
