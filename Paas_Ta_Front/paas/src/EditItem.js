@@ -292,12 +292,14 @@ function EditItem() {
                         {item_name.map((label, idx) => (
                             <li key={idx}>
                                 <label>
+                                    <br/>
+                                    <br/>
                                     <div className="c1image" style={{
                                         float: 'left'
                                     }} >
                                         <img className="phoneImage"
-                                            height="165vh"
-                                            width="165vw"
+                                            height="160vh"
+                                            width="160vw"
                                             src={"img/"+item_image[idx]} />
                                     </div>
                                     <div style={{
@@ -312,15 +314,11 @@ function EditItem() {
                                         >
                                             &nbsp;&nbsp;상품명 : &nbsp;&nbsp;
                                         </Typography>
-                                        <div style={{
-                                            float: 'left',
-                                        }}>
                                             <input type="text"
                                                 name="name"
                                                 value={item_name[idx]}
                                             //onChange={onShop_nameHandler}
                                             />
-                                        </div>
                                     </div>
                                     <br />
                                     <br />
@@ -336,10 +334,6 @@ function EditItem() {
                                         >
                                             &nbsp;&nbsp;설명 : &nbsp;&nbsp;
                                         </Typography>
-                                    </div>
-                                    <div style={{
-                                        float: 'left',
-                                    }}>
                                         <input type="text"
                                             name="name"
                                             value={item_content[idx]}
@@ -360,10 +354,6 @@ function EditItem() {
                                         >
                                             &nbsp;&nbsp;가격 : &nbsp;&nbsp;
                                         </Typography>
-                                    </div>
-                                    <div style={{
-                                        float: 'left',
-                                    }}>
                                         <input type="text"
                                             name="name"
                                             value={item_price[idx]}
@@ -384,14 +374,32 @@ function EditItem() {
                                         >
                                             &nbsp;&nbsp;재고 : &nbsp;&nbsp;
                                         </Typography>
-                                    </div>
-                                    <div style={{
-                                        float: 'left',
-                                    }}>
                                         <input type="text"
                                             name="name"
                                             value={item_stockQuantity[idx]}
                                         //onChange={onShop_nameHandler}
+                                        />
+                                    </div>
+                                    <br />
+                                    <br />
+                                    <div style={{
+                                        float: 'left'
+                                    }}>
+                                        <Typography
+                                            variant="h3"
+                                            style={{
+                                                fontSize: 17,
+                                                float: 'left'
+                                            }}
+                                        >
+                                        &nbsp;&nbsp;사진변경 : &nbsp;&nbsp;
+                                        </Typography>
+                                    <input type="file"
+                                        accept="image/*"
+                                        name="name"
+                                        required
+                                        files={item_image[idx]}
+                                        onChange={onItemImagesHandler}
                                         />
                                     </div>
                                     <br />

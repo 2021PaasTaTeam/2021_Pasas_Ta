@@ -38,7 +38,7 @@ const Sidebar = () => {
 
   const logout = () => {
     if (window.confirm("로그아웃 하시겠습니까?") == true) {    //확인
-      window.sessionStorage.removeItem("data");
+      window.sessionStorage.clear();
       window.location.replace("/")
       alert('로그아웃 되었습니다.');
     } else {   //취소

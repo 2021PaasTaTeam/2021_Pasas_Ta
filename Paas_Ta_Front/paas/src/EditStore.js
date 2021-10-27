@@ -5,7 +5,7 @@ import AppAppBar2 from './modules/views/AppBar2';
 import AppForm from './modules/views/AppForm';
 import FormButton from './modules/form/FormButton';
 import withRoot from './modules/withRoot';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import axios from 'axios';
 import Mini_map from './page/Mini_map';
 
@@ -15,57 +15,60 @@ function EditStore() {
 
 
     var [store, setStore] = useState([]);
-    //var [member, setMember] = useState([]);
-    // var id = useState([]);
+
     var id = useState([]);
-    //let [item, setItem] = useState([]);
 
     function searchId() {
         const url = "http://localhost:8080/shop";
         axios.get(url)
-        .then(function(response) {
-            setStore(response.data);
-            console.log("성공");
-            //console.log(response.data)
-            //member = response.data;
-
-            //console.log(id.shopId)
-            //console.log(member)
-            //const userObj = { member: member };
-            //window.sessionStorage.setItem("member", JSON.stringify(userObj));
-            //console.log(member)
-        })
-        .catch(function(error) {
-            console.log("실패");
-        })
+            .then(function (response) {
+                setStore(response.data);
+                console.log("성공");
+                var name;
+                var address;
+                var phone;
+                //var image;
+                for (let i = 0; i < store.length; i++) {
+                    if (store[i].email === session.data.email) {
+                        name = response.data[i].name;
+                        address= response.data[i].address;
+                        phone = response.data[i].phone;
+                        //image = response.data[i].image.storeFileName;
+                    }
+                }
+                setShop_name(name);
+                setShop_address(address);
+                setShop_phone(phone);
+                //setShop_image(image);
+                console.log(name)
+            })
+            .catch(function (error) {
+                console.log("실패");
+            })
     }
     console.log(store)
 
-    for (let i=0; i<store.length; i++)
-    {
-        if(store[i].email === session.data.email)
-        {
+    for (let i = 0; i < store.length; i++) {
+        if (store[i].email === session.data.email) {
             id = store[i];
         }
     }
     console.log(id)
-    //console.log(id.image.storeFileName)
+
 
     useEffect(() => {
         searchId()
-    },[]);
+    }, [id.shopId]);
+    //searchId()
 
 
-
-    //setInterval(searchStore(id.shopId), 100000000);
-
-    const [shop_name, setShop_name] = useState("");
-    const [shop_address, setShop_address] = useState("");
-    const [shop_phone, setShop_phone] = useState("");
-    const [shop_image, setShop_image] = useState("");
-    const [registeration_number, setRegisteration_number] = useState("");
-    const [shop_business_type, setShop_business_type] = useState("");
-    const [shop_region, setShop_region] = useState("");
+    var [shop_name, setShop_name] = useState();
+    const [shop_address, setShop_address] = useState();
+    const [shop_phone, setShop_phone] = useState();
+    const [shop_image, setShop_image] = useState();
+    const [registeration_number, setRegisteration_number] = useState();
+    const [shop_business_type, setShop_business_type] = useState();
+    const [shop_region, setShop_region] = useState();
 
     // 가게 업종
     const onShop_business_typeHandler = (event) => {
@@ -106,6 +109,7 @@ function EditStore() {
     //const session = JSON.parse(window.sessionStorage.getItem("data"));
 
 
+
     const onClickModify = () => {
         const formData = new FormData();
 
@@ -130,23 +134,49 @@ function EditStore() {
         console.log('가게업종 : ', shop_business_type)
         console.log('가게지역구 : ', shop_region)
 
-        axios.post('http://localhost:8080/shop', formData, {
+        axios.post('http://localhost:8080/shop/'+id.shopId, formData, {
             headers: {
                 'Content-type': 'multipart/form-data; charset=utf-8',
             }
         })
             .then(res => {
                 console.log(res)
-
-                //session.data.type = 'SELLER'
-                //window.sessionStorage.setItem("data", JSON.stringify(session));
-
-                alert('가게가 등록되었습니다.')
+                alert('가게가 수정되었습니다.')
                 window.location.replace("/Town")
             })
             .catch()
     }
 
+
+    // 로딩 화면
+    const [users, setUsers] = useState(null);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        const fetchUsers = async () => {
+            try {
+                // 요청이 시작 할 때에는 error 와 users 를 초기화하고
+                setError(null);
+                setUsers(null);
+                // loading 상태를 true 로 바꿉니다.
+                setLoading(true);
+                const response = await axios.get(
+                    'http://localhost:8080/shop'
+                );
+                setUsers(response.data); // 데이터는 response.data 안에 들어있습니다.
+            } catch (e) {
+                setError(e);
+            }
+            setLoading(false);
+        };
+
+        fetchUsers();
+    }, []);
+
+    if (loading) return <div>로딩중..</div>;
+    if (error) return <div>에러가 발생했습니다</div>;
+    if (!users) return null;
 
     return (
         <React.Fragment>
@@ -177,7 +207,7 @@ function EditStore() {
                                 collapse: 'collapse',
                                 borderRadius: '8px',
                             }}
-                            value={id.name}
+                            value={shop_name}
                             onChange={onShop_nameHandler}
                         />
                     </Grid>
@@ -261,7 +291,7 @@ function EditStore() {
                                 collapse: 'collapse',
                                 borderRadius: '8px',
                             }}
-                            value={id.address}
+                            value={shop_address}
                             onChange={onShop_addressHandler} />
                     </Grid>
                 </Grid>
@@ -275,7 +305,7 @@ function EditStore() {
                     <Grid item xs={12} sm={9}>
                         <input type="text"
                             name="number"
-                            value={id.phone}
+                            value={shop_phone}
                             placeholder="예) 01012345678"
                             style={{
                                 padding: 20,
@@ -306,16 +336,16 @@ function EditStore() {
                     </Grid>
                 </Grid>
                 <br />
-                            <div className="Card1">
-                                <div className="image-container" align="center">
-                                    <img
-                                        height="200vh"
-                                        width="200vw"
-                                        id="preview_image"
-                                        src={"img/"+id.image?.storeFileName}
-                                        />
-                                </div>
-                            </div>
+                <div className="Card1">
+                    <div className="image-container" align="center">
+                        <img
+                            height="200vh"
+                            width="200vw"
+                            id="preview_image"
+                            src={"img/" + id.image?.storeFileName}
+                        />
+                    </div>
+                </div>
                 <br />
 
                 <div align='center'>

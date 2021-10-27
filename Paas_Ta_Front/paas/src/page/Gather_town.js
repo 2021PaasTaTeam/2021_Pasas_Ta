@@ -1,10 +1,11 @@
-import React, { createRef, useEffect } from "react";
+import React, { createRef, useEffect, useState } from "react";
 import AppAppBar2 from '../modules/views/AppBar2';
 import AppFooter from '../modules/views/AppFooter';
 import withRoot from '../modules/withRoot';
 import { RemoveScrollBar } from 'react-remove-scroll-bar';
 import Sidebar from "./Sidebar";
 import './Gather.css';
+import axios from "axios";
 
 function Town(props) {
 
@@ -212,20 +213,18 @@ function Town(props) {
 
   gameLoop();
 
-  const session = JSON.parse(window.sessionStorage.getItem("email"));
-
   return (
     <React.Fragment>
       <RemoveScrollBar />
       <AppAppBar2 />
       <div className='Mains'>
-          <Sidebar />
-          <canvas
-            ref={canvasRef}
-            style={{ width: "101vw", height: "94vh" }}
-            width="1400"
-            height="790"
-          />
+        <Sidebar />
+        <canvas
+          ref={canvasRef}
+          style={{ width: "101vw", height: "94vh" }}
+          width="1400"
+          height="790"
+        />
       </div>
 
       <AppFooter />
