@@ -63,6 +63,8 @@ __Infra : Paas-Ta__
 
 장바구니 및 구매 확인 기능
 
+장바구니 목록 알림바 기능
+
 가게 등록 수정 기능
 
 상품 등록 수정 삭제 기능
@@ -93,6 +95,7 @@ __Infra : Paas-Ta__
 - [x]  개인정보 수정을 위한 마이 페이지
 - [ ]  상품 구매 페이지
 - [ ]  장바구니 페이지
+- [x]  장바구니 선택 목록 알림 팝업창
 - [x]  구매 목록 페이지
 - [ ]  ZOOM 페이지
 
@@ -104,8 +107,8 @@ __Infra : Paas-Ta__
 - [ ]  사용자가 구매한 상품 리스트 페이지(영수증)
 
 - 웹페이지 디자인
-- [x]  로그인 페이지 벤치마킹(https://material-ui.com/store/previews/onepirate/)
-- [ ]  모든 구매 행위 페이지 벤치마킹(https://www.musinsa.com/)
+- [x]  메인 및 로그인 페이지 벤치마킹(https://material-ui.com/store/previews/onepirate/)
+- [x]  모든 구매 행위 페이지 벤치마킹(https://www.musinsa.com/)
 
 
 -------------개발 일정이 계획보다 빠를 경우 추가 리스트-------------------
