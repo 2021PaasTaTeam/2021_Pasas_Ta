@@ -7,8 +7,6 @@ import axios from 'axios'
 import Notifications from "./Notifications";
 import './AppBar2.css';
 
-
-
 function AppAppBar2() {
   const session = JSON.parse(window.sessionStorage.getItem("data"));
 
@@ -20,15 +18,26 @@ function AppAppBar2() {
   var list= new Array();
   var data = new Object();
 
-    data.message = '고등어(샘플) : '+cart.count;
-    list.push(data);
+  for(var i=0; i<=5; i++) {
     data = new Object();
-    data.message = '오징어(샘플) : '+cart.count;
+    data.message =(i+1)+'번 상품';
     list.push(data);
-    data = new Object();
-    data.message = '💰 총 결재 금액 : '+cart.cost;
-    data.detailPage = '/Cart'
-    list.push(data);
+    if (i === 5) {
+      list.pop(data)
+      data.message = '💰 총 결재 금액 : '+cart.cost;
+      data.detailPage = '/Cart'
+      list.push(data);
+    }
+  }
+    // data.message = '고등어(샘플) : '+cart.count;
+    // list.push(data);
+    // data = new Object();
+    // data.message = '오징어(샘플) : '+cart.count;
+    // list.push(data);
+    // data = new Object();
+    // data.message = '💰 총 결재 금액 : '+cart.cost;
+    // data.detailPage = '/Cart'
+    // list.push(data);
 
 
   // let sample=([

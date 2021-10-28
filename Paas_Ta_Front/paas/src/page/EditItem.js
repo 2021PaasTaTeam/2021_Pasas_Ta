@@ -10,9 +10,9 @@ import axios from 'axios';
 
 function EditItem() {
     const session = JSON.parse(window.sessionStorage.getItem("data"));
-    const item_data_session = JSON.parse(window.sessionStorage.getItem("item_data"));
+    //const item_data_session = JSON.parse(window.sessionStorage.getItem("item_data"));
 
-    console.log(item_data_session)
+    //console.log(item_data_session)
 
     var [store, setStore] = useState([]);
     var [item, setItem] = useState([]);

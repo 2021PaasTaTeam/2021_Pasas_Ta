@@ -40,16 +40,16 @@ function Gather(props) {
     backgroundReady = true;
   };
 
-  let heroReady = false;
-  let heroImg = new Image();
+  let userReady = false;
+  let userImg = new Image();
 
-  heroImg.src = "/assets/character.png";
+  userImg.src = "/assets/character.png";
 
-  heroImg.onload = function () {
-    heroReady = true;
+  userImg.onload = function () {
+    userReady = true;
   };
 
-  let hero = {
+  let user = {
     speed: 4,
     x: 500,
     y: 300
@@ -75,8 +75,8 @@ function Gather(props) {
   // 키보드 입력
   window.addEventListener('keydown', e => {
     // 마우스 좌표 찾기
-    var x = hero.x;
-    var y = hero.y;
+    var x = user.x;
+    var y = user.y;
     var coords = "X coords: " + x + ", Y coords: " + y;
     console.log(coords);
     // 클릭 이벤트
@@ -147,16 +147,16 @@ function Gather(props) {
     var width = 1000;
     var height = 925;
 
-    if (hero.x + deltaX > 0 && hero.x + SCALED_WIDTH + deltaX < width) {
-      hero.x += deltaX * hero.speed;
+    if (user.x + deltaX > 0 && user.x + SCALED_WIDTH + deltaX < width) {
+      user.x += deltaX * user.speed;
     }
-    if (hero.y + deltaY > 0 && hero.y + SCALED_HEIGHT + deltaY < height) {
-      hero.y += deltaY * hero.speed;
+    if (user.y + deltaY > 0 && user.y + SCALED_HEIGHT + deltaY < height) {
+      user.y += deltaY * user.speed;
     }
     currentDirection = direction;
   }
 
-  function moveHero() {
+  function moveUser() {
     let hasMoved = false;
 
     if (38 in keysDown) {
@@ -195,12 +195,12 @@ function Gather(props) {
       }
     }
 
-    drawFrame(walkCycle[walkIndex], currentDirection, hero.x, hero.y);
+    drawFrame(walkCycle[walkIndex], currentDirection, user.x, user.y);
   }
 
   function drawFrame(frameX, frameY, canvasX, canvasY) {
     context?.drawImage(
-      heroImg,
+      userImg,
       frameX * width,
       frameY * height,
       width,
@@ -214,7 +214,7 @@ function Gather(props) {
 
   function gameLoop() {
     loadImage();
-    moveHero();
+    moveUser();
     requestAnimationFrame(gameLoop);
   }
 

@@ -8,21 +8,29 @@ function Mini_map() {
   let context;
   let canvasRef = createRef();
 
-
   let backgroundReady = false;
   let backgroundImg = new Image();
 
-  backgroundImg.src = "/assets/map.jpg";
+  backgroundImg.src = "/assets/test.png";
 
   backgroundImg.onload = function () {
     backgroundReady = true;
+  };
+
+  let storeReady = false;
+  let storeImg = new Image();
+
+  storeImg.src = "/assets/download.jpg";
+
+  storeImg.onload = function () {
+    storeReady = true;
   };
 
   useEffect(() => {
 
     canvas = canvasRef.current;
     context = canvas.getContext("2d");
-  
+
     // 마우스 클릭
     canvas.addEventListener('mousedown', e => {
       // 마우스 좌표 찾기
@@ -42,11 +50,9 @@ function Mini_map() {
     if (backgroundReady) {
       context?.drawImage(backgroundImg, 0, 0);
     }
-  }
-
-  function openWin() {
-    // 상품 구매 페이지  
-    window.open("/item", "", "width=650, height=900, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
+    if (storeReady) {
+      context?.drawImage(storeImg, 150, 150);
+    }
   }
 
   function gameLoop() {
@@ -55,10 +61,16 @@ function Mini_map() {
   }
 
   gameLoop();
+  
+  function openWin() {
+    // 상품 구매 페이지  
+    window.open("/item", "", "width=650, height=900, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
+  }
+
   return (
     <React.Fragment>
       <canvas ref={canvasRef}
-      style={{ width: "34vw", height: "50vh" }}
+      style={{ width: "69vw", height: "50vh" }}
         width="1500"
         height="925"
       />
