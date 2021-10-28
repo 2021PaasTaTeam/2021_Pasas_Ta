@@ -4,7 +4,7 @@ import Index from "./page/Home";
 import Gather from "./page/Gather";
 import Login from "./page/Login";
 import SignUp from "./page/SignUp";
-import zoom from "./zoom";
+import {VideoCall} from "./VideoCall";
 import Town from "./page/Gather_town";
 import Item from "./Item";
 import AddStore from "./AddStore";
@@ -26,7 +26,7 @@ class App extends Component {
                     <Route path="/" exact render={() => <Index />} />
                     <Route path="/Login" exact component={Login} />
                     <Route path="/Signup" exact component={SignUp} />
-                    <Route path="/zoom" exact component={zoom} />
+                    <Route path="/VideoCall" exact component={VideoCall} />
                     <Route path="/Item" exact component={Item} />
                     <Route path="/AddStore" exact component={AddStore} />
                     <Route path="/EditStore" exact component={EditStore} />

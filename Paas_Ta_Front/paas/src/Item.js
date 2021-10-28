@@ -7,6 +7,7 @@ import FormButton from './modules/form/FormButton';
 import withRoot from './modules/withRoot';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { VideoCall } from './VideoCall';
 
 function Product() {
     const session = JSON.parse(window.sessionStorage.getItem("data"));
@@ -89,6 +90,10 @@ function Product() {
     const Cart = () => {
         window.location.replace("/Cart")
     }
+    const Call_SELLER = () => {
+        //window.location.replace("/VideoCall")
+        window.open("/VideoCall", "", "width=650, height=500, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
+    }
     const close = () => {
         window.close();
     }
@@ -106,7 +111,7 @@ function Product() {
 
     return (
         <React.Fragment>
-            <AppAppBar2 />
+            {/* <AppAppBar2 /> */}
             <AppForm>
                 <React.Fragment>
                     <Typography variant="h3" align="center">
@@ -198,6 +203,20 @@ function Product() {
                 </div>
                 <br />
                 <br />
+                <div style={{
+                    float: 'right'
+                }}>
+                    <button onClick={Call_SELLER} style={{
+                        color: "white",
+                        background: "black",
+                        padding: ".120rem .720rem",
+                        borderRadius: ".25rem",
+                        fontSize: "1rem",
+                        lineHeight: 1.5,
+                    }}>📞 사장님 부르기 📞</button>
+                </div>
+                <br/>
+                <br/>
                 <div
                     style={{
                         width: "100%",
@@ -472,7 +491,7 @@ function Product() {
                     </Grid>
                 </Grid>
             </AppForm>
-            <AppFooter />
+            {/* <AppFooter /> */}
         </React.Fragment>
     );
 }
