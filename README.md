@@ -120,7 +120,7 @@ __Infra : Paas-Ta__
 
 # ⚙ 기술 스택 
 
-개발언어 - CSS, HTML, JAVASCRIPT, JAVA, REACT, SCSS
+개발언어 - CSS, HTML, JAVASCRIPT, JAVA, REACT, SCSS, TYPESCRIPT
 
 API - Material-Ui, CANVAS
 
