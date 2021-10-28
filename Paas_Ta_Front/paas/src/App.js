@@ -18,6 +18,11 @@ import Review from "./Review";
 import Item_Modify from "./page/Item_Modify";
 import Item_buy from "./Item_buy";
 
+
+
+// 관리자 페이지
+import admin_user from './admin_page/admin_user';
+
 class App extends Component {
     render() {
         return (
@@ -39,14 +44,14 @@ class App extends Component {
                     <Route path="/Item_buy" exact component={Item_buy} />
 
                     
-                    
                     <Route path="/MyPage" exact component={MyPage} />
                     <Route path="/Gather" exact component={Gather} />
                     <Route path="/Town" exact component={Town} />                    
 
 
                     {/* 관리자 페이지 */}
-                    
+                    <Route path="/admin_user" exact component={admin_user} />
+
                 </Switch>
             </Router>
         );
