@@ -39,7 +39,6 @@ function Login() {
     })
 
       .then(res => {
-
         const session = res.data;
         const userObj = { data: session };
         window.sessionStorage.setItem("data", JSON.stringify(userObj));
