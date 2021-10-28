@@ -104,7 +104,7 @@ function Item_buy() {
 
     return (
         <React.Fragment>
-            <AppAppBar2 />
+            {/* <AppAppBar2 /> */}
             <AppForm>
                 <React.Fragment>
                     <Typography variant="h3" align="center">
@@ -343,7 +343,7 @@ function Item_buy() {
                         float: 'right'
                     }}
                 >
-                    {0 + ' 원'}
+                    {itemPrice*number + ' 원'}
                 </Typography></div>
 
                 <br />
@@ -405,7 +405,7 @@ function Item_buy() {
                     </Grid>
                 </Grid>
             </AppForm>
-            <AppFooter />
+            {/* <AppFooter /> */}
         </React.Fragment>
     );
 }
