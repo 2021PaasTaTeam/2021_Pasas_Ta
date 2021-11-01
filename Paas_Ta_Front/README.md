@@ -1,5 +1,36 @@
 # 2021 파스타 클라우드 공모전
 
+
+### Front-End
+
+### `cd paas_ta_front`
+
+### `cd paas`
+
+### `npm install`
+
+### `npm start`
+
+Open [http://localhost:3000](http://localhost:3000) 
+
+
+---
+
+### Back-End(for chat)
+
+### `cd paas_ta_front`
+
+### `cd paas`
+
+### `cd server`
+
+### `node server.js`
+
+Open [http://localhost:3001](http://localhost:3001) 
+
+---
+
+
 파스타 클라우드 공모전 : 메타버스 중계 플랫폼
 
 어플리케이션 레포지토리 링크 : https://github.com/badasea/Paas_Ta_APP
@@ -26,6 +57,8 @@
 
 
 ---
+
+
 
 # 📌 요구 사항 분석
 
