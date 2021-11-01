@@ -4,7 +4,7 @@ import Index from "./page/Home";
 import Gather from "./page/Gather";
 import Login from "./page/Login";
 import SignUp from "./page/SignUp";
-import {VideoCall} from "./VideoCall";
+import { VideoCall } from "./VideoCall";
 import Town from "./page/Gather_town";
 import Item from "./Item";
 import AddStore from "./AddStore";
@@ -21,9 +21,17 @@ import Item_buy from "./Item_buy";
 
 
 // 관리자 페이지
-import admin_user from './admin_page/admin_user';
+import { fetchUtils, Admin, Resource } from "react-admin";
+//import restProvider from 'ra-data-simple-rest';
+//import { PostList, PostEdit, PostCreate, PostIcon } from './users';
+import jsonServerProvider from 'ra-data-json-server';
+
+const dataProvider = jsonServerProvider('https://jsonplaceholder.typicode.com');
+//const dataProvider = jsonServerProvider('https//localhost:8080/user');
+
 
 class App extends Component {
+
     render() {
         return (
             <Router>
@@ -43,15 +51,19 @@ class App extends Component {
                     <Route path="/Item_Modify" exact component={Item_Modify} />
                     <Route path="/Item_buy" exact component={Item_buy} />
 
-                    
+
                     <Route path="/MyPage" exact component={MyPage} />
                     <Route path="/Gather" exact component={Gather} />
-                    <Route path="/Town" exact component={Town} />                    
+                    <Route path="/Town" exact component={Town} />
 
 
                     {/* 관리자 페이지 */}
-                    <Route path="/admin_user" exact component={admin_user} />
-
+                    <Admin dataProvider={dataProvider}>
+                        {/* <Resource name="users" 
+                        list={PostList} 
+                        //edit={PostEdit} create={PostCreate} icon={PostIcon}
+                        /> */}
+                    </Admin>
                 </Switch>
             </Router>
         );
