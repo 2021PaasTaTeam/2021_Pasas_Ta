@@ -1,6 +1,33 @@
 # 🍝☁💻 2021 파스타 클라우드 공모전
 
+### Front-End
 
+### `cd paas_ta_front`
+
+### `cd paas`
+
+### `npm install`
+
+### `npm start`
+
+Open [http://localhost:3000](http://localhost:3000) 
+
+
+---
+
+### Back-End(for chat) - Socket.io
+
+### `cd paas_ta_front`
+
+### `cd paas`
+
+### `cd server`
+
+### `node server.js`
+
+Open [http://localhost:3001](http://localhost:3001) 
+
+---
 <div align="center">
 
   
@@ -27,35 +54,6 @@ __Infra : Paas-Ta__
 
 
 ![image](https://user-images.githubusercontent.com/57929751/137597854-2f1d74fb-8e29-4d63-9179-f72b69b256e5.png)
-
----
-
-### Front-End
-
-### `cd paas_ta_front`
-
-### `cd paas`
-
-### `npm install`
-
-### `npm start`
-
-Open [http://localhost:3000](http://localhost:3000) 
-
-
----
-
-### Back-End(for chat)
-
-### `cd paas_ta_front`
-
-### `cd paas`
-
-### `cd server`
-
-### `node server.js`
-
-Open [http://localhost:3001](http://localhost:3001) 
 
 ---
 
