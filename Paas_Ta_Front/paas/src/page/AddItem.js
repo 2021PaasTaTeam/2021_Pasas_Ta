@@ -142,7 +142,9 @@ function AddItem() {
     return (
         <React.Fragment>
             <AppAppBar2 />
+            {/* <div className='Mains'> */}
             <AppForm>
+                
                 <React.Fragment>
                     <Typography variant="h3" align="center">
                         우리 가게 상품 등록하기
@@ -409,6 +411,7 @@ function AddItem() {
                     </Grid>
                 </Grid>
             </AppForm>
+            {/* </div> */}
             <AppFooter />
         </React.Fragment>
     );

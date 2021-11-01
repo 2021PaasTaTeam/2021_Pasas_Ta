@@ -6,6 +6,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios'
 import Notifications from "./Notifications";
 import './AppBar2.css';
+import Icon from './assets/call.png';
 
 function AppAppBar2() {
   const session = JSON.parse(window.sessionStorage.getItem("data"));
@@ -76,8 +77,32 @@ function AppAppBar2() {
             >
               {session_name.email + ' 님 환영합니다.'}
             </Link> */}
-
-    <ul><li>
+            {
+              session.data.type === 'SELLER' ? 
+              <Notifications
+              data={list}
+                  headerBackgroundColor = 'white'
+                  header={
+                    {
+                      title: '👜 장바구니',
+                      option: { text: '구매하기', onClick: () => {window.location = "./Cart"} }
+                    }
+                  }
+                  icon={Icon}
+              />
+                : <></>
+            }        
+    {/* <Notifications
+    data={list}
+        headerBackgroundColor = 'white'
+        header={
+          {
+            title: '👜 장바구니',
+            option: { text: '구매하기', onClick: () => {window.location = "./Cart"} }
+          }
+        }
+        icon={Icon}
+    /> */}
     <Notifications
     data={list}
 
@@ -99,8 +124,6 @@ function AppAppBar2() {
           }
         }
     />
-    </li>
-    </ul>
           </Box>
         </Toolbar>
       </AppBar>
