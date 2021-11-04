@@ -34,7 +34,7 @@ function Gather(props) {
   let backgroundReady = false;
   let backgroundImg = new Image();
 
-  backgroundImg.src = "/assets/map.jpg";
+  backgroundImg.src = "/assets/map.png";
 
   backgroundImg.onload = function () {
     backgroundReady = true;
@@ -226,9 +226,9 @@ function Gather(props) {
       <div className='Mains'>
           <Sidebar />
       <canvas ref={canvasRef}
-        style={{ width: "145vw", height: "94vh" }}
+        style={{ width: "112vw", height: "110vh" }}
         width="1500"
-        height="925"
+        height="1000"
       />
       </div>
       <AppFooter />
