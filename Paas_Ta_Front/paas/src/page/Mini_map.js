@@ -11,7 +11,7 @@ function Mini_map() {
   let backgroundReady = false;
   let backgroundImg = new Image();
 
-  backgroundImg.src = "/assets/test.png";
+  backgroundImg.src = "/assets/map.png";
 
   backgroundImg.onload = function () {
     backgroundReady = true;
@@ -20,10 +20,25 @@ function Mini_map() {
   let storeReady = false;
   let storeImg = new Image();
 
-  storeImg.src = "/assets/download.jpg";
+  let store_width = 90;
+  let store_height = 55;
+
+  storeImg.src = "/assets/github.png";
 
   storeImg.onload = function () {
     storeReady = true;
+  };
+
+  let typeReady = false;
+  let typeImg = new Image();
+
+  let type_width = 200;
+  let type_height = 200;
+
+  typeImg.src = "/assets/type.png";
+
+  typeImg.onload = function () {
+    typeReady = true;
   };
 
   useEffect(() => {
@@ -51,7 +66,10 @@ function Mini_map() {
       context?.drawImage(backgroundImg, 0, 0);
     }
     if (storeReady) {
-      context?.drawImage(storeImg, 150, 150);
+      context?.drawImage(storeImg, 192, 130,store_width,store_height);
+    }
+    if (typeReady) {
+      context?.drawImage(typeImg, 145, 200,type_width,type_height);
     }
   }
 
@@ -70,7 +88,7 @@ function Mini_map() {
   return (
     <React.Fragment>
       <canvas ref={canvasRef}
-      style={{ width: "69vw", height: "50vh" }}
+      style={{ width: "62vw", height: "50vh" }}
         width="1500"
         height="925"
       />

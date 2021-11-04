@@ -6,6 +6,7 @@ import { RemoveScrollBar } from 'react-remove-scroll-bar';
 import Sidebar from "./Sidebar";
 import './Gather.css';
 import axios from "axios";
+import socketIOClient from "socket.io-client";
 
 function Town(props) {
 
@@ -52,8 +53,8 @@ function Town(props) {
 
   let user = {
     speed: 5,
-    x: 500,
-    y: 300
+    x: 600,
+    y: 400
   };
 
   let keysDown = {};
@@ -81,11 +82,9 @@ function Town(props) {
     var coords = "X coords: " + x + ", Y coords: " + y;
     console.log(coords);
     // 클릭 이벤트
-    if (x >= 200 && x <= 300 && y >= 100 && y <= 200) {
-      Enter()
+    if (x >= 250 && x <= 400 && y >= 250 && y <= 400) {
       if (e.keyCode === 88) {
-        //Enter()
-        //console.log('키보드 이벤트 발생!');
+        Enter()
       }
     }
   });
@@ -119,7 +118,7 @@ function Town(props) {
       var coords = "X coords: " + x + ", Y coords: " + y;
       console.log(coords);
       // 클릭 이벤트
-      if (x >= 100 && x <= 200 && y >= 200 && y <= 300) {
+      if (x >= 250 && x <= 400 && y >= 250 && y <= 400) {
         Enter()
         console.log('마우스 버튼 ON 이벤트 발생!');
       }
@@ -132,8 +131,12 @@ function Town(props) {
     }
   }
 
-  function Enter() {
-    window.location.replace("./Gather")
+  const Enter = () => {
+    if (window.confirm("성북구 장터에 입장하시겠습니까?") == true) {    //확인
+      window.location.replace("./Gather")
+    } else {   //취소
+      window.location.replace("/Town")
+    }
   }
 
   function moveChar(deltaX, deltaY, direction) {
@@ -221,9 +224,9 @@ function Town(props) {
         <Sidebar />
         <canvas
           ref={canvasRef}
-          style={{ width: "101vw", height: "94vh" }}
-          width="1400"
-          height="790"
+          style={{ width: "101vw", height: "93vh" }}
+          width="1480"
+          height="875"
         />
       </div>
 

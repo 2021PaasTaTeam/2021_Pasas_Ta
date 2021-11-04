@@ -7,7 +7,6 @@ import FormButton from './modules/form/FormButton';
 import withRoot from './modules/withRoot';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { VideoCall } from './VideoCall';
 
 function Product() {
     const session = JSON.parse(window.sessionStorage.getItem("data"));
@@ -92,7 +91,7 @@ function Product() {
     }
     const Call_SELLER = () => {
         //window.location.replace("/VideoCall")
-        window.open("/VideoCall", "", "width=650, height=500, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
+        window.open("/Chat", "", "width=650, height=500, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
     }
     const close = () => {
         window.close();
