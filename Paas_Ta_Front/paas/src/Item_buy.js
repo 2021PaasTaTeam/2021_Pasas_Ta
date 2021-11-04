@@ -1,7 +1,5 @@
 import Grid from '@mui/material/Grid';
 import Typography from './modules/components/Typography';
-import AppFooter from './modules/views/AppFooter';
-import AppAppBar2 from './modules/views/AppBar2';
 import AppForm from './modules/views/AppForm';
 import FormButton from './modules/form/FormButton';
 import withRoot from './modules/withRoot';
@@ -21,23 +19,23 @@ function Item_buy() {
         axios.get(url)
             .then(function (response) {
                 setItem(response.data);
-                console.log("성공");
+                //console.log("성공");
             })
             .catch(function (error) {
-                console.log("실패");
+                //console.log("실패");
             })
     }
-    console.log(item)
+    //console.log(item)
 
     function searchId() {
         const url = "http://localhost:8080/shop";
         axios.get(url)
             .then(function (response) {
                 setStore(response.data);
-                console.log("성공");
+                //console.log("성공");
             })
             .catch(function (error) {
-                console.log("실패");
+                //console.log("실패");
             })
     }
 
@@ -56,27 +54,6 @@ function Item_buy() {
     const [itemName, setItemName] = useState(item_data_session.item_data.name);
     const [itemContent, setItemContent] = useState(item_data_session.item_data.content);
     const [itemPrice, setItemPrice] = useState(item_data_session.item_data.price);
-    //const [itemImages, setItemImages] = useState(item_data_session.item_data.storeFileName);
-
-    // const item_name = [item_data_session.data.name]
-    // const item_image = [item_data_session.data.image]
-    // const item_content = [item_data_session.data.content]
-    // const item_price = [item_data_session.data.price]
-    //const item_count = ['']
-
-    // for (var j = 0; j < item.length; j++) {
-    //     item_name[j] = item[j].name
-    // }
-    // for (var j = 0; j < item.length; j++) {
-    //     item_content[j] = item[j].content
-    // }
-    // for (var j = 0; j < item.length; j++) {
-    //     item_price[j] = item[j].price
-    // }
-    // for (var j = 0; j < item.length; j++) {
-    //     item_image[j] = item[j].storeFileName
-    // }
-
 
     const [number, setNumber] = useState(0);
 
@@ -361,7 +338,6 @@ function Item_buy() {
                         collapse: 'collapse',
                         borderRadius: '8px',
                     }}
-                //type="submit"
                 >
                     {'👜 장바구니 넣기'}
                 </FormButton>
@@ -381,7 +357,6 @@ function Item_buy() {
                                 borderRadius: '8px',
                             }}
                             type="submit"
-                        //onSubmit={onClickRegister}
                         >
                             {'바로 구매하기'}
                         </FormButton>
@@ -405,7 +380,6 @@ function Item_buy() {
                     </Grid>
                 </Grid>
             </AppForm>
-            {/* <AppFooter /> */}
         </React.Fragment>
     );
 }

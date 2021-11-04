@@ -3,8 +3,13 @@ import { List, Datagrid, Edit, Create, SimpleForm, DateField, TextField, EditBut
 import BookIcon from '@material-ui/icons/Book';
 export const ShopIcon = BookIcon;
 
+const postFilters = [
+    <TextInput label="Search" source="q" alwaysOn />,
+];
+
+
 export const ShopList = (props) => (
-    <List {...props}>
+    <List {...props} filters={postFilters}>
         <Datagrid>
             <TextField source="shopId" />
             <TextField source="email" />

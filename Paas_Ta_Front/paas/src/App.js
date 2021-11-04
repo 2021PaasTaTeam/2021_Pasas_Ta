@@ -1,4 +1,3 @@
-//import React, { Component, useEffect, useState } from "react";
 import React, { useState, useEffect } from 'react';
 import axios from "axios";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -6,7 +5,6 @@ import Index from "./page/Home";
 import Gather from "./page/Gather";
 import Login from "./page/Login";
 import SignUp from "./page/SignUp";
-//import { VideoCall } from "./VideoCall";
 import Chat from "./page/Chat";
 import Town from "./page/Gather_town";
 import Item from "./Item";
@@ -21,6 +19,7 @@ import Review from "./Review";
 import Item_Modify from "./page/Item_Modify";
 import Item_buy from "./Item_buy";
 
+// test 샘플
 import sample from "./page/sample";
 
 // 관리자 페이지
@@ -28,8 +27,8 @@ import { Admin, Resource } from "react-admin";
 import { UserList, UserEdit, UserCreate, UserIcon } from './admin_page/users';
 import { ItemList, ItemEdit, ItemCreate, ItemIcon } from './admin_page/items';
 import { ShopList, ShopEdit, ShopCreate, ShopIcon } from './admin_page/shops';
-
 import fakeDataProvider from 'ra-data-fakerest';
+import Dashboard from './admin_page/Dashboard';
 
 function App() {
     var [user, setUser] = useState([]);
@@ -77,7 +76,6 @@ function App() {
 
 
     const dataProvider = fakeDataProvider({
-        //user: [{"id":1,"name":"이름1","email":"이메일1","address":"주소1","type":"SELLER"},{"id":16,"name":"정바다","email":"1","address":"1","type":"CONSUMER"}],
         user: user_list,
         item: item_list,
         shop: shop_list,
@@ -87,8 +85,11 @@ function App() {
         searchUser()
         searchItem()
         searchShop()
-
     }, []);
+
+    const home = () => {
+        window.location.replace("/")
+      }
 
 // class App extends Component {
 //     render() {
@@ -121,7 +122,11 @@ function App() {
 
 
                     {/* 관리자 페이지 */}
-                    <Admin dataProvider={dataProvider}>
+                    <Admin
+                    dashboard={Dashboard}
+                    dataProvider={dataProvider}
+                    
+                    >
                         <Resource name="user" 
                         list={UserList} 
                         edit={UserEdit} create={UserCreate} icon={UserIcon}

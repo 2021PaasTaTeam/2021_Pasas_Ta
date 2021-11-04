@@ -1,7 +1,5 @@
 import Grid from '@mui/material/Grid';
 import Typography from './modules/components/Typography';
-import AppFooter from './modules/views/AppFooter';
-import AppAppBar2 from './modules/views/AppBar2';
 import AppForm from './modules/views/AppForm';
 import FormButton from './modules/form/FormButton';
 import withRoot from './modules/withRoot';
@@ -16,27 +14,27 @@ function Product() {
     var id = [];
 
     function searchItem(shopid) {
-        const url = "http://localhost:8080/shop/"+shopid+"/item";
+        const url = "http://localhost:8080/shop/" + shopid + "/item";
         axios.get(url)
             .then(function (response) {
                 setItem(response.data);
-                console.log("성공");
+                // console.log("성공");
             })
             .catch(function (error) {
-                console.log("실패");
+                // console.log("실패");
             })
     }
-    console.log(item)
+    // console.log(item)
 
     function searchId() {
         const url = "http://localhost:8080/shop";
         axios.get(url)
             .then(function (response) {
                 setStore(response.data);
-                console.log("성공");
+                // console.log("성공");
             })
             .catch(function (error) {
-                console.log("실패");
+                // console.log("실패");
             })
     }
 
@@ -90,7 +88,6 @@ function Product() {
         window.location.replace("/Cart")
     }
     const Call_SELLER = () => {
-        //window.location.replace("/VideoCall")
         window.open("/Chat", "", "width=650, height=500, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
     }
     const close = () => {
@@ -110,7 +107,6 @@ function Product() {
 
     return (
         <React.Fragment>
-            {/* <AppAppBar2 /> */}
             <AppForm>
                 <React.Fragment>
                     <Typography variant="h3" align="center">
@@ -125,7 +121,7 @@ function Product() {
                         height="200vh"
                         width="200vw"
                         id="img_obj"
-                        src={"img/"+id.image?.storeFileName} />
+                        src={"img/" + id.image?.storeFileName} />
                 </div>
                 <div style={{
                     float: 'left'
@@ -214,8 +210,8 @@ function Product() {
                         lineHeight: 1.5,
                     }}>📞 사장님 부르기 📞</button>
                 </div>
-                <br/>
-                <br/>
+                <br />
+                <br />
                 <div
                     style={{
                         width: "100%",
@@ -238,12 +234,12 @@ function Product() {
                                         <img className="phoneImage"
                                             height="150vh"
                                             width="150vw"
-                                            src={"img/"+item_image[idx]} />
+                                            src={"img/" + item_image[idx]} />
                                     </div>
                                     <div style={{
                                         float: 'left'
                                     }}>
-                                        <br/>
+                                        <br />
                                         <Typography
                                             variant="h3"
                                             style={{
@@ -253,8 +249,8 @@ function Product() {
                                         >
                                             &nbsp;&nbsp;상품명 : {item_name[idx]}
                                         </Typography>
-                                    <br/>
-                                    <br/>
+                                        <br />
+                                        <br />
                                         <Typography
                                             variant="h3"
                                             style={{
@@ -264,8 +260,8 @@ function Product() {
                                         >
                                             &nbsp;&nbsp;설명 : {item_content[idx]}
                                         </Typography>
-                                    <br/>
-                                    <br/>
+                                        <br />
+                                        <br />
                                         <Typography
                                             variant="h3"
                                             style={{
@@ -466,7 +462,6 @@ function Product() {
                                 borderRadius: '8px',
                             }}
                             type="submit"
-                        //onSubmit={onClickRegister}
                         >
                             {'바로 구매하기'}
                         </FormButton>
@@ -490,7 +485,6 @@ function Product() {
                     </Grid>
                 </Grid>
             </AppForm>
-            {/* <AppFooter /> */}
         </React.Fragment>
     );
 }
