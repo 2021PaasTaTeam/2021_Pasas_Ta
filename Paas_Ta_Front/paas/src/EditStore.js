@@ -11,11 +11,12 @@ import Mini_map from './page/Mini_map';
 
 function EditStore() {
     const session = JSON.parse(window.sessionStorage.getItem("data"));
-    const [fileImage, setFileImage] = useState("");
-
-
+    var [shop_name, setShop_name] = useState();
+    const [shop_address, setShop_address] = useState();
+    const [shop_phone, setShop_phone] = useState();
+    const [shop_business_type, setShop_business_type] = useState();
+    const [shop_region, setShop_region] = useState();
     var [store, setStore] = useState([]);
-
     var id = useState([]);
 
     function searchId() {
@@ -27,19 +28,16 @@ function EditStore() {
                 var name;
                 var address;
                 var phone;
-                //var image;
                 for (let i = 0; i < store.length; i++) {
                     if (store[i].email === session.data.email) {
                         name = response.data[i].name;
-                        address= response.data[i].address;
+                        address = response.data[i].address;
                         phone = response.data[i].phone;
-                        //image = response.data[i].image.storeFileName;
                     }
                 }
                 setShop_name(name);
                 setShop_address(address);
                 setShop_phone(phone);
-                //setShop_image(image);
                 console.log(name)
             })
             .catch(function (error) {
@@ -59,16 +57,7 @@ function EditStore() {
     useEffect(() => {
         searchId()
     }, [id.shopId]);
-    //searchId()
 
-
-    var [shop_name, setShop_name] = useState();
-    const [shop_address, setShop_address] = useState();
-    const [shop_phone, setShop_phone] = useState();
-    const [shop_image, setShop_image] = useState();
-    const [registeration_number, setRegisteration_number] = useState();
-    const [shop_business_type, setShop_business_type] = useState();
-    const [shop_region, setShop_region] = useState();
 
     // 가게 업종
     const onShop_business_typeHandler = (event) => {
@@ -95,43 +84,14 @@ function EditStore() {
         setShop_phone(event.currentTarget.value);
     }
 
-    // 가게 상표 이미지
-    const onShop_imageHandler = (event) => {
-        setShop_image(event.currentTarget.files[0]);
-        setFileImage(URL.createObjectURL(event.target.files[0]));
-    }
-
-    // 사업자 번호
-    const onRegisteration_numberHandler = (event) => {
-        setRegisteration_number(event.currentTarget.value);
-    }
-
-    //const session = JSON.parse(window.sessionStorage.getItem("data"));
-
-
-
     const onClickModify = () => {
         let data = JSON.stringify({
             'name': shop_name,
             'address': shop_address,
             'phone': shop_phone,
-            'region':shop_region,
-            'businessType':shop_business_type
-          })
-
-        // const formData = new FormData();
-
-        //formData.append("image", shop_image);
-        // formData.append("name", shop_name);
-        // formData.append("address", shop_address);
-        // formData.append("phone", shop_phone);
-        // formData.append("registrationNum", registeration_number);
-        // formData.append("email", session.data.email);
-        // formData.append("businessType", shop_business_type);
-        // formData.append("region", shop_region);
-
-        // console.log(formData)
-
+            'region': shop_region,
+            'businessType': shop_business_type
+        })
         console.log('click shop')
         console.log('가게명 : ', shop_name)
         console.log('가게실제주소 : ', shop_address)
@@ -139,7 +99,7 @@ function EditStore() {
         console.log('가게업종 : ', shop_business_type)
         console.log('가게지역구 : ', shop_region)
 
-        axios.post('http://localhost:8080/shop/'+id.shopId, data, {
+        axios.post('http://localhost:8080/shop/' + id.shopId, data, {
             headers: {
                 'Content-type': 'application/json; charset=utf-8',
             }
@@ -325,45 +285,9 @@ function EditStore() {
                     </Grid>
                 </Grid>
                 <br />
-                {/* <Grid container spacing={2}>
-                    <Grid item xs={12} sm={4}>
-                        <Typography variant="h6" align="center">
-                            가게 상표 이미지
-                        </Typography>
-                    </Grid>
-                    <Grid item xs={12} sm={8}>
-                        <input type="file"
-                            accept="image/png,image/jpg,impge/png,image/jpeg,image/gif"
-                            name="name"
-                            //value={id.image.storeFileName}
-                            onChange={onShop_imageHandler}
-                            required />
-                    </Grid>
-                </Grid>
-                <br />
-                <div className="Card1">
-                    <div className="image-container" align="center">
-                        <img
-                            height="200vh"
-                            width="200vw"
-                            id="preview_image"
-                            src={"img/" + id.image?.storeFileName}
-                        />
-                    </div>
-                </div>
-                <br /> */}
-
                 <div align='center'>
                     <Mini_map />
                 </div>
-                {/* <div className="Card1">
-                                <div className="c1image" align='center'>
-                                    <img className="phoneImage"
-                                        height="500vh"
-                                        width="500vw"
-                                        src="/assets/map.jpg" />
-                                </div>
-                            </div> */}
                 <Grid container spacing={2}>
                     <Grid item xs={12} sm={6}>
                         <FormButton

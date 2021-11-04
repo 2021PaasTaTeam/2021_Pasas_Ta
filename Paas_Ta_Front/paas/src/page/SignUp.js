@@ -38,26 +38,26 @@ function SignUp() {
     let data = JSON.stringify({
       'password': password,
       'email': email,
-      'name' : name,
-      'address':address
-  })
-    axios.post('http://localhost:8080/user',data, {
+      'name': name,
+      'address': address
+    })
+    axios.post('http://localhost:8080/user', data, {
       headers: {
         'Content-type': 'application/json; charset=utf-8',
       }
     })
-    .then(res => {
-      console.log(res.data.name)
-        if(res.data.email === undefined){
-            // id 일치하지 않는 경우 userId = undefined, msg = '입력하신 id 가 일치하지 않습니다.'
-            alert('이미 등록된 이메일 계정입니다.')
+      .then(res => {
+        console.log(res.data.name)
+        if (res.data.email === undefined) {
+          // id 일치하지 않는 경우 userId = undefined, msg = '입력하신 id 가 일치하지 않습니다.'
+          alert('이미 등록된 이메일 계정입니다.')
         }
         else {
           alert('회원가입이 완료되었습니다.')
           document.location.href = '/Login'
         }
-    })
-    .catch()
+      })
+      .catch()
   }
 
   return (
@@ -98,7 +98,7 @@ function SignUp() {
               />
               <br />
               <br />
-<Typography variant="h8" >
+              <Typography variant="h8" >
                 이메일 *
               </Typography>
               <br />

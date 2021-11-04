@@ -142,7 +142,6 @@ function AddItem() {
     return (
         <React.Fragment>
             <AppAppBar2 />
-            {/* <div className='Mains'> */}
             <AppForm>
                 
                 <React.Fragment>

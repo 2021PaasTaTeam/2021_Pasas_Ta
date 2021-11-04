@@ -19,13 +19,13 @@ function Review() {
         axios.get(url)
         .then(function(response) {
             setStore(response.data);
-            console.log("성공");
+            // console.log("성공");
         })
         .catch(function(error) {
-            console.log("실패");
+            // console.log("실패");
         })
     }
-    console.log(store)
+    // console.log(store)
 
     for (let i=0; i<store.length; i++)
     {
@@ -34,7 +34,7 @@ function Review() {
             id = store[i];
         }
     }
-    console.log(id)
+    // console.log(id)
 
     useEffect(() => {
         searchId()

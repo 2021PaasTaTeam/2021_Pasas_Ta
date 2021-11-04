@@ -10,9 +10,6 @@ import axios from 'axios';
 
 function EditItem() {
     const session = JSON.parse(window.sessionStorage.getItem("data"));
-    //const item_data_session = JSON.parse(window.sessionStorage.getItem("item_data"));
-
-    //console.log(item_data_session)
 
     var [store, setStore] = useState([]);
     var [item, setItem] = useState([]);
@@ -23,11 +20,11 @@ function EditItem() {
         axios.get(url)
             .then(function (response) {
                 setItem(response.data);
-                console.log("성공");
-                console.log(item[0].name)
+                //console.log("성공");
+                //console.log(item[0].name)
             })
             .catch(function (error) {
-                console.log("실패");
+                // console.log("실패");
             })
     }
 
@@ -36,10 +33,10 @@ function EditItem() {
         axios.get(url)
             .then(function (response) {
                 setStore(response.data);
-                console.log("성공");
+                //console.log("성공");
             })
             .catch(function (error) {
-                console.log("실패");
+                //console.log("실패");
             })
     }
 
@@ -249,11 +246,6 @@ function EditItem() {
                                         >
                                             &nbsp;&nbsp;상품명 : &nbsp;&nbsp;{item_name[idx]}
                                         </Typography>
-                                        {/* <input type="text"
-                                                name="name"
-                                                value={item_name[idx]}
-                                            onChange={onItemNameHandler}
-                                            /> */}
                                     </div>
                                     <br />
                                     <br />
@@ -269,11 +261,6 @@ function EditItem() {
                                         >
                                             &nbsp;&nbsp;설명 : &nbsp;&nbsp;{item_content[idx]}
                                         </Typography>
-                                        {/* <input type="text"
-                                            name="name"
-                                            value={item_content[idx]}
-                                        //onChange={onShop_nameHandler}
-                                        /> */}
                                     </div>
                                     <br />
                                     <br />
@@ -289,11 +276,6 @@ function EditItem() {
                                         >
                                             &nbsp;&nbsp;가격 : &nbsp;&nbsp;{item_price[idx]}
                                         </Typography>
-                                        {/* <input type="text"
-                                            name="name"
-                                            value={item_price[idx]}
-                                        //onChange={onShop_nameHandler}
-                                        /> */}
                                     </div>
                                     <br />
                                     <br />
@@ -309,41 +291,16 @@ function EditItem() {
                                         >
                                             &nbsp;&nbsp;재고 : &nbsp;&nbsp;{item_stockQuantity[idx]}
                                         </Typography>
-                                        {/* <input type="text"
-                                            name="name"
-                                            value={item_stockQuantity[idx]}
-                                        //onChange={onShop_nameHandler}
-                                        /> */}
+
                                     </div>
                                     <br />
-                                    {/* <br /> */}
-                                    {/* <div style={{
-                                        float: 'left'
-                                    }}>
-                                        <Typography
-                                            variant="h3"
-                                            style={{
-                                                fontSize: 17,
-                                                float: 'left'
-                                            }}
-                                        >
-                                            &nbsp;&nbsp;사진변경 : &nbsp;&nbsp;
-                                        </Typography>
-                                        <input type="file"
-                                            accept="image/*"
-                                            name="name"
-                                            required
-                                            files={item_image[idx]}
-                                            //onChange={onItemImagesHandler}
-                                        />
-                                    </div> */}
                                 </label>
                                 <div style={{
                                     float: 'right'
                                 }}>
-                                    <br/>
-                                    <br/><br/><br/><br/><br/><br/><br/>
-                                    <br/>
+                                    <br />
+                                    <br /><br /><br /><br /><br /><br /><br />
+                                    <br />
                                     <Typography
                                         variant="h3"
                                         style={{
@@ -396,9 +353,7 @@ function EditItem() {
                             </li>
                         ))}
                     </ul>
-
                 </div>
-
                 <br />
                 <br />
                 <br />

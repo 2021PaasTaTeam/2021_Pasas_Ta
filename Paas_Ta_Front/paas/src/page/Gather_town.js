@@ -6,7 +6,6 @@ import { RemoveScrollBar } from 'react-remove-scroll-bar';
 import Sidebar from "./Sidebar";
 import './Gather.css';
 import axios from "axios";
-import socketIOClient from "socket.io-client";
 
 function Town(props) {
 
@@ -132,11 +131,18 @@ function Town(props) {
   }
 
   const Enter = () => {
-    if (window.confirm("성북구 장터에 입장하시겠습니까?") == true) {    //확인
-      window.location.replace("./Gather")
-    } else {   //취소
-      window.location.replace("/Town")
-    }
+    // if (window.confirm("성북구 장터에 입장하시겠습니까?") == true) {    //확인
+    //   window.location.replace("./Gather")
+    // } else {   //취소
+    //   if (window.location.replace("/Town") === true
+    //   ) {
+    //     window.location.replace("/Gather")
+    //   }
+    //   else {
+    //     window.location.replace("/Town")
+    //   }
+    // }
+    window.location.replace("./Gather")
   }
 
   function moveChar(deltaX, deltaY, direction) {
@@ -216,6 +222,7 @@ function Town(props) {
 
   gameLoop();
 
+  
   return (
     <React.Fragment>
       <RemoveScrollBar />

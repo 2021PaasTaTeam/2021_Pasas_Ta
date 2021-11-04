@@ -1,10 +1,28 @@
 import * as React from "react";
-import { List, Datagrid, Edit, Create, SimpleForm, DateField, TextField, EditButton, TextInput, DateInput } from 'react-admin';
+import { List, downloadCSV, Datagrid, Edit, Create, SimpleForm, DateField, TextField, EditButton, TextInput, DateInput } from 'react-admin';
 import BookIcon from '@material-ui/icons/Book';
+import jsonExport from 'jsonexport/dist';
 export const UserIcon = BookIcon;
 
+const exporter = posts => {
+    const postsForExport = posts.map(post => {
+        const { backlinks, author, ...postForExport } = post; // omit backlinks and author
+        postForExport.name = post.name; // add a field
+        return postForExport;
+    });
+    jsonExport(postsForExport, {
+        headers: ['id', 'name', 'email', 'address', 'type'] // order fields in the export
+    }, (err, csv) => {
+        downloadCSV(csv, 'user'); // download as 'posts.csv` file
+    });
+};
+
+const postFilters = [
+    <TextInput label="Search" source="q" alwaysOn />,
+];
+
 export const UserList = (props) => (
-    <List {...props}>
+    <List {...props} filters={postFilters} exporter={exporter} >
         <Datagrid>
             <TextField source="id" />
             <TextField source="name" />
