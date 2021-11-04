@@ -77,11 +77,11 @@ __Infra : Paas-Ta__
 
 사용자 리뷰 기능
 
-메타버스 어플리케이션 기능(연동완료)
+메타버스 어플리케이션 기능
 
 시스템 관리자 기능
 
-# 요구사항 체크리스트
+# 요구사항 분석 체크리스트
 
 ---
 
@@ -102,7 +102,8 @@ __Infra : Paas-Ta__
 - [x]  장바구니 선택 목록 알림 팝업창
 - [x]  구매 목록 페이지
 - [x]  구매자와 판매자 채팅 페이지 (디자인 예정)
-- [ ]  ZOOM 페이지
+- [ ]  영상 통화 페이지
+- [x]  채팅 페이지
 - [ ]  리뷰 페이지
 
 - 가게 운영자 관점
@@ -113,7 +114,7 @@ __Infra : Paas-Ta__
 - [ ]  사용자가 구매한 상품 리스트 페이지(영수증)
 
 - 시스템 관리자 관점
-- [ ]  관리자 페이지
+- [x]  관리자 페이지
 
 
 - 웹페이지 디자인
@@ -131,18 +132,18 @@ __Infra : Paas-Ta__
 
 # ⚙ 기술 스택 
 
-개발언어 - CSS, HTML, JAVASCRIPT, JAVA, REACT, SCSS, TYPESCRIPT
+개발언어 - CSS, HTML, JAVASCRIPT, JAVA, REACT, SCSS, TYPESCRIPT, NODEJS
 
-API - Material-Ui, CANVAS
+API - Npm, Material-Ui, CANVAS, Socket.io, AXIOS, React Hook, React Router, React Admin, React Notification, React Final,               React Ra-data, bootstrap
 
-IDE - 비주얼코드, 인텔리제이
+IDE - Visual Studio Code, IntelliJ
 
-데이터베이스 - MYSQL
+데이터베이스 - MYSQL 8.0
 
 개발 환경 - 윈도우10
 
 인프라 - Paas_Ta
 
-디자인 툴 - Gather-Town
+디자인 툴 - Pigma, Gather-Town
 
 형상 관리 - Github, ZOOM, Google Meet, Kakaotalk, Notion
