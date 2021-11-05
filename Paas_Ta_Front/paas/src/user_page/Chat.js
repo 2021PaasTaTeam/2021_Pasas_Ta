@@ -1,13 +1,14 @@
 import React, { useCallback, useEffect, useState } from "react";
 import io from "socket.io-client";
-import {VideoCall} from "../VideoCall";
+import { VideoCall } from "../VideoCall";
+import Typography from '@material-ui/core/Typography';
 
 const socket = io.connect("http://localhost:3001");
 const session = JSON.parse(window.sessionStorage.getItem("data"));
 
 //socket.emit("init", { name: session.data.name });
 function Chat() {
-const [room, setRoom] = useState("");
+  const [room, setRoom] = useState("");
   const [chatArr, setChatArr] = useState([]);
   const [chat, setChat] = useState({ name: session.data.name, message: "" });
   useEffect(() => {
@@ -41,7 +42,22 @@ const [room, setRoom] = useState("");
   );
   return (
     <React.Fragment>
-    <VideoCall />
+      <VideoCall />
+      <Typography
+        style={{
+          fontSize: 25,
+          textAlign:'center',
+        }}>
+        &nbsp;&nbsp;나
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;
+        사장님</Typography>
+<br/>
+<br/>
       <div className="App">
         <div className="Box">
           <div className="ChatBox">

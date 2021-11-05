@@ -23,7 +23,6 @@ function Login() {
   }
 
 
-
   const onClickLogin = () => {
     console.log('click login')
     console.log('ID : ', email)
@@ -52,12 +51,17 @@ function Login() {
           // id는 있지만, pw 는 다른 경우 userId = null , msg = undefined
           console.log('======================', '입력하신 비밀번호 가 일치하지 않습니다.')
           alert('입력하신 이메일과 비밀번호가 일치하지 않습니다.')
-        } else if (res.data.email === email) {
+        } else if (res.data.email === email && res.data.email !== 'admin') {
           // id, pw 모두 일치 userId = userId1, msg = undefined
           console.log('======================', '로그인 성공')
           alert(res.data.name + '님 환영합니다.')
           //sessionStorage.setItem('email', email)
           document.location.href = '/Town'
+        }
+        else if (res.data.email === 'admin') {
+          // 관리자 페이지
+          alert('관리자님 환영합니다.')
+          document.location.href = '/admin'
         }
       })
       .catch()

@@ -7,7 +7,7 @@ import FormButton from './modules/form/FormButton';
 import withRoot from './modules/withRoot';
 import React, { useState } from 'react';
 import axios from 'axios';
-import Mini_map from './page/Mini_map';
+import Mini_map from './user_page/Mini_map';
 
 function AddStore() {
     const [shop_name, setShop_name] = useState("");

@@ -1,26 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import axios from "axios";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Index from "./page/Home";
-import Gather from "./page/Gather";
-import Login from "./page/Login";
-import SignUp from "./page/SignUp";
-import Chat from "./page/Chat";
-import Town from "./page/Gather_town";
+import Index from "./user_page/Home";
+import Gather from "./user_page/Gather";
+import Login from "./user_page/Login";
+import SignUp from "./user_page/SignUp";
+import Chat from "./user_page/Chat";
+import Town from "./user_page/Gather_town";
 import Item from "./Item";
 import AddStore from "./AddStore";
-import MyPage from "./page/MyPage";
-import AddItem from "./page/AddItem";
-import EditItem from "./page/EditItem";
+import MyPage from "./user_page/MyPage";
+import AddItem from "./user_page/AddItem";
+import EditItem from "./user_page/EditItem";
 import EditStore from "./EditStore";
 import Cart from "./Cart";
 import Shopping_info from "./Shopping_info";
 import Review from "./Review";
-import Item_Modify from "./page/Item_Modify";
+import Item_Modify from "./user_page/Item_Modify";
 import Item_buy from "./Item_buy";
 
 // test 샘플
-import sample from "./page/sample";
+import sample from "./user_page/sample";
 
 // 관리자 페이지
 import { Admin, Resource } from "react-admin";
