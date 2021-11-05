@@ -1,7 +1,9 @@
-import * as React from "react";
 import { List, downloadCSV, Datagrid, Edit, Create, SimpleForm, DateField, TextField, EditButton, TextInput, DateInput } from 'react-admin';
 import BookIcon from '@material-ui/icons/Book';
 import jsonExport from 'jsonexport/dist';
+import React, { useState } from 'react';
+import axios from 'axios';
+
 export const UserIcon = BookIcon;
 
 const exporter = posts => {
@@ -21,7 +23,9 @@ const postFilters = [
     <TextInput label="Search" source="q" alwaysOn />,
 ];
 
-export const UserList = (props) => (
+
+export const UserList = (props) => 
+    (
     <List {...props} filters={postFilters} exporter={exporter} >
         <Datagrid>
             <TextField source="id" />
@@ -34,11 +38,13 @@ export const UserList = (props) => (
     </List>
 );
 
+
 const PostTitle = ({ record }) => {
     return <span>Post {record ? `"${record.title}"` : ''}</span>;
 };
 
-export const UserEdit = (props) => (
+export const UserEdit = (props) => 
+        (
     <Edit title={<PostTitle />} {...props}>
         <SimpleForm>
             <TextField disabled source="id" />
@@ -50,7 +56,9 @@ export const UserEdit = (props) => (
     </Edit>
 );
 
-export const UserCreate = (props) => (
+
+export const UserCreate = (props) => 
+        (
     <Create title="Create a Post" {...props}>
         <SimpleForm>
         <TextInput disabled source="id" />

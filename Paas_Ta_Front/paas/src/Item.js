@@ -88,7 +88,10 @@ function Product() {
         window.location.replace("/Cart")
     }
     const Call_SELLER = () => {
-        window.open("/Chat", "", "width=650, height=500, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
+        const store = id.name;
+        const storeObj = { store_data: store };
+        window.sessionStorage.setItem("store_data", JSON.stringify(storeObj));
+        window.open("/Chat", "", "width=650, height=800, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
     }
     const close = () => {
         window.close();
@@ -211,6 +214,17 @@ function Product() {
                     }}>📞 사장님 부르기 📞</button>
                 </div>
                 <br />
+                <div style={{
+                    float: 'left'
+                }}>
+                    <Typography variant="h3"
+                        style={{
+                            fontSize: 20
+                        }}
+                        align="left">
+                        상품 목록
+                    </Typography>
+                </div>
                 <br />
                 <div
                     style={{

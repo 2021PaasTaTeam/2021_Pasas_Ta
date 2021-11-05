@@ -24,7 +24,9 @@ import sample from "./user_page/sample";
 
 // 관리자 페이지
 import { Admin, Resource } from "react-admin";
-import { UserList, UserEdit, UserCreate, UserIcon } from './admin_page/users';
+import { UserList, UserEdit, UserIcon } from './admin_page/users';
+import UserCreate from './admin_page/user/user_create';
+
 import { ItemList, ItemEdit, ItemCreate, ItemIcon } from './admin_page/items';
 import { ShopList, ShopEdit, ShopCreate, ShopIcon } from './admin_page/shops';
 import fakeDataProvider from 'ra-data-fakerest';
@@ -38,37 +40,37 @@ function App() {
     function searchUser() {
         const url = "http://localhost:8080/user";
         axios.get(url)
-        .then(function (response) {
-            setUser(response.data);
-            console.log(response.data)
-        })
-        .catch(function (error) {
-            console.log("실패");
-          })
+            .then(function (response) {
+                setUser(response.data);
+                console.log(response.data)
+            })
+            .catch(function (error) {
+                console.log("실패");
+            })
     }
     var user_list = user;
 
     function searchItem() {
         const url = "http://localhost:8080/item";
         axios.get(url)
-        .then(function (response) {
-            setItem(response.data);
-            console.log(response.data)
-        })
-        .catch(function (error) {
-            console.log("실패");
-          })
+            .then(function (response) {
+                setItem(response.data);
+                console.log(response.data)
+            })
+            .catch(function (error) {
+                console.log("실패");
+            })
     }
     function searchShop() {
         const url = "http://localhost:8080/shop";
         axios.get(url)
-        .then(function (response) {
-            setShop(response.data);
-            console.log(response.data)
-        })
-        .catch(function (error) {
-            console.log("실패");
-          })
+            .then(function (response) {
+                setShop(response.data);
+                console.log(response.data)
+            })
+            .catch(function (error) {
+                console.log("실패");
+            })
     }
     var user_list = user;
     var item_list = item;
@@ -89,60 +91,60 @@ function App() {
 
     const home = () => {
         window.location.replace("/")
-      }
+    }
 
-// class App extends Component {
-//     render() {
-        return (
-            <Router>
-                <Switch>
-                    <Route path="/" exact render={() => <Index />} />
-                    <Route path="/Login" exact component={Login} />
-                    <Route path="/Signup" exact component={SignUp} />
-                    <Route path="/Chat" exact component={Chat} />
-                    <Route path="/Item" exact component={Item} />
-                    <Route path="/AddStore" exact component={AddStore} />
-                    <Route path="/EditStore" exact component={EditStore} />
-                    <Route path="/AddItem" exact component={AddItem} />
-                    <Route path="/EditItem" exact component={EditItem} />
-                    <Route path="/Cart" exact component={Cart} />
-                    <Route path="/Shopping_info" exact component={Shopping_info} />
-                    <Route path="/Review" exact component={Review} />
-                    <Route path="/Item_Modify" exact component={Item_Modify} />
-                    <Route path="/Item_buy" exact component={Item_buy} />
-                    
-                    {/* sample */}
-                    <Route path="/sample" exact component={sample} />
+    // class App extends Component {
+    //     render() {
+    return (
+        <Router>
+            <Switch>
+                <Route path="/" exact render={() => <Index />} />
+                <Route path="/Login" exact component={Login} />
+                <Route path="/Signup" exact component={SignUp} />
+                <Route path="/Chat" exact component={Chat} />
+                <Route path="/Item" exact component={Item} />
+                <Route path="/AddStore" exact component={AddStore} />
+                <Route path="/EditStore" exact component={EditStore} />
+                <Route path="/AddItem" exact component={AddItem} />
+                <Route path="/EditItem" exact component={EditItem} />
+                <Route path="/Cart" exact component={Cart} />
+                <Route path="/Shopping_info" exact component={Shopping_info} />
+                <Route path="/Review" exact component={Review} />
+                <Route path="/Item_Modify" exact component={Item_Modify} />
+                <Route path="/Item_buy" exact component={Item_buy} />
 
-                    {/* sample */}
+                {/* sample */}
+                <Route path="/sample" exact component={sample} />
 
-                    <Route path="/MyPage" exact component={MyPage} />
-                    <Route path="/Gather" exact component={Gather} />
-                    <Route path="/Town" exact component={Town} />
+                {/* sample */}
+
+                <Route path="/MyPage" exact component={MyPage} />
+                <Route path="/Gather" exact component={Gather} />
+                <Route path="/Town" exact component={Town} />
 
 
-                    {/* 관리자 페이지 */}
-                    <Admin
+                {/* 관리자 페이지 */}
+                <Admin
                     dashboard={Dashboard}
                     dataProvider={dataProvider}
-                    
-                    >
-                        <Resource name="user" 
-                        list={UserList} 
+
+                >
+                    <Resource name="user"
+                        list={UserList}
                         edit={UserEdit} create={UserCreate} icon={UserIcon}
-                        />
-                        <Resource name="shop" 
-                        list={ShopList} 
+                    />
+                    <Resource name="shop"
+                        list={ShopList}
                         edit={ShopEdit} create={ShopCreate} icon={ShopIcon}
-                        />
-                        <Resource name="item" 
-                        list={ItemList} 
+                    />
+                    <Resource name="item"
+                        list={ItemList}
                         edit={ItemEdit} create={ItemCreate} icon={ItemIcon}
-                        />
-                    </Admin>
-                </Switch>
-            </Router>
-        );
-    }
+                    />
+                </Admin>
+            </Switch>
+        </Router>
+    );
+}
 // }
 export default App;
