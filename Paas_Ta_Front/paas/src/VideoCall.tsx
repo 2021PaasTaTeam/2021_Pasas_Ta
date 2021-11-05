@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import SimplePeer, { Instance, SignalData } from "simple-peer";
 import "./Video.scss";
-import FormButton from './modules/form/FormButton';
 
 enum ConnectionStatus {
   OFFERING,
@@ -66,7 +65,7 @@ export const VideoCall = () => {
                                       borderRadius: ".25rem",
                                       fontSize: "1rem",
                                       lineHeight: 1.5,
-                                  }}>📞 사장님 부르기 📞</button> }
+                                  }}>📞 비대면 화상 통화 콜 📞</button> }
       {connectionStatus === ConnectionStatus.OFFERING && <div className="loader"></div>}
       {connectionStatus === ConnectionStatus.RECEIVING && (
         <button onClick={() => sendOrAcceptInvitation(false, offerSignal)}>ANSWER CALL</button>
