@@ -7,7 +7,7 @@ import FormButton from './modules/form/FormButton';
 import withRoot from './modules/withRoot';
 import React, { useCallback, useEffect, useState } from 'react';
 import axios from 'axios';
-import Mini_map from './page/Mini_map';
+import Mini_map from './user_page/Mini_map';
 
 function EditStore() {
     const session = JSON.parse(window.sessionStorage.getItem("data"));

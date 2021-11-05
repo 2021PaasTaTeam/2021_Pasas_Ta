@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Sidebar from '../../page/Sidebar';
+import Sidebar from '../../user_page/Sidebar';
 import Button from '../components/Button';
 import Typography from '../components/Typography';
 import Home_main_Layout from './Home_main_Layout';
