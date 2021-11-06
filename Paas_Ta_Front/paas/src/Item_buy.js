@@ -10,6 +10,7 @@ function Item_buy() {
     const session = JSON.parse(window.sessionStorage.getItem("data"));
     const item_data_session = JSON.parse(window.sessionStorage.getItem("item_data"));
 
+    //console.log(item_data_session.item_data.itemId)
     var [store, setStore] = useState([]);
     var [item, setItem] = useState([]);
     var id = [];
@@ -39,6 +40,50 @@ function Item_buy() {
             })
     }
 
+    const onClickCart = () => {
+        console.log('click cart')
+        console.log('itemId : ', item_data_session.item_data.itemId)
+        console.log('count : ', number)
+        let data = {'items':[{
+          'itemId': item_data_session.item_data.itemId,
+          'count': number,
+        },]
+        }
+        axios.post('http://localhost:8080/order/'+session.data.id+"/register", data, {
+            headers: {
+                'Content-type': 'application/json; charset=utf-8',
+              }
+        })
+          .then(res => {
+            console.log(res.data)
+            alert("장바구니에 등록했습니다.")
+            window.location.replace("/Item")
+          })
+          .catch()
+      }
+
+      const onClickBuy = () => {
+        console.log('click cart')
+        console.log('itemId : ', item_data_session.item_data.itemId)
+        console.log('count : ', number)
+        let data = {'items':[{
+          'itemId': item_data_session.item_data.itemId,
+          'count': number,
+        },]
+        }
+        axios.post('http://localhost:8080/order/'+session.data.id+"/finish", data, {
+            headers: {
+                'Content-type': 'application/json; charset=utf-8',
+              }
+        })
+          .then(res => {
+            console.log(res.data)
+            alert("구매 완료!!!")
+            window.location.replace("/Item")
+          })
+          .catch()
+      }
+
     for (let i = 0; i < store.length; i++) {
         if (store[i].email === session.data.email) {
             id = store[i];
@@ -57,6 +102,9 @@ function Item_buy() {
 
     const [number, setNumber] = useState(0);
 
+    const onNumberHandler = (event) => {
+        setNumber(event.currentTarget.value)
+    }
     const onIncrease = () => {
         setNumber(prevNumber => prevNumber + 1);
     }
@@ -193,7 +241,7 @@ function Item_buy() {
                                         <img className="phoneImage"
                                             height="150vh"
                                             width="150vw"
-                                            //src={"img/"+itemImage}
+                                            src={"img/" + item_data_session.item_data.storeFileName}
                                             />
                                     </div>
                                     <div style={{
@@ -246,6 +294,8 @@ function Item_buy() {
                                                 fontSize: 20,
                                                 float: 'left'
                                             }}
+                                            value={number}
+                                            onChange={onNumberHandler}
                                         >
                                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                             &nbsp;&nbsp;
@@ -338,6 +388,7 @@ function Item_buy() {
                         collapse: 'collapse',
                         borderRadius: '8px',
                     }}
+                    onClick={onClickCart}
                 >
                     {'👜 장바구니 넣기'}
                 </FormButton>
@@ -356,7 +407,7 @@ function Item_buy() {
                                 collapse: 'collapse',
                                 borderRadius: '8px',
                             }}
-                            type="submit"
+                            onClick={onClickBuy}
                         >
                             {'바로 구매하기'}
                         </FormButton>

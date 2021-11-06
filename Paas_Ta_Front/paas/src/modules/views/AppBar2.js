@@ -76,22 +76,7 @@ function AppAppBar2() {
               sx={{ ...rightLink, color: 'lightgreen' }}
             >
               {session_name.email + ' 님 환영합니다.'}
-            </Link> */}
-            {
-              session.data.type === 'SELLER' ? 
-              <Notifications
-              data={list}
-                  headerBackgroundColor = 'white'
-                  header={
-                    {
-                      title: '👜 장바구니',
-                      option: { text: '구매하기', onClick: () => {window.location = "./Cart"} }
-                    }
-                  }
-                  icon={Icon}
-              />
-                : <></>
-            }        
+            </Link> */}       
     {/* <Notifications
     data={list}
         headerBackgroundColor = 'white'

@@ -4,37 +4,57 @@ import AppAppBar2 from './modules/views/AppBar2';
 import AppForm from './modules/views/AppForm';
 import FormButton from './modules/form/FormButton';
 import withRoot from './modules/withRoot';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 function Shopping_info() {
-    const labels = ['대한민국 전통 한복', '잭 다니엘']
-
-    const [shop_name, setShop_name] = useState("");
-    const [shop_address, setShop_address] = useState("");
-    const [shop_phone, setShop_phone] = useState("");
-    const [shop_image, setShop_image] = useState("");
-    const [registeration_number, setRegisteration_number] = useState("");
-
-    const onShop_nameHandler = (event) => {
-        setShop_name(event.currentTarget.value);
-    }
-    const onShop_sddressHandler = (event) => {
-        setShop_address(event.currentTarget.value)
-    }
-    const onShop_phoneHandler = (event) => {
-        setShop_phone(event.currentTarget.value);
-    }
-    const onShop_imageHandler = (event) => {
-        setShop_image(event.currentTarget.value);
-    }
-    // 사업자 번호
-    const onRegisteration_numberHandler = (event) => {
-        setRegisteration_number(event.currentTarget.value);
-    }
-
     const session = JSON.parse(window.sessionStorage.getItem("data"));
 
+    var [order, setOrder] = useState([]);
+    var [id, setId] = useState([]);
+
+    function searchOrder() {
+        const url = "http://localhost:8080/orders/" + session.data.id;
+        axios.get(url)
+            .then(function (response) {
+                setOrder(response.data[0].orderItems);
+                console.log(response.data)
+                setId(response.data)
+                // console.log("성공");
+            })
+            .catch(function (error) {
+                // console.log("실패");
+            })
+    }
+    console.log(order)
+    //console.log(id.orderId)
+    //console.log(order[0].orderItems)
+
+    const item_name = []
+    // const item_image = []
+    const item_stock = []
+    const item_price = []
+    const order_id = []
+
+    for (var j = 0; j < id.length; j++) {
+        order_id[j] = id[j].orderId
+    }
+
+    for (var j = 0; j < order.length; j++) {
+        item_name[j] = order[j].itemName
+    }
+    for (var j = 0; j < order.length; j++) {
+        item_price[j] = order[j].itemPrice
+    }
+    for (var j = 0; j < order.length; j++) {
+        item_stock[j] = order[j].itemCount
+    }
+    // for (var j = 0; j < item.length; j++) {
+    //     item_image[j] = item[j].storeFileName
+    // }
+    useEffect(() => {
+        searchOrder()
+    }, []);
     return (
         <React.Fragment>
             <AppAppBar2 />
@@ -61,17 +81,39 @@ function Shopping_info() {
                 <br />
                 <div>
                     <ul>
-                        {labels.map((label, idx) => (
+                        {item_name.map((name, idx) => (
                             <li key={idx}>
                                 <label>
-                                    <div className="c1image" style={{
+                                    <div style={{
+                                        float: 'left'
+                                    }}>
+                                        <Typography variant="h3"
+                                            style={{
+                                                fontSize: 20
+                                            }}
+                                            align="left">
+                                            주문 번호 : {order_id}
+                                        </Typography>
+                                    </div>
+                                    <br/>
+                                    <div
+                                        style={{
+                                            width: "100%",
+                                            borderBottom: "1px solid #aaa",
+                                            lineHeight: "0.1em",
+                                            margin: "10px 0 10px",
+                                        }}
+                                    >
+                                        <span style={{ background: "#fff", }}></span>
+                                    </div>
+                                    {/* <div className="c1image" style={{
                                         float: 'left'
                                     }} >
                                         <img className="phoneImage"
-                                            height="110vh"
-                                            width="110vw"
-                                            src="/assets/github.png" />
-                                    </div>
+                                            height="150vh"
+                                            width="150vw"
+                                            src={"img/" + item_image[idx]} />
+                                    </div> */}
                                     <div style={{
                                         float: 'left'
                                     }}>
@@ -82,29 +124,10 @@ function Shopping_info() {
                                                 float: 'left'
                                             }}
                                         >
-                                            &nbsp;&nbsp;상품명 : {label}
+                                            &nbsp;&nbsp;상품명 : {item_name[idx]}
                                         </Typography>
-                                    </div>
-                                    <br />
-                                    <br />
-                                    <div style={{
-                                        float: 'left'
-                                    }}>
-                                        <Typography
-                                            variant="h3"
-                                            style={{
-                                                fontSize: 20,
-                                                float: 'left'
-                                            }}
-                                        >
-                                            &nbsp;&nbsp;0 개
-                                        </Typography>
-                                    </div>
-                                    <br />
-                                    <br />
-                                    <div style={{
-                                        float: 'left'
-                                    }}>
+                                        <br />
+                                        <br />
                                         <Typography
                                             variant="h3"
                                             style={{
@@ -112,14 +135,22 @@ function Shopping_info() {
                                                 float: 'left'
                                             }}
                                         >
-                                            &nbsp;&nbsp;가격 : 1000000원
+                                            &nbsp;&nbsp;개수 : {item_stock[idx]}
                                         </Typography>
+                                        <br />
+                                        <br />
+                                        <Typography
+                                            variant="h3"
+                                            style={{
+                                                fontSize: 17,
+                                                float: 'left'
+                                            }}
+                                        >
+                                            &nbsp;&nbsp;가격 : {item_price[idx]}
+                                        </Typography>
+                                        <br/>
+                                        <br/>
                                     </div>
-
-                                    <br />
-                                    <br />
-                                    <br />
-                                    <br />
                                 </label>
                             </li>
                         ))}
