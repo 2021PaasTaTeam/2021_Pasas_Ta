@@ -33,5 +33,12 @@ public class LandLocations {
     @Column(name = "land_rightBottomCoordinateY")
     private int rightBottomCoordinateY;
 
-
+    @Override
+    public String toString() {
+        return "LandLocations{ " +
+                "leftTop=(" + leftTopCoordinateX + ", " + leftTopCoordinateY + "), " +
+                "rightTop=(" + rightTopCoordinateX + ", " + rightTopCoordinateY + "), " +
+                "leftBottom=( " + leftBottomCoordinateX + ", " + leftBottomCoordinateY + "), " +
+                "rightBottom=( " + rightBottomCoordinateX + ", " + rightBottomCoordinateY + ") }";
+    }
 }

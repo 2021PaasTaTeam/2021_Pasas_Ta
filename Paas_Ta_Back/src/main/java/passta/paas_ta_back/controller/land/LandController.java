@@ -3,9 +3,13 @@ package passta.paas_ta_back.controller.land;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import passta.paas_ta_back.repository.land.LandRepository;
+
+import java.util.stream.Collectors;
 
 @Slf4j
 @CrossOrigin
@@ -15,5 +19,10 @@ public class LandController {
 
     private final LandRepository landRepository;
 
-    
+    @GetMapping("/lands")
+    public ResponseEntity<?> totalLandView(){
+        return ResponseEntity.ok(landRepository.findAll().stream().map(LandInfoDto::new).collect(Collectors.toList()));
+    }
+
+
 }
