@@ -31,6 +31,9 @@ public class Order {
 
     private LocalDateTime orderDate; //주문시간
 
+    @Enumerated(EnumType.STRING)
+    private OrderStatus status; //주문상태 [ORDER, CANCEL]
+
     public void setUser(User user) {
         this.user = user;
         user.getOrders().add(this);
@@ -41,16 +44,36 @@ public class Order {
         orderItem.setOrder(this);
     }
 
-    public static Order createOrder(User user, OrderItem... orderItems) {
+    public static Order createOrder(User user, List<OrderItem> orderItems) {
         Order order = new Order();
-        order.user = user;
+        order.setUser(user);
         for (OrderItem orderItem : orderItems) {
             order.addOrderItem(orderItem);
         }
         order.orderDate = LocalDateTime.now();
+        order.status = OrderStatus.ORDERING;
         return order;
     }
 
+
+    /**
+     * 비즈니스 로직
+     * <p>
+     * 주문취소
+     */
+    public void cancel() {
+        this.status = OrderStatus.CANCEL;
+        for (OrderItem orderitem : orderItems) {
+            orderitem.cancel();
+        }
+    }
+
+    /**
+     * 주문을 완료
+     */
+    public void finishOrder(){
+        this.status=OrderStatus.FINISH;
+    }
     /**
      * 전체 주문 가격 조회
      */

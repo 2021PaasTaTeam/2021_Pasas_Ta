@@ -8,5 +8,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class OrderItemRegisterDto {
-    String name;
+    Long itemId;
+    int count;
 }
