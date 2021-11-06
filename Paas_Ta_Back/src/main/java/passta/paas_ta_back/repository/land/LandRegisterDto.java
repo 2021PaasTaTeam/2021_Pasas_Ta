@@ -13,4 +13,6 @@ public class LandRegisterDto {
 
     private int leftTop;
 
+    //구현중
+
 }

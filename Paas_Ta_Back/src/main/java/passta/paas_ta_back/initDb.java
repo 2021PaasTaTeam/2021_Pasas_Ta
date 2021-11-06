@@ -9,6 +9,7 @@ import passta.paas_ta_back.domain.*;
 import javax.annotation.PostConstruct;
 import javax.persistence.EntityManager;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -41,19 +42,33 @@ public class initDb {
             User user = User.createUser("이름3", "email3", "1234", "주소1", UserType.SELLER);
             em.persist(user);
 
-            Land landInit = null;
-            for (int y = 250; y <= 650; y += 400) {
-                for (int x = 200; x <= 1700; x += 600) {
-                    //초기 Land 좌표 셋팅값
-                    LandLocations landLocations = new LandLocations(x, y, x + 300, y, x, y + 200, x + 300, y + 200);
-                    //초기 Land셋팅
-                    landInit = Land.createLand("성북", landLocations);
-                    em.persist(landInit);
+            User seller1 = User.createUser("이름4", "email4", "1234", "주소4", UserType.SELLER);
+            em.persist(seller1);
+            User seller2 = User.createUser("이름5", "email5", "1234", "주소5", UserType.SELLER);
+            em.persist(seller2);
+            User seller3 = User.createUser("이름6", "email6", "1234", "주소6", UserType.SELLER);
+            em.persist(seller3);
+
+
+            List<String> locations = Arrays.asList("성북", "동작", "종로", "구로", "서초", "영등포");
+            List<Land> lands = new ArrayList<>();
+
+            //지역구 돌면서 세팅
+            for (int loc = 0 ; loc <6 ; loc ++){
+                for (int y = 250; y <= 650; y += 400) {
+                    for (int x = 200; x <= 1700; x += 600) {
+                        //초기 Land 좌표 셋팅값
+                        LandLocations landLocations = new LandLocations(x, y, x + 300, y, x, y + 200, x + 300, y + 200);
+                        //초기 Land셋팅
+                        Land land = Land.createLand(locations.get(loc), landLocations);
+                        lands.add(land);
+                        em.persist(land);
+                    }
                 }
             }
 
 
-            // 초기 가게 세팅 //마지막 위치가 세팅됨
+            // 초기 가게 세팅
             UploadFile uploadFile1 = new UploadFile("사용자파일명1", "uuid파일명1");
             Shop shop1 = Shop.createShop(
                     user,
@@ -64,20 +79,49 @@ public class initDb {
                     "가게상세주소1",
                     "가게 타입1",
                     uploadFile1,
-                    landInit);
+                    lands.get(0));
             em.persist(shop1);
 
-//            UploadFile uploadFile2 = new UploadFile("사용자파일명2", "uuid파일명2");
-//            Shop shop2 = Shop.createShop(
-//                    user,
-//                    "사업자등록번호2",
-//                    "가게2",
-//                    "가게전화번호2",
-//                    "가게지역명2",
-//                    "가게상세주소2",
-//                    "가게 타입2",
-//                    uploadFile2);
-//            em.persist(shop2);
+            UploadFile uploadFile2 = new UploadFile("사용자파일명2.jpg", "uuid파일명2.jpg");
+
+
+            Shop shop2 = Shop.createShop(
+                    admin,
+                    "사업자등록번호2",
+                    "가게2",
+                    "가게전화번호2",
+                    "가게지역명2",
+                    "가게상세주소2",
+                    "가게 타입2",
+                    uploadFile2,
+                    lands.get(3));
+            em.persist(shop2);
+
+
+            Shop shop3 = Shop.createShop(
+                    seller2,
+                    "사업자등록번호3",
+                    "가게3",
+                    "가게전화번호3",
+                    "가게지역명3",
+                    "가게상세주소3",
+                    "가게 타입3",
+                    uploadFile2,
+                    lands.get(4));
+            em.persist(shop3);
+
+
+            Shop shop4 = Shop.createShop(
+                    seller3,
+                    "3",
+                    "가게2",
+                    "가게전화번호2",
+                    "가게지역명2",
+                    "가게상세주소2",
+                    "가게 타입2",
+                    uploadFile2,
+                    lands.get(5));
+            em.persist(shop4);
 
             // 초기 image list 세팅
             List<UploadFile> uploadFiles = new ArrayList<>();
