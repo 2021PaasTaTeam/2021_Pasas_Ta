@@ -10,6 +10,7 @@ import passta.paas_ta_back.domain.Item;
 import passta.paas_ta_back.domain.Order;
 import passta.paas_ta_back.domain.OrderItem;
 import passta.paas_ta_back.domain.User;
+import passta.paas_ta_back.repository.order.OrderRegisterDto;
 import passta.paas_ta_back.repository.orderItem.OrderItemRegisterDto;
 import passta.paas_ta_back.service.ItemService;
 import passta.paas_ta_back.service.OrderService;
@@ -29,21 +30,22 @@ public class OrderController {
     private final ItemService itemService;
 
 
-    @GetMapping("/order")
-    public ResponseEntity<?> totalOrderByUserId(@RequestPart Long userId) {
+    @GetMapping("/orders/{userId}")
+    public ResponseEntity<?> totalOrderByUserId(@PathVariable(name = "userId") Long userId) {
         List<Order> orderByUserId = orderService.findOrderByUserId(userId);
         List<OrderInfoDto> orders = orderByUserId.stream().map(OrderInfoDto::new).collect(Collectors.toList());
         return new ResponseEntity(orders, HttpStatus.OK);
     }
 
-    @PostMapping("/order")
-    public ResponseEntity<?> registerOrder(Long userId, List<OrderItemRegisterDto> itemRegisters) {
+    @PostMapping("/order/{userId}/register")
+    public ResponseEntity<?> registerOrder(@PathVariable(name = "userId") Long userId, @RequestBody OrderRegisterDto orderRegisterDto) {
         User userById = userService.findUserById(userId);
-        if (itemRegisters.size() == 0 || userById == null) {
+        log.info("orderRegisterDto={}",orderRegisterDto);
+        if (orderRegisterDto.getOrderItemRegisterDtos().size() == 0 || userById == null) {
             return ResponseEntity.ok(null);
         }
         List<OrderItem> orderItems = new ArrayList<>();
-        for (OrderItemRegisterDto item : itemRegisters) {
+        for (OrderItemRegisterDto item : orderRegisterDto.getOrderItemRegisterDtos()) {
             Item itemById = itemService.findItemById(item.getItemId());
             if (itemById != null && item.getCount() > 0) {
                 int itemPrices = itemById.getPrice() * item.getCount();
@@ -54,8 +56,8 @@ public class OrderController {
         return new ResponseEntity(orders, HttpStatus.CREATED);
     }
 
-    @PostMapping("/order/finish")
-    public ResponseEntity<?> FinishOrder(Long orderId) {
+    @PostMapping("/order/{orderId}/finish")
+    public ResponseEntity<?> FinishOrder(@PathVariable(name = "orderId") Long orderId) {
         orderService.findOrderByUserId(orderId);
         return new ResponseEntity(HttpStatus.CREATED);
     }
