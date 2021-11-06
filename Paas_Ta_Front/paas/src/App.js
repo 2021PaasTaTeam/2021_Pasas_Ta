@@ -5,7 +5,7 @@ import Index from "./user_page/Home";
 import Gather from "./user_page/Gather";
 import Login from "./user_page/Login";
 import SignUp from "./user_page/SignUp";
-import Chat from "./user_page/Chat";
+// import Chat from "./user_page/Chat";
 import Town from "./user_page/Gather_town";
 import Item from "./Item";
 import AddStore from "./AddStore";
@@ -20,12 +20,13 @@ import Item_Modify from "./user_page/Item_Modify";
 import Item_buy from "./Item_buy";
 
 // test 샘플
-import sample from "./user_page/sample";
-
+// import sample from "./user_page/sample";
+import { VideoCall } from './user_page/web/VideoCall';
 // 관리자 페이지
 import { Admin, Resource } from "react-admin";
-import { UserList, UserEdit, UserIcon } from './admin_page/users';
+import { UserList, UserIcon } from './admin_page/users';
 import UserCreate from './admin_page/user/user_create';
+import UserEdit from './admin_page/user/user_edit';
 
 import { ItemList, ItemEdit, ItemCreate, ItemIcon } from './admin_page/items';
 import { ShopList, ShopEdit, ShopCreate, ShopIcon } from './admin_page/shops';
@@ -101,7 +102,7 @@ function App() {
                 <Route path="/" exact render={() => <Index />} />
                 <Route path="/Login" exact component={Login} />
                 <Route path="/Signup" exact component={SignUp} />
-                <Route path="/Chat" exact component={Chat} />
+                <Route path="/Chat" exact component={VideoCall} />
                 <Route path="/Item" exact component={Item} />
                 <Route path="/AddStore" exact component={AddStore} />
                 <Route path="/EditStore" exact component={EditStore} />
@@ -114,7 +115,9 @@ function App() {
                 <Route path="/Item_buy" exact component={Item_buy} />
 
                 {/* sample */}
-                <Route path="/sample" exact component={sample} />
+                {/* <Route path="/sample" exact component={sample} /> */}
+                {/* <Route path="/test" exact component={VideoCall} /> */}
+
 
                 {/* sample */}
 

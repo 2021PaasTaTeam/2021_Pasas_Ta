@@ -38,14 +38,9 @@ export const UserList = (props) =>
     </List>
 );
 
-
-const PostTitle = ({ record }) => {
-    return <span>Post {record ? `"${record.title}"` : ''}</span>;
-};
-
 export const UserEdit = (props) => 
         (
-    <Edit title={<PostTitle />} {...props}>
+    <Edit title={'User'} {...props}>
         <SimpleForm>
             <TextField disabled source="id" />
             <TextInput source="name" />

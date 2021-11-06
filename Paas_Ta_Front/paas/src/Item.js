@@ -91,7 +91,9 @@ function Product() {
         const store = id.name;
         const storeObj = { store_data: store };
         window.sessionStorage.setItem("store_data", JSON.stringify(storeObj));
+        //window.open("/Chat", "", "width=650, height=800, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
         window.open("/Chat", "", "width=650, height=800, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
+
     }
     const close = () => {
         window.close();

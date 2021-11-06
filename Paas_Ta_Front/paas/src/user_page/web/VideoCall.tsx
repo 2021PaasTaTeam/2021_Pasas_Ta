@@ -1,5 +1,9 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import SimplePeer, { Instance, SignalData } from "simple-peer";
+import Typography from '@material-ui/core/Typography';
+import AppForm from '../../modules/views/AppForm';
+import {ChatContainer} from './Container/ChatContainer';
+
 import "./Video.scss";
 
 enum ConnectionStatus {
@@ -7,8 +11,6 @@ enum ConnectionStatus {
   RECEIVING,
   CONNECTED,
 }
-
-
 const webSocketConnection = new WebSocket("ws://localhost:8080/videochat");
 
 export const VideoCall = () => {
@@ -21,6 +23,7 @@ export const VideoCall = () => {
   useEffect(() => {
     webSocketConnection.onmessage = (message: any) => {
       const payload = JSON.parse(message.data);
+      console.log(payload);
       if (payload?.type === "offer") {
         setOfferSignal(payload);
         setConnectionStatus(ConnectionStatus.RECEIVING);
@@ -28,8 +31,13 @@ export const VideoCall = () => {
     };
   }, [simplePeer]);
 
+
+  
   const sendOrAcceptInvitation = (isInitiator: boolean, offer?: SignalData) => {
-    navigator.mediaDevices.getUserMedia({ video: true, audio: true }).then((mediaStream) => {
+    // if(connectionStatus == 1) {
+    //   alert(connectionStatus)
+    // }
+    navigator.mediaDevices.getUserMedia({ video: true, audio: false }).then((mediaStream) => {
       const video = videoSelf.current;
       video!.srcObject = mediaStream;
       video!.play();
@@ -54,9 +62,12 @@ export const VideoCall = () => {
     });
   };
 
+  function test() {
+    alert("호출")
+  }
   return (
+    <AppForm>
     <div className="web-rtc-page">
-      {/* {connectionStatus === null && <button onClick={() => sendOrAcceptInvitation(true)}>사장님 호출하기</button>} */}
       {connectionStatus === null && 
                                     <button onClick={() => sendOrAcceptInvitation(true)} style={{
                                       color: "white",
@@ -66,15 +77,25 @@ export const VideoCall = () => {
                                       fontSize: "1rem",
                                       lineHeight: 1.5,
                                   }}>📞 비대면 화상 통화 콜 📞</button> }
-      {connectionStatus === ConnectionStatus.OFFERING && <div className="loader"></div>}
-      {connectionStatus === ConnectionStatus.RECEIVING && (
+      {connectionStatus === ConnectionStatus.OFFERING && 
+      <div style={{margin:10,backgroundColor:'blue',height:30}}>로딩 중...</div>
+}
+      { 
+      connectionStatus === ConnectionStatus.RECEIVING &&
+      ( 
+        <div>
         <button onClick={() => sendOrAcceptInvitation(false, offerSignal)}>ANSWER CALL</button>
-      )}
-      <br/>
+        <div style={{margin:10,backgroundColor:'red',height:30}}>고객님께서 호출하셨습니다.</div>
+        </div>
+      )
+      }
+
       <div className="video-container">
         <video ref={videoSelf} className="video-block" />
         <video ref={videoCaller} className="video-block" />
       </div>
     </div>
+      <ChatContainer/>
+    </AppForm>
   );
 };
