@@ -100,6 +100,21 @@ public class initDb {
                     30,
                     uploadFiles);
             em.persist(item3);
+
+            // 주문 finish 된 상태
+            List<OrderItem> orderItems = new ArrayList<>();
+            OrderItem orderItem1 = OrderItem.createOrderItem(item1, item1.getPrice(), 2);
+            em.persist(orderItem1);
+            OrderItem orderItem2 = OrderItem.createOrderItem(item2, item2.getPrice(), 2);
+            em.persist(orderItem2);
+            OrderItem orderItem3 = OrderItem.createOrderItem(item3, item3.getPrice(), 5);
+            em.persist(orderItem3);
+            orderItems.add(orderItem1);
+            orderItems.add(orderItem2);
+            orderItems.add(orderItem3);
+            Order order = Order.createOrder(user, orderItems);
+            order.finishOrder();
+            em.persist(order);
         }
     }
 }
