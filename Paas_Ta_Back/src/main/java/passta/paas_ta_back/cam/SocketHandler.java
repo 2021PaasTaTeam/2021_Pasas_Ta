@@ -1,4 +1,4 @@
-package passta.paas_ta_back.websocket;
+package passta.paas_ta_back.cam;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -19,11 +19,14 @@ public class SocketHandler extends TextWebSocketHandler {
 
     @Override
     public void afterConnectionEstablished(WebSocketSession session) {
+        log.info("est_session={}", session);
         sessions.add(session);
     }
 
     @Override
     public void afterConnectionClosed(WebSocketSession session, CloseStatus status) {
+        log.info("closed_session={}", session);
+        log.info("status_session={}", session);
         sessions.remove(session);
     }
 
