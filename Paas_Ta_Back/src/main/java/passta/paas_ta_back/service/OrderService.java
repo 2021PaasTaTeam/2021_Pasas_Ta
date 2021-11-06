@@ -6,7 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import passta.paas_ta_back.domain.Order;
+import passta.paas_ta_back.domain.OrderItem;
+import passta.paas_ta_back.domain.User;
 import passta.paas_ta_back.repository.order.OrderRepository;
+import passta.paas_ta_back.repository.user.UserRepository;
+
 import java.util.List;
 
 @Slf4j
@@ -17,21 +21,31 @@ public class OrderService {
     @Autowired
     OrderRepository orderRepository;
 
+    @Autowired
+    UserService userService;
+
     public List<Order> orders(){
         return orderRepository.findAll();
     }
 
-    public Order findOrderById(Long id){
-        return orderRepository.findById(id).orElse(null);
+    public List<Order> findOrderByUserId(Long userid){
+        return orderRepository.findAllByUser(userid);
     }
 
+//    @Transactional
+//    public boolean deleteOrderById(Long id) {
+//        Order orderById = findOrderById(id);
+//        if (orderById == null){
+//            return false;
+//        }
+//        orderRepository.deleteById(id);
+//        return true;
+//    }
+
     @Transactional
-    public boolean deleteOrderById(Long id) {
-        Order orderById = findOrderById(id);
-        if (orderById == null){
-            return false;
-        }
-        orderRepository.deleteById(id);
-        return true;
+    public Long createOrders(Long userId, List<OrderItem> orderItems){
+        User userById = userService.findUserById(userId);
+        Order order = Order.createOrder(userById, orderItems);
+        return order.getId();
     }
 }

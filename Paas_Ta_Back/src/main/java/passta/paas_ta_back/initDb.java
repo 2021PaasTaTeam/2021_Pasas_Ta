@@ -31,9 +31,14 @@ public class initDb {
         private final EntityManager em;
 
         public void dbInit1() {
-
-            // 초기 사용자 세팅
-            User user = User.createUser("이름1", "이메일1", "비밀번호1", "주소1", UserType.SELLER);
+            //초기 admin 세팅
+            User admin = User.createUser("admin", "admin", "admin", "admin", UserType.ADMIN);
+            em.persist(admin);
+            //초기 사용자 세팅
+            User user2 = User.createUser("이름2", "email2", "1234", "주소1", UserType.CONSUMER);
+            em.persist(user2);
+            // 초기 가게 사용자 세팅
+            User user = User.createUser("이름3", "email3", "1234", "주소1", UserType.SELLER);
             em.persist(user);
 
             // 초기 가게 세팅
