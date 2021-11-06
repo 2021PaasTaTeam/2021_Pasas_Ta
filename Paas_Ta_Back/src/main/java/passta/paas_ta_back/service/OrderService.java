@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import passta.paas_ta_back.domain.Order;
 import passta.paas_ta_back.domain.OrderItem;
+import passta.paas_ta_back.domain.OrderStatus;
 import passta.paas_ta_back.domain.User;
 import passta.paas_ta_back.repository.order.OrderRepository;
 import passta.paas_ta_back.repository.user.UserRepository;
@@ -32,6 +33,10 @@ public class OrderService {
         return orderRepository.findAllByUser(userid);
     }
 
+    public List<Order> findFinishOrderByUserId(Long userid){
+        return orderRepository.findAllByUserAndStatus(userid, OrderStatus.FINISH);
+    }
+
 //    @Transactional
 //    public boolean deleteOrderById(Long id) {
 //        Order orderById = findOrderById(id);
@@ -43,9 +48,18 @@ public class OrderService {
 //    }
 
     @Transactional
-    public Long createOrders(Long userId, List<OrderItem> orderItems){
+    public Order createOrders(Long userId, List<OrderItem> orderItems){
         User userById = userService.findUserById(userId);
         Order order = Order.createOrder(userById, orderItems);
-        return order.getId();
+        return order;
     }
+
+    @Transactional
+    public Order finishOrders(Long orderId){
+        Order order = orderRepository.findById(orderId).get();
+        order.finishOrder();
+        return order;
+    }
+
+
 }

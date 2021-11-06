@@ -40,8 +40,12 @@ public class OrderItem {
         orderItem.item = item;
         orderItem.orderPrice = orderPrice;
         orderItem.count = count;
-        item.removeStock(count);
-        return orderItem;
+        boolean removeStock = item.removeStock(count);
+        if(removeStock == true){
+            return orderItem;
+        }else {
+            return null;
+        }
     }
 
     //==비즈니스 로직==//

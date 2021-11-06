@@ -32,7 +32,7 @@ public class OrderController {
 
     @GetMapping("/orders/{userId}")
     public ResponseEntity<?> totalOrderByUserId(@PathVariable(name = "userId") Long userId) {
-        List<Order> orderByUserId = orderService.findOrderByUserId(userId);
+        List<Order> orderByUserId = orderService.findFinishOrderByUserId(userId);
         List<OrderInfoDto> orders = orderByUserId.stream().map(OrderInfoDto::new).collect(Collectors.toList());
         return new ResponseEntity(orders, HttpStatus.OK);
     }
@@ -49,17 +49,21 @@ public class OrderController {
             Item itemById = itemService.findItemById(item.getItemId());
             if (itemById != null && item.getCount() > 0) {
                 int itemPrices = itemById.getPrice() * item.getCount();
-                orderItems.add(OrderItem.createOrderItem(itemById, itemPrices, item.getCount()));
+                OrderItem orderItem = OrderItem.createOrderItem(itemById, itemPrices, item.getCount());
+                if(orderItem == null){
+                    return ResponseEntity.ok("Lack of Stock");
+                }
+                orderItems.add(orderItem);
             }
         }
-        Long orders = orderService.createOrders(userId, orderItems);
-        return new ResponseEntity(orders, HttpStatus.CREATED);
+        Order order = orderService.createOrders(userId, orderItems);
+        return new ResponseEntity(new OrderInfoDto(order), HttpStatus.CREATED);
     }
 
     @PostMapping("/order/{orderId}/finish")
     public ResponseEntity<?> FinishOrder(@PathVariable(name = "orderId") Long orderId) {
-        orderService.findOrderByUserId(orderId);
-        return new ResponseEntity(HttpStatus.CREATED);
+        Order order = orderService.finishOrders(orderId);
+        return new ResponseEntity(new OrderInfoDto(order), HttpStatus.CREATED);
     }
 
     @GetMapping("/order/{id}")

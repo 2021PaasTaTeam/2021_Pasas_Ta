@@ -103,12 +103,14 @@ public class Item {
         this.stockQuantity += quantity;
     }
 
-    public void removeStock(int quantity) {
+    public boolean removeStock(int quantity) {
         int resultStock = this.stockQuantity - quantity;
         if (resultStock < 0) {
-            throw new NotEnoughStockException("need more stock");
+            //재고 부족
+            return false;
         }
         this.stockQuantity = resultStock;
+        return true;
     }
 
 }
