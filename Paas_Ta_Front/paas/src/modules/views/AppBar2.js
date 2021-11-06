@@ -65,7 +65,7 @@ function AppAppBar2() {
             href="/Town"
             sx={{ fontSize: 25 }}
           >
-            {'Gather skon(임시 제목)'}
+            {'Onnuri'}
 
           </Link>
           <Box sx={{ flex: 1, display: 'flex', justifyContent: 'flex-end' }}>
