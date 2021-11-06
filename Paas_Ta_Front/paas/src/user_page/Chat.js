@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import io from "socket.io-client";
-import { VideoCall } from "../VideoCall";
+import { VideoCall } from "./web/VideoCall";
 import Typography from '@material-ui/core/Typography';
 import AppForm from '../modules/views/AppForm';
 
@@ -140,6 +140,5 @@ function Chat() {
       </AppForm>
     </React.Fragment>
   );
-}
-
+              }
 export default Chat;

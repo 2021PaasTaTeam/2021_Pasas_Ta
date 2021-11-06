@@ -73,24 +73,24 @@ function Gather(props) {
   );
 
   // 키보드 입력
-  window.addEventListener('keydown', e => {
-    // 마우스 좌표 찾기
-    var x = user.x;
-    var y = user.y;
-    var coords = "X coords: " + x + ", Y coords: " + y;
-    console.log(coords);
-    // 클릭 이벤트
-    if (x >= 200 && x <= 300 && y >= 100 && y <= 200) {
-      if (e.keyCode === 88) {
-        openWin()
-        console.log('키보드 이벤트 발생!');
-      }
-    }
-    if (x >= 900 && x <= 1000 && y >= 400 && y <= 550) {
-      returntown()
-      console.log('키보드 이벤트 발생!');
-    }
-  });
+  // window.addEventListener('keydown', e => {
+  //   // 마우스 좌표 찾기
+  //   var x = user.x;
+  //   var y = user.y;
+  //   var coords = "X coords: " + x + ", Y coords: " + y;
+  //   console.log(coords);
+  //   // 클릭 이벤트
+  //   if (x >= 200 && x <= 300 && y >= 100 && y <= 200) {
+  //     if (e.keyCode === 88) {
+  //       openWin()
+  //       console.log('키보드 이벤트 발생!');
+  //     }
+  //   }
+  //   if (x >= 900 && x <= 1000 && y >= 400 && y <= 550) {
+  //     returntown()
+  //     console.log('키보드 이벤트 발생!');
+  //   }
+  // });
 
   useEffect(() => {
 
@@ -112,6 +112,25 @@ function Gather(props) {
       },
       false
     );
+
+    canvas.addEventListener('keydown', e => {
+      // 마우스 좌표 찾기
+      var x = user.x;
+      var y = user.y;
+      var coords = "X coords: " + x + ", Y coords: " + y;
+      console.log(coords);
+      // 클릭 이벤트
+      if (x >= 200 && x <= 300 && y >= 100 && y <= 200) {
+        if (e.keyCode === 88) {
+          openWin()
+          console.log('키보드 이벤트 발생!');
+        }
+      }
+      if (x >= 900 && x <= 1000 && y >= 400 && y <= 550) {
+        returntown()
+        console.log('키보드 이벤트 발생!');
+      }
+    });
   
     // 마우스 클릭
     canvas.addEventListener('mousedown', e => {
