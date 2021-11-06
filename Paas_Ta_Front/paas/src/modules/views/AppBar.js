@@ -24,7 +24,7 @@ function AppAppBar() {
             sx={{ fontSize: 25 }}
           >
             {/* Home title */}
-            {'Gather skon(임시 제목)'}
+            {'Onnuri'}
 
           </Link>
           <Box sx={{ flex: 1, display: 'flex', justifyContent: 'flex-end' }}>

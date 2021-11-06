@@ -1,0 +1,26 @@
+// 장바구니 체크박스
+                <div>
+                    <ul>
+                        {labels.map((label, idx) => (
+                            <li key={idx}>
+                                <label>
+                                    <input
+                                        type='checkbox'
+                                        checked={checkList[idx]}
+                                        onClick={() => handleCheckClick(idx)}
+                                    />
+                                    {'  ' + label}
+                                    <input
+                                        type='button'
+                                        align='right'
+                                        value='삭제'
+                                        checked={checkList[idx]}
+                                        onClick={() => handleCheckClick(idx)}
+                                    />
+                                </label>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+
+                
