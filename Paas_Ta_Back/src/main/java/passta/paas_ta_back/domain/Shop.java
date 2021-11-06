@@ -55,11 +55,22 @@ public class Shop {
     @OneToMany(mappedBy = "shop", cascade = CascadeType.ALL)
     private List<Item> items = new ArrayList<>();
 
+    // SHOP의 좌표
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "land_id")
+    private Land land;
+
     // SHOP USER 주입 메서드
     public void setUserInShop(User user) {
         this.user = user;
         user.getShops().add(this);
         user.changeUserType(UserType.SELLER); // 판매로 권한 변경
+    }
+
+    // SHOP Land 주입 메서드
+    public void setLandInShop(Land land) {
+        this.land = land;
+        land.setShopInLand(this);
     }
 
     // SHOP 생성 메서드
@@ -70,7 +81,8 @@ public class Shop {
                                   String region,
                                   String address,
                                   String businessType,
-                                  UploadFile image) {
+                                  UploadFile image,
+                                  Land land) {
         Shop shop = new Shop();
         shop.setUserInShop(user);
         shop.registrationNum = registrationNum;
@@ -80,6 +92,7 @@ public class Shop {
         shop.image = image;
         shop.address = address;
         shop.region = region;
+        shop.setLandInShop(land);
         return shop;
     }
 

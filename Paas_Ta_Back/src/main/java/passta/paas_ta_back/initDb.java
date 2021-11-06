@@ -41,7 +41,19 @@ public class initDb {
             User user = User.createUser("이름3", "email3", "1234", "주소1", UserType.SELLER);
             em.persist(user);
 
-            // 초기 가게 세팅
+            Land landInit = null;
+            for (int y = 250; y <= 650; y += 400) {
+                for (int x = 200; x <= 1700; x += 600) {
+                    //초기 Land 좌표 셋팅값
+                    LandLocations landLocations = new LandLocations(x, y, x + 300, y, x, y + 200, x + 300, y + 200);
+                    //초기 Land셋팅
+                    landInit = Land.createLand("성북", landLocations);
+                    em.persist(landInit);
+                }
+            }
+
+
+            // 초기 가게 세팅 //마지막 위치가 세팅됨
             UploadFile uploadFile1 = new UploadFile("사용자파일명1", "uuid파일명1");
             Shop shop1 = Shop.createShop(
                     user,
@@ -51,20 +63,21 @@ public class initDb {
                     "가게지역명1",
                     "가게상세주소1",
                     "가게 타입1",
-                    uploadFile1);
+                    uploadFile1,
+                    landInit);
             em.persist(shop1);
 
-            UploadFile uploadFile2 = new UploadFile("사용자파일명2", "uuid파일명2");
-            Shop shop2 = Shop.createShop(
-                    user,
-                    "사업자등록번호2",
-                    "가게2",
-                    "가게전화번호2",
-                    "가게지역명2",
-                    "가게상세주소2",
-                    "가게 타입2",
-                    uploadFile2);
-            em.persist(shop2);
+//            UploadFile uploadFile2 = new UploadFile("사용자파일명2", "uuid파일명2");
+//            Shop shop2 = Shop.createShop(
+//                    user,
+//                    "사업자등록번호2",
+//                    "가게2",
+//                    "가게전화번호2",
+//                    "가게지역명2",
+//                    "가게상세주소2",
+//                    "가게 타입2",
+//                    uploadFile2);
+//            em.persist(shop2);
 
             // 초기 image list 세팅
             List<UploadFile> uploadFiles = new ArrayList<>();
@@ -103,11 +116,11 @@ public class initDb {
 
             // 주문 finish 된 상태
             List<OrderItem> orderItems = new ArrayList<>();
-            OrderItem orderItem1 = OrderItem.createOrderItem(item1, item1.getPrice()*2, 2);
+            OrderItem orderItem1 = OrderItem.createOrderItem(item1, item1.getPrice() * 2, 2);
             em.persist(orderItem1);
-            OrderItem orderItem2 = OrderItem.createOrderItem(item2, item2.getPrice()*2, 2);
+            OrderItem orderItem2 = OrderItem.createOrderItem(item2, item2.getPrice() * 2, 2);
             em.persist(orderItem2);
-            OrderItem orderItem3 = OrderItem.createOrderItem(item3, item3.getPrice()*5, 5);
+            OrderItem orderItem3 = OrderItem.createOrderItem(item3, item3.getPrice() * 5, 5);
             em.persist(orderItem3);
             orderItems.add(orderItem1);
             orderItems.add(orderItem2);

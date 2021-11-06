@@ -32,7 +32,7 @@ public class OrderController {
 
     @GetMapping("/orders/{userId}")
     public ResponseEntity<?> totalOrderByUserId(@PathVariable(name = "userId") Long userId) {
-        List<Order> orderByUserId = orderService.findFinishOrderByUserId(userId);
+        List<Order> orderByUserId = orderService.findOrderByUserId(userId);
         List<OrderInfoDto> orders = orderByUserId.stream().map(OrderInfoDto::new).collect(Collectors.toList());
         return new ResponseEntity(orders, HttpStatus.OK);
     }

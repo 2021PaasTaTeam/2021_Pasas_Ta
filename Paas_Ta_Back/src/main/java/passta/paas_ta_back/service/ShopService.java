@@ -4,10 +4,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import passta.paas_ta_back.domain.Item;
-import passta.paas_ta_back.domain.Shop;
-import passta.paas_ta_back.domain.UploadFile;
-import passta.paas_ta_back.domain.User;
+import passta.paas_ta_back.domain.*;
+import passta.paas_ta_back.repository.land.LandRepository;
 import passta.paas_ta_back.repository.shop.RegisterDto;
 import passta.paas_ta_back.repository.shop.ShopModifyDto;
 import passta.paas_ta_back.repository.shop.ShopRepository;
@@ -26,6 +24,8 @@ public class ShopService {
     @Autowired
     UserRepository userRepository;
     @Autowired
+    LandRepository landRepository;
+    @Autowired
     FileStore fileStore;
 
     @Transactional
@@ -38,7 +38,11 @@ public class ShopService {
         List<Shop> shops = shopRepository.findByRegistrationNum(registerDto.getRegistrationNum());
         if (shops.size() == 0){
             UploadFile storeImageFiles = fileStore.storeFile(registerDto.getImage());
-            System.out.println(storeImageFiles.toString());
+            Land findLandById = landRepository.findByIdAndSeat(registerDto.getLandId(), Seat.NO);
+            if (findLandById == null){
+                System.out.println("자리가 이미 있음.");
+                return null;
+            }
             Shop shop = Shop.createShop(
                     users.get(0),
                     registerDto.getRegistrationNum(),
@@ -47,7 +51,8 @@ public class ShopService {
                     registerDto.getRegion(),
                     registerDto.getAddress(),
                     registerDto.getBusinessType(),
-                    storeImageFiles);
+                    storeImageFiles,
+                    findLandById);
             Shop saveShop = shopRepository.save(shop);
             return saveShop;
         }
@@ -83,6 +88,8 @@ public class ShopService {
         if (shopById == null){
             return false;
         }
+        //자리 다시 SEAT.NO(자리 없음) 셋팅
+        shopById.getLand().setSeatNo();
         shopRepository.deleteById(id);
         return true;
     }

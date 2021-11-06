@@ -17,4 +17,5 @@ public class RegisterDto {
     private String region;
     private String businessType;
     private MultipartFile image;
+    private Long landId;
 }
