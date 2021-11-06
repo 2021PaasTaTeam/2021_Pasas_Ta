@@ -5,14 +5,13 @@ import AppAppBar2 from './modules/views/AppBar2';
 import AppForm from './modules/views/AppForm';
 import FormButton from './modules/form/FormButton';
 import withRoot from './modules/withRoot';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './Cart.css';
 
 function Cart() {
     var labels = ['대한민국 전통 한복', '잭 다니엘']
     const labels2 = ['']
-    var check = 0;
 
     const [checkList, setCheckList] = useState(labels);
     const [checkList2, setCheckList2] = useState(labels);
@@ -57,80 +56,52 @@ function Cart() {
         }
     }
 
-
-
-    const [shop_name, setShop_name] = useState("");
-    const [shop_address, setShop_address] = useState("");
-    const [shop_phone, setShop_phone] = useState("");
-    const [shop_image, setShop_image] = useState("");
-    const [registeration_number, setRegisteration_number] = useState("");
-    const [shop_business_type, setShop_business_type] = useState("");
-
-    // 가게 업종
-    const onShop_business_typeHandler = (event) => {
-        setShop_business_type(event.currentTarget.value);
-    }
-
-    // 가게 이름
-    const onShop_nameHandler = (event) => {
-        setShop_name(event.currentTarget.value);
-    }
-
-    // 가게 지역구
-    const onShop_sddressHandler = (event) => {
-        setShop_address(event.currentTarget.value)
-    }
-
-    // 가게 전화번호
-    const onShop_phoneHandler = (event) => {
-        setShop_phone(event.currentTarget.value);
-    }
-
-    // 가게 상표 이미지
-    const onShop_imageHandler = (event) => {
-        setShop_image(event.currentTarget.value);
-    }
-
-    // 사업자 번호
-    const onRegisteration_numberHandler = (event) => {
-        setRegisteration_number(event.currentTarget.value);
-    }
-
     const session = JSON.parse(window.sessionStorage.getItem("data"));
 
-    const test = () => {
-        document.location.href = '/Town'
+    var [order, setOrder] = useState([]);
+    var [id, setId] = useState([]);
+
+    function searchOrder() {
+        const url = "http://localhost:8080/orders/" + session.data.id;
+        axios.get(url)
+            .then(function (response) {
+                setOrder(response.data);
+                console.log(response.data)
+                setId(response.data)
+                // console.log("성공");
+            })
+            .catch(function (error) {
+                // console.log("실패");
+            })
+    }
+    console.log(order)
+    //console.log(id.orderId)
+    //console.log(order[0].orderItems)
+
+    const item_name = []
+    // const item_image = []
+    const item_stock = []
+    const item_price = []
+    const order_id = []
+
+    for (var j = 0; j < id.length; j++) {
+        order_id[j] = id[j].orderId
     }
 
-    const onClickRegister = () => {
-        console.log('click shop')
-        console.log('가게명 : ', shop_name)
-        console.log('가게주소 : ', shop_address)
-        console.log('가게전화번호 : ', shop_phone)
-        console.log('가게상표이미지 : ', shop_image)
-        console.log('사업자번호 : ', registeration_number)
-        console.log('이메일 : ', session.data.email)
-        console.log('가게업종 : ', shop_business_type)
-        let data = JSON.stringify({
-            'name': shop_name,
-            'address': shop_address,
-            'phone': shop_phone,
-            'image': shop_image,
-            'registrationNum': registeration_number,
-            'email': session.data.email,
-            'businessType': shop_business_type
-        })
-        axios.post('http://localhost:8080/shop', data, {
-            headers: {
-                'Content-type': 'application/json; charset=utf-8',
-            }
-        })
-            .then(res => {
-                alert('가게가 등록되었습니다.')
-                document.location.href = '/Town'
-            })
-            .catch()
+    for (var j = 0; j < order.length; j++) {
+        item_name[j] = order[j].itemName
     }
+    for (var j = 0; j < order.length; j++) {
+        item_price[j] = order[j].itemPrice
+    }
+    for (var j = 0; j < order.length; j++) {
+        item_stock[j] = order[j].itemCount
+    }
+
+    useEffect(() => {
+        searchOrder()
+    }, []);
+
     return (
         <React.Fragment>
             <AppAppBar2 />
@@ -324,34 +295,6 @@ function Cart() {
                 >
                     <span style={{ background: "#fff", }}></span>
                 </div>
-                <div ><Typography variant="h4"
-                    style={{
-                        fontSize: 16,
-                        float: 'left'
-                    }}
-                >
-                    선택 상품 개수
-                </Typography></div>
-                <div ><Typography variant="h4"
-                    style={{
-                        fontSize: 16,
-                        float: 'right'
-                    }}
-                >
-                    {check + ' 개'}
-                </Typography></div>
-                <br />
-                <br />
-                <div
-                    style={{
-                        width: "100%",
-                        borderBottom: "1px solid #aaa",
-                        lineHeight: "0.1em",
-                        margin: "10px 0 10px",
-                    }}
-                >
-                    <span style={{ background: "#fff", }}></span>
-                </div>
                 <div>
                     <Typography variant="h3"
                         style={{
@@ -359,7 +302,7 @@ function Cart() {
                             float: 'left'
                         }}
                     >
-                        결재 금액
+                        총 결재 금액
                     </Typography>
                 </div>
                 <div ><Typography variant="h3"
@@ -368,7 +311,7 @@ function Cart() {
                         float: 'right'
                     }}
                 >
-                    {check + ' 원'}
+                    {0 + ' 원'}
                 </Typography></div>
                 <br />
                 <br />
@@ -387,7 +330,7 @@ function Cart() {
                                 borderRadius: '8px',
                             }}
                             type="submit"
-                            onClick={test}
+                            //onClick={test}
                             disabled={isAllChecked}
                         >
                             {'결제하기'}

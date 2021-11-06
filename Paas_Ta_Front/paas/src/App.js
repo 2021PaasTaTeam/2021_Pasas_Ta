@@ -43,10 +43,10 @@ function App() {
         axios.get(url)
             .then(function (response) {
                 setUser(response.data);
-                console.log(response.data)
+                //console.log(response.data)
             })
             .catch(function (error) {
-                console.log("실패");
+                //console.log("실패");
             })
     }
     var user_list = user;
@@ -56,10 +56,10 @@ function App() {
         axios.get(url)
             .then(function (response) {
                 setItem(response.data);
-                console.log(response.data)
+                //console.log(response.data)
             })
             .catch(function (error) {
-                console.log("실패");
+                //console.log("실패");
             })
     }
     function searchShop() {
@@ -67,10 +67,10 @@ function App() {
         axios.get(url)
             .then(function (response) {
                 setShop(response.data);
-                console.log(response.data)
+                //console.log(response.data)
             })
             .catch(function (error) {
-                console.log("실패");
+                //console.log("실패");
             })
     }
     var user_list = user;
