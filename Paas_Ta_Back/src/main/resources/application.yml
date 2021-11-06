@@ -35,6 +35,8 @@ server:
       tracking-modes: cookie
       timeout: 10
 
+project:
+  basedir: spring/paasta
 
 file:
-  dir: C:/Temp/gathermarket/
+  dir: C:/${project.basedir}/2021_Pasas_Ta/Paas_Ta_Front/paas/public/img/
