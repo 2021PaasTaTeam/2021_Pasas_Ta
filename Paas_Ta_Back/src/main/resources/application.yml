@@ -7,7 +7,7 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create-drop
     properties:
       hibernate:
         #        show_sql: true
@@ -33,14 +33,10 @@ server:
   servlet:
     session:
       tracking-modes: cookie
-<<<<<<< Updated upstream
-      timeout: 10
-=======
       timeout: 10
 
 project:
-  basedir: Users/Administrator/Desktop/github
+  basedir: spring/paasta
 
 file:
   dir: C:/${project.basedir}/2021_Pasas_Ta/Paas_Ta_Front/paas/public/img/
->>>>>>> Stashed changes
