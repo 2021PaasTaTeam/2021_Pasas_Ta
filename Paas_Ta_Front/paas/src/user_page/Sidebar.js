@@ -98,7 +98,7 @@ const Sidebar = () => {
               padding: '40px 10px',
             }}
           >
-            © Team : Gather SKON
+            © Team : 우리함께
           </div>
         </CDBSidebarFooter>
       </CDBSidebar>

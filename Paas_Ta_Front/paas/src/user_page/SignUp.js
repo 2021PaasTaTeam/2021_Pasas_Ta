@@ -69,7 +69,7 @@ function SignUp() {
             color="inherit"
             variant="h3"
             align="center">
-            GATHER SKON
+            Onnuri
           </Typography>
         </React.Fragment>
         <Form

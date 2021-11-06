@@ -12,7 +12,7 @@ function Copyright() {
        Github
        </Link> */}
        <Link color="inherit" style={{ color: "white" }} >
-       © Team : Gather SKON
+       © Team : 우리함께
       </Link>
     </React.Fragment>
   );
