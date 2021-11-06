@@ -5,7 +5,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import passta.paas_ta_back.service.OrderItemService;
 import passta.paas_ta_back.service.ShopService;
 
 @Slf4j
@@ -13,8 +12,6 @@ import passta.paas_ta_back.service.ShopService;
 @RestController
 @RequiredArgsConstructor
 public class OrderItemController {
-    private final OrderItemService orderItemService;
-
     @GetMapping("/orderItem")
     public ResponseEntity<?> totalOrderItemView() {
         return new ResponseEntity(HttpStatus.OK);
