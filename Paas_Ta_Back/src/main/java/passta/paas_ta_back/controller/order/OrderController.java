@@ -66,8 +66,17 @@ public class OrderController {
         return new ResponseEntity(new OrderInfoDto(order), HttpStatus.CREATED);
     }
 
-    @GetMapping("/order/{id}")
-    public ResponseEntity<?> findOrderOne(@PathVariable(name = "id") Long id) {
-        return new ResponseEntity(HttpStatus.OK);
+    @PostMapping("/order/{orderId}/cancel")
+    public ResponseEntity<?> CancelOrder(@PathVariable(name = "orderId") Long orderId) {
+        Boolean cancelOrder = orderService.cancelOrders(orderId);
+        return new ResponseEntity(cancelOrder, HttpStatus.CREATED);
     }
+
+    @GetMapping("/order/{orderId}")
+    public ResponseEntity<?> findOrderOne(@PathVariable(name = "orderId") Long orderId) {
+        Order order = orderService.findOrderByOrderId(orderId);
+        return new ResponseEntity(new OrderInfoDto(order), HttpStatus.OK);
+    }
+
+
 }

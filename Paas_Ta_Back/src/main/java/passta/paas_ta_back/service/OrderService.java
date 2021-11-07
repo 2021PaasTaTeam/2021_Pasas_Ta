@@ -13,6 +13,7 @@ import passta.paas_ta_back.repository.order.OrderRepository;
 import passta.paas_ta_back.repository.user.UserRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Slf4j
 @Service
@@ -33,6 +34,7 @@ public class OrderService {
         return orderRepository.findAllByUser(userid);
     }
 
+    //주문 상태와 userId로 Order찾음
     public List<Order> findFinishOrderByUserId(Long userid){
         return orderRepository.findAllByUserAndStatus(userid, OrderStatus.FINISH);
     }
@@ -46,10 +48,22 @@ public class OrderService {
 //        orderRepository.deleteById(id);
 //        return true;
 //    }
+    public Order findOrderByOrderId(Long orderId){
+        Order order = orderRepository.findById(orderId).get();
+        if (order == null){
+            return null;
+        }
+        return order;
+    }
+
+
 
     @Transactional
     public Order createOrders(Long userId, List<OrderItem> orderItems){
         User userById = userService.findUserById(userId);
+        if (userById == null){
+            return null;
+        }
         Order order = Order.createOrder(userById, orderItems);
         return order;
     }
@@ -57,8 +71,21 @@ public class OrderService {
     @Transactional
     public Order finishOrders(Long orderId){
         Order order = orderRepository.findById(orderId).get();
+        if (order == null){
+            return null;
+        }
         order.finishOrder();
         return order;
+    }
+
+    @Transactional
+    public boolean cancelOrders(Long orderId){
+        Order order = orderRepository.findById(orderId).get();
+        if (order == null){
+            return false;
+        }
+        order.cancel();
+        return true;
     }
 
 
