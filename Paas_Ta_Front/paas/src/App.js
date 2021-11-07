@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from "axios";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+// 사용자 페이지
 import Index from "./user_page/Home";
 import Gather from "./user_page/Gather";
 import Login from "./user_page/Login";
 import SignUp from "./user_page/SignUp";
-// import Chat from "./user_page/Chat";
 import Town from "./user_page/Gather_town";
 import Item from "./Item";
 import AddStore from "./AddStore";
@@ -18,18 +18,20 @@ import Shopping_info from "./Shopping_info";
 import Review from "./Review";
 import Item_Modify from "./user_page/Item_Modify";
 import Item_buy from "./Item_buy";
-
-// test 샘플
-// import sample from "./user_page/sample";
+import Check_Info from './user_page/Check_Info';
 import { VideoCall } from './user_page/web/VideoCall';
+
 // 관리자 페이지
 import { Admin, Resource } from "react-admin";
+// 유저
 import { UserList, UserIcon } from './admin_page/users';
 import UserCreate from './admin_page/user/user_create';
 import UserEdit from './admin_page/user/user_edit';
-
+// 상품
 import { ItemList, ItemEdit, ItemCreate, ItemIcon } from './admin_page/items';
+// 가게
 import { ShopList, ShopEdit, ShopCreate, ShopIcon } from './admin_page/shops';
+// 주문
 import fakeDataProvider from 'ra-data-fakerest';
 import Dashboard from './admin_page/Dashboard';
 
@@ -94,8 +96,6 @@ function App() {
         window.location.replace("/")
     }
 
-    // class App extends Component {
-    //     render() {
     return (
         <Router>
             <Switch>
@@ -113,18 +113,10 @@ function App() {
                 <Route path="/Review" exact component={Review} />
                 <Route path="/Item_Modify" exact component={Item_Modify} />
                 <Route path="/Item_buy" exact component={Item_buy} />
-
-                {/* sample */}
-                {/* <Route path="/sample" exact component={sample} /> */}
-                {/* <Route path="/test" exact component={VideoCall} /> */}
-
-
-                {/* sample */}
-
+                <Route path="/Check_Info" exact component={Check_Info} />
                 <Route path="/MyPage" exact component={MyPage} />
                 <Route path="/Gather" exact component={Gather} />
                 <Route path="/Town" exact component={Town} />
-
 
                 {/* 관리자 페이지 */}
                 <Admin
@@ -149,5 +141,5 @@ function App() {
         </Router>
     );
 }
-// }
+
 export default App;

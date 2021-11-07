@@ -62,28 +62,6 @@ function Item_buy() {
           .catch()
       }
 
-      const onClickBuy = () => {
-        console.log('click cart')
-        console.log('itemId : ', item_data_session.item_data.itemId)
-        console.log('count : ', number)
-        let data = {'items':[{
-          'itemId': item_data_session.item_data.itemId,
-          'count': number,
-        },]
-        }
-        axios.post('http://localhost:8080/order/'+session.data.id+"/finish", data, {
-            headers: {
-                'Content-type': 'application/json; charset=utf-8',
-              }
-        })
-          .then(res => {
-            console.log(res.data)
-            alert("구매 완료!!!")
-            window.location.replace("/Item")
-          })
-          .catch()
-      }
-
     for (let i = 0; i < store.length; i++) {
         if (store[i].email === session.data.email) {
             id = store[i];
@@ -375,7 +353,9 @@ function Item_buy() {
 
                 <br />
                 <br />
-                <FormButton
+                <Grid container spacing={2}>
+                    <Grid item xs={12} sm={6}>
+                    <FormButton
                     sx={{ mt: 1, mb: 1 }}
                     size="large"
                     color="primary"
@@ -392,11 +372,7 @@ function Item_buy() {
                 >
                     {'👜 장바구니 넣기'}
                 </FormButton>
-                <br />
-                <br />
-                <Grid container spacing={2}>
-                    <Grid item xs={12} sm={6}>
-                        <FormButton
+                        {/* <FormButton
                             sx={{ mt: 1, mb: 1 }}
                             size="large"
                             color="primary"
@@ -410,7 +386,7 @@ function Item_buy() {
                             onClick={onClickBuy}
                         >
                             {'바로 구매하기'}
-                        </FormButton>
+                        </FormButton> */}
                     </Grid>
                     <Grid item xs={12} sm={6}>
                         <FormButton

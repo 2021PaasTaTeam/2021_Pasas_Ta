@@ -1,13 +1,13 @@
-import Typography from './modules/components/Typography';
-import AppFooter from './modules/views/AppFooter';
-import AppAppBar2 from './modules/views/AppBar2';
-import AppForm from './modules/views/AppForm';
-import FormButton from './modules/form/FormButton';
-import withRoot from './modules/withRoot';
+import Typography from '../modules/components/Typography';
+import AppFooter from '../modules/views/AppFooter';
+import AppAppBar2 from '../modules/views/AppBar2';
+import AppForm from '../modules/views/AppForm';
+import FormButton from '../modules/form/FormButton';
+import withRoot from '../modules/withRoot';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-function Shopping_info() {
+function Check_Info() {
     const session = JSON.parse(window.sessionStorage.getItem("data"));
 
     var [order, setOrder] = useState([]);
@@ -26,13 +26,9 @@ function Shopping_info() {
     }
 
     const order_list = []
-    var i = 0;
 
     for (var j = 0; j < order.length; j++) {
-        if (order[j].orderStatus === 'FINISH') {
-        order_list[i] = order[j]
-        i++
-        }
+        order_list[j] = order[j]
     }
     //console.log(order_list)
 
@@ -54,12 +50,9 @@ function Shopping_info() {
             <AppForm>
                 <React.Fragment>
                     <Typography variant="h3" align="center">
-                        주문 목록
+                        판매 목록 조회
                     </Typography>
                 </React.Fragment>
-                <br />
-                <br />
-                <br />                <br />
                 <div
                     style={{
                         width: "100%",
@@ -191,4 +184,4 @@ function Shopping_info() {
     );
 }
 
-export default withRoot(Shopping_info);
+export default withRoot(Check_Info);

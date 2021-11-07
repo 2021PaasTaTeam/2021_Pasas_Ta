@@ -34,6 +34,13 @@ const Sidebar = () => {
   const EditItem = () => {
     window.location.replace("/EditItem")
   }
+  const Check_Info= () => {
+    window.location.replace("/Check_Info")
+  }
+  const Call = () => {
+    window.open("/Chat", "", "width=650, height=800, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
+    window.location.replace("/Town")
+  }
   
 
   const logout = () => {
@@ -86,6 +93,16 @@ const Sidebar = () => {
             {
               session.data.type === 'SELLER' ? 
                 <CDBSidebarMenuItem onClick={EditItem} icon="archive">상품 수정 하기</CDBSidebarMenuItem>
+                : <></>
+            }
+                        {
+              session.data.type === 'SELLER' ? 
+                <CDBSidebarMenuItem onClick={Check_Info} icon="archive">상품 판매 정보 조회</CDBSidebarMenuItem>
+                : <></>
+            }
+            {
+              session.data.type === 'SELLER' ? 
+                <CDBSidebarMenuItem onClick={Call} icon="phone">비대면 화상통화</CDBSidebarMenuItem>
                 : <></>
             }
 

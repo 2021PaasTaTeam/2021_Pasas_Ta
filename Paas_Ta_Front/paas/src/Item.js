@@ -379,7 +379,7 @@ function Product() {
 
                 <br />
                 <br />
-                <Typography variant="h3"
+                {/* <Typography variant="h3"
                     style={{
                         fontSize: 20
                     }}
@@ -463,9 +463,9 @@ function Product() {
                     {'👜 장바구니 가기'}
                 </FormButton>
                 <br />
-                <br />
-                <Grid container spacing={2}>
-                    <Grid item xs={12} sm={6}>
+                <br /> */}
+                <Grid container spacing={1}>
+                    {/* <Grid item xs={12} sm={6}>
                         <FormButton
                             sx={{ mt: 1, mb: 1 }}
                             size="large"
@@ -481,8 +481,8 @@ function Product() {
                         >
                             {'바로 구매하기'}
                         </FormButton>
-                    </Grid>
-                    <Grid item xs={12} sm={6}>
+                    </Grid> */}
+                    <Grid item xs={12} sm={12}>
                         <FormButton
                             sx={{ mt: 1, mb: 1 }}
                             size="large"
@@ -496,7 +496,7 @@ function Product() {
                             }}
                             onClick={close}
                         >
-                            {'취소하기'}
+                            {'가게 나가기'}
                         </FormButton>
                     </Grid>
                 </Grid>

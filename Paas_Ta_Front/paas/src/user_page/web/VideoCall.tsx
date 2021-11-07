@@ -84,7 +84,14 @@ export const VideoCall = () => {
       connectionStatus === ConnectionStatus.RECEIVING &&
       ( 
         <div>
-        <button onClick={() => sendOrAcceptInvitation(false, offerSignal)}>ANSWER CALL</button>
+          <button onClick={() => sendOrAcceptInvitation(false, offerSignal)} style={{
+                                      color: "white",
+                                      background: "black",
+                                      padding: ".120rem .720rem",
+                                      borderRadius: ".25rem",
+                                      fontSize: "1rem",
+                                      lineHeight: 1.5,
+                                  }}>📞 비대면 화상 통화 콜 📞</button>
         <div style={{margin:10,backgroundColor:'red',height:30}}>고객님께서 호출하셨습니다.</div>
         </div>
       )
