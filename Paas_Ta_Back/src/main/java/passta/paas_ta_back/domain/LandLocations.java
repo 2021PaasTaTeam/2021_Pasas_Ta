@@ -10,7 +10,6 @@ import javax.persistence.Embeddable;
 @Getter
 @Embeddable
 @NoArgsConstructor
-@AllArgsConstructor
 public class LandLocations {
 
     @Column(name = "land_leftTopCoordinateX")
@@ -32,6 +31,17 @@ public class LandLocations {
     private int rightBottomCoordinateX;
     @Column(name = "land_rightBottomCoordinateY")
     private int rightBottomCoordinateY;
+
+    public LandLocations(int leftTopCoordinateX, int leftTopCoordinateY, int rightTopCoordinateX, int rightTopCoordinateY, int leftBottomCoordinateX, int leftBottomCoordinateY, int rightBottomCoordinateX, int rightBottomCoordinateY) {
+        this.leftTopCoordinateX = leftTopCoordinateX;
+        this.leftTopCoordinateY = leftTopCoordinateY;
+        this.rightTopCoordinateX = rightTopCoordinateX;
+        this.rightTopCoordinateY = rightTopCoordinateY;
+        this.leftBottomCoordinateX = leftBottomCoordinateX;
+        this.leftBottomCoordinateY = leftBottomCoordinateY;
+        this.rightBottomCoordinateX = rightBottomCoordinateX;
+        this.rightBottomCoordinateY = rightBottomCoordinateY;
+    }
 
     @Override
     public String toString() {
