@@ -21,10 +21,10 @@ __Infra : Paas-Ta__
 ==============================
 </div>
 
-![image](https://user-images.githubusercontent.com/57929751/136584941-4c4d257f-dc0a-43c4-9474-7d485fe87034.png)
+![image](https://user-images.githubusercontent.com/57929751/140656023-1b56cbc7-0cb3-4771-ae6c-7379e0a1af65.png)
 
 
-![image](https://user-images.githubusercontent.com/57929751/137597854-2f1d74fb-8e29-4d63-9179-f72b69b256e5.png)
+![image](https://user-images.githubusercontent.com/57929751/140656090-15019435-4af2-473d-b7cd-7ee0b06fbcf3.png)
 
 프로젝트 인원 총 3명
 
