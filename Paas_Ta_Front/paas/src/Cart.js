@@ -10,97 +10,128 @@ import axios from 'axios';
 import './Cart.css';
 
 function Cart() {
-    var labels = ['대한민국 전통 한복', '잭 다니엘']
+    // var labels = ['대한민국 전통 한복', '잭 다니엘']
     const labels2 = ['']
 
-    const [checkList, setCheckList] = useState(labels);
-    const [checkList2, setCheckList2] = useState(labels);
+    // const [checkList, setCheckList] = useState(order_name);
+    // const [checkList2, setCheckList2] = useState(order_name);
 
-    // index 번째 체크 상태를 반전시킨다
-    const handleCheckClick = (index) => {
-        setCheckList((checks) => checks.map((c, i) => (i === index ? !c : c)));
-    };
-    const isAllChecked = checkList.every((x) => x - 1);
+    // // index 번째 체크 상태를 반전시킨다
+    // const handleCheckClick = (index) => {
+    //     setCheckList((checks) => checks.map((c, i) => (i === index ? !c : c)));
+    // };
+    // //const isAllChecked = checkList.every((x) => x - 1);
 
-    function allselect(value) {
-        setCheckList2((checks) => checks.map((c, i) => (i === value ? !c : c)));
-        for (let j = 0; j < labels.length; j++) {
-            setCheckList((checks) => checks.map((c, i) => (i === value + j ? !c : c)));
-        }
-    }
+    // function allselect(value) {
+    //     setCheckList2((checks) => checks.map((c, i) => (i === value ? !c : c)));
+    //     for (let j = 0; j < order_name.length; j++) {
+    //         setCheckList((checks) => checks.map((c, i) => (i === value + j ? !c : c)));
+    //     }
+    // }
 
-
-    const item_remove = (index) => {
-        if (window.confirm("해당 상품을 삭제하시겠습니까??") == true) {    //확인
-            alert('해당 상품이 삭제되었습니다.')
-            delete labels[index]
-            console.log(labels)
-            window.location.replace("/Cart")
-        } else {   //취소
-            console.log(labels)
-            return false;
-        }
-    };
 
     function all_remove() {
         if (window.confirm("상품을 모두 삭제하시겠습니까??") == true) {    //확인
             alert('상품이 모두 삭제되었습니다.')
-            for (let i = 0; i < labels.length; i++) {
-                delete labels[i]
-                console.log(labels)
+            for (let i = 0; i < order_name.length; i++) {
+                delete order_name[i]
                 window.location.replace("/Cart")
             }
         } else {   //취소
-            console.log(labels)
             return false;
         }
     }
 
     const session = JSON.parse(window.sessionStorage.getItem("data"));
 
-    var [order, setOrder] = useState([]);
-    var [id, setId] = useState([]);
+  var [order, setOrder] = useState([]);
 
-    function searchOrder() {
-        const url = "http://localhost:8080/orders/" + session.data.id;
-        axios.get(url)
-            .then(function (response) {
-                setOrder(response.data);
-                console.log(response.data)
-                setId(response.data)
-                // console.log("성공");
+  function searchOrder() {
+    const url = "http://localhost:8080/orders/" + session.data.id;
+    axios.get(url)
+      .then(function (response) {
+        setOrder(response.data);
+        console.log(response.data)
+        //console.log("성공");
+      })
+      .catch(function (error) {
+        //console.log("실패");
+      })
+  }
+
+  const order_list = []
+  var i = 0;
+
+  for (var j = 0; j < order.length; j++) {
+    if (order[j].orderStatus === 'ORDERING') {
+      order_list[i] = order[j]
+      i++
+    }
+  }
+
+  var order_id = []
+  var order_date = []
+  var order_stock = []
+  var order_price = []
+  var total_price = 0;
+  var order_name = []
+
+  for (var j = 0; j < order_list.length; j++) {
+    order_id[j] = order_list[j].orderId
+  }
+  for (var j = 0; j < order_list.length; j++) {
+    order_date[j] = order_list[j].orderDate
+  }
+  for (var j = 0; j < order_list.length; j++) {
+    order_stock[j] = order_list[j].orderItems[0].itemCount
+  }
+  for (var j = 0; j < order_list.length; j++) {
+    order_price[j] = order_list[j].orderItems[0].itemPrice
+    total_price = total_price + order_price[j]
+}
+  for (var j = 0; j < order_list.length; j++) {
+    order_name[j] = order_list[j].orderItems[0].itemName
+  }
+
+    const item_remove = (index) => {
+        if (window.confirm("해당 상품을 삭제하시겠습니까??") == true) {    //확인
+            axios.delete('http://localhost:8080/order/' + order_id[index], {
             })
-            .catch(function (error) {
-                // console.log("실패");
-            })
-    }
-    console.log(order)
-    //console.log(id.orderId)
-    //console.log(order[0].orderItems)
+                .then(res => {
+                    alert('해당 상품이 삭제되었습니다.')
+                    window.location.replace("/Cart")
+                })
+                .catch()
+        } else {   //취소
+            return false;
+        }
+    };
 
-    const item_name = []
-    // const item_image = []
-    const item_stock = []
-    const item_price = []
-    const order_id = []
+    const onClickBuy = () => {
+        console.log('click buy')
+        //console.log('itemId : ', item_data_session.item_data.itemId)
+        console.log('count : ', order_stock)
+        let data = {'items':[{
+          //'itemId': item_data_session.item_data.itemId,
+          'count': order_stock,
+        },]
+        }
+        axios.post('http://localhost:8080/order/'+session.data.id+"/finish", data, {
+            headers: {
+                'Content-type': 'application/json; charset=utf-8',
+              }
+        })
+          .then(res => {
+            console.log(res.data)
+            alert("구매 완료!!!")
+            window.location.replace("/Item")
+          })
+          .catch()
+      }
 
-    for (var j = 0; j < id.length; j++) {
-        order_id[j] = id[j].orderId
-    }
-
-    for (var j = 0; j < order.length; j++) {
-        item_name[j] = order[j].itemName
-    }
-    for (var j = 0; j < order.length; j++) {
-        item_price[j] = order[j].itemPrice
-    }
-    for (var j = 0; j < order.length; j++) {
-        item_stock[j] = order[j].itemCount
-    }
-
-    useEffect(() => {
-        searchOrder()
-    }, []);
+  useEffect(() => {
+    searchOrder()
+  }, []);
 
     return (
         <React.Fragment>
@@ -136,7 +167,7 @@ function Cart() {
                         {labels2.map((label, idx) => (
                             <li key={idx}>
                                 <label>
-                                    <div id="check" style={{
+                                    {/* <div id="check" style={{
                                         float: 'left'
                                     }}>
                                         <input
@@ -145,10 +176,11 @@ function Cart() {
                                                 width: 20,
                                             }}
                                             type='checkbox'
-                                            checked={checkList2[idx]}
+                                            // checked={checkList2[idx]}
                                             onClick={() => allselect(idx)}
                                         />
-                                    </div>&nbsp;&nbsp;
+                                    </div> */}
+                                    &nbsp;&nbsp;
                                     <div style={{
                                         float: 'left'
                                     }}>
@@ -159,7 +191,7 @@ function Cart() {
                                                 float: 'left'
                                             }}
                                         >
-                                            &nbsp;&nbsp;전체선택
+                                            &nbsp;&nbsp;장바구니 물품 조회
                                         </Typography>
                                     </div>
                                 </label>
@@ -180,10 +212,10 @@ function Cart() {
                 <br /><br />
                 <div>
                     <ul>
-                        {labels.map((label, idx) => (
+                        {order_list.map((name, idx) => (
                             <li key={idx}>
                                 <label>
-                                    <div id="check" style={{
+                                    {/* <div id="check" style={{
                                         float: 'left'
                                     }}>
                                         <input
@@ -191,12 +223,12 @@ function Cart() {
                                                 width: 15,
                                                 height: 45,
                                             }}
-                                            type='checkbox'
-                                            checked={checkList[idx]}
+                                            //type='checkbox'
+                                            // checked={checkList[idx]}
                                             onClick={() => handleCheckClick(idx)}
                                         />
                                         &nbsp;&nbsp;
-                                    </div>
+                                    </div> */}
 
                                     <div className="c1image" style={{
                                         float: 'left'
@@ -204,7 +236,8 @@ function Cart() {
                                         <img className="phoneImage"
                                             height="110vh"
                                             width="110vw"
-                                            src="/assets/github.png" />
+                                            //src="/assets/github.png"
+                                            />
                                     </div>
                                     <div style={{
                                         float: 'left'
@@ -216,7 +249,7 @@ function Cart() {
                                                 float: 'left'
                                             }}
                                         >
-                                            &nbsp;&nbsp;상품명 : {label}
+                                            &nbsp;&nbsp;상품명 : {order_name[idx]}
                                         </Typography>
                                     </div>
                                     <br />
@@ -231,7 +264,7 @@ function Cart() {
                                                 float: 'left'
                                             }}
                                         >
-                                            &nbsp;&nbsp;0 개
+                                            &nbsp;&nbsp;{order_stock[idx]} 개
                                         </Typography>
                                     </div>
                                     <br />
@@ -246,7 +279,7 @@ function Cart() {
                                                 float: 'left'
                                             }}
                                         >
-                                            &nbsp;&nbsp;가격 : 1000000원
+                                            &nbsp;&nbsp;가격 : {order_price[idx]}
                                         </Typography>
                                     </div>
 
@@ -311,7 +344,7 @@ function Cart() {
                         float: 'right'
                     }}
                 >
-                    {0 + ' 원'}
+                    {total_price + ' 원'}
                 </Typography></div>
                 <br />
                 <br />
@@ -330,8 +363,8 @@ function Cart() {
                                 borderRadius: '8px',
                             }}
                             type="submit"
-                            //onClick={test}
-                            disabled={isAllChecked}
+                            onClick={onClickBuy}
+                            //disabled={isAllChecked}
                         >
                             {'결제하기'}
                         </FormButton>

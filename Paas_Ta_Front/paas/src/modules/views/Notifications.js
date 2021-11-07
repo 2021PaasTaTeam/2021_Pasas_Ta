@@ -205,7 +205,7 @@ class Notifications extends Component {
               </Fragment>
             ) : (
               <div className={classes.emptyNotifications}>
-                <div>No Notifications</div>
+                <div>장바구니에 담은 물품이 없습니다.</div>
               </div>
             )}
           </div>
