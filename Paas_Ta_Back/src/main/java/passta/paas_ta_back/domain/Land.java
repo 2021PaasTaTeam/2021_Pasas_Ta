@@ -49,4 +49,22 @@ public class Land {
         land.seat = Seat.NO;
         return land;
     }
+
+    public Land updateLand(String building,LandLocations landLocations, String status){
+        if (building != null){
+            this.building = building;
+        }
+        if (landLocations != null){
+            this.landLocations = landLocations;
+        }
+        if (status != null){
+            if (status.equals(Seat.YES.toString())){
+                this.seat = Seat.YES;
+            }
+            else if(status.equals(Seat.NO.toString())){
+                this.seat = Seat.NO;
+            }
+        }
+        return this;
+    }
 }

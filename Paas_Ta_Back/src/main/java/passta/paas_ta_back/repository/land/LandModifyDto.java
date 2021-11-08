@@ -4,12 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class LandRegisterDto {
+public class LandModifyDto {
     private String building;
     private Integer leftTopX;
     private Integer leftTopY;
@@ -19,4 +17,5 @@ public class LandRegisterDto {
     private Integer leftBottomY;
     private Integer rightBottomX;
     private Integer rightBottomY;
+    private String status;
 }

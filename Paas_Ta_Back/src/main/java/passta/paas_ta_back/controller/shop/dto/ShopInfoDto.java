@@ -9,6 +9,7 @@ import java.sql.Blob;
 @Data
 public class ShopInfoDto {
     private Long shopId;
+    private Long landId;
     private String email;
     private String name;
     private String phone;
@@ -20,6 +21,7 @@ public class ShopInfoDto {
 
     public ShopInfoDto(Shop shop) {
         this.shopId = shop.getId();
+        this.landId = shop.getLand().getId();
         this.email = shop.getUser().getEmail();
         this.name = shop.getName();
         this.phone = shop.getPhone();
