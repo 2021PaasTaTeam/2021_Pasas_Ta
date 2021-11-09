@@ -1,0 +1,10 @@
+---
+applications:
+  - name: paas
+    path : /
+    buildpack: https://github.com/cloudfoundry/nodejs-buildpack.git
+    # https://github.com/cloudfoundry/staticfile-buildpack.git
+    # https://github.com/cloudfoundry/nodejs-buildpack.git
+    instances: 1
+    memory: 1G
+    # command: serve -s build
