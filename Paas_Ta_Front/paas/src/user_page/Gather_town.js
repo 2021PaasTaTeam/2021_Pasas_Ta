@@ -119,6 +119,9 @@ function Town(props) {
       // 클릭 이벤트
       if (x >= 250 && x <= 400 && y >= 250 && y <= 400) {
         Enter()
+        //const session_land = '성북';
+        const landObj = { land: '성북' };
+        window.sessionStorage.setItem("land", JSON.stringify(landObj));
         console.log('마우스 버튼 ON 이벤트 발생!');
       }
     });
@@ -142,7 +145,7 @@ function Town(props) {
     //     window.location.replace("/Town")
     //   }
     // }
-    window.location.replace("./Gather")
+    window.location.replace("./Gather")        
   }
 
   function moveChar(deltaX, deltaY, direction) {
@@ -221,7 +224,6 @@ function Town(props) {
   }
 
   gameLoop();
-
   
   return (
     <React.Fragment>

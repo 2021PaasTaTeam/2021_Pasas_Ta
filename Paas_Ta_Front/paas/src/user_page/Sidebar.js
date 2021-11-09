@@ -11,7 +11,6 @@ import {
 const Sidebar = () => {
 
   const session = JSON.parse(window.sessionStorage.getItem("data"));
-  console.log(session.data.type)
 
   const MyPage = () => {
     window.location.replace("/Mypage")

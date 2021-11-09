@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from "axios";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+
 // 사용자 페이지
 import Index from "./user_page/Home";
 import Gather from "./user_page/Gather";
@@ -8,11 +9,11 @@ import Login from "./user_page/Login";
 import SignUp from "./user_page/SignUp";
 import Town from "./user_page/Gather_town";
 import Item from "./Item";
-import AddStore from "./AddStore";
+import AddStore from "./user_page/AddStore";
 import MyPage from "./user_page/MyPage";
 import AddItem from "./user_page/AddItem";
 import EditItem from "./user_page/EditItem";
-import EditStore from "./EditStore";
+import EditStore from "./user_page/EditStore";
 import Cart from "./Cart";
 import Shopping_info from "./Shopping_info";
 import Review from "./Review";
@@ -20,6 +21,8 @@ import Item_Modify from "./user_page/Item_Modify";
 import Item_buy from "./Item_buy";
 import Check_Info from './user_page/Check_Info';
 import { VideoCall } from './user_page/web/VideoCall';
+
+import test from './user_page/test';
 
 // 관리자 페이지
 import { Admin, Resource } from "react-admin";
@@ -92,9 +95,13 @@ function App() {
         searchShop()
     }, []);
 
-    const home = () => {
-        window.location.replace("/")
-    }
+    const authProvider = {
+        login: params => Promise.resolve(),
+        logout: params => window.location.replace("/"),
+        checkAuth: params => Promise.resolve(),
+        checkError: error => Promise.resolve(),
+        getPermissions: params => Promise.resolve(),
+    };
 
     return (
         <Router>
@@ -118,11 +125,14 @@ function App() {
                 <Route path="/Gather" exact component={Gather} />
                 <Route path="/Town" exact component={Town} />
 
+                <Route path="/test" exact component={test} />
+
+
                 {/* 관리자 페이지 */}
                 <Admin
                     dashboard={Dashboard}
                     dataProvider={dataProvider}
-
+                    authProvider={authProvider}
                 >
                     <Resource name="user"
                         list={UserList}

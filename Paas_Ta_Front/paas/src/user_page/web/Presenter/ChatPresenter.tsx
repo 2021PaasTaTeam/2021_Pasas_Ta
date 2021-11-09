@@ -1,8 +1,7 @@
 import * as React from "react";
 import "./ChatPresenter.scss";
-import { Button, Input } from "antd";
+import { Input } from "antd";
 import { message } from "../Container/ChatContainer";
-import Typography from '@material-ui/core/Typography';
 import AppForm from '../../../modules/views/AppForm';
 
 const session = JSON.parse(sessionStorage.getItem("data") || '{}');
