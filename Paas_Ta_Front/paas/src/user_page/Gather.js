@@ -1,9 +1,10 @@
-import React, { createRef, useEffect } from "react";
+import React, { createRef, useEffect, useState } from "react";
 import AppAppBar2 from '../modules/views/AppBar2';
 import AppFooter from '../modules/views/AppFooter';
 import withRoot from '../modules/withRoot';
 import { RemoveScrollBar } from 'react-remove-scroll-bar';
 import Sidebar from "./Sidebar";
+import axios from "axios";
 import './Gather.css';
 
 function Gather(props) {
@@ -53,6 +54,30 @@ function Gather(props) {
     speed: 4,
     x: 500,
     y: 300
+  };
+
+  let storeReady = false;
+  let storeImg = new Image();
+
+  let store_width = 90;
+  let store_height = 55;
+
+  storeImg.src = "/assets/github.png";
+
+  storeImg.onload = function () {
+      storeReady = true;
+  };
+
+  let typeReady = false;
+  let typeImg = new Image();
+
+  let type_width = 200;
+  let type_height = 200;
+
+  typeImg.src = "/assets/type.png";
+
+  typeImg.onload = function () {
+      typeReady = true;
   };
 
   let keysDown = {};
@@ -151,6 +176,24 @@ function Gather(props) {
     if (backgroundReady) {
       context?.drawImage(backgroundImg, 0, 0);
     }
+    if (storeReady) {
+      context?.drawImage(storeImg, 195, 130,store_width,store_height);
+    }
+    if (storeReady) {
+      context?.drawImage(storeImg, 627, 130,store_width,store_height);
+    }
+    if (storeReady) {
+      context?.drawImage(storeImg, 1060, 130,store_width,store_height);
+    }
+    if (storeReady) {
+          context?.drawImage(storeImg, 195, 515,store_width,store_height);
+    }
+    if (storeReady) {
+      context?.drawImage(storeImg, 627, 515,store_width,store_height);
+    }
+    if (storeReady) {
+      context?.drawImage(storeImg, 1060, 515,store_width,store_height);
+    }
   }
 
   function returntown() {
@@ -234,10 +277,103 @@ function Gather(props) {
   function gameLoop() {
     loadImage();
     moveUser();
+    //loadstore();
     requestAnimationFrame(gameLoop);
   }
 
   gameLoop();
+  /////////////////////////////
+  //api
+  /////////////////////////////
+
+  const session_land = JSON.parse(window.sessionStorage.getItem("land"));
+  //console.log(session_land);
+  const [store_land, setStore_land] = useState([]);
+
+  var new_store = [];
+  function searchstore() {
+      const url = "http://localhost:8080/lands/";
+      axios.get(url)
+          .then(function (response) {
+              var land = [];
+              for (var i = 0; i < response.data.length; i++) {
+                  if (response.data[i].buildingName === session_land.land) {
+                      land[i] = response.data[i]
+                  }
+              }
+              setStore_land(land);
+              //console.log(response.data)
+              console.log("성공");
+          })
+          .catch(function (error) {
+              console.log("실패");
+          })
+  }
+  //console.log(session_land.land)
+  //console.log(store_land)
+  //new_store = store_land;
+  //console.log(new_store)
+  //console.log(store[0].landCoordinate)
+  new_store = store_land;
+
+  useEffect(() => {
+      searchstore()
+      //gameLoop()
+  }, []);
+
+  // function loadstore() {
+  //     if (new_store[0].seat === 'YES') {
+  //         if (storeReady) {
+  //             context?.drawImage(storeImg, 192, 130, store_width, store_height);
+  //         }
+  //         if (typeReady) {
+  //             context?.drawImage(typeImg, 145, 200, type_width, type_height);
+  //         }
+  //     }
+  //     if (new_store[1].seat === 'NO') {
+  //         if (storeReady) {
+  //             context?.drawImage(storeImg, 627, 130, store_width, store_height);
+  //         }
+  //         if (typeReady) {
+  //             context?.drawImage(typeImg, 575, 200, type_width, type_height);
+  //         }
+  //     }
+  //     if (new_store[2].seat === 'NO') {
+  //         if (storeReady) {
+  //             context?.drawImage(storeImg, 1060, 130, store_width, store_height);
+  //         }
+  //         if (typeReady) {
+  //             context?.drawImage(typeImg, 1005, 200, type_width, type_height);
+  //         }
+  //     }
+  //     if (new_store[3].seat === 'YES') {
+  //         if (storeReady) {
+  //             context?.drawImage(storeImg, 192, 515, store_width, store_height);
+  //         }
+  //         if (typeReady) {
+  //             context?.drawImage(typeImg, 145, 585, type_width, type_height);
+  //         }
+  //     }
+  //     if (new_store[4].seat === 'YES') {
+  //         if (storeReady) {
+  //             context?.drawImage(storeImg, 627, 515, store_width, store_height);
+  //         }
+  //         if (typeReady) {
+  //             context?.drawImage(typeImg, 575, 585, type_width, type_height);
+  //         }
+  //     }
+  //     if (new_store[5].seat === 'YES') {
+  //         if (storeReady) {
+  //             context?.drawImage(storeImg, 1060, 515, store_width, store_height);
+  //         }
+  //         if (typeReady) {
+  //             context?.drawImage(typeImg, 1005, 585, type_width, type_height);
+  //         }
+  //     }
+  // }
+
+
+
   return (
     <React.Fragment>
       <AppAppBar2 />
