@@ -1,0 +1,68 @@
+$cardColor: #edf2fa;
+$optionsColor: #999;
+$time: #9ea3ab;
+$cardHover: #ebedf0;
+
+.card-link {
+  text-decoration: none;
+  color: $optionsColor;
+}
+
+.card {
+  display: flex;
+  border-bottom: 1px solid rgba(153, 153, 153, 0.3);
+  justify-content: space-between;
+  background-color: $cardColor;
+  font-size: 12px;
+  cursor: pointer;
+  padding: 6px;
+
+  &:hover {
+    background-color: $cardHover;
+  }
+
+  .content {
+    display: flex;
+    color: black;
+    align-items: center;
+
+    .message {
+      margin: 0 8px;
+    }
+
+    .time {
+      color: $optionsColor;
+    }
+  }
+
+  .image {
+    img {
+      height: 40px;
+      border-radius: 50%;
+    }
+
+    margin: 5px;
+  }
+
+  .options {
+    visibility: hidden;
+    text-align: center;
+    font-size: 20px;
+
+    .option {
+      cursor: pointer;
+      opacity: 0.5;
+      color: $optionsColor;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+
+  &:hover {
+    .options {
+      visibility: visible;
+    }
+  }
+}
