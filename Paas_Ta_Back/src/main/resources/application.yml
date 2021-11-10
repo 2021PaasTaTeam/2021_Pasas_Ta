@@ -7,7 +7,7 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: none
     properties:
       hibernate:
         #        show_sql: true
@@ -15,14 +15,14 @@ spring:
   messages:
     basename: errors
 
-  mail:
-    host: smtp.gmail.com
-    port: 587
-    username: joohyun8468@gmail.com
-    password: kkkoh2727!
-    properties.mail.smtp:
-      auth: true
-      starttls.enable: true
+#  mail:
+#    host: smtp.gmail.com
+#    port: 587
+#    username: joohyun8468@gmail.com
+#    password: kkkoh2727!
+#    properties.mail.smtp:
+#      auth: true
+#      starttls.enable: true
 
 logging:
   level:
@@ -33,7 +33,6 @@ server:
   servlet:
     session:
       tracking-modes: cookie
-      timeout: 10
 
 project:
   basedir: spring/paasta

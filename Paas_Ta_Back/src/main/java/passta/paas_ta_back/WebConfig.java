@@ -14,11 +14,6 @@ public class WebConfig implements WebMvcConfigurer {
                 .order(1)
                 .addPathPatterns("/**")
                 .excludePathPatterns("/static/**","/error","/asset/**","/images/**");
-
-//        registry.addInterceptor(new LoginCheckInterceptor())
-//                .order(2)
-//                .addPathPatterns("/**")
-//                .excludePathPatterns("/art","/art/member/**","/static/**","/error","/asset/**","/images/**");
     }
     @Override
     public void addCorsMappings(CorsRegistry registry) {
