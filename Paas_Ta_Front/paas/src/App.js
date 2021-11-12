@@ -22,7 +22,6 @@ import Item_buy from "./Item_buy";
 import Check_Info from './user_page/Check_Info';
 import { VideoCall } from './user_page/web/VideoCall';
 
-import test from './user_page/test';
 
 // 관리자 페이지
 import { Admin, Resource } from "react-admin";
@@ -125,7 +124,6 @@ function App() {
                 <Route path="/Gather" exact component={Gather} />
                 <Route path="/Town" exact component={Town} />
 
-                <Route path="/test" exact component={test} />
 
 
                 {/* 관리자 페이지 */}
