@@ -1,10 +1,22 @@
+# ---
+# applications:
+# - name: bada10
+# memory: 1G
+# instances: 1
+# random-route: false
+# path: ./onnuri_front-0.0.1-SNAPSHOT.jar
+
 ---
 applications:
   - name: paas
-    path : /
-    buildpack: https://github.com/cloudfoundry/nodejs-buildpack.git
+    path : /onnuri_front-0.0.1-SNAPSHOT.jar
+    # buildpack: https://github.com/cloudfoundry/java-buildpack.git
     # https://github.com/cloudfoundry/staticfile-buildpack.git
     # https://github.com/cloudfoundry/nodejs-buildpack.git
     instances: 1
     memory: 1G
+    random-route: false
+    # command : java -jar onnuri_front-0.0.1-SNAPSHOT.jar
+
     # command: serve -s build
+
