@@ -1,6 +1,6 @@
 ---
 applications:
-  - name: onnuriService
+  - name: demo2
     memory: 1024M
     instances: 1
     buildpack: java_buildpack
@@ -9,7 +9,7 @@ applications:
       - mysql_cli
     env:
       SPRING_RPOFILES_ACTIVE: cloud
-      mysql_datasource_driver-class-name: com.mysql.cj.jdbc.Driver
+      mysql_datasource_driver-class-name: org.mariadb.jdbc.Driver
       mysql_datasource_jdbc-url: jdbc:\${vcap.services.mysql_cli.credentials.uri}
       mysql_datasource_username: \${vcap.services.mysql_cli.credentials.username}
       mysql_datasource_password: \${vcap.services.mysql_cli.credentials.password}

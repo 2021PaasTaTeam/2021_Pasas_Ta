@@ -2,21 +2,25 @@ db.mysql.servicename: mysql_cli
 
 spring:
   datasource:
-    url: jdbc:${vcap.services.mysql_cli.credentials.uri}
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:${vcap.services.mysql_cli.credentials.uri}?serverTimezone=UTC&verifyServerCertificate=false&useSSL=false&requireSSL=false&useUnicode=true&characterEncoding=utf8
     username: ${vcap.services.mysql_cli.credentials.username}
     password: ${vcap.services.mysql_cli.credentials.password}
-    driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: create-drop
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect
         format_sql: true
     database-platform: org.hibernate.dialect.MySQL8Dialect
+    show-sql: true
   messages:
     basename: errors
+  cloud:
+    refresh:
+      extra-refreshable: javax.sql.DataSource
 
 logging:
   level:
@@ -32,4 +36,4 @@ project:
   basedir: spring/paasta
 
 file:
-  dir: C:/${project.basedir}/2021_Pasas_Ta/Paas_Ta_Front/paas/public/img/
+  dir: C:/${project.basedir}/2021_Paas_Ta/Paas_Ta_Front/paas/public/img/
