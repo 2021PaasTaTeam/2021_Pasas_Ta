@@ -11,7 +11,7 @@ __🍝☁💻 파스타 클라우드 공모전 : 메타버스 중계 플랫폼__
   
 __Front-End : React__
 
-__Back-End : Spring-Boot__
+__Back-End : Spring-Boot + Spring-Data-Jpa__
 
 __DB : Mysql__
 
