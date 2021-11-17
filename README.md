@@ -6,12 +6,14 @@
   
 __🍝☁💻 파스타 클라우드 공모전 : 메타버스 중계 플랫폼__
 
+![image](https://user-images.githubusercontent.com/57929751/142043961-903007e3-e499-455d-87b5-0552a977939b.png)
+  
 ==============================
 
   
-__Front-End : React__
+__Front-End : React + TypeScript__
 
-__Back-End : Spring-Boot__
+__Back-End : Spring-Boot + Spring-Data-Jpa__
 
 __DB : Mysql__
 
@@ -31,6 +33,7 @@ __Infra : Paas-Ta__
 
 기획 및 디자인 1명
 
+기간 : 2021. 7. 26. ~ 2021. 11. 19
 
 👨 EungBum
 
