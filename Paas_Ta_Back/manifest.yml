@@ -1,6 +1,6 @@
 ---
 applications:
-  - name: demo2
+  - name: onnuriSerive
     memory: 1024M
     instances: 1
     buildpack: java_buildpack

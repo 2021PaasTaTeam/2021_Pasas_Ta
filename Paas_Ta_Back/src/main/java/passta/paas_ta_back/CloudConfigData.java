@@ -40,8 +40,6 @@ public class CloudConfigData extends AbstractCloudConfig {
         CloudFactory cloudFactory = new CloudFactory();
         Cloud cloud = cloudFactory.getCloud();
         ServiceInfo serviceInfo = cloud.getServiceInfo(mysqlServiceName);
-        System.out.println("cloud=" + serviceInfo);
-        System.out.println("urls=" + springDataUrl);
         String serviceId = serviceInfo.getId();
         return cloud.getServiceConnector(serviceId, DataSource.class, null);
 
