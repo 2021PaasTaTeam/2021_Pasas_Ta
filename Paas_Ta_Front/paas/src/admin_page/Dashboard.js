@@ -14,44 +14,130 @@ function Dashboard() {
     var [shop, setShop] = useState([]);
 
     function searchUser() {
-        const url = "http://localhost:8080/user";
+        const url = "https://onnuriservice.paas-ta.org/user";
         axios.get(url)
             .then(function (response) {
                 setUser(response.data);
-                console.log(response.data)
+                //console.log(response.data)
             })
             .catch(function (error) {
-                console.log("실패");
+                //console.log("실패");
             })
     }
     var user_list = user;
 
     function searchItem() {
-        const url = "http://localhost:8080/item";
+        const url = "https://onnuriservice.paas-ta.org/item";
         axios.get(url)
             .then(function (response) {
                 setItem(response.data);
-                console.log(response.data)
+                //console.log(response.data)
             })
             .catch(function (error) {
-                console.log("실패");
+                //console.log("실패");
             })
     }
     function searchShop() {
-        const url = "http://localhost:8080/shop";
+        const url = "https://onnuriservice.paas-ta.org/shop";
         axios.get(url)
             .then(function (response) {
                 setShop(response.data);
-                console.log(response.data)
+                //console.log(response.data)
             })
             .catch(function (error) {
-                console.log("실패");
+                //console.log("실패");
             })
     }
     var user_list = user;
     var item_list = item;
     var shop_list = shop;
 
+    var Seongbuk = 0;
+    var Jongno = 0;
+    var Yeongdeungpo = 0;
+    var Gurogu = 0;
+    var Dongjak = 0;
+    var Seocho = 0;
+
+    var Hanbok = 0;
+    var Restaurant = 0;
+    var Craftshop = 0;
+    var Guitar = 0;
+    //console.log(shop)
+
+
+    for (var i=0; i<shop.length; i++)
+    {
+        if (shop[i].businessType ==='한복')
+        {
+            Hanbok++;
+        }
+    }
+    for (var i=0; i<shop.length; i++)
+    {
+        if (shop[i].businessType ==='음식점')
+        {
+            Restaurant++;
+        }
+    }
+    for (var i=0; i<shop.length; i++)
+    {
+        if (shop[i].businessType ==='공방')
+        {
+            Craftshop++;
+        }
+    }
+    for (var i=0; i<shop.length; i++)
+    {
+        if (shop[i].businessType ==='기타')
+        {
+            Guitar++;
+        }
+    }
+
+    for (var i=0; i<shop.length; i++)
+    {
+        if (shop[i].region ==='서초구')
+        {
+            Seocho++;
+        }
+    }
+    for (var i=0; i<shop.length; i++)
+    {
+        if (shop[i].region ==='동작구')
+        {
+            Dongjak++;
+        }
+    }
+    for (var i=0; i<shop.length; i++)
+    {
+        if (shop[i].region ==='구로구')
+        {
+            Gurogu++;
+        }
+    }
+    for (var i=0; i<shop.length; i++)
+    {
+        if (shop[i].region ==='성북구')
+        {
+            Seongbuk++;
+        }
+    }
+    for (var i=0; i<shop.length; i++)
+    {
+        if (shop[i].region ==='종로구')
+        {
+            Jongno++;
+        }
+    }
+    for (var i=0; i<shop.length; i++)
+    {
+        if (shop[i].region ==='영등포구')
+        {
+            Yeongdeungpo++;
+        }
+    }
+    
     useEffect(() => {
         searchUser()
         searchItem()
@@ -204,7 +290,7 @@ function Dashboard() {
             style={{
             fontSize: 30,
             textAlign:'center'
-        }}>{shop.length} / 6</Typography>
+        }}>{Seongbuk} / 6</Typography>
             </CardContent>
             </Card>
             </Grid>
@@ -235,7 +321,7 @@ function Dashboard() {
             style={{
             fontSize: 30,
             textAlign:'center'
-        }}>{shop.length} / 6</Typography>
+        }}>{Jongno} / 6</Typography>
             </CardContent>
             </Card>
             </Grid>
@@ -265,7 +351,7 @@ function Dashboard() {
             style={{
             fontSize: 30,
             textAlign:'center'
-        }}>{shop.length} / 6</Typography>
+        }}>{Yeongdeungpo} / 6</Typography>
             </CardContent>
             </Card>
             </Grid>
@@ -295,7 +381,7 @@ function Dashboard() {
             style={{
             fontSize: 30,
             textAlign:'center'
-        }}>{shop.length} / 6</Typography>
+        }}>{Gurogu} / 6</Typography>
             </CardContent>
             </Card>
             </Grid>
@@ -325,7 +411,7 @@ function Dashboard() {
             style={{
             fontSize: 30,
             textAlign:'center'
-        }}>{shop.length} / 6</Typography>
+        }}>{Dongjak} / 6</Typography>
             </CardContent>
             </Card>
             </Grid>
@@ -355,7 +441,7 @@ function Dashboard() {
             style={{
             fontSize: 30,
             textAlign:'center'
-        }}>{shop.length} / 6</Typography>
+        }}>{Seocho} / 6</Typography>
             </CardContent>
             </Card>
             </Grid>
@@ -397,7 +483,7 @@ function Dashboard() {
             style={{
             fontSize: 30,
             textAlign:'center'
-        }}>{shop.length}</Typography>
+        }}>{Hanbok}</Typography>
             </CardContent>
             </Card>
             </Grid>
@@ -428,7 +514,7 @@ function Dashboard() {
             style={{
             fontSize: 30,
             textAlign:'center'
-        }}>{shop.length}</Typography>
+        }}>{Craftshop}</Typography>
             </CardContent>
             </Card>
             </Grid>
@@ -460,7 +546,7 @@ function Dashboard() {
             style={{
             fontSize: 30,
             textAlign:'center'
-        }}>{shop.length}</Typography>
+        }}>{Restaurant}</Typography>
             </CardContent>
             </Card>
             </Grid>
@@ -491,7 +577,7 @@ function Dashboard() {
             style={{
             fontSize: 30,
             textAlign:'center'
-        }}>{shop.length}</Typography>
+        }}>{Guitar}</Typography>
             </CardContent>
             </Card>
             </Grid>

@@ -15,7 +15,7 @@ function Review() {
     var id = [];
 
     function searchId() {
-        const url = "http://localhost:8080/shop";
+        const url = "https://onnuriservice.paas-ta.org/shop";
         axios.get(url)
         .then(function(response) {
             setStore(response.data);
@@ -81,7 +81,7 @@ function Review() {
                     <img className="phoneImage"
                         height="100vh"
                         width="100vw"
-                        src="/assets/github.png" />
+                        src={id.image?.storeFileName} />
                 </div>
                 <br/>
                 <div style={{

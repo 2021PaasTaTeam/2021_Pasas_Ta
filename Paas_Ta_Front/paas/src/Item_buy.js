@@ -16,7 +16,7 @@ function Item_buy() {
     var id = [];
 
     function searchItem(shopid) {
-        const url = "http://localhost:8080/shop/"+shopid+"/item";
+        const url = "https://onnuriservice.paas-ta.org/shop/"+shopid+"/item";
         axios.get(url)
             .then(function (response) {
                 setItem(response.data);
@@ -29,7 +29,7 @@ function Item_buy() {
     //console.log(item)
 
     function searchId() {
-        const url = "http://localhost:8080/shop";
+        const url = "https://onnuriservice.paas-ta.org/shop";
         axios.get(url)
             .then(function (response) {
                 setStore(response.data);
@@ -41,21 +41,21 @@ function Item_buy() {
     }
 
     const onClickCart = () => {
-        console.log('click cart')
-        console.log('itemId : ', item_data_session.item_data.itemId)
-        console.log('count : ', number)
+        //console.log('click cart')
+        //console.log('itemId : ', item_data_session.item_data.itemId)
+        //console.log('count : ', number)
         let data = {'items':[{
           'itemId': item_data_session.item_data.itemId,
           'count': number,
         },]
         }
-        axios.post('http://localhost:8080/order/'+session.data.id+"/register", data, {
+        axios.post('https://onnuriservice.paas-ta.org/order/'+session.data.id+"/register", data, {
             headers: {
                 'Content-type': 'application/json; charset=utf-8',
               }
         })
           .then(res => {
-            console.log(res.data)
+            //console.log(res.data)
             alert("장바구니에 등록했습니다.")
             window.location.replace("/Item")
           })
@@ -122,7 +122,7 @@ function Item_buy() {
                         height="200vh"
                         width="200vw"
                         id="img_obj"
-                        src={"img/"+id.image?.storeFileName} />
+                        src={id.image?.storeFileName} />
                 </div>
                 <div style={{
                     float: 'left'
@@ -149,7 +149,7 @@ function Item_buy() {
                             float: 'left'
                         }}
                     >
-                        &nbsp;&nbsp;가게 업종 : {id.bussinessType}
+                        &nbsp;&nbsp;가게 업종 : {id.bussinesType}
                     </Typography>
                 </div>
                 <br />
@@ -219,7 +219,7 @@ function Item_buy() {
                                         <img className="phoneImage"
                                             height="150vh"
                                             width="150vw"
-                                            src={"img/" + item_data_session.item_data.storeFileName}
+                                            src={item_data_session.item_data.storeFileName}
                                             />
                                     </div>
                                     <div style={{

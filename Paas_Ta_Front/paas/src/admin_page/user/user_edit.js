@@ -37,13 +37,13 @@ function UserEdit(props) {
       'name': name,
       'address': address
     })
-    axios.post('http://localhost:8080/user/' + id, data, {
+    axios.post('https://onnuriservice.paas-ta.org/user/' + id, data, {
       headers: {
         'Content-type': 'application/json; charset=utf-8',
       }
     })
       .then(res => {
-        console.log(res.data.name)
+        //console.log(res.data.name)
         alert('회원 정보가 수정되었습니다.')
         window.location.replace("/admin#/")
       })

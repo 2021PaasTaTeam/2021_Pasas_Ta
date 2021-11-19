@@ -5,7 +5,8 @@ import Typography from '../components/Typography';
 import Home_main_Layout from './Home_main_Layout';
 
 const backgroundImage =
-  'https://mediahub.seoul.go.kr/wp-content/uploads/2020/09/e890e1058ac0da01e91bc915d5114142.jpg';
+'https://museum.seoul.go.kr:8088/upload/ckeditor/2017/12/4/b4e119a7-c62a-4c88-820d-1ef65bb55d32.jpg'
+  //  'https://mediahub.seoul.go.kr/wp-content/uploads/2020/09/e890e1058ac0da01e91bc915d5114142.jpg';
 export default function Home_Main() {
   return (
     

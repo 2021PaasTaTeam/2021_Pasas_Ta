@@ -13,11 +13,23 @@ function AppAppBar2() {
   var [order, setOrder] = useState([]);
 
   function searchOrder() {
-    const url = "http://localhost:8080/orders/" + session.data.id;
+    const url = "https://onnuriservice.paas-ta.org/orders/" + session.data.id;
     axios.get(url)
       .then(function (response) {
-        setOrder(response.data);
-        //console.log(response.data)
+        var list = [];
+        var data = new Object();
+        for(var i=0; i<response.data.length; i++) {
+          if (response.data[i].orderStatus === 'ORDERING')
+          {
+              data = new Object();
+              data.message = response.data[i].orderItems[0].itemName;
+              list.push(data);
+          }
+        }
+        setOrder(list);
+        const userObjcart = { cartdata: list };
+        window.sessionStorage.setItem("cartdata", JSON.stringify(userObjcart));
+        //console.log(list)
         //console.log("성공");
       })
       .catch(function (error) {
@@ -25,62 +37,12 @@ function AppAppBar2() {
       })
   }
 
-  const order_list = []
-  var i = 0;
-
-  for (var j = 0; j < order.length; j++) {
-    if (order[j].orderStatus === 'ORDERING') {
-      order_list[i] = order[j]
-      i++
-    }
-  }
-  //console.log(order_list)
-
-  const order_id = []
-  const order_date = []
-  const order_name = []
-
-  for (var j = 0; j < order_list.length; j++) {
-    order_id[j] = order_list[j].orderId
-  }
-  for (var j = 0; j < order_list.length; j++) {
-    order_date[j] = order_list[j].orderDate
-  }
-  for (var j = 0; j < order_list.length; j++) {
-    order_name[j] = order_list[j].orderItems[0].itemName
-  }
+  //console.log(order)
+  const sessioncart = JSON.parse(window.sessionStorage.getItem("cartdata"));
 
   useEffect(() => {
     searchOrder()
   }, []);
-
-  var list = new Array();
-  var data = new Object();
-  //console.log(order_name)
-
-  // for (var i = 0; i <= order_list.length; i++) {
-  //   data = new Object();
-  //   data.message = order_name[i];
-  //   list.push(data);
-  //   if (i === order_list.length) {
-  //     list.pop(data)
-  //     data.message = '💰 총 결재 금액 : ';
-  //     data.detailPage = '/Cart'
-  //     list.push(data);
-  //   }
-  // }
-  for (var i = 0; i <= order_list.length; i++) {
-    data = new Object();
-    data.message = order_name[i];
-    list.push(data);
-    if (i === order_list.length) {
-      list.pop();
-      data.message = '💰 총 결재 금액 : ';
-      data.detailPage = '/Cart'
-      list.push(data);
-    }
-  }
-  //console.log(list);
 
   return (
     <div>
@@ -98,7 +60,7 @@ function AppAppBar2() {
           </Link>
           <Box sx={{ flex: 1, display: 'flex', justifyContent: 'flex-end' }}>
             <Notifications
-              data={list}
+              data={sessioncart.cartdata}
               headerBackgroundColor='white'
               header={
                 {

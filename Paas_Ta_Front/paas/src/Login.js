@@ -1,14 +1,15 @@
 import { Form } from 'react-final-form';
 import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
-import Typography from '../modules/components/Typography';
-import AppFooter from '../modules/views/AppFooter';
-import AppAppBar from '../modules/views/AppBar';
-import AppForm from '../modules/views/AppForm';
-import FormButton from '../modules/form/FormButton';
-import withRoot from '../modules/withRoot';
-import React, { useState } from 'react';
+import Typography from './modules/components/Typography';
+import AppFooter from './modules/views/AppFooter';
+import AppAppBar from './modules/views/AppBar';
+import AppForm from './modules/views/AppForm';
+import FormButton from './modules/form/FormButton';
+import withRoot from './modules/withRoot';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios'
+
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -24,16 +25,16 @@ function Login() {
 
 
   const onClickLogin = () => {
-    console.log('click login')
-    console.log('ID : ', email)
-    console.log('PW : ', password)
+    //console.log('click login')
+    //console.log('ID : ', email)
+    //console.log('PW : ', password)
     let data = JSON.stringify({
       'password': password,
       'email': email
     })
-    axios.post('http://localhost:8080/login', data, {
+    axios.post('https://onnuriservice.paas-ta.org/login', data, {
       headers: {
-        'Content-type': 'application/json; charset=utf-8',
+        'Content-type': 'application/json; charset=utf-8'
       }
     })
 
@@ -41,19 +42,22 @@ function Login() {
         const session = res.data;
         const userObj = { data: session };
         window.sessionStorage.setItem("data", JSON.stringify(userObj));
+        var list = {message:'환영합니다.'}
+        const userObjcart = { cartdata: list };
+        window.sessionStorage.setItem("cartdata", JSON.stringify(userObjcart));
         // 로그아웃은
         // window.sessionStorage.removeItem(key)로 데이터 제거한다.
-        console.log('이름은 ' + res.data.name)
+        //console.log('이름은 ' + res.data.name)
         if (res.data.email === undefined) {
           // id 일치하지 않는 경우 userId = undefined, msg = '입력하신 id 가 일치하지 않습니다.'
           alert('입력하신 이메일과 비밀번호가 일치하지 않습니다.')
         } else if (res.data.email === null) {
           // id는 있지만, pw 는 다른 경우 userId = null , msg = undefined
-          console.log('======================', '입력하신 비밀번호 가 일치하지 않습니다.')
+          //console.log('======================', '입력하신 비밀번호 가 일치하지 않습니다.')
           alert('입력하신 이메일과 비밀번호가 일치하지 않습니다.')
         } else if (res.data.email === email && res.data.email !== 'admin') {
           // id, pw 모두 일치 userId = userId1, msg = undefined
-          console.log('======================', '로그인 성공')
+          //console.log('======================', '로그인 성공')
           alert(res.data.name + '님 환영합니다.')
           //sessionStorage.setItem('email', email)
           document.location.href = '/Town'

@@ -34,12 +34,12 @@ function MyPage() {
   var new_user = [];
 
   function searchUser() {
-    const url = "http://localhost:8080/user";
+    const url = "https://onnuriservice.paas-ta.org/user";
     axios.get(url)
       .then(function (response) {
         setUser(response.data);
-        console.log(response.data)
-        console.log("성공");
+        //console.log(response.data)
+        //console.log("성공");
         var name;
         var address;
         var email;
@@ -53,10 +53,10 @@ function MyPage() {
         setName(name);
         setAddress(address);
         setEmail(email);
-        console.log(name)
+        //console.log(name)
       })
       .catch(function (error) {
-        console.log("실패");
+        //console.log("실패");
       })
   }
   for (let i = 0; i < user.length; i++) {
@@ -66,25 +66,25 @@ function MyPage() {
   }
 
 
-  console.log(session.data.id)
+  //console.log(session.data.id)
   const onClickModify = () => {
-    console.log('click login')
-    console.log('ID : ', email)
-    console.log('PW : ', password)
-    console.log('NAME : ', name)
+    //console.log('click login')
+    //console.log('ID : ', email)
+    //console.log('PW : ', password)
+    //console.log('NAME : ', name)
     let data = JSON.stringify({
       'password': password,
       'email': email,
       'name': name,
       'address': address
     })
-    axios.post('http://localhost:8080/user/' + session.data.id, data, {
+    axios.post('https://onnuriservice.paas-ta.org/user/' + session.data.id, data, {
       headers: {
         'Content-type': 'application/json; charset=utf-8',
       }
     })
       .then(res => {
-        console.log(res.data.name)
+        //console.log(res.data.name)
         alert('회원 정보가 수정되었습니다.')
         document.location.href = '/Town'
       })
