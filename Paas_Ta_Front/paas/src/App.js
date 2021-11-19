@@ -21,13 +21,8 @@ import Item_Modify from "./user_page/Item_Modify";
 import Item_buy from "./Item_buy";
 import Check_Info from './user_page/Check_Info';
 import { VideoCall } from './user_page/web/VideoCall';
-<<<<<<< Updated upstream
-
-import test from './user_page/test';
-=======
 import region from './user_page/region';
 import firstregion from './user_page/firstregion';
->>>>>>> Stashed changes
 
 // 관리자 페이지
 import { Admin, Resource } from "react-admin";
