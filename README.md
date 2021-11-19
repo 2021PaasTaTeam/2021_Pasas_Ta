@@ -6,7 +6,18 @@
   
 __🍝☁💻 파스타 클라우드 공모전 : 메타버스 중계 플랫폼__
 
-![image](https://user-images.githubusercontent.com/57929751/142043961-903007e3-e499-455d-87b5-0552a977939b.png)
+![image](https://user-images.githubusercontent.com/57929751/142642219-3f7b8c24-d666-4454-b6ff-6eae71e48ff3.png)
+
+</div>
+
+![image](https://user-images.githubusercontent.com/57929751/140656023-1b56cbc7-0cb3-4771-ae6c-7379e0a1af65.png)
+
+
+![image](https://user-images.githubusercontent.com/57929751/140656090-15019435-4af2-473d-b7cd-7ee0b06fbcf3.png)
+
+
+<div align="center">
+
   
 ==============================
 
@@ -17,23 +28,18 @@ __Back-End : Spring-Boot + Spring-Data-Jpa__
 
 __DB : MariaDB__
 
-__Infra : Paas-Ta, AWS__
+__Infra : Paas-Ta, AWS s3__
 
   
 ==============================
 </div>
 
-![image](https://user-images.githubusercontent.com/57929751/140656023-1b56cbc7-0cb3-4771-ae6c-7379e0a1af65.png)
-
-
-![image](https://user-images.githubusercontent.com/57929751/140656090-15019435-4af2-473d-b7cd-7ee0b06fbcf3.png)
-
 프로젝트 인원 총 3명
+
+기간 : 2021. 7. 26. ~ 2021. 11. 19
 
 
 기획 및 디자인 1명
-
-기간 : 2021. 7. 26. ~ 2021. 11. 19
 
 👨 EungBum
 
@@ -208,7 +214,7 @@ IDE - Visual Studio Code, IntelliJ
 
 데이터베이스 - MariaDB
 
-개발 환경 - 윈도우10
+개발 운영체제 환경 - 윈도우10
 
 인프라 - Paas_Ta, AWS
 
