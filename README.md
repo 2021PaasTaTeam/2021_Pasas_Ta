@@ -6,14 +6,14 @@
   
 __🍝☁💻 파스타 클라우드 공모전 : 메타버스 중계 플랫폼__
 
-![image](https://user-images.githubusercontent.com/57929751/142642219-3f7b8c24-d666-4454-b6ff-6eae71e48ff3.png)
+![image](https://user-images.githubusercontent.com/57929751/142673515-41de94ff-4a6b-4e10-ae9a-7199544a75c1.png)
 
 </div>
 
-![image](https://user-images.githubusercontent.com/57929751/140656023-1b56cbc7-0cb3-4771-ae6c-7379e0a1af65.png)
+![image](https://user-images.githubusercontent.com/57929751/142673600-90d748fd-a6b2-4cdf-81d4-ffc0d80a952e.png)
 
 
-![image](https://user-images.githubusercontent.com/57929751/140656090-15019435-4af2-473d-b7cd-7ee0b06fbcf3.png)
+![image](https://user-images.githubusercontent.com/57929751/142673688-926d253e-6072-400f-9941-fc02e4b4f792.png)
 
 
 <div align="center">
