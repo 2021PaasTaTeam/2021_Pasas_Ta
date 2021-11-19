@@ -8,13 +8,14 @@ import axios from 'axios';
 
 function Product() {
     const session = JSON.parse(window.sessionStorage.getItem("data"));
+    const location = JSON.parse(window.sessionStorage.getItem("location"));
 
     var [store, setStore] = useState([]);
     var [item, setItem] = useState([]);
     var id = [];
 
     function searchItem(shopid) {
-        const url = "http://localhost:8080/shop/" + shopid + "/item";
+        const url = "https://onnuriservice.paas-ta.org/shop/" + shopid + "/item";
         axios.get(url)
             .then(function (response) {
                 setItem(response.data);
@@ -27,7 +28,7 @@ function Product() {
     // console.log(item)
 
     function searchId() {
-        const url = "http://localhost:8080/shop";
+        const url = "https://onnuriservice.paas-ta.org/shop";
         axios.get(url)
             .then(function (response) {
                 setStore(response.data);
@@ -37,18 +38,18 @@ function Product() {
                 // console.log("실패");
             })
     }
-
+    //console.log(store)
     for (let i = 0; i < store.length; i++) {
-        if (store[i].email === session.data.email) {
+        if (store[i].shopId === location.location) {
             id = store[i];
         }
     }
 
     useEffect(() => {
         searchId()
-        searchItem(id.shopId)
+        searchItem(location.location)
 
-    }, [id.shopId]);
+    }, [location.location]);
 
     const item_name = []
     const item_image = []
@@ -73,8 +74,8 @@ function Product() {
         window.open("/Review", "", "width=650, height=500, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
     }
     const Item_buy = (index) => {
-        console.log(item[index].itemId)
-        axios.post('http://localhost:8080/item/' + item[index].itemId, {
+        //console.log(item[index].itemId)
+        axios.post('https://onnuriservice.paas-ta.org/item/' + item[index].itemId, {
         })
             .then(res => {
                 const item = res.data;
@@ -126,7 +127,7 @@ function Product() {
                         height="200vh"
                         width="200vw"
                         id="img_obj"
-                        src={"img/" + id.image?.storeFileName} />
+                        src={id.image?.storeFileName} />
                 </div>
                 <div style={{
                     float: 'left'
@@ -153,7 +154,7 @@ function Product() {
                             float: 'left'
                         }}
                     >
-                        &nbsp;&nbsp;가게 업종 : {id.bussinessType}
+                        &nbsp;&nbsp;가게 업종 : {id.businessType}
                     </Typography>
                 </div>
                 <br />
@@ -250,7 +251,7 @@ function Product() {
                                         <img className="phoneImage"
                                             height="150vh"
                                             width="150vw"
-                                            src={"img/" + item_image[idx]} />
+                                            src={item_image[idx]} />
                                     </div>
                                     <div style={{
                                         float: 'left'
@@ -312,30 +313,6 @@ function Product() {
                 <br />
                 <br />
                 <br />
-                <div style={{
-                    float: 'left'
-                }}>
-                    <Typography variant="h3"
-                        style={{
-                            fontSize: 20
-                        }}
-                        align="left">
-                        가게 리뷰
-                    </Typography>
-                </div>
-                <div style={{
-                    float: 'right'
-                }}>
-                    <button onClick={Review_write} style={{
-                        color: "white",
-                        background: "blue",
-                        padding: ".120rem .720rem",
-                        border: "1px solid blue",
-                        borderRadius: ".25rem",
-                        fontSize: "1rem",
-                        lineHeight: 1.5,
-                    }}>리뷰 쓰기</button>
-                </div>
                 <br />
                 <div
                     style={{
@@ -347,141 +324,9 @@ function Product() {
                 >
                     <span style={{ background: "#fff", }}></span>
                 </div>
-                <div style={{
-                    float: 'left'
-                }}>
-                    <Typography
-                        variant="h3"
-                        style={{
-                            fontSize: 17,
-                            float: 'left'
-                        }}
-                    >
-                        &nbsp;&nbsp;{session.data.name} :&nbsp;또 오고 싶어요 😀😀
-                    </Typography>
-                </div>
                 <br />
                 <br />
-                <div style={{
-                    float: 'left'
-                }}>
-                    <Typography
-                        variant="h3"
-                        style={{
-                            fontSize: 17,
-                            float: 'left'
-                        }}
-                    >
-                        &nbsp;&nbsp;이주현 :&nbsp;저는 싫어요 😤😤
-                    </Typography>
-                </div>
-
-
-                <br />
-                <br />
-                {/* <Typography variant="h3"
-                    style={{
-                        fontSize: 20
-                    }}
-                    align="left">
-                    합계
-                </Typography>
-                <div
-                    style={{
-                        width: "100%",
-                        borderBottom: "3px solid black",
-                        lineHeight: "0.1em",
-                        margin: "10px 0 10px",
-                    }}
-                >
-                    <span style={{ background: "#fff", }}></span>
-                </div>
-                <div ><Typography variant="h4"
-                    style={{
-                        fontSize: 16,
-                        float: 'left'
-                    }}
-                >
-                    선택 상품 개수
-                </Typography></div>
-                <div ><Typography variant="h4"
-                    style={{
-                        fontSize: 16,
-                        float: 'right'
-                    }}
-                >
-                    {0 + ' 개'}
-                </Typography></div>
-                <br />
-                <br />
-                <div
-                    style={{
-                        width: "100%",
-                        borderBottom: "1px solid #aaa",
-                        lineHeight: "0.1em",
-                        margin: "10px 0 10px",
-                    }}
-                >
-                    <span style={{ background: "#fff", }}></span>
-                </div>
-                <div>
-                    <Typography variant="h3"
-                        style={{
-                            fontSize: 17,
-                            float: 'left'
-                        }}
-                    >
-                        결재 금액
-                    </Typography>
-                </div>
-                <div ><Typography variant="h3"
-                    style={{
-                        fontSize: 17,
-                        float: 'right'
-                    }}
-                >
-                    {0 + ' 원'}
-                </Typography></div>
-
-                <br />
-                <br />
-                <FormButton
-                    sx={{ mt: 1, mb: 1 }}
-                    size="large"
-                    color="primary"
-                    fullWidth
-                    style={{
-                        padding: 8,
-                        color: "blue",
-                        backgroundColor: "white",
-                        border: "4px solid blue",
-                        collapse: 'collapse',
-                        borderRadius: '8px',
-                    }}
-                    onClick={Cart}
-                >
-                    {'👜 장바구니 가기'}
-                </FormButton>
-                <br />
-                <br /> */}
                 <Grid container spacing={1}>
-                    {/* <Grid item xs={12} sm={6}>
-                        <FormButton
-                            sx={{ mt: 1, mb: 1 }}
-                            size="large"
-                            color="primary"
-                            fullWidth
-                            style={{
-                                padding: 8,
-                                border: "4px solid black",
-                                collapse: 'collapse',
-                                borderRadius: '8px',
-                            }}
-                            type="submit"
-                        >
-                            {'바로 구매하기'}
-                        </FormButton>
-                    </Grid> */}
                     <Grid item xs={12} sm={12}>
                         <FormButton
                             sx={{ mt: 1, mb: 1 }}

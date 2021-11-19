@@ -6,8 +6,8 @@ import AppForm from '../modules/views/AppForm';
 
 const socket = io.connect("http://localhost:3001");
 const session = JSON.parse(window.sessionStorage.getItem("data"));
-const session_store = JSON.parse(window.sessionStorage.getItem("store_data"));
-console.log(session_store)
+const session_store = JSON.parse(window.localStorage.getItem("store_data"));
+//console.log(session_store)
 
 //socket.emit("init", { name: session.data.name });
 function Chat() {

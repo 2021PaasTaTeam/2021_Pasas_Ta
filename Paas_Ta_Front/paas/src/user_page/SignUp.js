@@ -30,24 +30,24 @@ function SignUp() {
     setAddress(event.currentTarget.value)
   }
   const onClickSignUp = () => {
-    console.log('click login')
-    console.log('ID : ', email)
-    console.log('PW : ', password)
-    console.log('NAME : ', name)
-    console.log('ADD : ', address)
+    //console.log('click login')
+    //console.log('ID : ', email)
+    //console.log('PW : ', password)
+    //console.log('NAME : ', name)
+    //console.log('ADD : ', address)
     let data = JSON.stringify({
       'password': password,
       'email': email,
       'name': name,
       'address': address
     })
-    axios.post('http://localhost:8080/user', data, {
+    axios.post('https://onnuriservice.paas-ta.org/user', data, {
       headers: {
         'Content-type': 'application/json; charset=utf-8',
       }
     })
       .then(res => {
-        console.log(res.data.name)
+        //console.log(res.data.name)
         if (res.data.email === undefined) {
           // id 일치하지 않는 경우 userId = undefined, msg = '입력하신 id 가 일치하지 않습니다.'
           alert('이미 등록된 이메일 계정입니다.')

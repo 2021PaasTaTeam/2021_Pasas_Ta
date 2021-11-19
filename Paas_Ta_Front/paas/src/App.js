@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 // 사용자 페이지
 import Index from "./user_page/Home";
 import Gather from "./user_page/Gather";
-import Login from "./user_page/Login";
+import Login from "./Login";
 import SignUp from "./user_page/SignUp";
 import Town from "./user_page/Gather_town";
 import Item from "./Item";
@@ -21,8 +21,13 @@ import Item_Modify from "./user_page/Item_Modify";
 import Item_buy from "./Item_buy";
 import Check_Info from './user_page/Check_Info';
 import { VideoCall } from './user_page/web/VideoCall';
+<<<<<<< Updated upstream
 
 import test from './user_page/test';
+=======
+import region from './user_page/region';
+import firstregion from './user_page/firstregion';
+>>>>>>> Stashed changes
 
 // 관리자 페이지
 import { Admin, Resource } from "react-admin";
@@ -35,6 +40,8 @@ import { ItemList, ItemEdit, ItemCreate, ItemIcon } from './admin_page/items';
 // 가게
 import { ShopList, ShopEdit, ShopCreate, ShopIcon } from './admin_page/shops';
 // 주문
+import { OrderList, OrderEdit, OrderCreate, OrderIcon } from './admin_page/orders';
+
 import fakeDataProvider from 'ra-data-fakerest';
 import Dashboard from './admin_page/Dashboard';
 
@@ -42,9 +49,10 @@ function App() {
     var [user, setUser] = useState([]);
     var [item, setItem] = useState([]);
     var [shop, setShop] = useState([]);
+    var [order, setOrder] = useState([]);
 
     function searchUser() {
-        const url = "http://localhost:8080/user";
+        const url = "https://onnuriservice.paas-ta.org/user";
         axios.get(url)
             .then(function (response) {
                 setUser(response.data);
@@ -54,10 +62,9 @@ function App() {
                 //console.log("실패");
             })
     }
-    var user_list = user;
 
     function searchItem() {
-        const url = "http://localhost:8080/item";
+        const url = "https://onnuriservice.paas-ta.org/item";
         axios.get(url)
             .then(function (response) {
                 setItem(response.data);
@@ -68,7 +75,7 @@ function App() {
             })
     }
     function searchShop() {
-        const url = "http://localhost:8080/shop";
+        const url = "https://onnuriservice.paas-ta.org/shop";
         axios.get(url)
             .then(function (response) {
                 setShop(response.data);
@@ -78,21 +85,35 @@ function App() {
                 //console.log("실패");
             })
     }
+    function searchOrder() {
+        const url = "https://onnuriservice.paas-ta.org/orders";
+        axios.get(url)
+            .then(function (response) {
+                setOrder(response.data);
+                //console.log(response.data)
+            })
+            .catch(function (error) {
+                //console.log("실패");
+            })
+    }
     var user_list = user;
     var item_list = item;
     var shop_list = shop;
+    var order_list = order;
 
 
     const dataProvider = fakeDataProvider({
         user: user_list,
         item: item_list,
         shop: shop_list,
+        order: order_list
     })
 
     useEffect(() => {
         searchUser()
         searchItem()
         searchShop()
+        searchOrder()
     }, []);
 
     const authProvider = {
@@ -124,9 +145,14 @@ function App() {
                 <Route path="/MyPage" exact component={MyPage} />
                 <Route path="/Gather" exact component={Gather} />
                 <Route path="/Town" exact component={Town} />
+<<<<<<< Updated upstream
 
                 <Route path="/test" exact component={test} />
 
+=======
+                <Route path="/region" exact component={region} />
+                <Route path="/firstregion" exact component={firstregion} />
+>>>>>>> Stashed changes
 
                 {/* 관리자 페이지 */}
                 <Admin
@@ -145,6 +171,10 @@ function App() {
                     <Resource name="item"
                         list={ItemList}
                         edit={ItemEdit} create={ItemCreate} icon={ItemIcon}
+                    />
+                    <Resource name="order"
+                        list={OrderList}
+                        edit={OrderEdit} create={OrderCreate} icon={ItemIcon}
                     />
                 </Admin>
             </Switch>

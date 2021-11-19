@@ -11,7 +11,7 @@ export type message = {
   content: string;
 };
 
-let sockJS = new SockJS("http://localhost:8080/webSocket");
+let sockJS = new SockJS("https://onnuriservice.paas-ta.org/webSocket");
 let stompClient : Stomp.Client = Stomp.over(sockJS);
 stompClient.debug= () => {};
 

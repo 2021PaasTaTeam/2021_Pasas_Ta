@@ -10,10 +10,10 @@ function Item_Modify() {
     const session = JSON.parse(window.sessionStorage.getItem("data"));
     const item_data_session = JSON.parse(window.sessionStorage.getItem("item_data"));
 
-    console.log(item_data_session)
-    console.log(item_data_session.item_data.name)
+    //console.log(item_data_session)
+    //console.log(item_data_session.item_data.name)
 
-    console.log(item_data_session.item_data.itemId)
+    //console.log(item_data_session.item_data.itemId)
 
     const [itemName, setItemName] = useState(item_data_session.item_data.name);
     const [itemContent, setItemContent] = useState(item_data_session.item_data.content);
@@ -24,14 +24,14 @@ function Item_Modify() {
     var [item, setItem] = useState([]);
     
     function searchItem(shopid) {
-        const url = "http://localhost:8080/shop/" + shopid + "/item";
+        const url = "https://onnuriservice.paas-ta.org/shop/" + shopid + "/item";
         axios.get(url)
             .then(function (response) {
                 setItem(response.data);
-                console.log("성공");
+                //console.log("성공");
             })
             .catch(function (error) {
-                console.log("실패");
+                //console.log("실패");
             })
     }
 
@@ -39,17 +39,17 @@ function Item_Modify() {
     var id = [];
 
     function searchId() {
-        const url = "http://localhost:8080/shop";
+        const url = "https://onnuriservice.paas-ta.org/shop";
         axios.get(url)
         .then(function(response) {
             setStore(response.data);
-            console.log("성공");
+            //console.log("성공");
         })
         .catch(function(error) {
-            console.log("실패");
+            //console.log("실패");
         })
     }
-    console.log(store)
+    //console.log(store)
 
     for (let i=0; i<store.length; i++)
     {
@@ -58,7 +58,7 @@ function Item_Modify() {
             id = store[i];
         }
     }
-    console.log(id)
+    //console.log(id)
 
     useEffect(() => {
         searchId()
@@ -85,18 +85,18 @@ function Item_Modify() {
             'itemStock': itemStock
           })
 
-        console.log('click item')
-        console.log("itemContent", itemContent)
-        console.log("itemPrice", itemPrice)
-        console.log("itemStock", itemStock)
+        //console.log('click item')
+        //console.log("itemContent", itemContent)
+        //console.log("itemPrice", itemPrice)
+        //console.log("itemStock", itemStock)
         
-        axios.post('http://localhost:8080/item/' + item_data_session.item_data.itemId, data, {
+        axios.post('https://onnuriservice.paas-ta.org/item/' + item_data_session.item_data.itemId, data, {
             headers: {
                 'Content-type': 'application/json; charset=utf-8',
             }
         })
             .then(res => {
-                console.log(res)
+                //console.log(res)
                 window.sessionStorage.removeItem("item_data")
                 alert('상품이 수정되었습니다.')
                 window.close();
@@ -133,7 +133,7 @@ function Item_Modify() {
                     <img className="phoneImage"
                         height="200vh"
                         width="200vw"
-                        src={"img/" + item_data_session.item_data?.storeFileName}
+                        src={item_data_session.item_data?.storeFileName}
                     />
                 </div>
                 <div style={{

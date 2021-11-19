@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 import Card from './card';
 import defaultIcon from './assets/heart.png';
-
 import './styles.scss';
 
 class Notifications extends Component {
@@ -138,7 +137,7 @@ class Notifications extends Component {
 
     const { title, option } = header;
     const CustomComponent = notificationCard;
-    const dataLength = data.length-1;
+    const dataLength = data.length;
 
     const cardList = Array.isArray(data)
       && (CustomComponent

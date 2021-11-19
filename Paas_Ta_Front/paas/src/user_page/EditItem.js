@@ -16,27 +16,27 @@ function EditItem() {
     var id = [];
 
     function searchItem(shopid) {
-        const url = "http://localhost:8080/shop/" + shopid + "/item";
+        const url = "https://onnuriservice.paas-ta.org/shop/" + shopid + "/item";
         axios.get(url)
             .then(function (response) {
                 setItem(response.data);
-                //console.log("성공");
-                //console.log(item[0].name)
+                ////console.log("성공");
+                ////console.log(item[0].name)
             })
             .catch(function (error) {
-                // console.log("실패");
+                // //console.log("실패");
             })
     }
 
     function searchId() {
-        const url = "http://localhost:8080/shop";
+        const url = "https://onnuriservice.paas-ta.org/shop";
         axios.get(url)
             .then(function (response) {
                 setStore(response.data);
-                //console.log("성공");
+                ////console.log("성공");
             })
             .catch(function (error) {
-                //console.log("실패");
+                ////console.log("실패");
             })
     }
 
@@ -63,7 +63,7 @@ function EditItem() {
     for (var j = 0; j < item.length; j++) {
         item_image[j] = item[j].storeFileName
     }
-    //console.log(typeof(item_image[0]))
+    //console.log(item_image[0])
     for (var j = 0; j < item.length; j++) {
         item_content[j] = item[j].content
     }
@@ -82,20 +82,20 @@ function EditItem() {
     }
 
     const item_remove = (index) => {
-        console.log(item[index].itemId)
-        axios.delete('http://localhost:8080/item/' + item[index].itemId, {
+        //console.log(item[index].itemId)
+        axios.delete('https://onnuriservice.paas-ta.org/item/' + item[index].itemId, {
         })
             .then(res => {
                 alert('해당 상품이 삭제되었습니다.')
-                console.log(item)
+                //console.log(item)
                 window.location.replace("/EditItem")
             })
             .catch()
     }
 
     const item_modify = (index) => {
-        console.log(item[index].itemId)
-        axios.post('http://localhost:8080/item/' + item[index].itemId, {
+        //console.log(item[index].itemId)
+        axios.post('https://onnuriservice.paas-ta.org/item/' + item[index].itemId, {
         })
             .then(res => {
                 const item = res.data;
@@ -122,7 +122,7 @@ function EditItem() {
                     <img className="phoneImage"
                         height="200vh"
                         width="200vw"
-                        src={"img/" + id.image?.storeFileName}
+                        src={id.image?.storeFileName}
                     />
                 </div>
                 <div style={{
@@ -150,7 +150,7 @@ function EditItem() {
                             float: 'left'
                         }}
                     >
-                        &nbsp;&nbsp;가게 업종 : {id.bussinessType}
+                        &nbsp;&nbsp;가게 업종 : {id.businessType}
                     </Typography>
                 </div>
                 <br />
@@ -232,7 +232,7 @@ function EditItem() {
                                         <img className="phoneImage"
                                             height="200vh"
                                             width="200vw"
-                                            src={"img/" + item_image[idx]} />
+                                            src={item_image[idx]} />
                                     </div>
                                     <div style={{
                                         float: 'left'

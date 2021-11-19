@@ -17,7 +17,7 @@ export const ShopList = (props) => (
             <TextField source="phone" />
             <TextField source="image.uploadFileName" />
             <TextField source="image.storeFileName" />
-            <TextField source="bussinessType" />
+            <TextField source="businessType" />
             <TextField source="region" />
             <TextField source="address" />
             <TextField source="userType" />
@@ -39,7 +39,7 @@ export const ShopEdit = (props) => (
             <TextInput source="phone" />
             <TextInput source="image.uploadFileName" />
             <TextInput source="image.storeFileName" />
-            <TextInput source="bussinessType" />
+            <TextInput source="businessType" />
             <TextInput source="region" />
             <TextInput source="address" />
             <TextInput source="userType" />
@@ -56,7 +56,7 @@ export const ShopCreate = (props) => (
             <TextInput source="phone" />
             <TextInput source="image.uploadFileName" />
             <TextInput source="image.storeFileName" />
-            <TextInput source="bussinessType" />
+            <TextInput source="businessType" />
             <TextInput source="region" />
             <TextInput source="address" />
             <TextInput source="userType" />

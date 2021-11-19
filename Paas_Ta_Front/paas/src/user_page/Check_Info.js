@@ -13,7 +13,7 @@ function Check_Info() {
     var [order, setOrder] = useState([]);
 
     function searchOrder() {
-        const url = "http://localhost:8080/orders/" + session.data.id;
+        const url = "https://onnuriservice.paas-ta.org/orders/" + session.data.id;
         axios.get(url)
             .then(function (response) {
                 setOrder(response.data);
@@ -179,6 +179,10 @@ function Check_Info() {
                     {'돌아 가기'}
                 </FormButton>
             </AppForm>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
             <AppFooter />
         </React.Fragment>
     );

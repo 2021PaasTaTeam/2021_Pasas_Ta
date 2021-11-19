@@ -1,0 +1,218 @@
+[
+    {
+        "landId": 7,
+        "buildingName": "성북구",
+        "seat": "YES",
+        "landCoordinate": "LandLocations{ leftTop=(200, 250), rightTop=(500, 250), leftBottom=( 200, 450), rightBottom=( 500, 450) }"
+    },
+    {
+        "landId": 8,
+        "buildingName": "성북구",
+        "seat": "NO",
+        "landCoordinate": "LandLocations{ leftTop=(800, 250), rightTop=(1100, 250), leftBottom=( 800, 450), rightBottom=( 1100, 450) }"
+    },
+    {
+        "landId": 9,
+        "buildingName": "성북구",
+        "seat": "NO",
+        "landCoordinate": "LandLocations{ leftTop=(1400, 250), rightTop=(1700, 250), leftBottom=( 1400, 450), rightBottom=( 1700, 450) }"
+    },
+    {
+        "landId": 10,
+        "buildingName": "성북구",
+        "seat": "YES",
+        "landCoordinate": "LandLocations{ leftTop=(200, 650), rightTop=(500, 650), leftBottom=( 200, 850), rightBottom=( 500, 850) }"
+    },
+    {
+        "landId": 11,
+        "buildingName": "성북구",
+        "seat": "YES",
+        "landCoordinate": "LandLocations{ leftTop=(800, 650), rightTop=(1100, 650), leftBottom=( 800, 850), rightBottom=( 1100, 850) }"
+    },
+    {
+        "landId": 12,
+        "buildingName": "성북구",
+        "seat": "YES",
+        "landCoordinate": "LandLocations{ leftTop=(1400, 650), rightTop=(1700, 650), leftBottom=( 1400, 850), rightBottom=( 1700, 850) }"
+    },
+    {
+        "landId": 13,
+        "buildingName": "동작구",
+        "seat": "NO",
+        "landCoordinate": "LandLocations{ leftTop=(200, 250), rightTop=(500, 250), leftBottom=( 200, 450), rightBottom=( 500, 450) }"
+    },
+    {
+        "landId": 14,
+        "buildingName": "동작구",
+        "seat": "NO",
+        "landCoordinate": "LandLocations{ leftTop=(800, 250), rightTop=(1100, 250), leftBottom=( 800, 450), rightBottom=( 1100, 450) }"
+    },
+    {
+        "landId": 15,
+        "buildingName": "동작구",
+        "seat": "NO",
+        "landCoordinate": "LandLocations{ leftTop=(1400, 250), rightTop=(1700, 250), leftBottom=( 1400, 450), rightBottom=( 1700, 450) }"
+    },
+    {
+        "landId": 16,
+        "buildingName": "동작구",
+        "seat": "NO",
+        "landCoordinate": "LandLocations{ leftTop=(200, 650), rightTop=(500, 650), leftBottom=( 200, 850), rightBottom=( 500, 850) }"
+    },
+    {
+        "landId": 17,
+        "buildingName": "동작구",
+        "seat": "NO",
+        "landCoordinate": "LandLocations{ leftTop=(800, 650), rightTop=(1100, 650), leftBottom=( 800, 850), rightBottom=( 1100, 850) }"
+    },
+    {
+        "landId": 18,
+        "buildingName": "동작구",
+        "seat": "NO",
+        "landCoordinate": "LandLocations{ leftTop=(1400, 650), rightTop=(1700, 650), leftBottom=( 1400, 850), rightBottom=( 1700, 850) }"
+    },
+    {
+        "landId": 19,
+        "buildingName": "종로구",
+        "seat": "NO",
+        "landCoordinate": "LandLocations{ leftTop=(200, 250), rightTop=(500, 250), leftBottom=( 200, 450), rightBottom=( 500, 450) }"
+    },
+    {
+        "landId": 20,
+        "buildingName": "종로구",
+        "seat": "NO",
+        "landCoordinate": "LandLocations{ leftTop=(800, 250), rightTop=(1100, 250), leftBottom=( 800, 450), rightBottom=( 1100, 450) }"
+    },
+    {
+        "landId": 21,
+        "buildingName": "종로구",
+        "seat": "NO",
+        "landCoordinate": "LandLocations{ leftTop=(1400, 250), rightTop=(1700, 250), leftBottom=( 1400, 450), rightBottom=( 1700, 450) }"
+    },
+    {
+        "landId": 22,
+        "buildingName": "종로구",
+        "seat": "NO",
+        "landCoordinate": "LandLocations{ leftTop=(200, 650), rightTop=(500, 650), leftBottom=( 200, 850), rightBottom=( 500, 850) }"
+    },
+    {
+        "landId": 23,
+        "buildingName": "종로구",
+        "seat": "NO",
+        "landCoordinate": "LandLocations{ leftTop=(800, 650), rightTop=(1100, 650), leftBottom=( 800, 850), rightBottom=( 1100, 850) }"
+    },
+    {
+        "landId": 24,
+        "buildingName": "종로구",
+        "seat": "NO",
+        "landCoordinate": "LandLocations{ leftTop=(1400, 650), rightTop=(1700, 650), leftBottom=( 1400, 850), rightBottom=( 1700, 850) }"
+    },
+    {
+        "landId": 25,
+        "buildingName": "구로구",
+        "seat": "NO",
+        "landCoordinate": "LandLocations{ leftTop=(200, 250), rightTop=(500, 250), leftBottom=( 200, 450), rightBottom=( 500, 450) }"
+    },
+    {
+        "landId": 26,
+        "buildingName": "구로구",
+        "seat": "NO",
+        "landCoordinate": "LandLocations{ leftTop=(800, 250), rightTop=(1100, 250), leftBottom=( 800, 450), rightBottom=( 1100, 450) }"
+    },
+    {
+        "landId": 27,
+        "buildingName": "구로구",
+        "seat": "NO",
+        "landCoordinate": "LandLocations{ leftTop=(1400, 250), rightTop=(1700, 250), leftBottom=( 1400, 450), rightBottom=( 1700, 450) }"
+    },
+    {
+        "landId": 28,
+        "buildingName": "구로구",
+        "seat": "NO",
+        "landCoordinate": "LandLocations{ leftTop=(200, 650), rightTop=(500, 650), leftBottom=( 200, 850), rightBottom=( 500, 850) }"
+    },
+    {
+        "landId": 29,
+        "buildingName": "구로구",
+        "seat": "NO",
+        "landCoordinate": "LandLocations{ leftTop=(800, 650), rightTop=(1100, 650), leftBottom=( 800, 850), rightBottom=( 1100, 850) }"
+    },
+    {
+        "landId": 30,
+        "buildingName": "구로구",
+        "seat": "NO",
+        "landCoordinate": "LandLocations{ leftTop=(1400, 650), rightTop=(1700, 650), leftBottom=( 1400, 850), rightBottom=( 1700, 850) }"
+    },
+    {
+        "landId": 31,
+        "buildingName": "서초구",
+        "seat": "NO",
+        "landCoordinate": "LandLocations{ leftTop=(200, 250), rightTop=(500, 250), leftBottom=( 200, 450), rightBottom=( 500, 450) }"
+    },
+    {
+        "landId": 32,
+        "buildingName": "서초구",
+        "seat": "NO",
+        "landCoordinate": "LandLocations{ leftTop=(800, 250), rightTop=(1100, 250), leftBottom=( 800, 450), rightBottom=( 1100, 450) }"
+    },
+    {
+        "landId": 33,
+        "buildingName": "서초구",
+        "seat": "NO",
+        "landCoordinate": "LandLocations{ leftTop=(1400, 250), rightTop=(1700, 250), leftBottom=( 1400, 450), rightBottom=( 1700, 450) }"
+    },
+    {
+        "landId": 34,
+        "buildingName": "서초구",
+        "seat": "NO",
+        "landCoordinate": "LandLocations{ leftTop=(200, 650), rightTop=(500, 650), leftBottom=( 200, 850), rightBottom=( 500, 850) }"
+    },
+    {
+        "landId": 35,
+        "buildingName": "서초구",
+        "seat": "NO",
+        "landCoordinate": "LandLocations{ leftTop=(800, 650), rightTop=(1100, 650), leftBottom=( 800, 850), rightBottom=( 1100, 850) }"
+    },
+    {
+        "landId": 36,
+        "buildingName": "서초구",
+        "seat": "NO",
+        "landCoordinate": "LandLocations{ leftTop=(1400, 650), rightTop=(1700, 650), leftBottom=( 1400, 850), rightBottom=( 1700, 850) }"
+    },
+    {
+        "landId": 37,
+        "buildingName": "영등포구",
+        "seat": "NO",
+        "landCoordinate": "LandLocations{ leftTop=(200, 250), rightTop=(500, 250), leftBottom=( 200, 450), rightBottom=( 500, 450) }"
+    },
+    {
+        "landId": 38,
+        "buildingName": "영등포구",
+        "seat": "NO",
+        "landCoordinate": "LandLocations{ leftTop=(800, 250), rightTop=(1100, 250), leftBottom=( 800, 450), rightBottom=( 1100, 450) }"
+    },
+    {
+        "landId": 39,
+        "buildingName": "영등포구",
+        "seat": "NO",
+        "landCoordinate": "LandLocations{ leftTop=(1400, 250), rightTop=(1700, 250), leftBottom=( 1400, 450), rightBottom=( 1700, 450) }"
+    },
+    {
+        "landId": 40,
+        "buildingName": "영등포구",
+        "seat": "NO",
+        "landCoordinate": "LandLocations{ leftTop=(200, 650), rightTop=(500, 650), leftBottom=( 200, 850), rightBottom=( 500, 850) }"
+    },
+    {
+        "landId": 41,
+        "buildingName": "영등포구",
+        "seat": "NO",
+        "landCoordinate": "LandLocations{ leftTop=(800, 650), rightTop=(1100, 650), leftBottom=( 800, 850), rightBottom=( 1100, 850) }"
+    },
+    {
+        "landId": 42,
+        "buildingName": "영등포",
+        "seat": "NO",
+        "landCoordinate": "LandLocations{ leftTop=(1400, 650), rightTop=(1700, 650), leftBottom=( 1400, 850), rightBottom=( 1700, 850) }"
+    }
+]
