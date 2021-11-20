@@ -96,7 +96,7 @@ function Cart() {
     //console.log(order)
     const item_remove = (index) => {
         if (window.confirm("해당 상품을 삭제하시겠습니까??") == true) {    //확인
-            axios.delete('https://onnuriservice.paas-ta.org/order/' + order_id[index], {
+            axios.post('https://onnuriservice.paas-ta.org/order/' + order_id[index]+"/cancel", {
             })
                 .then(res => {
                     alert('해당 상품이 삭제되었습니다.')
