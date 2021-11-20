@@ -1,0 +1,15 @@
+---
+applications:
+  - name: onnuriSerive
+    memory: 1024M
+    instances: 1
+    buildpack: java_buildpack
+    path: build/libs/Paas_Ta_Back-0.0.1-SNAPSHOT.jar
+    services:
+      - mysql_cli
+    env:
+      SPRING_RPOFILES_ACTIVE: cloud
+      mysql_datasource_driver-class-name: org.mariadb.jdbc.Driver
+      mysql_datasource_jdbc-url: jdbc:\${vcap.services.mysql_cli.credentials.uri}
+      mysql_datasource_username: \${vcap.services.mysql_cli.credentials.username}
+      mysql_datasource_password: \${vcap.services.mysql_cli.credentials.password}

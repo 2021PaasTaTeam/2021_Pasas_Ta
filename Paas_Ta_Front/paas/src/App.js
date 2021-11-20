@@ -24,6 +24,7 @@ import { VideoCall } from './user_page/web/VideoCall';
 import region from './user_page/region';
 import firstregion from './user_page/firstregion';
 
+
 // 관리자 페이지
 import { Admin, Resource } from "react-admin";
 // 유저
@@ -140,14 +141,10 @@ function App() {
                 <Route path="/MyPage" exact component={MyPage} />
                 <Route path="/Gather" exact component={Gather} />
                 <Route path="/Town" exact component={Town} />
-<<<<<<< Updated upstream
 
-                <Route path="/test" exact component={test} />
-
-=======
                 <Route path="/region" exact component={region} />
                 <Route path="/firstregion" exact component={firstregion} />
->>>>>>> Stashed changes
+
 
                 {/* 관리자 페이지 */}
                 <Admin

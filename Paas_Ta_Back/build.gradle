@@ -6,7 +6,7 @@ plugins {
 
 group = 'passta'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '11'
+sourceCompatibility = '1.8'
 
 configurations {
     compileOnly {
@@ -19,16 +19,49 @@ repositories {
 }
 
 dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-websocket'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-mail'
     implementation 'org.springframework.boot:spring-boot-starter-web'
 
+    // https://mvnrepository.com/artifact/org.mariadb.jdbc/mariadb-java-client
+    implementation 'org.mariadb.jdbc:mariadb-java-client:2.7.4'
+
+
+    // https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-antrun-plugin
+    implementation 'org.apache.maven.plugins:maven-antrun-plugin:3.0.0'
+
+
+    // https://mvnrepository.com/artifact/mysql/mysql-connector-java
+    implementation 'mysql:mysql-connector-java:8.0.26'
+
+    // https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter
+    implementation 'org.springframework.cloud:spring-cloud-starter'
+    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-cloud-connectors
+    implementation 'org.springframework.boot:spring-boot-starter-cloud-connectors:2.2.13.RELEASE'
+
+
+    // https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-bootstrap
+    implementation 'org.springframework.cloud:spring-cloud-starter-bootstrap:3.0.4'
+
+
+    // https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-config
+    implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-config', version: '3.0.5'
+    // https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-spring-service-connector
+    implementation 'org.springframework.cloud:spring-cloud-spring-service-connector:2.0.9.RELEASE'
+    // https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-core
+    implementation 'org.springframework.cloud:spring-cloud-core:1.2.9.RELEASE'
+    // https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-cloudfoundry-connector
+    implementation 'org.springframework.cloud:spring-cloud-cloudfoundry-connector:2.0.9.RELEASE'
+
+
     compileOnly 'org.projectlombok:lombok'
     runtimeOnly 'mysql:mysql-connector-java'
-
-    developmentOnly 'org.springframework.boot:spring-boot-devtools'
     annotationProcessor 'org.projectlombok:lombok'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+//    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation("org.junit.vintage:junit-vintage-engine") {
+        exclude group: "org.hamcrest", module: "hamcrest-core"
+    }
 }
 
 test {
