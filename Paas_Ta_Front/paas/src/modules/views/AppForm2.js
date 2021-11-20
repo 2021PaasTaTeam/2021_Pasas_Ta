@@ -4,14 +4,14 @@ import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import Paper from '../components/Paper';
 
-function AppForm(props) {
+function AppForm2(props) {
   const { children } = props;
 
   return (
     <Box
     style = {{
       padding: 8,
-      backgroundColor:"#c8c8c8",
+      backgroundColor:"white",
       //backgroundImage:"https://mediahub.seoul.go.kr/wp-content/uploads/2020/09/e890e1058ac0da01e91bc915d5114142.jpg",
     }}
       sx={{
@@ -39,8 +39,8 @@ function AppForm(props) {
   );
 }
 
-AppForm.propTypes = {
+AppForm2.propTypes = {
   children: PropTypes.node,
 };
 
-export default AppForm;
+export default AppForm2;

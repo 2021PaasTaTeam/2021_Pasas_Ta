@@ -162,6 +162,10 @@ function Check_Info() {
                         ))}
                     </ul>
                 </div>
+                <br/>
+            <br/>
+            <br/>
+            <br/>
                 <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
                 <FormButton
                     sx={{ mt: 1, mb: 1 }}
@@ -179,10 +183,6 @@ function Check_Info() {
                     {'돌아 가기'}
                 </FormButton>
             </AppForm>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
             <AppFooter />
         </React.Fragment>
     );

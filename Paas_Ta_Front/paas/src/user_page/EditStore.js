@@ -125,6 +125,19 @@ function EditStore() {
           </Typography>
         </React.Fragment>
         <br />
+        <br />
+                <br />
+                <div className="Card1">
+                    <div className="image-container" align="center">
+                        <img
+                            height="200vh"
+                            width="200vw"
+                            id="preview_image"
+                            src={id.image?.storeFileName} />
+                    </div>
+                </div>
+                <br />
+                <br />
         <Grid container spacing={2}>
           <Grid item xs={12} sm={3}>
             <Typography variant="h6" align="center" style={{
