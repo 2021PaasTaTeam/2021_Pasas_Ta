@@ -61,7 +61,7 @@ function EditItem() {
         item_name[j] = item[j].name;
     }
     for (var j = 0; j < item.length; j++) {
-        item_image[j] = item[j].storeFileName
+        item_image[j] = item[j].storeFileName[0]
     }
     //console.log(item_image[0])
     for (var j = 0; j < item.length; j++) {

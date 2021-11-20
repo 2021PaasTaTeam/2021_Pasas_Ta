@@ -124,7 +124,7 @@ function Item_buy() {
                         id="img_obj"
                         src={id.image?.storeFileName} />
                 </div>
-                <div style={{
+                {/* <div style={{
                     float: 'left'
                 }}>
                     <Typography
@@ -138,7 +138,7 @@ function Item_buy() {
                     </Typography>
                 </div>
                 <br />
-                <br />
+                <br /> */}
                 <div style={{
                     float: 'left'
                 }}>
@@ -149,7 +149,7 @@ function Item_buy() {
                             float: 'left'
                         }}
                     >
-                        &nbsp;&nbsp;가게 업종 : {id.bussinesType}
+                        &nbsp;&nbsp;가게 업종 : {id.businessType}
                     </Typography>
                 </div>
                 <br />
@@ -219,7 +219,7 @@ function Item_buy() {
                                         <img className="phoneImage"
                                             height="150vh"
                                             width="150vw"
-                                            src={item_data_session.item_data.storeFileName}
+                                            src={item_data_session.item_data.storeFileName[0]}
                                             />
                                     </div>
                                     <div style={{

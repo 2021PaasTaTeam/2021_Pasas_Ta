@@ -67,7 +67,7 @@ function Product() {
         item_price[j] = item[j].price
     }
     for (var j = 0; j < item.length; j++) {
-        item_image[j] = item[j].storeFileName
+        item_image[j] = item[j].storeFileName[0]
     }
 
     const Review_write = () => {
@@ -129,7 +129,7 @@ function Product() {
                         id="img_obj"
                         src={id.image?.storeFileName} />
                 </div>
-                <div style={{
+                {/* <div style={{
                     float: 'left'
                 }}>
                     <Typography
@@ -143,7 +143,7 @@ function Product() {
                     </Typography>
                 </div>
                 <br />
-                <br />
+                <br /> */}
                 <div style={{
                     float: 'left'
                 }}>

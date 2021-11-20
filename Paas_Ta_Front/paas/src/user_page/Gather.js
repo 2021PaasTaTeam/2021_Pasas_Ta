@@ -1345,6 +1345,10 @@ function Gather(props) {
           {
             typeImg19.src = "/assets/food_type.png";
           }
+          if (item_seat[18].shopBusinessType === '기타')
+          {
+            typeImg19.src = "/assets/type.png";
+          }
           context?.drawImage(typeImg19, 165, 200, type_width, type_height);
         }
       }

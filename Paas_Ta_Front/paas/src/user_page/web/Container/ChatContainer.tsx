@@ -6,6 +6,8 @@ import {useEffect} from "react";
 import SockJS from 'sockjs-client';
 import Stomp from 'stompjs';
 
+const session = JSON.parse(sessionStorage.getItem("data") || '{}');
+
 export type message = {
   username: string;
   content: string;
@@ -17,7 +19,7 @@ stompClient.debug= () => {};
 
 export const ChatContainer = ({}) => {
   const [contents, setContents] = React.useState<message[]>([]);
-  const [username, setUsername] = React.useState('');
+  const [username, setUsername] = React.useState(session.data.name);
   const [message, setMessage] = React.useState("");
 
   useEffect(()=>{

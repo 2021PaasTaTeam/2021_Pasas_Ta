@@ -125,22 +125,22 @@ function AddStore() {
 
   function load() {
     if (list[0].landSeat === 'YES') {
-      setImage1("/assets/X.gif")
+      setImage1("/assets/x.gif")
     }
     if (list[1].landSeat === 'YES') {
-      setImage2("/assets/X.gif")
+      setImage2("/assets/x.gif")
     }
     if (list[2].landSeat === 'YES') {
-      setImage3("/assets/X.gif")
+      setImage3("/assets/x.gif")
     }
     if (list[3].landSeat === 'YES') {
-      setImage4("/assets/X.gif")
+      setImage4("/assets/x.gif")
     }
     if (list[4].landSeat === 'YES') {
-      setImage5("/assets/X.gif")
+      setImage5("/assets/x.gif")
     }
     if (list[5].landSeat === 'YES') {
-      setImage6("/assets/X.gif")
+      setImage6("/assets/x.gif")
     }
   }
 
@@ -179,7 +179,7 @@ function AddStore() {
 
   //console.log(id)
   function clickCell1() {
-    if (image1 !== "/assets/X.gif") {
+    if (image1 !== "/assets/x.gif") {
       setImage1("/assets/O.gif")
       setImage2("/assets/blank.jpg")
       setImage3("/assets/blank.jpg")
@@ -187,20 +187,20 @@ function AddStore() {
       setImage5("/assets/blank.jpg")
       setImage6("/assets/blank.jpg")
 
-      if (image2 === "/assets/X.gif") {
-        setImage2("/assets/X.gif")
+      if (image2 === "/assets/x.gif") {
+        setImage2("/assets/x.gif")
       }
-      if (image3 === "/assets/X.gif") {
-        setImage3("/assets/X.gif")
+      if (image3 === "/assets/x.gif") {
+        setImage3("/assets/x.gif")
       }
-      if (image4 === "/assets/X.gif") {
-        setImage4("/assets/X.gif")
+      if (image4 === "/assets/x.gif") {
+        setImage4("/assets/x.gif")
       }
-      if (image5 === "/assets/X.gif") {
-        setImage5("/assets/X.gif")
+      if (image5 === "/assets/x.gif") {
+        setImage5("/assets/x.gif")
       }
-      if (image6 === "/assets/X.gif") {
-        setImage6("/assets/X.gif")
+      if (image6 === "/assets/x.gif") {
+        setImage6("/assets/x.gif")
       }
     }
     if (image1 === "/assets/O.gif") {
@@ -208,7 +208,7 @@ function AddStore() {
     }
   }
   function clickCell2() {
-    if (image2 !== "/assets/X.gif") {
+    if (image2 !== "/assets/x.gif") {
       setImage2("/assets/O.gif")
       setImage1("/assets/blank.jpg")
       setImage3("/assets/blank.jpg")
@@ -216,20 +216,20 @@ function AddStore() {
       setImage5("/assets/blank.jpg")
       setImage6("/assets/blank.jpg")
 
-      if (image1 === "/assets/X.gif") {
-        setImage1("/assets/X.gif")
+      if (image1 === "/assets/x.gif") {
+        setImage1("/assets/x.gif")
       }
-      if (image3 === "/assets/X.gif") {
-        setImage3("/assets/X.gif")
+      if (image3 === "/assets/x.gif") {
+        setImage3("/assets/x.gif")
       }
-      if (image4 === "/assets/X.gif") {
-        setImage4("/assets/X.gif")
+      if (image4 === "/assets/x.gif") {
+        setImage4("/assets/x.gif")
       }
-      if (image5 === "/assets/X.gif") {
-        setImage5("/assets/X.gif")
+      if (image5 === "/assets/x.gif") {
+        setImage5("/assets/x.gif")
       }
-      if (image6 === "/assets/X.gif") {
-        setImage6("/assets/X.gif")
+      if (image6 === "/assets/x.gif") {
+        setImage6("/assets/x.gif")
       }
     }
     if (image2 === "/assets/O.gif") {
@@ -237,7 +237,7 @@ function AddStore() {
     }
   }
   function clickCell3() {
-    if (image3 !== "/assets/X.gif") {
+    if (image3 !== "/assets/x.gif") {
       setImage3("/assets/O.gif")
       setImage2("/assets/blank.jpg")
       setImage1("/assets/blank.jpg")
@@ -245,20 +245,20 @@ function AddStore() {
       setImage5("/assets/blank.jpg")
       setImage6("/assets/blank.jpg")
 
-      if (image2 === "/assets/X.gif") {
-        setImage2("/assets/X.gif")
+      if (image2 === "/assets/x.gif") {
+        setImage2("/assets/x.gif")
       }
-      if (image1 === "/assets/X.gif") {
-        setImage1("/assets/X.gif")
+      if (image1 === "/assets/x.gif") {
+        setImage1("/assets/x.gif")
       }
-      if (image4 === "/assets/X.gif") {
-        setImage4("/assets/X.gif")
+      if (image4 === "/assets/x.gif") {
+        setImage4("/assets/x.gif")
       }
-      if (image5 === "/assets/X.gif") {
-        setImage5("/assets/X.gif")
+      if (image5 === "/assets/x.gif") {
+        setImage5("/assets/x.gif")
       }
-      if (image6 === "/assets/X.gif") {
-        setImage6("/assets/X.gif")
+      if (image6 === "/assets/x.gif") {
+        setImage6("/assets/x.gif")
       }
     }
     if (image3 === "/assets/O.gif") {
@@ -266,7 +266,7 @@ function AddStore() {
     }
   }
   function clickCell4() {
-    if (image4 !== "/assets/X.gif") {
+    if (image4 !== "/assets/x.gif") {
       setImage4("/assets/O.gif")
       setImage2("/assets/blank.jpg")
       setImage3("/assets/blank.jpg")
@@ -274,20 +274,20 @@ function AddStore() {
       setImage5("/assets/blank.jpg")
       setImage6("/assets/blank.jpg")
 
-      if (image2 === "/assets/X.gif") {
-        setImage2("/assets/X.gif")
+      if (image2 === "/assets/x.gif") {
+        setImage2("/assets/x.gif")
       }
-      if (image3 === "/assets/X.gif") {
-        setImage3("/assets/X.gif")
+      if (image3 === "/assets/x.gif") {
+        setImage3("/assets/x.gif")
       }
-      if (image1 === "/assets/X.gif") {
-        setImage1("/assets/X.gif")
+      if (image1 === "/assets/x.gif") {
+        setImage1("/assets/x.gif")
       }
-      if (image5 === "/assets/X.gif") {
-        setImage5("/assets/X.gif")
+      if (image5 === "/assets/x.gif") {
+        setImage5("/assets/x.gif")
       }
-      if (image6 === "/assets/X.gif") {
-        setImage6("/assets/X.gif")
+      if (image6 === "/assets/x.gif") {
+        setImage6("/assets/x.gif")
       }
     }
     if (image4 === "/assets/O.gif") {
@@ -295,7 +295,7 @@ function AddStore() {
     }
   }
   function clickCell5() {
-    if (image5 !== "/assets/X.gif") {
+    if (image5 !== "/assets/x.gif") {
       setImage5("/assets/O.gif")
       setImage2("/assets/blank.jpg")
       setImage3("/assets/blank.jpg")
@@ -303,20 +303,20 @@ function AddStore() {
       setImage1("/assets/blank.jpg")
       setImage6("/assets/blank.jpg")
 
-      if (image2 === "/assets/X.gif") {
-        setImage2("/assets/X.gif")
+      if (image2 === "/assets/x.gif") {
+        setImage2("/assets/x.gif")
       }
-      if (image3 === "/assets/X.gif") {
-        setImage3("/assets/X.gif")
+      if (image3 === "/assets/x.gif") {
+        setImage3("/assets/x.gif")
       }
-      if (image4 === "/assets/X.gif") {
-        setImage4("/assets/X.gif")
+      if (image4 === "/assets/x.gif") {
+        setImage4("/assets/x.gif")
       }
-      if (image1 === "/assets/X.gif") {
-        setImage1("/assets/X.gif")
+      if (image1 === "/assets/x.gif") {
+        setImage1("/assets/x.gif")
       }
-      if (image6 === "/assets/X.gif") {
-        setImage6("/assets/X.gif")
+      if (image6 === "/assets/x.gif") {
+        setImage6("/assets/x.gif")
       }
     }
     if (image5 === "/assets/O.gif") {
@@ -324,7 +324,7 @@ function AddStore() {
     }
   }
   function clickCell6() {
-    if (image6 !== "/assets/X.gif") {
+    if (image6 !== "/assets/x.gif") {
       setImage6("/assets/O.gif")
       setImage2("/assets/blank.jpg")
       setImage3("/assets/blank.jpg")
@@ -332,20 +332,20 @@ function AddStore() {
       setImage5("/assets/blank.jpg")
       setImage1("/assets/blank.jpg")
 
-      if (image2 === "/assets/X.gif") {
-        setImage2("/assets/X.gif")
+      if (image2 === "/assets/x.gif") {
+        setImage2("/assets/x.gif")
       }
-      if (image3 === "/assets/X.gif") {
-        setImage3("/assets/X.gif")
+      if (image3 === "/assets/x.gif") {
+        setImage3("/assets/x.gif")
       }
-      if (image4 === "/assets/X.gif") {
-        setImage4("/assets/X.gif")
+      if (image4 === "/assets/x.gif") {
+        setImage4("/assets/x.gif")
       }
-      if (image5 === "/assets/X.gif") {
-        setImage5("/assets/X.gif")
+      if (image5 === "/assets/x.gif") {
+        setImage5("/assets/x.gif")
       }
-      if (image6 === "/assets/X.gif") {
-        setImage1("/assets/X.gif")
+      if (image6 === "/assets/x.gif") {
+        setImage1("/assets/x.gif")
       }
     }
     if (image6 === "/assets/O.gif") {
