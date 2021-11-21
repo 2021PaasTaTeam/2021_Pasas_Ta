@@ -5,7 +5,6 @@ import withRoot from '../modules/withRoot';
 import { RemoveScrollBar } from 'react-remove-scroll-bar';
 import Sidebar from "./Sidebar";
 import './Gather.css';
-import axios from "axios";
 
 function Town(props) {
 
@@ -50,7 +49,7 @@ function Town(props) {
     userReady = true;
   };
 
-  let user = {
+  var user = {
     speed: 5,
     x: 600,
     y: 400
@@ -73,20 +72,71 @@ function Town(props) {
     false
   );
 
-  // 키보드 입력
-  window.addEventListener('keydown', e => {
-    // 마우스 좌표 찾기
-    var x = user.x;
-    var y = user.y;
-    var coords = "X coords: " + x + ", Y coords: " + y;
-    console.log(coords);
-    // 클릭 이벤트
-    if (x >= 250 && x <= 400 && y >= 250 && y <= 400) {
-      if (e.keyCode === 88) {
-        Enter()
+  useEffect(() => {
+    // 키보드 입력
+    window.addEventListener('keydown', e => {
+      // 마우스 좌표 찾기
+      var x = user.x;
+      var y = user.y;
+      var coords = "X coords: " + x + ", Y coords: " + y;
+      console.log(coords);
+      // 클릭 이벤트
+      if (x >= 280 && x <= 430 && y >= 120 && y <= 290) {
+        if (e.keyCode === 88) {
+          if (window.confirm("성북구에 입장하시겠습니까??") == true) {    //확인
+            Enter()
+            const landObj = { land: '성북구' };
+            window.localStorage.setItem("land", JSON.stringify(landObj));
+          }
+        }
       }
-    }
-  });
+      if (x >= 280 && x <= 430 && y >= 550 && y <= 750) {
+        if (e.keyCode === 88) {
+          if (window.confirm("종로구에 입장하시겠습니까??") == true) {    //확인
+            Enter()
+            const landObj = { land: '종로구' };
+            window.localStorage.setItem("land", JSON.stringify(landObj));
+          }
+        }
+      }
+      if (x >= 710 && x <= 865 && y >= 120 && y <= 290) {
+        if (e.keyCode === 88) {
+          if (window.confirm("서초구에 입장하시겠습니까??") == true) {    //확인
+            Enter()
+            const landObj = { land: '서초구' };
+            window.localStorage.setItem("land", JSON.stringify(landObj));
+          }
+        }
+      }
+      if (x >= 710 && x <= 865 && y >= 550 && y <= 750) {
+        if (e.keyCode === 88) {
+          if (window.confirm("구로구에 입장하시겠습니까??") == true) {    //확인
+            Enter()
+            const landObj = { land: '구로구' };
+            window.localStorage.setItem("land", JSON.stringify(landObj));
+          }
+        }
+      }
+      if (x >= 1210 && x <= 1365 && y >= 120 && y <= 290) {
+        if (e.keyCode === 88) {
+          if (window.confirm("동작구에 입장하시겠습니까??") == true) {    //확인
+            Enter()
+            const landObj = { land: '동작구' };
+            window.localStorage.setItem("land", JSON.stringify(landObj));
+          }
+        }
+      }
+      if (x >= 1210 && x <= 1365 && y >= 550 && y <= 750) {
+        if (e.keyCode === 88) {
+          if (window.confirm("영등포구에 입장하시겠습니까??") == true) {    //확인
+            Enter()
+            const landObj = { land: '영등포구' };
+            window.localStorage.setItem("land", JSON.stringify(landObj));
+          }
+        }
+      }
+    });
+  }, []);
 
   useEffect(() => {
 
@@ -115,14 +165,37 @@ function Town(props) {
       var x = e.clientX;
       var y = e.clientY;
       var coords = "X coords: " + x + ", Y coords: " + y;
-      console.log(coords);
+      //console.log(coords);
       // 클릭 이벤트
-      if (x >= 250 && x <= 400 && y >= 250 && y <= 400) {
+      if (x >= 300 && x <= 600 && y >= 250 && y <= 420) {
         Enter()
-        //const session_land = '성북';
-        const landObj = { land: '성북' };
-        window.sessionStorage.setItem("land", JSON.stringify(landObj));
-        console.log('마우스 버튼 ON 이벤트 발생!');
+        const landObj = { land: '성북구' };
+        window.localStorage.setItem("land", JSON.stringify(landObj));
+      }
+      if (x >= 300 && x <= 600 && y >= 550 && y <= 750) {
+        Enter()
+        const landObj = { land: '종로구' };
+        window.localStorage.setItem("land", JSON.stringify(landObj));
+      }
+      if (x >= 950 && x <= 1100 && y >= 250 && y <= 400) {
+        Enter()
+        const landObj = { land: '서초구' };
+        window.localStorage.setItem("land", JSON.stringify(landObj));
+      }
+      if (x >= 950 && x <= 1100 && y >= 550 && y <= 750) {
+        Enter()
+        const landObj = { land: '구로구' };
+        window.localStorage.setItem("land", JSON.stringify(landObj));
+      }
+      if (x >= 1600 && x <= 1750 && y >= 250 && y <= 400) {
+        Enter()
+        const landObj = { land: '동작구' };
+        window.localStorage.setItem("land", JSON.stringify(landObj));
+      }
+      if (x >= 1600 && x <= 1750 && y >= 550 && y <= 750) {
+        Enter()
+        const landObj = { land: '영등포구' };
+        window.localStorage.setItem("land", JSON.stringify(landObj));
       }
     });
   }, []);
@@ -134,23 +207,12 @@ function Town(props) {
   }
 
   const Enter = () => {
-    // if (window.confirm("성북구 장터에 입장하시겠습니까?") == true) {    //확인
-    //   window.location.replace("./Gather")
-    // } else {   //취소
-    //   if (window.location.replace("/Town") === true
-    //   ) {
-    //     window.location.replace("/Gather")
-    //   }
-    //   else {
-    //     window.location.replace("/Town")
-    //   }
-    // }
-    window.location.replace("./Gather")        
+    window.location.replace("./Gather")
   }
 
   function moveChar(deltaX, deltaY, direction) {
-    var width = 1400;
-    var height = 790;
+    var width = 1480;
+    var height = 875;
 
     if (user.x + deltaX > 0 && user.x + SCALED_WIDTH + deltaX < width) {
       user.x += deltaX * user.speed;
@@ -224,7 +286,7 @@ function Town(props) {
   }
 
   gameLoop();
-  
+
   return (
     <React.Fragment>
       <RemoveScrollBar />

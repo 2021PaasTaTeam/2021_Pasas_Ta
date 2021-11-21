@@ -3,7 +3,6 @@ import SimplePeer, { Instance, SignalData } from "simple-peer";
 import Typography from '@material-ui/core/Typography';
 import AppForm from '../../modules/views/AppForm';
 import {ChatContainer} from './Container/ChatContainer';
-
 import "./Video.scss";
 
 enum ConnectionStatus {
@@ -11,7 +10,7 @@ enum ConnectionStatus {
   RECEIVING,
   CONNECTED,
 }
-const webSocketConnection = new WebSocket("ws://localhost:8080/videochat");
+const webSocketConnection = new WebSocket("wss://onnuriservice1.paas-ta.org/videochat");
 
 export const VideoCall = () => {
   const videoSelf = useRef<HTMLVideoElement | null>(null);
@@ -23,7 +22,7 @@ export const VideoCall = () => {
   useEffect(() => {
     webSocketConnection.onmessage = (message: any) => {
       const payload = JSON.parse(message.data);
-      console.log(payload);
+      //console.log(payload);
       if (payload?.type === "offer") {
         setOfferSignal(payload);
         setConnectionStatus(ConnectionStatus.RECEIVING);
@@ -37,7 +36,7 @@ export const VideoCall = () => {
     // if(connectionStatus == 1) {
     //   alert(connectionStatus)
     // }
-    navigator.mediaDevices.getUserMedia({ video: true, audio: false }).then((mediaStream) => {
+    navigator.mediaDevices.getUserMedia({ video: true, audio: true }).then((mediaStream) => {
       const video = videoSelf.current;
       video!.srcObject = mediaStream;
       video!.play();

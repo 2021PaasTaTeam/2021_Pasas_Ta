@@ -15,24 +15,24 @@ function AddItem() {
     var id = [];
 
     function searchId() {
-        const url = "http://localhost:8080/shop";
+        const url = "https://onnuriservice.paas-ta.org/shop";
         axios.get(url)
             .then(function (response) {
                 setStore(response.data);
-                console.log("성공");
+                //console.log("성공");
             })
             .catch(function (error) {
-                console.log("실패");
+                //console.log("실패");
             })
     }
-    console.log(store)
+    //console.log(store)
 
     for (let i = 0; i < store.length; i++) {
         if (store[i].email === session.data.email) {
             id = store[i];
         }
     }
-    console.log(id)
+    //console.log(id)
 
     useEffect(() => {
         searchId()
@@ -41,14 +41,14 @@ function AddItem() {
     }, [id.shopId]);
 
     function searchItem(shopid) {
-        const url = "http://localhost:8080/shop/" + shopid + "/item";
+        const url = "https://onnuriservice.paas-ta.org/shop/" + shopid + "/item";
         axios.get(url)
             .then(function (response) {
                 setItem(response.data);
-                console.log("성공");
+                //console.log("성공");
             })
             .catch(function (error) {
-                console.log("실패");
+                //console.log("실패");
             })
     }
 
@@ -62,9 +62,9 @@ function AddItem() {
         item_name[j] = item[j].name
     }
     for (var j = 0; j < item.length; j++) {
-        item_image[j] = item[j].storeFileName
+        item_image[j] = item[j].storeFileName[0]
     }
-    console.log(item_image[0])
+    //console.log(item_image[0])
     for (var j = 0; j < item.length; j++) {
         item_content[j] = item[j].content
     }
@@ -113,24 +113,24 @@ function AddItem() {
         formData.append("itemStock", itemStock)
         formData.append("itemImages", itemImages)
 
-        console.log(formData)
+        //console.log(formData)
 
-        console.log('click item')
-        console.log('가게번호 : ', id.shopId)
-        console.log("itemName", itemName)
-        console.log("itemContent", itemContent)
-        console.log("itemPrice", itemPrice)
-        console.log("itemStock", itemStock)
-        console.log("itemImages", itemImages)
+        // console.log('click item')
+        // console.log('가게번호 : ', id.shopId)
+        // console.log("itemName", itemName)
+        // console.log("itemContent", itemContent)
+        // console.log("itemPrice", itemPrice)
+        // console.log("itemStock", itemStock)
+        // console.log("itemImages", itemImages)
 
 
-        axios.post('http://localhost:8080/item', formData, {
+        axios.post('https://onnuriservice.paas-ta.org/item', formData, {
             headers: {
                 'Content-type': 'multipart/form-data; charset=utf-8',
             }
         })
             .then(res => {
-                console.log(res)
+                //console.log(res)
                 alert('상품이 등록되었습니다.')
                 window.location.replace("/AddItem")
             })
@@ -317,7 +317,7 @@ function AddItem() {
                                         <img className="phoneImage"
                                             height="160vh"
                                             width="160vw"
-                                            src={"img/" + item_image[idx]} />
+                                            src={item_image[idx]} />
                                     </div>
                                     <div style={{
                                         float: 'left'

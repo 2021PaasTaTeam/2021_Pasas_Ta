@@ -4,9 +4,20 @@
 <div align="center">
 
   
-__🍝☁💻 파스타 클라우드 공모전 : 메타버스 중계 플랫폼__
+__🍝☁💻 파스타 클라우드 공모전 : 메타버스 중계 플랫폼 Onnuri__
 
-![image](https://user-images.githubusercontent.com/57929751/142043961-903007e3-e499-455d-87b5-0552a977939b.png)
+![image](https://user-images.githubusercontent.com/57929751/142673515-41de94ff-4a6b-4e10-ae9a-7199544a75c1.png)
+
+</div>
+
+![image](https://user-images.githubusercontent.com/57929751/142673600-90d748fd-a6b2-4cdf-81d4-ffc0d80a952e.png)
+
+
+![image](https://user-images.githubusercontent.com/57929751/142673688-926d253e-6072-400f-9941-fc02e4b4f792.png)
+
+
+<div align="center">
+
   
 ==============================
 
@@ -15,25 +26,20 @@ __Front-End : React + TypeScript__
 
 __Back-End : Spring-Boot + Spring-Data-Jpa__
 
-__DB : Mysql__
+__DB : MariaDB__
 
-__Infra : Paas-Ta__
+__Infra : Paas-Ta, AWS s3__
 
   
 ==============================
 </div>
 
-![image](https://user-images.githubusercontent.com/57929751/140656023-1b56cbc7-0cb3-4771-ae6c-7379e0a1af65.png)
-
-
-![image](https://user-images.githubusercontent.com/57929751/140656090-15019435-4af2-473d-b7cd-7ee0b06fbcf3.png)
-
 프로젝트 인원 총 3명
+
+기간 : 2021. 7. 26. ~ 2021. 11. 19
 
 
 기획 및 디자인 1명
-
-기간 : 2021. 7. 26. ~ 2021. 11. 19
 
 👨 EungBum
 
@@ -139,36 +145,34 @@ __시스템관리자페이지__
 - 삭제 기능
 
 
-# 요구사항 분석 체크리스트
+# 요구사항 체크리스트
 
 ---
 
 - 개발자 관점
-- [ ]  소스 코드 정리 (직관적인지)
+- [x]  소스 코드 정리 (직관적인지)
 
 - 공통
 - [x]  메인 페이지
 - [x]  로그인 페이지
 - [x]  회원가입 페이지
 - [x]  메타버스 광장 페이지
-- [ ]  메타버스 지역구 페이지(50% 기능 미구현 / 디자인 완료)
-- [x]  구매자와 판매자 채팅 페이지 (디자인 예정)
-- [x]  영상 통화 페이지
-- [x]  채팅 페이지
+- [x]  메타버스 지역구 페이지
+- [x]  구매자와 판매자 소통 페이지 (영상 통화 + 채팅)
 
 - 사용자 관점
 - [x]  사용자 개인 메뉴 사이드바
 - [x]  개인정보 수정을 위한 마이 페이지
 - [x]  상품 구매 페이지
-- [x]  장바구니 페이지 (선택 물품 삭제, 구매(FINISH) )
+- [x]  장바구니 페이지
 - [x]  영수증 페이지
 - [x]  장바구니 선택 목록 알림 팝업창
 - [x]  구매 목록 페이지
 
 
 - 가게 운영자 관점
-- [ ]  가게 + 부동산 등록 페이지 (50% 구현)
-- [ ]  가게 + 부동산 수정 페이지 (50% 구현)
+- [x]  가게 + 부동산 등록 페이지
+- [x]  가게 수정 페이지
 - [x]  상품 등록 페이지
 - [x]  상품 수정/삭제 페이지
 - [x]  사용자가 구매한 상품 리스트 페이지(영수증)
@@ -179,7 +183,7 @@ __시스템관리자페이지__
 - [x]  회원 정보 페이지
 - [x]  가게 정보 페이지
 - [x]  물품 정보 페이지
-- [ ]  주문 정보 페이지
+- [x]  주문 정보 페이지
 
 
 - 웹페이지 디자인
@@ -198,17 +202,19 @@ __시스템관리자페이지__
 
 # ⚙ 기술 스택 
 
-개발언어 - CSS, HTML, JAVASCRIPT, JAVA, REACT, SCSS, TYPESCRIPT, NODEJS
+개발언어 - CSS, HTML, JAVASCRIPT, JAVA, REACT, SCSS, TYPESCRIPT
+
+프레임워크 - REACT, SPRING BOOT
 
 API - Npm, Material-Ui, CANVAS, Socket.io, AXIOS, React Hook, React Router, React Admin, React Notification, React Final,               React Ra-data, bootstrap
 
 IDE - Visual Studio Code, IntelliJ
 
-데이터베이스 - MYSQL 8.0
+데이터베이스 - MariaDB
 
-개발 환경 - 윈도우10
+개발 운영체제 환경 - 윈도우10
 
-인프라 - Paas_Ta
+인프라 - Paas_Ta, AWS
 
 디자인 툴 - Pigma, Gather-Town
 

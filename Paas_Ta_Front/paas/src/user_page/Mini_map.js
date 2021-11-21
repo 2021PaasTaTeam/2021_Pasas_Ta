@@ -53,11 +53,11 @@ function Mini_map() {
       var x = e.clientX;
       var y = e.clientY;
       var coords = "X coords: " + x + ", Y coords: " + y;
-      console.log(coords);
+      //console.log(coords);
       // 클릭 이벤트
       if (x >= 0 && x <= 1000 && y >= 0 && y <= 1000) {
         openWin()
-        console.log('마우스 버튼 ON 이벤트 발생!');
+        //console.log('마우스 버튼 ON 이벤트 발생!');
       }
     });
   }, []);
@@ -75,13 +75,13 @@ function Mini_map() {
 
   //////
   /////
-  const session_land = JSON.parse(window.sessionStorage.getItem("land"));
-  //console.log(session_land);
+  const session_land = JSON.parse(window.localStorage.getItem("land"));
+  ////console.log(session_land);
   const [store, setStore] = useState([]);
 
   var new_store = [];
   function searchstore() {
-    const url = "http://localhost:8080/lands/";
+    const url = "https://onnuriservice.paas-ta.org/lands/";
     axios.get(url)
       .then(function (response) {
         var land = [];
@@ -91,19 +91,19 @@ function Mini_map() {
           }
         }
         setStore(land);
-        //console.log(response.data)
-        console.log("성공");
+        ////console.log(response.data)
+        //console.log("성공");
       })
       .catch(function (error) {
-        console.log("실패");
+        //console.log("실패");
       })
   }
-  //console.log(session_land.land)
-  //console.log(store)
+  ////console.log(session_land.land)
+  ////console.log(store)
   new_store = store;
-  console.log(new_store)
+  //console.log(new_store)
 
-  //console.log(store[0].landCoordinate)
+  ////console.log(store[0].landCoordinate)
 
   useEffect(() => {
     searchstore()

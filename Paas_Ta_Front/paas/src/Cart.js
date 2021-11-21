@@ -47,11 +47,11 @@ function Cart() {
   var [order, setOrder] = useState([]);
 
   function searchOrder() {
-    const url = "http://localhost:8080/orders/" + session.data.id;
+    const url = "https://onnuriservice.paas-ta.org/orders/" + session.data.id;
     axios.get(url)
       .then(function (response) {
         setOrder(response.data);
-        console.log(response.data)
+        //console.log(response.data)
         //console.log("성공");
       })
       .catch(function (error) {
@@ -93,9 +93,10 @@ function Cart() {
     order_name[j] = order_list[j].orderItems[0].itemName
   }
 
+    //console.log(order)
     const item_remove = (index) => {
         if (window.confirm("해당 상품을 삭제하시겠습니까??") == true) {    //확인
-            axios.delete('http://localhost:8080/order/' + order_id[index], {
+            axios.delete('https://onnuriservice.paas-ta.org/order/' + order_id[index], {
             })
                 .then(res => {
                     alert('해당 상품이 삭제되었습니다.')
@@ -108,23 +109,23 @@ function Cart() {
     };
 
     const onClickBuy = () => {
-        console.log('click buy')
+        //console.log('click buy')
         //console.log('itemId : ', item_data_session.item_data.itemId)
-        console.log('count : ', order_stock)
+        //console.log('count : ', order_stock)
         let data = {'items':[{
           //'itemId': item_data_session.item_data.itemId,
           'count': order_stock,
         },]
         }
-        axios.post('http://localhost:8080/order/'+session.data.id+"/finish", data, {
+        axios.post('https://onnuriservice.paas-ta.org/order/'+order_id+"/finish", data, {
             headers: {
                 'Content-type': 'application/json; charset=utf-8',
               }
         })
           .then(res => {
-            console.log(res.data)
+            //console.log(res.data)
             alert("구매 완료!!!")
-            window.location.replace("/Item")
+            window.location.replace("/Cart")
           })
           .catch()
       }
@@ -230,7 +231,7 @@ function Cart() {
                                         &nbsp;&nbsp;
                                     </div> */}
 
-                                    <div className="c1image" style={{
+                                    {/* <div className="c1image" style={{
                                         float: 'left'
                                     }} >
                                         <img className="phoneImage"
@@ -238,7 +239,7 @@ function Cart() {
                                             width="110vw"
                                             //src="/assets/github.png"
                                             />
-                                    </div>
+                                    </div> */}
                                     <div style={{
                                         float: 'left'
                                     }}>
@@ -260,11 +261,11 @@ function Cart() {
                                         <Typography
                                             variant="h3"
                                             style={{
-                                                fontSize: 20,
+                                                fontSize: 17,
                                                 float: 'left'
                                             }}
                                         >
-                                            &nbsp;&nbsp;{order_stock[idx]} 개
+                                            &nbsp;&nbsp;상품 개수 : {order_stock[idx]} 개
                                         </Typography>
                                     </div>
                                     <br />
@@ -349,6 +350,7 @@ function Cart() {
                 <br />
                 <br />
                 <br />
+                <br />
                 <Grid container spacing={2}>
                     <Grid item xs={12} sm={6}>
                         <FormButton
@@ -386,6 +388,7 @@ function Cart() {
                         </FormButton>
                     </Grid>
                 </Grid>
+                <br/>
             </AppForm>
             <AppFooter />
         </React.Fragment>

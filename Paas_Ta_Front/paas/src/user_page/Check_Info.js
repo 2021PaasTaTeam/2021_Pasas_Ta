@@ -13,7 +13,7 @@ function Check_Info() {
     var [order, setOrder] = useState([]);
 
     function searchOrder() {
-        const url = "http://localhost:8080/orders/" + session.data.id;
+        const url = "https://onnuriservice.paas-ta.org/orders/" + session.data.id;
         axios.get(url)
             .then(function (response) {
                 setOrder(response.data);
@@ -162,6 +162,10 @@ function Check_Info() {
                         ))}
                     </ul>
                 </div>
+                <br/>
+            <br/>
+            <br/>
+            <br/>
                 <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
                 <FormButton
                     sx={{ mt: 1, mb: 1 }}
