@@ -1,10 +1,12 @@
 HELP.md
+
 .gradle
 build/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
 !**/src/test/**/build/
-
+application-credentials.yml
+application-cloud.yml
 ### STS ###
 .apt_generated
 .classpath

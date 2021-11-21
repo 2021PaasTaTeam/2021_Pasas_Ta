@@ -34,9 +34,14 @@ public class OrderService {
         return orderRepository.findAllByUser(userid);
     }
 
-    //주문 상태와 userId로 Order찾음
+    //주문 상태와 userId로 OrderStatus가 Finish인 Order찾음
     public List<Order> findFinishOrderByUserId(Long userid){
         return orderRepository.findAllByUserAndStatus(userid, OrderStatus.FINISH);
+    }
+
+    //주문 상태와 userId로 OrderStatus가 Finish인 Order찾음
+    public List<Order> findOrderingOrderByUserId(Long userid){
+        return orderRepository.findAllByUserAndStatus(userid, OrderStatus.ORDERING);
     }
 
 //    @Transactional
@@ -85,6 +90,7 @@ public class OrderService {
             return false;
         }
         order.cancel();
+        orderRepository.delete(order);
         return true;
     }
 

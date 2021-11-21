@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.sql.Blob;
 
 @Entity
 @Getter
@@ -37,7 +38,6 @@ public class ItemImages {
         this.item = item;
         item.getItemImages().add(this);
     }
-
 
     public static ItemImages createItemImages(Item item, String uploadFileName, String storeFileName) {
         ItemImages itemImages = new ItemImages();

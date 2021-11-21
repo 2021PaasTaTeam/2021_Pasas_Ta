@@ -1,6 +1,7 @@
 package passta.paas_ta_back.controller.land;
 
 import lombok.Data;
+import passta.paas_ta_back.controller.shop.dto.ShopInfoDto;
 import passta.paas_ta_back.domain.Land;
 
 @Data

@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import passta.paas_ta_back.controller.dto.DeleteCheckDto;
 import passta.paas_ta_back.controller.order.dto.OrderInfoDto;
 import passta.paas_ta_back.domain.Item;
 import passta.paas_ta_back.domain.Order;
@@ -29,6 +30,10 @@ public class OrderController {
     private final UserService userService;
     private final ItemService itemService;
 
+    @GetMapping("/orders")
+    public ResponseEntity<?> totalOrders(){
+        return ResponseEntity.ok(orderService.orders().stream().map(OrderInfoDto::new).collect(Collectors.toList()));
+    }
 
     @GetMapping("/orders/{userId}")
     public ResponseEntity<?> totalOrderByUserId(@PathVariable(name = "userId") Long userId) {
@@ -77,6 +82,10 @@ public class OrderController {
         Order order = orderService.findOrderByOrderId(orderId);
         return new ResponseEntity(new OrderInfoDto(order), HttpStatus.OK);
     }
-
+    @DeleteMapping("/order/{orderId}")
+    public ResponseEntity<?> deleteOrder(@PathVariable(name = "orderId") Long orderId){
+        Boolean cancelOrder = orderService.cancelOrders(orderId);
+        return ResponseEntity.ok(new DeleteCheckDto(cancelOrder));
+    }
 
 }

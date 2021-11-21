@@ -8,17 +8,25 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import passta.paas_ta_back.controller.dto.DeleteCheckDto;
 import passta.paas_ta_back.controller.shop.dto.ShopInfoDto;
+import passta.paas_ta_back.domain.Land;
+import passta.paas_ta_back.repository.land.LandAndShopInfoDto;
 import passta.paas_ta_back.controller.user.dto.UserInfoDto;
+import passta.paas_ta_back.controller.user.dto.UserSessionDto;
+import passta.paas_ta_back.domain.Order;
 import passta.paas_ta_back.domain.Shop;
 import passta.paas_ta_back.domain.User;
+import passta.paas_ta_back.repository.land.LandRepository;
 import passta.paas_ta_back.repository.user.*;
+import passta.paas_ta_back.service.OrderService;
 import passta.paas_ta_back.service.UserService;
 import passta.paas_ta_back.web.session.SessionConst;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Slf4j
 @CrossOrigin
@@ -27,20 +35,27 @@ import java.util.stream.Collectors;
 public class UserController {
 
     private final UserService userService;
+    private final OrderService orderService;
+    private final LandRepository landRepository;
 
     @PostMapping("/login")
     public ResponseEntity<?> loginOk(@RequestBody LoginDto loginDto,
                                      HttpServletRequest request) {
+
         User loginUser = userService.login(loginDto);
+        List<LandAndShopInfoDto> allLandWithShop =
+                landRepository.findAll().stream()
+                        .map(LandAndShopInfoDto::new)
+                        .sorted(Comparator.comparing(LandAndShopInfoDto::getLandId))
+                        .collect(Collectors.toList());
         if (loginUser != null) {
             //로그인 성공 처리
-            log.info("loginForm={}", loginDto);
+//            log.info("loginForm={}", loginDto);
             //세션이 있는 경우, 세션 변환, 아닐 시 신규 세션 생성
-            UserInfoDto userInfoSession = new UserInfoDto(loginUser);
+            UserSessionDto userInfoSession = new UserSessionDto(loginUser, allLandWithShop);
             HttpSession session = request.getSession();
             session.setAttribute(SessionConst.LOGIN_USER, userInfoSession);
             session.setMaxInactiveInterval(120);
-            log.info("session login info = ",userInfoSession);
             return new ResponseEntity(userInfoSession, HttpStatus.OK);
         } else {
             return new ResponseEntity(null, HttpStatus.OK);

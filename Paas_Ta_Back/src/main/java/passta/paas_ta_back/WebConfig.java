@@ -18,7 +18,8 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOrigins("http://localhost:3000")
+                .allowedOrigins("https://onnuri.paas-ta.org")
+//                .allowedOrigins("http://localhost:3000")
                 .allowedHeaders("*")
                 .allowedMethods("*")
                 .allowCredentials(true);

@@ -52,23 +52,4 @@ public class CloudConfigData extends AbstractCloudConfig {
     public JdbcTemplate mysqlJdbcTemplate(@Qualifier("dsMysql") DataSource dsSlave) {
         return new JdbcTemplate(dsSlave);
     }
-
-
-//    @Bean(name = "dsMysql")
-//    public DataSource dataSource(@Value("${spring.datasource.url}") final String url,
-//                                 @Value("${spring.datasource.username}") final String user,
-//                                 @Value("${spring.datasource.password}") final String password) {
-//
-//        System.out.println("url test ="+url);
-//        System.out.println("user test ="+user);
-//        System.out.println("password test ="+password);
-//        return DataSourceBuilder.create()
-//                .type(HikariDataSource.class)
-//                .driverClassName(Driver.class.getName())
-//                .url(url)
-//                .username(user)
-//                .password(password)
-//                .build();
-//    }
-
 }

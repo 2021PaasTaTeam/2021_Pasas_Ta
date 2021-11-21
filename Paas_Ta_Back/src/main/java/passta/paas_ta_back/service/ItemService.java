@@ -11,13 +11,11 @@ import passta.paas_ta_back.domain.UploadFile;
 import passta.paas_ta_back.repository.item.ItemModifyDto;
 import passta.paas_ta_back.repository.item.ItemRegisterDto;
 import passta.paas_ta_back.repository.item.ItemRepository;
-import passta.paas_ta_back.repository.shop.ShopModifyDto;
 import passta.paas_ta_back.repository.shop.ShopRepository;
-import passta.paas_ta_back.web.file.FileStore;
+import passta.paas_ta_back.web.aws.FileUploadService;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Optional;
 
 @Slf4j
 @Service
@@ -29,7 +27,7 @@ public class ItemService {
     @Autowired
     ShopRepository shopRepository;
     @Autowired
-    FileStore fileStore;
+    FileUploadService fileUploadService;
 
     @Transactional
     public Item registerItem(ItemRegisterDto itemRegisterDto) throws IOException {
@@ -39,7 +37,7 @@ public class ItemService {
         }
         List<Item> byNameAndShop = itemRepository.findByNameAndShop(itemRegisterDto.getItemName(), shop);
         if (byNameAndShop.size() == 0) {
-            List<UploadFile> uploadFiles = fileStore.storeFiles(itemRegisterDto.getItemImages());
+            List<UploadFile> uploadFiles = fileUploadService.uploadImages(itemRegisterDto.getItemImages());
             Item item = Item.createItem(
                     shop,
                     itemRegisterDto.getItemName(),
@@ -84,6 +82,7 @@ public class ItemService {
         if (itemById == null) {
             return false;
         }
+
         itemRepository.deleteById(id);
         return true;
     }

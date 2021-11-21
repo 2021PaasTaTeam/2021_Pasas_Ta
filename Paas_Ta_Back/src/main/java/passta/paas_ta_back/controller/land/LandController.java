@@ -8,11 +8,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import passta.paas_ta_back.controller.dto.DeleteCheckDto;
 import passta.paas_ta_back.domain.Land;
+import passta.paas_ta_back.repository.land.LandAndShopInfoDto;
 import passta.paas_ta_back.repository.land.LandModifyDto;
 import passta.paas_ta_back.repository.land.LandRegisterDto;
 import passta.paas_ta_back.repository.land.LandRepository;
 import passta.paas_ta_back.service.LandService;
 
+import java.util.Comparator;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -26,7 +29,12 @@ public class LandController {
 
     @GetMapping("/lands")
     public ResponseEntity<?> totalLandView(){
-        return ResponseEntity.ok(landRepository.findAll().stream().map(LandInfoDto::new).collect(Collectors.toList()));
+        List<LandAndShopInfoDto> allLandWithShop =
+                landRepository.findAll().stream()
+                        .map(LandAndShopInfoDto::new)
+                        .sorted(Comparator.comparing(LandAndShopInfoDto::getLandId))
+                        .collect(Collectors.toList());
+        return ResponseEntity.ok(allLandWithShop);
     }
 
     @GetMapping("/land/{landId}")

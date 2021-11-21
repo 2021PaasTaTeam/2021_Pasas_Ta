@@ -11,7 +11,7 @@ import javax.persistence.*;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Table(name = "land")
+@Table(name = "lands")
 public class Land {
 
     @Id
@@ -19,7 +19,7 @@ public class Land {
     @Column(name = "land_id")
     private Long id;
 
-    @OneToOne(mappedBy ="land", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy ="land")
     private Shop shop;
 
     @Embedded

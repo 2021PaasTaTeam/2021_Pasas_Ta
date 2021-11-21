@@ -1,6 +1,6 @@
 ---
 applications:
-  - name: onnuriSerive
+  - name: onnuriService
     memory: 1024M
     instances: 1
     buildpack: java_buildpack

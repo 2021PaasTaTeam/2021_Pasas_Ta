@@ -11,6 +11,7 @@ import passta.paas_ta_back.domain.User;
 import passta.paas_ta_back.web.session.SessionConst;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.File;
 import java.text.SimpleDateFormat;
 
 @Slf4j
@@ -33,4 +34,8 @@ public class HomeController {
         return new ResponseEntity(new SessionDto(user), HttpStatus.OK);
     }
 
+    @GetMapping("/nagol")
+    public ResponseEntity<?>getNagol(){
+        return ResponseEntity.ok(new File("/img/nagol.jpg"));
+    }
 }

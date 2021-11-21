@@ -4,8 +4,17 @@ import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.Hibernate;
+import org.hibernate.LobHelper;
 
 import javax.persistence.Embeddable;
+import javax.persistence.EntityManager;
+import javax.persistence.Lob;
+import java.io.IOException;
+import java.io.InputStream;
+import java.sql.Blob;
+import java.sql.SQLException;
+
 @Getter
 @Embeddable
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -23,5 +32,13 @@ public class UploadFile {
     public UploadFile(String uploadFileName, String storeFileName) {
         this.uploadFileName = uploadFileName;
         this.storeFileName = storeFileName;
+    }
+
+    @Override
+    public String toString() {
+        return "UploadFile{" +
+                "uploadFileName='" + uploadFileName + '\'' +
+                ", storeFileName='" + storeFileName + '\'' +
+                '}';
     }
 }

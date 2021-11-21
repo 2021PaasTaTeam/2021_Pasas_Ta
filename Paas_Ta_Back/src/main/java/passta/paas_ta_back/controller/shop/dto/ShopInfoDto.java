@@ -14,7 +14,7 @@ public class ShopInfoDto {
     private String name;
     private String phone;
     private UploadFile image;
-    private String bussinessType;
+    private String businessType;
     private String region;
     private String address;
     private String userType = "SELLER";
@@ -28,6 +28,6 @@ public class ShopInfoDto {
         this.image = shop.getImage();
         this.region = shop.getRegion();
         this.address = shop.getAddress();
-        this.bussinessType = shop.getBusinessType();
+        this.businessType = shop.getBusinessType();
     }
 }

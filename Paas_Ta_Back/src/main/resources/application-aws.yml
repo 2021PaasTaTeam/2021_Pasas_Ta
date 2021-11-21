@@ -1,0 +1,10 @@
+cloud:
+  aws:
+    s3:
+      bucket: springboot-paasta
+    region:
+      static: ap-northeast-2
+    stack:
+      auto: false
+    credentials:
+      instanceprofile: true
