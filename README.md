@@ -1,13 +1,15 @@
 # 🍝☁💻 2021 파스타 클라우드 공모전(Team:우리함께)
 
+ 🥉 한국상용SW협회장상 특별상 수상
 
 <div align="center">
 
   
 __🍝☁💻 파스타 클라우드 공모전 : 메타버스 중계 플랫폼 Onnuri__
 
-![KakaoTalk_20211202_175053578](https://user-images.githubusercontent.com/57929751/144389105-03634bef-5164-439b-97ca-02ee911ed113.jpg)
-
+<!-- ![KakaoTalk_20211202_175053578](https://user-images.githubusercontent.com/57929751/144389105-03634bef-5164-439b-97ca-02ee911ed113.jpg)
+ -->
+  
   
 ![image](https://user-images.githubusercontent.com/57929751/142673515-41de94ff-4a6b-4e10-ae9a-7199544a75c1.png)
 
